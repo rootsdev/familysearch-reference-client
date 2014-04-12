@@ -1,0 +1,751 @@
+/**
+ * Copyright 2012-2014 FamilySearch
+ *
+ * NOT CURRENTLY USED BECAUSE IT MESSES TOO MUCH WITH LAYOUT
+ */
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+a,
+a:hover,
+a:active {
+  color: #0051c4;
+}
+
+#global-engage-header nav a.nav-item {
+  padding: 5px 9px;
+}
+
+#global-engage-header .global-util-nav-container {
+  margin-bottom: 0;
+}
+
+#global-engage-header .global-pri-nav-container {
+  margin-bottom: 7px;
+}
+
+#global-engage-footer.hide {
+  display: none !important;
+}
+
+.dropdown-menu {
+  border: 1px solid #4d4d4a;
+  border-radius: 4px;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background: #F1F8E3;
+  color: #333331;
+}
+
+.lifesketchControl {
+  clear: left;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+}
+
+#tree-style a.button,
+#tree-style input.button {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: normal;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 5px;
+  padding: 0 20px;
+  border: none;
+
+  background: #3F8BFA; /* Old browsers */
+  background: -moz-linear-gradient(top, #3F8BFA 0%, #0051C4 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3F8BFA), color-stop(100%,#0051C4)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #3F8BFA 0%,#0051C4 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #3F8BFA 0%,#0051C4 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #3F8BFA 0%,#0051C4 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #3F8BFA 0%,#0051C4 100%); /* W3C */
+
+  text-shadow: 0 -1px rgba(0,0,0,.2);
+  box-shadow: 0 3px 0 rgba(0,0,0,.2);
+
+  color: #fff;
+}
+
+#tree-style a.button:hover,
+#tree-style input.button:hover {
+  background: #3F8BFA;
+  text-decoration: none;
+}
+
+#tree-style a.button:active,
+#tree-style input.button:active {
+  background: #0051C4; /* Old browsers */
+  background: -moz-linear-gradient(top, #0051C4 0%, #3F8BFA 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0051C4), color-stop(100%,#3F8BFA)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #0051C4 0%,#3F8BFA 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #0051C4 0%,#3F8BFA 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #0051C4 0%,#3F8BFA 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #0051C4 0%,#3F8BFA 100%); /* W3C */
+}
+
+#tree-style a.button[disabled],
+#tree-style input.button[disabled] {
+  background: #cdcdcd;
+  color: #eee;
+}
+
+
+#tree-style a.button-silver,
+#tree-style input.button-silver {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: normal;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 5px;
+  padding: 0 20px;
+
+  background: #cdcdcd; /* Old browsers */
+  background: -moz-linear-gradient(top, #fff 0%, #cdcdcd 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#cdcdcd)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #fff 0%,#cdcdcd 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #fff 0%,#cdcdcd 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #fff 0%,#cdcdcd 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #fff 0%,#cdcdcd 100%); /* W3C */
+
+  text-shadow: 0 1px rgba(255,255,255,.7);
+  box-shadow: 0 3px 0 rgba(102,102,98,.1);
+  border: 1px solid #b2b1b0;
+
+  color: #333331;
+}
+
+#tree-style a.button-silver:hover,
+#tree-style input.button-silver:hover {
+  background: #cdcdcd;
+  text-decoration: none;
+}
+
+#tree-style a.button-silver:active,
+#tree-style input.button-silver:active {
+  background: #cdcdcd; /* Old browsers */
+  background: -moz-linear-gradient(top, #cdcdcd 0%, #fff 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cdcdcd), color-stop(100%,#fff)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #cdcdcd 0%,#fff 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #cdcdcd 0%,#fff 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #cdcdcd 0%,#fff 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #cdcdcd 0%,#fff 100%); /* W3C */
+}
+
+article {
+  background: #ECEBEA;
+}
+
+body.noScroll:not([data-page="search"]) #wrapper, /* Need this for pedigree with new layout */
+body.noScroll:not([data-page="search"]) #global-engage-header,
+body.destinationPage:not([data-page="search"]) #global-engage-header {
+  width: auto;
+  margin: 0 0 5px;
+}
+
+body.wrap:not([data-page="search"]) #global-engage-header {
+  width: 980px;
+  margin: 0 auto 5px;
+  padding: 0;
+}
+
+body:not([data-page="search"]) #global-engage-header .global-util-nav-container,
+body::not([data-page="search"]) #global-engage-header .global-pri-nav-container {
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#global-engage-header .logo {
+  margin-left: 20px;
+}
+
+#global-engage-header .global-util-nav-container > ul {
+  margin-right: 20px;
+}
+
+#global-engage-header nav li.account {
+  padding-right: 6px;
+}
+
+body#tree-style:not([data-page="search"]) {
+  min-width: 980px;
+}
+
+body.wrap:not([data-page="search"]) #content {
+  position: relative;
+  width: 980px;
+  margin: 0 auto;
+}
+
+body.noScroll article {
+  border-bottom: solid 1px #666460;
+}
+
+.living #DISCUSSIONS_hdrMessage,
+.living #Sources,
+.living #Discussions {
+  display: none;
+}
+
+#DISCUSSIONS_message,
+#SOURCES_message {
+  display: none;
+}
+
+.living #DISCUSSIONS_message, .living #SOURCES_message {
+  display: block;
+  clear: left;
+}
+
+
+
+
+#tree-style ::selection {
+  background: #d6e5f6;
+}
+
+#tree-style .openable .open-close-control {
+  float: right;
+  margin: 5px 5px 0 0;
+}
+
+#tree-style .openable .open-close-button {
+  font-size: 14px;
+  text-align: center;
+  color: #333331;
+  line-height: 14px;
+}
+
+/* causes recess to run out of memory - I don't know why
+#tree-style .side-banner-container {
+  position: fixed;
+  top: 200px;
+  right: 0;
+  z-index: 999;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  -ms-transform: rotate(-90deg);
+  -ms-transform-origin: bottom right;
+  -moz-transform: rotate(-90deg);
+  -moz-transform-origin: bottom right;
+  -o-transform: rotate(-90deg);
+  -o-transform-origin: bottom right;
+  -webkit-transform: rotate(-90deg);
+  -webkit-transform-origin: bottom right;
+  transform: rotate(-90deg);
+  transform-origin: bottom right;
+}
+*/
+
+#tree-style .side-banner-container .reference {
+  float: left;
+  background: #990000;
+  padding: 9px 16px 8px 16px;
+}
+
+.ie8 #tree-style .side-banner-container {
+  white-space: nowrap;
+  padding: 16px 9px 16px 9px;
+  top: 230px;
+  font-weight: bold;
+  writing-mode: tb-rl;
+  filter: fliph flipv;
+}
+
+
+
+
+#tree-style .rounded-section {
+  width: 693px;
+  background: #fff;
+  border: 1px solid #CACACA;
+  margin: 15px 0 0 15px;
+  border-radius: 12px;
+  padding: 3px 0;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+#tree-style .full-section {
+  width: auto;
+  margin: 15px 0 0 0;
+  clear: both;
+}
+
+#tree-style .rounded-section h4 {
+  color: #333331;
+  font-size: 20px;
+  margin: 0;
+  float: left;
+}
+
+#tree-style .rounded-section h5 {
+  color: #333331;
+  font-size: 18px;
+  margin: 10px 0;
+  font-weight: normal;
+  text-transform: none;
+}
+
+#tree-style .rounded-section .gadget {
+  clear: left;
+}
+
+#tree-style .section-wrap {
+  padding: 10px;
+}
+
+#tree-style .section-wrap:after {
+  display: table;
+  line-height: 0;
+  content: "";
+  clear: both;
+}
+
+#tree-style .sideBar {
+  display: block;
+  width: 250px;
+  float: right;
+}
+
+#tree-style .sideBar.positioned {
+  float: right;
+}
+
+#tree-style .sideBar .gadget {
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  font-family: inherit !important; /* Need to remove important from gadget, shouldn't be needed anymore */
+  padding: 0 0 10px;
+  margin: 15px 20px 0 0;
+  box-shadow: 0 0 5px rgba(0,0,0,.65);
+  width: auto;
+  min-height: 290px;
+}
+
+#tree-style .sideBar .gadget:first-child {
+  min-height: 50px;
+}
+
+#tree-style a.male,
+#tree-style a.female,
+#tree-style a.unknown {
+  color: #0051c4;
+  font-size: 16px;
+  background: none;
+  position: relative;
+}
+
+#tree-style .fs-icon-before-male:before,
+#tree-style .fs-icon-before-female:before,
+#tree-style .fs-icon-before-unknown:before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: -4px;
+}
+
+#tree-style .fs-icon-before-male-micro:before,
+#tree-style .fs-icon-before-female-micro:before,
+#tree-style .fs-icon-before-unknown-micro:before {
+  content: '';
+  display: inline-block;
+  margin-right: 5px;
+}
+
+#tree-style .ui-menu-item {
+  font-family: inherit;
+  font-size: 14px;
+  margin: 2px;
+}
+
+#tree-style .read-more-control p {
+  font-size: 14px;
+  color: #4d4d4a;
+}
+
+#tree-style .read-more-control a {
+  font-size: 14px;
+}
+
+/* Bootstrap reset */
+.label {
+  padding: 1px 0;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: normal;
+  color: #4d4d4a;
+  text-shadow: none;
+  background-color: transparent;
+}
+
+[class*="span"] {
+  float: none;
+  margin-left: 0;
+}
+
+#tree-style input,
+#tree-style textarea {
+  border-color: #ccc;
+}
+
+#tree-style input:focus,
+#tree-style textarea:focus {
+  border-color: #333331;
+}
+
+#tree-style input:focus,
+#tree-style textarea:focus {
+  border-color: #333331;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+#tree-style input[disabled],
+#tree-style select[disabled],
+#tree-style textarea[disabled],
+#tree-style input[readonly],
+#tree-style select[readonly],
+#tree-style textarea[readonly] {
+  border-color: #999999;
+  background: #f0f0f0;  /* needs to be background to override background imgs (such as gradients) */
+  color: #666662;
+  cursor: not-allowed;
+}
+
+#tree-style input[type="radio"],
+#tree-style input[type="checkbox"] {
+  margin: 0;
+}
+
+::-moz-placeholder {
+  font-size: 14px;
+  color: #99938D;
+}
+
+:-moz-placeholder {
+  font-size: 14px;
+  color: #99938D;
+}
+
+:-ms-input-placeholder {
+  font-size: 14px;
+  color: #99938D;
+}
+
+::-webkit-input-placeholder {
+  font-size: 14px;
+  color: #99938D;
+}
+
+input, button, select, textarea {
+  font-family:inherit;
+}
+
+/* End Bootstrap reset */
+
+/* Spinner Definitions */
+
+.spinner-large-gray {
+  background: url('https://edge.fscdn.org/assets/img/spinner-large-gray-095c2381bb3d02dd51122ec3e96e06d5.gif') no-repeat;
+  width: 32px;
+  height: 32px;
+}
+
+.spinner-large-white {
+  background: url('../img/spinner-large-white.gif') no-repeat;
+  width: 32px;
+  height: 32px;
+}
+
+#subject {
+  min-height: 280px;
+}
+
+/* Ancestor Page */
+#ancestorPage.tombstoned .sideBar {
+  display: none;
+}
+
+#content #ancestorPage .details-content, /* Should become a third level nav style */
+#content #ancestorPage .photos-content,
+#content #ancestorPage .stories-content {
+  padding: 0 0 15px 0;
+  position: relative;
+}
+
+#content #ancestorPage .details-content .rounded-section {
+  float: left;
+}
+
+/* Autocomplete */
+[aria-live="polite"] {
+  display: none;
+}
+
+/* End Ancestor Page */
+
+.third-nav {
+  margin: 0;
+  list-style-type: none;
+}
+
+.third-nav li {
+  float: left;
+}
+
+.third-nav a {
+  display: block;
+  position: relative;
+  color: #666460;
+  padding: 7px;
+  margin: 10px 20px 10px 0;
+  border-radius: 5px;
+  border: none;
+  text-transform: uppercase;
+}
+
+.third-nav a:hover,
+.third-nav a:active,
+.third-nav a.active {
+  color: #666460;
+  border: none;
+  background: #e1ecc3;
+  text-decoration: none;
+}
+
+.third-nav a[data-badge] {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-right: 70px;
+}
+
+.third-nav a[data-badge]:before {
+  content: attr(data-badge);
+  position: absolute;
+  left: 100%;
+  top: 0;
+  display: inline-block;
+  padding: 7px 15px 7px 8px;
+  min-width: 10px;
+  text-align: center;
+}
+
+.third-nav a[data-badge]:after {
+  content: attr(data-badge);
+  position: absolute;
+  left: 100%;
+  top: 0;
+  display: inline-block;
+  background: #666;
+  color: #fff;
+  margin: 7px 7px 7px 0;
+  padding: 0 8px;
+  border-radius: 20px;
+  transition: background 1s linear;
+  -webkit-transition: background 1s linear;
+  min-width: 10px;
+  text-align: center;
+}
+
+.third-nav a.active[data-badge]:before,
+.third-nav a[data-badge]:hover:before {
+  background: #e1ecc3;
+  border-radius: 0 5px 5px 0;
+}
+
+/* messes with bootstrap grid layout
+body:not([data-page="search"]) .container, .navbar-static-top .container,
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+  width: auto;
+}
+*/
+
+/* Quick fix for freshlook-LinksGadget.css */
+.taggedSourceGadget .sourcesConclusionLabel {
+  visibility: visible;
+}
+
+@media screen and (min-width: 1200px) {
+  body#tree-style .container, /* This is needed to size the subnav on pedigree */
+  #global-engage-header,
+  #global-engage-header .global-util-nav-container,
+  #global-engage-header .global-pri-nav-container,
+  #content .subnavGadget,
+  #content .subnavGadget .links,
+  body.wrap #content {
+    min-width: 1200px;
+  }
+
+  #content .rounded-section {
+    width: 820px;
+    margin: 15px 0 0 20px;
+  }
+
+  #content .rounded-section.full-section {
+    width: auto;
+  }
+
+  #content .sideBar {
+    width: 335px;
+  }
+
+  #content .collapsibleFamilyMembersGadget .column {
+    width: 400px;
+  }
+
+  #content .collapsibleFamilyMembersGadget .childrenBox {
+    width: 358px;
+  }
+
+  #content .df {
+    width: 700px;
+  }
+
+  #content .conclusion .editFieldPart .dateStandard,
+  #content .conclusion .editFieldPart .placeStandard,
+  #content .conclusion .editFieldPart.hasStandard.isLiving .dateStandard,
+  #content .conclusion .editFieldPart.hasStandard.isLiving .placeStandard {
+    width: 609px;
+  }
+
+  #content .mergePairGadget .mergeInfo {
+    width: 547px;
+  }
+
+  #content .changeLogGadget .justification {
+    width: 800px;
+  }
+
+  #content .changeLogGadget .group .justification {
+    width: 740px;
+  }
+
+  #content .mergeGadget.finishMerging .mergeGadgetContent section {
+    width: 550px;
+  }
+
+  #content .mergeGadget section.finishMergingSection .textareaBlock textarea,
+  #content .mergeGadget section.finishMergingSection .textareaBlock label {
+    width: 510px;
+  }
+
+}
+
+@media print {
+  /* Force Chrome and Safari to print background colors. */
+  /* Other browsers put this in the control of the user. */
+  :root {
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  body div[style*=Arial],
+  #LoginGadget,
+  .srcExpDialog,
+  #subnav,
+  #Tasks,
+  .open-close-button,
+  .createDiscussionPanel,
+  .addSourcePanel,
+  #DiscussionsSection .section-wrap p,
+  #global-engage-header,
+  #global-engage-footer nav.center {
+    display: none !important;
+  }
+
+  #ancestorPage .mainContent .rounded-section {
+    page-break-inside: avoid !important;
+  }
+
+  #content #ancestorPage .details-content,
+  #content #ancestorPage .photos-content,
+  #content #ancestorPage .stories-content {
+    display: block !important;
+  }
+
+  #content #ancestorPage .details-content.hide,
+  #content #ancestorPage .photos-content.hide,
+  #content #ancestorPage .stories-content.hide {
+    display: none !important;
+  }
+
+  #content #ancestorPage .photos-content,
+  #content #ancestorPage .stories-content {
+    page-break-inside: avoid !important;
+    -webkit-transform: scale(.8);
+    -moz-transform: scale(.8);
+    -ms-transform: scale(.8);
+    -o-transform: scale(.8);
+    transform: scale(.8);
+  }
+
+  article {
+    background-color: transparent !important;
+  }
+
+  #tree-style .sideBar .gadget {
+    border: 1px solid #EDECE8 !important;
+    box-shadow: none !important;
+  }
+
+  #tree-style .side-banner-container {
+    position: absolute;
+    right: 0 !important;
+    top: 100px !important;
+    -ms-transform: none !important;
+    -moz-transform: none !important;
+    -o-transform: none !important;
+    -webkit-transform: none !important;
+    transform: none !important;
+  }
+
+  .tree-container .fs-icon-zoom-controls,
+  .tree-container .tree-toggle,
+  .tree-container .hide {
+    display: none !important;
+  }
+
+  #treePage,
+  .tree-container #pedigree-container {
+    height: 1000px !important;
+  }
+
+  .tree-container .fanChartControl {
+    background-color: transparent;
+    display: block;
+    height: 1000px !important;
+    margin: 0 0 0 -.5in;
+    -webkit-transform: scale(.85);
+    -moz-transform: scale(.85);
+    -ms-transform: scale(.85);
+    -o-transform: scale(.85);
+    transform: scale(.85);
+  }
+
+  .tree-container .fanChartControl svg {
+    margin: 0 0 0 -.5in;
+  }
+
+  .tree-container a {
+    color: #3C3B36 !important;
+    text-decoration: none !important;
+  }
+}

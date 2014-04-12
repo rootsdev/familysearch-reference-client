@@ -1,0 +1,68 @@
+/*
+ * global styles to make the pages look like FamilySearch.org go here
+ */
+
+@font-face {
+  font-family: "museo";
+  src: url(https://edge.fscdn.org/assets/img/fs-webdev-font-museo-slab/museo_slab_500-webfont-b71789ad8688760a106d3c8262d685c3.woff);
+}
+
+@font-face {
+  font-family: "ProximaNova";
+  src: url(https://edge.fscdn.org/assets/img/fs-webdev-font-proxima-nova/ProximaNova-Reg-webfont-eaefa76920a4cf6987134b0ac7f8967c.woff);
+}
+
+@font-face {
+  font-family: "ProximaNova";
+  src: url(https://edge.fscdn.org/assets/img/fs-webdev-font-proxima-nova-bold/ProximaNova-Bold-webfont-ff747112d1e4df9af495ff41c9e8d19f.woff);
+  font-weight: bold;
+}
+
+body {
+  color: @color;
+  font-family: "ProximaNova", Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+h1, h2, h3, h4, .serif {
+  font-family: "museo", serif;
+}
+
+h3 {
+  font-size: 28px;
+  line-height: 32px;
+}
+
+h4 {
+  font-size: 21px;
+  line-height: 24px;
+}
+
+.label {
+  padding: 1px 0;
+  font-size: 14px;
+  color: @label-color;
+  font-weight: normal;
+}
+
+a, a:hover, a:focus {
+  color: @link-color;
+}
+
+.rounded-section h5 {
+  color: @rounded-section-h5-color;
+  font-size: 18px;
+  margin: 10px 0;
+  font-weight: normal;
+  text-transform: none;
+}
+
+.fs-icon-before-male:before,
+.fs-icon-before-female:before,
+.fs-icon-before-unknown:before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: -4px;
+}

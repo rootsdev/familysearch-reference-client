@@ -1,0 +1,894 @@
+/**
+ * Copyright 2012-2014 FamilySearch
+ */
+
+.conclusion {
+  border: 1px solid transparent;
+  display: block;
+  font-size: 14px;
+  line-height:18px;
+  margin: 4px 0;
+  position: relative;
+  padding: 12px 20px 0;
+  width: auto;
+  color: #4d4d4a;
+}
+
+.conclusion .editFieldPart input,
+.conclusion .editFieldPart select,
+.conclusion .editFieldPart textarea {
+  color: #333331;
+  font-size: 14px;
+}
+
+.conclusion .editFieldPart input {
+  padding: 3px 0 3px 5px;
+  width: 631px;
+}
+
+.conclusion .editFieldPart input.radio {
+  width: auto;
+}
+
+.conclusion .editFieldPart label[for] {
+  font-size: 14px;
+}
+
+.ie7 .conclusion .editFieldPart input,
+.ie8 .conclusion .editFieldPart input {
+  padding-bottom: 8px;
+}
+
+.ie .conclusion .editFieldPart input.radio {
+  border: none;
+  background: transparent;
+}
+
+.conclusion.loadingSpinner .conclusionData div.label {
+  background-image: url('https://edge.fscdn.org/assets/img/spinner-white-cf46f7db4c452ea2a94d33eabca8ba93.gif');
+  background-repeat: no-repeat;
+  background-position: right center;
+  padding-right: 30px;
+}
+
+.conclusion.edit.loadingSpinner .conclusionData div.label {
+  background-image: none;
+  padding-right: 0;
+}
+
+.conclusion.edit.loadingSpinner .buttonRow {
+  background-image: url('https://edge.fscdn.org/assets/img/spinner-tan-0c738a6167533e67ac6a98f80fce18df.gif');
+  background-repeat: no-repeat;
+  background-position: 20px center;
+}
+
+.conclusion.edit.loadingSpinner .buttonRow a {
+  visibility: hidden;
+}
+
+.conclusion .editFieldPart select {
+  min-width: 150px;
+  padding: 2px 2px;
+}
+
+.conclusion label {
+  color: #333331;
+  display: block;
+  font-size: 14px;
+  margin-bottom:  0;
+}
+
+.conclusion.multi .conclusionLabel,
+.conclusion.edit .conclusionLabel,
+.conclusion.hide, .conclusion a span.hide {
+  display: none;
+}
+
+.conclusion.edit.enableJustificationEdit .conclusionLabel {
+  display: block;
+}
+
+.conclusion a {
+  word-wrap: break-word;
+}
+
+.conclusion a:hover,
+.conclusion a:active,
+.conclusion a:focus {
+  text-decoration: underline;
+}
+
+.conclusion .conclusionMenu a {
+  margin: 0 4px;
+}
+
+.conclusion a.button {
+  color: #fff;
+}
+
+.tombstoned .conclusion a.addLink {
+  visibility: hidden;
+}
+
+.conclusion a.addLink:before {
+  content: '';
+  display: inline-block;
+  vertical-align: text-top;
+  margin-right: 5px;
+}
+
+.conclusion a.closeConclusion {
+  padding: 0;
+  background: none;
+  position: relative;
+}
+
+.conclusion a.closeConclusion:after {
+  content: '';
+  display: inline-block;
+  margin: -3px 0 0 5px;
+  vertical-align: middle;
+}
+
+
+.conclusion.edit[viewType=LINEAGE] .conclusionData {
+  margin-top: 0;
+}
+
+.conclusion .conclusionData .dataCell,
+.conclusion .conclusionEvidenceAndAnalysis .dataCell {
+  font-size: 16px;
+}
+
+.conclusion .dataCell a.readMore,
+.conclusion .dataCell a.readLess {
+  font-size: 14px;
+  padding-left: 8px;
+}
+
+.conclusion .titlePart,
+.conclusion .descriptionPart,
+.conclusion .datePart,
+.conclusion .placePart {
+  display: inline;
+}
+
+.conclusion.edit .editFieldPart.justification label {
+  padding-top: 0;
+}
+
+.conclusion.edit .editFieldPart.deathPart {
+  display: block;
+}
+
+
+.conclusion.edit .editFieldPart.deathPart label,
+.conclusion.edit .editFieldPart.genderPart label {
+  color: #3C3B36;
+  display: inline;
+  position: static;
+  margin-right: 25px;
+}
+
+.conclusion .titlePart label,
+.conclusion .descriptionPart label,
+.conclusion .datePart label,
+.conclusion .placePart label {
+  top: 26px;
+}
+
+.conclusion .editFieldPart .label,
+.conclusion .parent-child-names .label,
+.conclusion .label.relationship-type,
+.editFieldPart.scriptType {
+  color: #3C3B36;
+}
+
+.conclusion.extended.edit .conclusionRow div.label {
+  clear: left;
+}
+
+.conclusion.extended,
+.conclusion.edit {
+  border: 1px solid #dedbd7;
+  border-radius: 3px;
+  -ms-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  box-shadow: 0 0 10px #dedbd7;
+  -ms-box-shadow: 0 0 10px #dedbd7;
+  -moz-box-shadow: 0 0 10px #dedbd7;
+  -o-box-shadow: 0 0 10px #dedbd7;
+  -webkit-box-shadow: 0 0 10px #dedbd7;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+}
+
+.conclusion.extended.edit.solo {
+  background-color: transparent;
+  border: 0 transparent none;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  margin: 0 0 16px;
+  padding: 0 0 12px;
+}
+
+.conclusion.extended .conclusionMenu {
+  float: right;
+}
+
+.conclusion.extended .conclusionMenu .closeConclusion {
+  display: inline-block;
+  margin-right: 0;
+}
+
+.conclusion .conclusionMenu,
+.conclusion .conclusionEvidenceAndAnalysis,
+.conclusion .conclusionContributor,
+.conclusion .conclusionError,
+.conclusion .buttonRow {
+  display: none;
+}
+
+.conclusion .system-alert.inline.conclusion-error-box {
+  margin: 7px 0 10px;
+}
+
+.conclusion.extended .conclusionMenu,
+.conclusion.extended .conclusionEvidenceAndAnalysis,
+.conclusion.extended .conclusionContributor {
+  display: block;
+}
+
+.conclusion .conclusionEvidenceAndAnalysis,
+.conclusion .conclusionContributor,
+.conclusion .conclusionSources {
+  margin-top: 19px;
+}
+
+.conclusion .conclusionSources,
+.conclusion.extended.edit .conclusionSources,
+.tombstoned .conclusion.extended .conclusionSources {
+  border-top: solid 1px #ccc8c4;
+  padding-top: 20px;
+  display: none;
+}
+
+.conclusion.extended .conclusionSources {
+  display: block;
+}
+
+.conclusion.extended .conclusionEvidenceAndAnalysis.blank,
+.conclusion.noedit .conclusionEvidenceAndAnalysis.blank {
+  display: none;
+}
+
+.conclusion .conclusionContributor .label,
+.conclusion .conclusionContributor .history,
+.conclusion .conclusionContributor .datePart {
+  display: inline-block;
+}
+
+.conclusion#currentConclusion .conclusionContributor .label.hide {
+  display: none;
+}
+
+.conclusion.edit {
+  background-color: #f3f3f1;
+}
+
+.conclusion .justificationEdit,
+.conclusion.enableJustificationEdit.noedit .justificationEdit {
+  display: none;
+}
+
+.conclusion.enableJustificationEdit .justificationEdit {
+  display: inline;
+}
+
+.conclusion.edit .conclusionMenu,
+.conclusion.edit.enableJustificationEdit .justificationEdit,
+.conclusion.edit .history,
+.conclusion.extended .history.hidden {
+  display: none;
+}
+
+.conclusion.edit .conclusionEvidenceAndAnalysis {
+  display: block;
+  margin-top: 0;
+  padding-top: 8px;
+}
+
+.conclusion.edit .conclusionContributor {
+  margin-top: 5px;
+}
+
+.conclusion.edit .buttonRow {
+  background-image: -o-linear-gradient(top, #f3f3f1, #edece8);
+  background-image: -moz-linear-gradient(top, #f3f3f1, #edece8);
+  background-image: -ms-linear-gradient(top, #f3f3f1, #edece8);
+  background-image: -webkit-linear-gradient(top, #f3f3f1, #edece8);
+  background-image: linear-gradient(top, #f3f3f1, #edece8);
+  margin: 4px -20px -12px;
+  padding: 7px 20px 20px;
+  display: block;
+}
+
+.conclusion.edit .cancelButton,
+.conclusion.edit .saveButton {
+  display: inline-block;
+  margin: 0;
+  padding: 1px 20px;
+}
+
+.conclusion.edit .saveButton[disabled] {
+  cursor: not-allowed;
+}
+
+.conclusion.edit .editFieldPart {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-bottom: 10px;
+  position: relative;
+  vertical-align: top;
+}
+
+.ie8 .conclusion.edit .editFieldPart {
+  margin-right: 0;
+}
+
+.conclusion.edit .editFieldPart.suffixPart {
+  margin-right: 0;
+}
+
+.conclusion.edit .editFieldPart.nameTypePart {
+  display: block;
+  padding-bottom: 8px;
+}
+
+.conclusion.edit .prefix {
+  width: 66px;
+}
+
+.conclusion.edit .given-name {
+  width: 216px;
+}
+
+.conclusion.edit .surname {
+  width: 216px;
+}
+
+.conclusion.edit .suffix {
+  width: 100px;
+}
+
+.conclusion.edit textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #3c3b36;
+  height: 75px;
+  max-height: 370px;
+  min-height: 75px;
+  outline: 0 none;
+  overflow: auto;
+  resize: vertical;
+  vertical-align: top;
+  padding: 3px 3px 3px 5px;
+  width: 98%;
+}
+/** Since IE7, 8 and 9 do not resize textareas we gave them a little more height **/
+.ie7 .conclusion.edit textarea,
+.ie8 .conclusion.edit textarea,
+.ie9 .conclusion.edit textarea {
+  height: 92px;
+}
+
+.conclusion.edit[viewType=EVENT] select {
+  display: none;
+}
+
+.conclusion .isLiving input,
+.conclusion .disabled input {
+  background-color: #edece8;
+  color: #edece8;
+}
+
+.conclusion.extended.edit .editFieldPart.isLiving div.label,
+.conclusion.extended.edit .editFieldPart.disabled div.label {
+  color: #787069;
+}
+
+.conclusion .editFieldPart .dateStandard,
+.conclusion .editFieldPart .placeStandard,
+.conclusion .editFieldPart.hasStandard.isLiving .dateStandard,
+.conclusion .editFieldPart.hasStandard.isLiving .placeStandard {
+  background-color: #FFF6BF;
+  border: 1px solid #FFD324;
+  border-left-width: 10px;
+  color: #3C3b36;
+  height: 15px;
+  margin: 3px 0 0 0;
+  overflow: hidden;
+  padding: 2px 9px 5px;
+  visibility: hidden;
+  width: 609px;
+}
+
+.conclusion .editFieldPart.hasStandard .dateStandard .standardLabel,
+.conclusion .editFieldPart.hasStandard .placeStandard .standardLabel,
+.conclusion .editFieldPart.hasStandard .dateStandard .stdVal,
+.conclusion .editFieldPart.hasStandard .placeStandard .stdVal {
+  color: #375700;
+  font-size: 14px;
+  margin-left: 13px;
+}
+
+.conclusion .editFieldPart.hasStandard .dateStandard .stdVal:active,
+.conclusion .editFieldPart.hasStandard .placeStandard .stdVal:active {
+  outline: 1px dotted;
+}
+
+.conclusion .editFieldPart.noStandard .dateStandard .standardLabel,
+.conclusion .editFieldPart.noStandard .placeStandard .standardLabel,
+.conclusion .editFieldPart.noStandard .dateStandard .stdVal,
+.conclusion .editFieldPart.noStandard .placeStandard .stdVal,
+.conclusion .editFieldPart.noStandardAvailable .dateStandard .standardLabel,
+.conclusion .editFieldPart.noStandardAvailable .placeStandard .standardLabel,
+.conclusion .editFieldPart.noStandardAvailable .dateStandard .stdVal,
+.conclusion .editFieldPart.noStandardAvailable .placeStandard .stdVal {
+  color: #3C3B36;
+  font-size: 12px;
+  margin-left: 13px;
+}
+
+.conclusion .editFieldPart .dateStandard .stdVal,
+.conclusion .editFieldPart .placeStandard .stdVal {
+  font-weight: bold;
+}
+
+.conclusion .editFieldPart.hasStandard .dateStandard,
+.conclusion .editFieldPart.hasStandard .placeStandard,
+.conclusion .editFieldPart.noStandard .dateStandard,
+.conclusion .editFieldPart.noStandard .placeStandard,
+.conclusion .editFieldPart.noStandardAvailable .dateStandard,
+.conclusion .editFieldPart.noStandardAvailable .placeStandard,
+.conclusion .editFieldPart.errorStandard .dateStandard,
+.conclusion .editFieldPart.errorStandard .placeStandard {
+  visibility: visible;
+}
+
+.conclusion .editFieldPart.noStandardAvailable .dateStandard a,
+.conclusion .editFieldPart.noStandardAvailable .placeStandard a {
+  display: none;
+}
+
+.conclusion .editFieldPart.hasStandard .dateStandard,
+.conclusion .editFieldPart.hasStandard .placeStandard {
+  background-color: #F0FEE9;
+  border-color: #73BC00;
+}
+
+.conclusion .editFieldPart.errorStandard .standardLabel {
+  display: none;
+}
+/** Styles for name templates and dropdown list **/
+.conclusion .name-forms-container .nameForm {
+  height: 46px;
+  clear: left;
+}
+
+.conclusion .name-forms-container .nameForm .glow {
+  -webkit-box-shadow:0 0 10px #63CF5F;
+  -moz-box-shadow: 0 0 10px #63CF5F;
+  box-shadow:0 0 10px #63CF5F;
+}
+
+.conclusion.edit .multi-name-forms .editFieldPart {
+  display: block;
+  float: left;
+}
+
+.conclusion.edit .name-form-labels {
+  height: 21px;
+}
+
+.conclusion.edit .name-form-labels .editFieldPart {
+  padding-bottom: 0;
+}
+
+.conclusion .editFieldPart select.nameTypeSelect {
+  width: auto;
+}
+
+.conclusion.edit .multi-name-forms .editFieldPart.suffixPart {
+  margin-right: 0;
+}
+
+.conclusion.edit .nameForm input {
+  width: 100%;
+}
+
+.conclusion .multi-name-forms .editFieldPart.scriptType {
+  padding-top: 5px;
+  margin-right: 0;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  font-size: 14px;
+}
+
+.conclusion .kana .prefixPart input,
+.conclusion .kanji .prefixPart input,
+.conclusion .hanja .prefixPart input,
+.conclusion .hangul .prefixPart input,
+.conclusion .kana .prefixPart .prefixLabel,
+.conclusion .kanji .prefixPart .prefixLabel,
+.conclusion .hanja .prefixPart .prefixLabel,
+.conclusion .hangul .prefixPart .prefixLabel,
+.conclusion .kana .prefixPart label,
+.conclusion .kanji .prefixPart label,
+.conclusion .hanja .prefixPart label,
+.conclusion .hangul .prefixPart label {
+  display: none;
+}
+
+.conclusion .thai .suffixPart input,
+.conclusion .vietnamese .suffixPart input,
+.conclusion .mongolian .suffixPart input,
+.conclusion .thai .suffixPart .suffixLabel,
+.conclusion .vietnamese .suffixPart .suffixLabel,
+.conclusion .mongolian .suffixPart .suffixLabel,
+.conclusion .thai .suffixPart label,
+.conclusion .vietnamese .suffixPart label,
+.conclusion .mongolian .suffixPart label {
+  display: none;
+}
+
+.conclusion .nameForm.prefix-data .prefixPart input,
+.conclusion .nameForm.prefix-data .prefixPart .prefixLabel,
+.conclusion .nameForm.prefix-data .prefixPart label,
+.conclusion .nameForm.suffix-data .suffixPart input,
+.conclusion .nameForm.suffix-data .suffixPart .suffixLabel,
+.conclusion .nameForm.suffix-data .suffixPart label {
+  display: inline;
+}
+
+.conclusion .nameForm.roman.bottom-border {
+  border-bottom: 1px solid #B6BCBD;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.conclusion.edit .single-form .scriptType {
+  display: none;
+}
+
+.conclusion.edit .single-form .prefixPart {
+  width: 66px;
+}
+
+.conclusion.edit .single-form .givenPart {
+  width: 216px;
+}
+
+.conclusion.edit .single-form .familyPart {
+  width: 216px;
+}
+
+.conclusion.edit .single-form .suffixPart {
+  width: 100px;
+}
+
+.conclusion.edit .editFieldPart.templatePart {
+  display: block;
+  font-size: 14px;
+  padding-bottom: 20px;
+  z-index: 200;
+}
+
+.conclusion.edit .templatePart .template-span.border-right {
+  border-right: 1px solid #787069;
+  padding-right: 10px;
+}
+
+.ie7 .conclusion.edit .templatePart .template-span.border-right {
+  float: left;
+}
+
+.conclusion .templatePart .template-list-container {
+  position: relative;
+  display: inline-block;
+}
+
+.conclusion .templatePart .template-list-container .template-span {
+  padding-left: 7px;
+}
+
+.conclusion .templatePart .downArrow {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 7px;
+  border: 4px solid transparent;
+  border-top-color: #4d4d4a;
+}
+
+.conclusion .templatePart .flyout-direction,
+.conclusion .templatePart .flyout-direction div {
+  border-color: transparent;
+  border-style: solid;
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+
+.conclusion .templatePart .flyout-direction {
+  border-bottom-color: #4d4d4a;
+  border-bottom-width: 9px;
+  border-left-width: 9px;
+  border-right-width: 9px;
+  display: block;
+  right: 10px;
+  top: -12px;
+}
+
+.conclusion .templatePart .flyout-direction div {
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 9px;
+  border-left-width: 9px;
+  border-right-width: 9px;
+  left: -9px;
+  top: -1px;
+}
+
+.conclusion .templatePart .template-link {
+  position: relative;
+  padding-right: 10px;
+}
+
+.conclusion .templatePart .template-list {
+  background:#ffffff;
+  border: 1px solid #4d4d4a;
+  box-shadow: 4px 4px 6px rgba(160,160,160,.6);
+  -moz-box-shadow: 4px 4px 6px rgba(160,160,160,.6);
+  -webkit-box-shadow: 4px 4px 6px rgba(160,160,160,.6);
+  left: 0;
+  margin-top: 5px;
+  min-height: 190px;
+  padding: 10px 0;
+  position: absolute;
+}
+
+.ie7 .conclusion .templatePart .template-list {
+  top: 20px;
+}
+
+.conclusion .templatePart .template-list a {
+  border-width: 0;
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  line-height: 1.2em;
+  margin: 2px 0;
+  overflow: hidden;
+  padding: 5px 20px 5px 30px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+  color: #3C3B36;
+  background: none;
+}
+
+.ie7 .conclusion .templatePart .template-list a {
+  min-width: 60px;
+}
+
+.conclusion .templatePart .template-list a:hover {
+  background-color: #EDECE8;
+}
+
+.conclusion .templatePart .template-list a.current {
+  position: relative;
+  background: #EDECE8;
+}
+
+.conclusion .templatePart .template-list a.current:before {
+  content: '\2713';
+  color: #4d4d4a;
+  position: absolute;
+  top: 0;
+  left: 13px;
+  line-height: 26px;
+}
+
+/* adjustments for search for add person name styles  */
+.conclusion.edit.solo .templatePart .template-span.border-right {
+  display: none;
+}
+
+.conclusion.solo .templatePart .template-span {
+  padding: 0;
+}
+
+.conclusion .roman .scriptType.loading {
+  background-image: url('https://edge.fscdn.org/assets/img/spinner-tan-0c738a6167533e67ac6a98f80fce18df.gif');
+  background-repeat: no-repeat;
+  background-position: 0 40%;
+  margin-left: -18px;
+  padding-left: 18px;
+}
+
+/** Styles for the autocomplete menu **/
+.ui-autocomplete {
+  background-color: #ffffff;
+  border: 1px solid #B5BFB3;
+  max-height: 102px;
+  overflow: auto;
+  width: 300px;
+  position: absolute;
+}
+
+.ui-menu-item {
+  list-style: none;
+  margin: 2px 2px 2px -15px;
+}
+
+.ui-menu-item .ui-corner-all {
+  color: #3c3b36;
+  display: block;
+  padding: 0 2px;
+}
+
+.ui-menu-item .ui-corner-all:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ui-menu-item .ui-corner-all.ui-state-hover,
+.ui-menu-item .ui-corner-all.ui-state-focus {
+  background-color: #edece8;
+}
+
+#deleteConclusionDialog p.notice {
+  margin-bottom: 10px;
+}
+
+#deleteConclusionDialog .system-alert .form-error {
+  margin-top: 10px;
+  width: auto;
+}
+
+.fsModal .fsModalBody textarea {
+  color: #3c3b36;
+  font-size: 14px;
+  max-height: 240px;
+  min-height: 64px;
+  resize: vertical;
+  padding: 0;
+  width: 100%;
+}
+
+@media print {
+  .conclusion {
+    border-bottom: 1px solid #ccc8c4 !important;
+    font-size: 10pt !important;
+    padding: 0 0 10px 10px !important;
+    page-break-inside: avoid;
+    margin-bottom: 10px !important;
+  }
+
+  .conclusion .editFieldPart input,
+  .conclusion .editFieldPart select,
+  .conclusion .editFieldPart textarea {
+    border: 0 none transparent;
+    font-size: 12pt !important;
+    height: fit-content !important;
+  }
+
+  .conclusion .editFieldPart input[type=radio],
+  .conclusion .editFieldPart input[type=checkbox] {
+    border: inherit;
+  }
+
+  .conclusion label {
+    font-size: 10pt !important;
+  }
+
+  .conclusion .editFieldPart label[for] {
+    font-size: 12pt;
+  }
+
+
+  .conclusion .conclusionMenu {
+    display: none !important;
+  }
+  .conclusion .conclusionData .dataCell,
+  .conclusion .conclusionEvidenceAndAnalysis .dataCell {
+    font-size: 12pt !important;
+  }
+
+  .conclusion .dataCell {
+    color: #333331;
+    font-size: 14px;
+  }
+
+  .conclusion .dataCell a.readMore,
+  .conclusion .dataCell a.readLess {
+    font-size: 10px !important;
+  }
+
+  .conclusion .editFieldPart .label,
+  .conclusion .parent-child-names .label,
+  .conclusion .label.relationship-type,
+  .editFieldPart.scriptType {
+    font-size: 10pt !important;
+  }
+
+  .conclusion .conclusionSources {
+    display: none !important;
+  }
+
+  .conclusion.extended,
+  .conclusion.edit {
+    background-color: transparent !important;
+    border: 0 solid transparent !important;
+    border-bottom: 1px solid #ccc8c4 !important;
+    -moz-box-shadow: none !important;
+    -ms-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .conclusion.extended .conclusionSources {
+    border-top: none !important;
+    display: block !important;
+    padding-top: 0 !important;
+  }
+
+  .conclusion.edit .buttonRow {
+    display: none !important;
+  }
+
+  .conclusion .editFieldPart .standardLabel,
+  .conclusion .editFieldPart .stdVal {
+    font-size: 10pt !important;
+  }
+
+  .conclusion .system-alert {
+    display: none !important;
+  }
+
+  .conclusion a {
+    color: #3C3B36 !important;
+    text-decoration: none !important;
+  }
+
+  .conclusion .conclusionContributor .history {
+    display: none !important;
+  }
+
+  .linksGadget .bubble, .taggedSourceGadget .bubble {
+    background-color: transparent !important;
+    border: none !important;
+    color: #375700 !important;
+    padding: 1px 0 !important;
+  }
+}

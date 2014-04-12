@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Person Details</title>
+
+  <!-- Bootstrap -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+  <link rel="stylesheet" type="text/css" href="assets/fsTree-0.0.1.css" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body id="tree-style">
+<div id="content" class="container">
+  <div class="row">
+    <div class="col-lg-12 gadget personSummaryGadget gender-male">
+      <div class="subContainer has-person">
+        <div class="person-information">
+          <h3><span class="personName">Kenneth Werner Quass Sr.</span></h3>
+          <h4 class="lifeSpan">4 December 1917 - 17 September 1982</h4>
+          <h4 class="personId">KNS4-P6W</h4>
+        </div>
+        <div class="tree-holder">
+          <h4>
+            <span class="person-tree-link fs-icon-tree">
+              <a href="" title="View Tree" class="tree-link">View Tree</a>
+            </span>
+          </h4>
+          <h4>
+            <span class="person-watch-link gadget watchGadget">
+              <a href="" class="watch notwatching">
+                <span class="watchLabel fs-icon-watch-off" title="Be notified of updates to this person and add to my watch list.">Watch</span>
+                <span class="unwatchLabel fs-icon-watch-on" title="Stop being notified of updates to this person and remove from my watch list.">Unwatch</span>
+              </a>
+            </span>
+          </h4>
+        </div>
+        <div class="profile-image has-photo portraitSelectorControl" style="cursor: pointer; background-image: url(portrait-thumb.jpg);"></div>
+      </div>
+      <div class="section-tabs">
+        <ul class="tab-list nav nav-tabs">
+          <li id="details-tab" class="active"><a href="">Details</a></li>
+          <li><a href="">Memories<span class="badge">4</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="row">
+      <div class="col-lg-12 gadget personSummaryGadget" data-section-showing="details">
+        <div class="section-navigation">
+          <a href="">Vitals</a>
+          <span class="navigation-separator">|</span>
+          <a href="">Other</a>
+          <span class="navigation-separator">|</span>
+          <a href="">Family</a>
+          <span class="navigation-separator">|</span>
+          <a href="">Sources<span class="badge">1</span></a>
+          <span class="navigation-separator">|</span>
+          <a href="">Discussions<span class="badge">1</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="row details-content">
+      <div class="col-lg-9">
+
+        <div class="rounded-section openable">
+          <div class="section-wrap">
+            <h4 class="gadget-title">Life Sketch</h4>
+            <div class="open-close-control">
+              <a class="open-close-button" href="" style="float:right;">Close</a>
+            </div>
+            <div class="gadget">
+              <div class="lifesketch-container lifesketch-control populated">
+                <div class="menu-bar">
+                  <a class="edit-link" href="">Edit</a>
+                  <span class="actionBar">|</span>
+                  <a class="delete-link" href="">Delete</a>
+                </div>
+                <p class="text read-more-control">
+                  <p>Here is a life sketch</p>
+                  <!-- <a class="more-less-link">???</a> -->
+                </p>
+              </div>
+              <div class="lifesketch-container lifesketch-control empty hide">
+                <a class="add-lifesketch fs-icon-before-add" href="">Add</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-section openable">
+          <div class="section-wrap">
+            <h4 class="gadget-title">Vital Information</h4>
+            <div class="open-close-control">
+              <a class="open-close-button" href="" style="float:right;">Close</a>
+            </div>
+            <div id="LifeSketchVital" class="gadget lifeSketchGadget">
+              <div class="vitals nodivider">
+                <div class="header"><a class="showDetails" href="">Open Details</a></div>
+                <div class="details">
+
+                  <div class="conclusion extended">
+                    <div class="conclusionMenu">
+                      <a class="editConclusion" href="">Edit</a>
+                      |
+                      <a class="closeConclusion fs-icon-after-close" href="">Close</a>
+                    </div>
+                    <div class="conclusionRow conclusionData">
+                      <div class="label conclusionLabel">Name</div>
+                      <div class="dataCell">
+                        <a href="">
+                          <span class="nameForm">Kenneth Werner Quass Sr.</span>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="conclusionRow conclusionEvidenceAndAnalysis">
+                      <div class="label justificationLabel">Reason This Information Is Correct</div>
+                      <div class="dataCell">
+                        Family notes. Changed by son of person being edited
+                      </div>
+                    </div>
+                    <div class="conclusionRow conclusionContributor">
+                      <div class="contributor">
+                        <div class="label modifiedLabel">
+                          Modified<span class="history">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">History</a></span>
+                        </div>
+                        <div class="dataCell">
+                          <span class="datePart">18 October 2012</span>
+                          by
+                          <a href="" class="contributorLink">kenquass1</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="conclusionRow conclusionSources loaded linksLoadStatus taggedSourceGadget linksGadget">
+                      <div class="tagActionLinks">
+                        <div class="sourcesConclusionLabel">Sources</div>
+                        <span class="actionBar">|</span>
+                        <a class="tagActionLink" href="" title="Tag this source">Tag</a>
+                        <div class="bubble">1</div>
+                      </div>
+                      <div class="sourceBox standaloneSourceBox">
+                        <div class="sourceIconBorderless" title="Go to the web page">
+                          <img class="icon imgSystemSource" width="16" height="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAoUlEQVR42mNgwAGMjQ3/wzADMQBdAzpNlAHoNEUuwCdPlKG4vITVW9hMxxcWWA3AFhboBuL0AroBBgYGAkD6vZGRQQLJAQjCJiZGDUD6Pj7vYQ1IkEZTUwMDkGYQm5D3sBhg4ADSDHGFgQPBwMMGjIyMCmAGAMNCgeT4h7oCZEA/kD4PcwlJABGYBv0M5ABjY6P10OhUINMAgwCoK84TUgsABJ6KFKwLgI4AAAAASUVORK5CYII="/>
+                        </div>
+                        <a class="sourceTitle standaloneSourceTitle" href="">Kenneth Werner Quass, &quot;Iowa, Births and Christenings, 1830-1950&quot;</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="conclusion extended">
+                    <div class="conclusionMenu">
+                      <div class="conclusionMenu">
+                        <a class="editConclusion" href="">Edit</a>
+                        |
+                        <a class="closeConclusion fs-icon-after-close" href="">Close</a>
+                      </div>
+                    </div>
+                    <div class="conclusionRow conclusionData">
+                      <div class="label conclusionLabel">Gender</div>
+                      <div class="dataCell">
+                        <a href="">Male</a>
+                      </div>
+                    </div>
+                    <div class="conclusionRow conclusionEvidenceAndAnalysis blank">
+                      <div class="label justificationLabel">Reason This Information Is Correct</div>
+                      <div class="dataCell"></div>
+                    </div>
+                    <div class="conclusionRow conclusionContributor">
+                      <div class="contributor">
+                        <div class="label modifiedLabel">
+                          Modified<span class="history">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">History</a></span>
+                        </div>
+                        <div class="dataCell">
+                          <span class="datePart">16 March 2012</span>
+                          by
+                          <a href="" class="contributorLink">unknown4470317</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="conclusionRow conclusionSources loaded linksLoadStatus taggedSourceGadget linksGadget">
+                      <div class="tagActionLinks">
+                        <div class="sourcesConclusionLabel">Sources</div>
+                        <span class="actionBar">|</span>
+                        <a class="tagActionLink" href="" title="Tag this source">Tag</a>
+                        <div class="bubble">1</div>
+                      </div>
+                      <div class="sourceBox standaloneSourceBox">
+                        <div class="sourceIconBorderless" title="Go to the web page">
+                          <img class="icon imgSystemSource" width="16" height="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAoUlEQVR42mNgwAGMjQ3/wzADMQBdAzpNlAHoNEUuwCdPlKG4vITVW9hMxxcWWA3AFhboBuL0AroBBgYGAkD6vZGRQQLJAQjCJiZGDUD6Pj7vYQ1IkEZTUwMDkGYQm5D3sBhg4ADSDHGFgQPBwMMGjIyMCmAGAMNCgeT4h7oCZEA/kD4PcwlJABGYBv0M5ABjY6P10OhUINMAgwCoK84TUgsABJ6KFKwLgI4AAAAASUVORK5CYII="/>
+                        </div>
+                        <a class="sourceTitle standaloneSourceTitle" href="">Kenneth Werner Quass, &quot;Iowa, Births and Christenings, 1830-1950&quot;</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="conclusion extended">
+                    <div class="conclusionMenu">
+                      <a class="editConclusion" href="">Edit</a>
+                      |
+                      <a class="deleteConclusion" href="">Delete</a>
+                      |
+                      <a class="closeConclusion fs-icon-after-close" href="">Close</a>
+                    </div>
+                    <div class="conclusionRow conclusionData">
+                      <div class="label conclusionLabel">Birth</div>
+                      <div class="dataCell">
+                        <a href="">
+                          <span class="datePart" title="Standard: 4 December 1917">
+                            04 DEC 1917
+                            <br>
+                          </span>
+                          <span class="placePart" title="Standard: Independence, Buchanan, Iowa, United States">
+                            Independence,Buchanan,Iowa
+                            <br>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="conclusionRow conclusionEvidenceAndAnalysis blank">
+                      <div class="label justificationLabel">Reason This Information Is Correct</div>
+                      <div class="dataCell"></div>
+                    </div>
+                    <div class="conclusionRow conclusionContributor">
+                      <div class="contributor">
+                        <div class="label modifiedLabel">
+                          Modified<span class="history">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">History</a></span>
+                        </div>
+                        <div class="dataCell">
+                          <span class="datePart">11 February 2009</span>
+                          by
+                          <a href="" class="contributorLink">DonQ</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="conclusionRow conclusionSources loaded linksLoadStatus taggedSourceGadget linksGadget">
+                      <div class="tagActionLinks">
+                        <div class="sourcesConclusionLabel">Sources</div>
+                        <span class="actionBar">|</span>
+                        <a class="tagActionLink" href="" title="Tag this source">Tag</a>
+                        <div class="bubble">1</div>
+                      </div>
+                      <div class="sourceBox standaloneSourceBox">
+                        <div class="sourceIconBorderless" title="Go to the web page">
+                          <img class="icon imgSystemSource" width="16" height="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAoUlEQVR42mNgwAGMjQ3/wzADMQBdAzpNlAHoNEUuwCdPlKG4vITVW9hMxxcWWA3AFhboBuL0AroBBgYGAkD6vZGRQQLJAQjCJiZGDUD6Pj7vYQ1IkEZTUwMDkGYQm5D3sBhg4ADSDHGFgQPBwMMGjIyMCmAGAMNCgeT4h7oCZEA/kD4PcwlJABGYBv0M5ABjY6P10OhUINMAgwCoK84TUgsABJ6KFKwLgI4AAAAASUVORK5CYII="/>
+                        </div>
+                        <a class="sourceTitle standaloneSourceTitle" href="">Kenneth Werner Quass, &quot;Iowa, Births and Christenings, 1830-1950&quot;</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="conclusion">
+                    <div class="conclusionRow conclusionData">
+                      <div class="label conclusionLabel">Christening</div>
+                      <div class="dataCell">
+                        <a href="" class="addLink fs-icon-before-add">
+                          <span class="titlePart">
+                            Add
+                            <br>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="conclusion extended">
+                    <div class="conclusionMenu">
+                      <a class="editConclusion" href="">Edit</a>
+                      |
+                      <a class="closeConclusion fs-icon-after-close" href="">Close</a>
+                    </div>
+                    <div class="conclusionRow conclusionData">
+                      <div class="label conclusionLabel">Death</div>
+                      <div class="dataCell">
+                        <a href="">
+                          <span class="datePart" title="Standard: 17 September 1982">
+                            17 Sep 1982
+                            <br>
+                          </span>
+                          <span class="placePart" title="Standard: Dallas, Dallas, Texas, United States">
+                            Dallas, Dallas, Texas, United States
+                            <br>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="conclusionRow conclusionEvidenceAndAnalysis">
+                      <div class="label justificationLabel">Reason This Information Is Correct</div>
+                      <div class="dataCell">
+                        Kenneth was aboard a commercial flight from Miami, Florida to Dallas on his way to San Diego, Calif. when he passed away in flight, was deplaned and taken to the County Coroner facility for family notification and preliminary preparation for burial. His&nbsp;…&nbsp;
+                        <a class="readMore" href="">More</a>
+                      </div>
+                    </div>
+                    <div class="conclusionRow conclusionContributor">
+                      <div class="contributor">
+                        <div class="label modifiedLabel">
+                          Modified<span class="history">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">History</a></span>
+                        </div>
+                        <div class="dataCell">
+                          <span class="datePart">18 October 2012</span>
+                          by
+                          <a href="" class="contributorLink">kenquass1</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="conclusionRow conclusionSources loaded linksLoadStatus taggedSourceGadget linksGadget">
+                      <div class="tagActionLinks">
+                        <div class="sourcesConclusionLabel">Sources</div>
+                        <span class="actionBar">|</span>
+                        <a class="tagActionLink" href="" title="Tag this source">Tag</a>
+                        <div class="bubble">0</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="conclusion">
+                    <div class="conclusionRow conclusionData">
+                      <div class="label conclusionLabel">Burial</div>
+                      <div class="dataCell">
+                        <a href="">
+                          <span class="datePart" title="Standard: 25 September 1982">
+                            25 Sep 1982
+                            <br>
+                          </span>
+                          <span class="placePart" title="Standard: Madelia, Watonwan, Minnesota, United States">
+                            Madelia, Watonwan, Minnesota, United States
+                            <br>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-section openable">
+          <div class="section-wrap">
+            <h4 class="gadget-title">Other Information</h4>
+            <div class="open-close-control">
+              <a class="open-close-button" href="" style="float:right;">Close</a>
+            </div>
+            <div id="LifeSketchNonVital" class="gadget lifeSketchGadget">
+              <div class="nonVitals">
+                <div class="header"><a class="showDetails" href="">Open Details</a></div>
+                <div class="details">
+
+                  <div class="conclusion">
+                    <div class="conclusionRow conclusionData">
+                      <div class="label conclusionLabel">Alternate Name</div>
+                      <div class="dataCell">
+                        <a href="">
+                          <span class="nameType">
+                            Birth Name
+                            <br>
+                          </span>
+                          <span class="nameForm">Kenneth Werner Quass</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="conclusion multi">
+                    <div class="conclusionRow conclusionData">
+                      <div class="label conclusionLabel">Alternate Name</div>
+                      <div class="dataCell">
+                        <a href="">
+                          <span class="nameType">
+                            Nickname
+                            <br>
+                          </span>
+                          <span class="nameForm">Kenny</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="conclusion">
+                    <div class="conclusionRow conclusionData">
+                      <div class="label conclusionLabel">Custom Event</div>
+                      <div class="dataCell">
+                        <a href="">
+                          <span class="titlePart">
+                            move
+                            <br>
+                          </span>
+                          <span class="datePart" title="Standard: 2 July 1962">
+                            2 July 1962
+                            <br>
+                          </span>
+                          <span class="placePart" title="Standard: Los Angeles, CAlifornia, United States">
+                            Los Angeles, California, United States
+                            <br>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-section openable">
+          <div class="section-wrap">
+            <h4 class="gadget-title">Family Members</h4>
+            <div class="open-close-control">
+              <a class="open-close-button" href="" style="float:right;">Close</a>
+            </div>
+            <div class="clearfix gadget collapsibleFamilyMembersGadget">
+              <div class="row">
+                <div class="col-lg-6 spousesAndChildrenContainer fullyExpanded">
+                  <h5>Spouses and Children</h5>
+                  <div class="topLinks">
+                    <a class="showAll listToggleLink" href="">Show All</a>
+                    <a class="hideAll listToggleLink" href="">Hide All</a>
+                    <a class="addLink fs-icon-before-add addSpouseOrParent" href="">Add Spouse</a>
+                  </div>
+                  <ol>
+                    <li class="coupleAndChildren">
+                      <div class="coupleBox">
+                        <div class="connector"></div>
+                        <div class="coupleWrapper">
+                          <div class="nameWrapper fs-icon-before-male">
+                            <a class="male personOfFocus" href="" title="Kenneth Werner Quass Sr.">Kenneth Werner Quass Sr.</a>
+                          </div>
+                          <div class="lifeSpan">1917-1982</div>
+                          <div class="pid">KNS4-P6W</div>
+                          <div class="nameWrapper fs-icon-before-female">
+                            <a class="female fs-icon-before-female" href="" title="Ivyl Phylena Greenley">Ivyl Phylena Greenley</a>
+                          </div>
+                          <div class="lifeSpan">1914-2005</div>
+                          <div class="pid">KWZP-4Q8</div>
+                        </div>
+                        <div class="event">
+                          <div class="noCoupleRelationship">No Couple Relationship</div>
+                          <div class="eventName">Married</div>
+                          <div class="eventDate" title="6 Mar 1938">06 Mar 1938</div>
+                          <div class="eventPlace">Independence, Buchman, Iowa</div>
+                        </div>
+                        <div class="lower-bar clearfix">
+                          <div class="preferred form-linline hide" title="The preferred spouse is used to determine which descendants appear on your tree.">
+                            <input id="sc_preferred_0" type="checkbox"/>
+                            <label for="sc_preferred_0">Preferred</label>
+                          </div>
+                          <a class="viewRelationshipPageLink" href="">Edit Couple</a>
+                          <a class="addLink fs-icon-before-add-white addMarriageLink hide" href="">Add</a>
+                        </div>
+                      </div>
+                      <div class="childrenBox loaded expanded">
+                        <a class="expandCollapseLink" href="">Children<span class="childrenCount">(1)</span></a>
+                        <ol>
+                          <li class="child">
+                            <div class="nameWrapper fs-icon-before-female">
+                              <a class="female" href="" title="Alice Jeannette Quass">Alice Jeannette Quass</a>
+                            </div>
+                            <div class="lifeSpan">1940-1955</div>
+                            <div class="pid">KNXW-Z21</div>
+                            <a class="viewRelationshipPageLink" href="">Edit Parents</a>
+                          </li>
+                        </ol>
+                        <a class="addLink fs-icon-before-add addChild" href="">Add Child</a>
+                      </div>
+                    </li>
+                  </ol>
+                  <a class="addLink fs-icon-before-add addChild noParent" href="">Add Child with an Unknown Mother</a>
+                </div>
+                <div class="col-lg-6 parentsAndSiblingsContainer fullyExpanded">
+                  <h5>Parents and Siblings</h5>
+                  <div class="topLinks">
+                    <a class="showAll listToggleLink" href="">Show All</a>
+                    <a class="hideAll listToggleLink" href="">Hide All</a>
+                    <a class="addLink fs-icon-before-add addSpouseOrParent" href="">Add Parent</a>
+                  </div>
+                  <ol>
+                    <li class="coupleAndChildren">
+                      <div class="coupleBox">
+                        <div class="connector"></div>
+                        <div class="coupleWrapper">
+                          <div class="nameWrapper fs-icon-before-male">
+                            <a class="male" href="" title="Ralph Kennedy Quass">Ralph Kennedy Quass</a>
+                          </div>
+                          <div class="lifeSpan">1891-1968</div>
+                          <div class="pid">KFYQ-1Y2</div>
+                          <div class="nameWrapper fs-icon-before-female">
+                            <a class="female fs-icon-before-female" href="" title="Emma Wilhelmina Nehls">Emma Wilhelmina Nehls</a>
+                          </div>
+                          <div class="lifeSpan">1894-1991</div>
+                          <div class="pid">KNSY-35C</div>
+                        </div>
+                        <div class="event">
+                          <div class="noCoupleRelationship">No Couple Relationship</div>
+                          <div class="eventName">Married</div>
+                          <div class="eventDate" title="16 Dec 1915">16 Dec 1915</div>
+                          <div class="eventPlace" title="Independence, Buchanan, Iowa, United States">Independence, Buchanan, Iowa</div>
+                        </div>
+                        <div class="lower-bar clearfix">
+                          <div class="preferred form-linline hide" title="The preferred parents are used to determine which ancestors appear on your tree.">
+                            <input id="ps_preferred_0" type="checkbox"/>
+                            <label for="ps_preferred_0">Preferred</label>
+                          </div>
+                          <a class="viewRelationshipPageLink" href="">Edit Couple</a>
+                          <a class="addLink fs-icon-before-add-white addMarriageLink hide" href="">Add</a>
+                        </div>
+                      </div>
+                      <div class="childrenBox loaded expanded">
+                        <a class="expandCollapseLink" href="">Children<span class="childrenCount">(2)</span></a>
+                        <ol>
+                          <li class="child">
+                            <div class="nameWrapper fs-icon-before-male">
+                              <a class="male personOfFocus" href="" title="Kenneth Werner Quass Sr.">Kenneth Werner Quass Sr.</a>
+                            </div>
+                            <div class="lifeSpan">1917-1982</div>
+                            <div class="pid">KNS4-P6W</div>
+                            <a class="viewRelationshipPageLink" href="">Edit Parents</a>
+                          </li>
+                          <li class="child">
+                            <div class="nameWrapper fs-icon-before-male">
+                              <a class="male" href="" title="Norman Howard Quass">Norman Howard Quass</a>
+                            </div>
+                            <div class="lifeSpan">1920-1939</div>
+                            <div class="pid">KHF2-5CS</div>
+                            <a class="viewRelationshipPageLink" href="">Edit Parents</a>
+                          </li>
+                        </ol>
+                        <a class="addLink fs-icon-before-add addChild" href="">Add Child</a>
+                      </div>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-section openable">
+          <div class="section-wrap">
+            <h4 class="gadget-title">Sources</h4>
+            <div class="open-close-control">
+              <a class="open-close-button" href="" style="float:right;">Close</a>
+            </div>
+            <p class="hide">Sources are not available for living people.</p>
+            <div class="gadget linksGadget linksLoadStatus loaded">
+              <div class="addSourcePanel">
+                <a class="openDetailsLink" href="">Close Details</a>
+                <span class="actionBar">|</span>
+                <img width="16" height="16" class="createSourceLink" title="Create a new source and attach it to Kenneth Werner Quass Sr.."
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR42mMwNjZ8D8T/ycTvGSjQDMa0NYABCkaSAQxEAtoZMBoLA5gXKMrOAF0BXLjEGhTLAAAAAElFTkSuQmCC"/>
+                <a class="addSourceLink" href="" title="Create a new source and attach it to Kenneth Werner Quass Sr..">Create a New Source</a>
+                <span class="actionBar">|</span>
+                <img width="16" height="14" class="createSourceLink imgSourceBox" title="Go to Source Box and attach an existing source to Kenneth Werner Quass Sr.."
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAYAAAAmL5yKAAAAWUlEQVR42mNgAAIDAwMFY2PD/UD8n0i8H6QHpJfBxMSoASjwngTNMPzeyMiogIEMjSiYcgOoAii2neoGwKMICUCjmk4uGJoGkJWU4QYYGRkkkGjIe5AekF4AxdAdGCfCuXcAAAAASUVORK5CYII="/>
+                <a class="addSourceLink" href="" title="Go to Source Box and attach an existing source to Kenneth Werner Quass Sr..">Attach from Source Box</a>
+              </div>
+              <div class="sourcesPanel">
+
+                <div class="sourceBox show">
+                  <div class="sourceIcon" title="Go to the web page">
+                    <img class="icon imgSystemSource" width="16" height="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAoUlEQVR42mNgwAGMjQ3/wzADMQBdAzpNlAHoNEUuwCdPlKG4vITVW9hMxxcWWA3AFhboBuL0AroBBgYGAkD6vZGRQQLJAQjCJiZGDUD6Pj7vYQ1IkEZTUwMDkGYQm5D3sBhg4ADSDHGFgQPBwMMGjIyMCmAGAMNCgeT4h7oCZEA/kD4PcwlJABGYBv0M5ABjY6P10OhUINMAgwCoK84TUgsABJ6KFKwLgI4AAAAASUVORK5CYII="/>
+                  </div>
+                  <a class="gtw-Anchor sourceCancelLink" href="" title="Close source details.">Close</a>
+                  <img class="gwt-Image sourceCancelIcon" width="18" height="18" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAnklEQVR42q1U2w2AIAzsSJXHvyMwghsyEiMwAloFA8jDaEkuEGivvRYAaAwhcJNSWCkXfyBEeNqjM5gNrREPB5c59+DIFvpZTAkKPLKLmYQvKDJ7KacrcyAJjVK41sW+9tA0JcbuFAfkkEkmMp8kxABVYGGhinpHT4405+uePQy0+7yQA5ITrERc0piKzdZ+tgvJ+kTYHi3rN/L3Y9sBKAR6YG+ti80AAAAASUVORK5CYII="/>
+                  <a class="sourceTitle" href="" title="Open source details">Kenneth Werner Quass, &quot;Iowa, Births and Christenings, 1830-1950&quot;</a>
+                  <div class="sourceDetails">
+                    <div class="linkSection">
+                      <div class="actionLinks actionLinksAdjust">
+                        <a class="actionLink" href="" title="View source details.">View</a>
+                        <span class="actionBar">|</span>
+                        <a class="actionLink" href="" title="Edit source details.">Edit</a>
+                        <span class="actionBar">|</span>
+                        <a class="actionLink" href="" title="Detach this source.">Detach</a>
+                        <span class="actionBar">|</span>
+                        <a class="actionLink" href="" title="Report abuse about this source or the reason this source is attached.">Report Abuse</a>
+                        <span class="actionBar">|</span>
+                        <a class="actionLink tagActionLink" href="" title="Tag this source">Tag Event</a>
+                      </div>
+                      <div class="bubble">3</div>
+                    </div>
+                    <div class="sectionBox">
+                      <div class="headingLabel">url</div>
+                      <div title="Go to the web page">
+                        <a class="urlSectionText wrappableDiv" href="">https://familysearch.org/pal:/MM9.1.1/XVL7-1RX</a>
+                        <a class="readMoreLink hide" href="" title="Read more text">More</a>
+                      </div>
+                    </div>
+                    <div class="sectionBox">
+                      <div class="headingLabel">Citation</div>
+                      <div class="wrappableDiv logValueText">
+                        <span class="sectionText wrappableDiv">&quot;Iowa, Births and Christenings, 1830-1950,&quot; index, <i>FamilySearch</i> (https://familysearch.org/pal:/MM9.1.1/XVL7-1RX : accessed 11 Apr 2014), Kenneth Werner Quass, ; citing ...</span>
+                        <a class="readMoreLink" href="" title="Read more text">More</a>
+                      </div>
+                    </div>
+                    <div class="sectionBox hidden">
+                      <div class="headingLabel">Notes</div>
+                      <div class="wrappableDiv logValueText">
+                        <span class="sectionText wrappableDiv"></span>
+                        <a class="readMoreLink hide" href="" title="Read more text">More</a>
+                      </div>
+                    </div>
+                    <div class="horizontalLine">
+                      <hr>
+                    </div>
+                    <div class="justificationBox read">
+                      <span class="justifyHeadingLabel">Reason This Source Is Attached</span>
+                      <span class="editSpacerBar">|</span>
+                      <a class="editLink" href="" title="Edit Reason">Edit</a>
+                      <div class="justifyText">
+                        <span class="justification wrappableDiv">this record shows his birth info</span>
+                        <a class="readMoreLink hide" href="" title="Read more text">More</a>
+                      </div>
+                      <div class="sectionBox">
+                        <div class="headingLabel">Modified</div>
+                        <div class="contributorData">
+                          <span class="contribDate">19 September 2013</span>
+                          <span class="contribBy">by</span>
+                          <span class="contribName" title="Contributor contact information">DonQ</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-section openable">
+          <div class="section-wrap">
+            <h4 class="gadget-title">Discussions</h4>
+            <div class="open-close-control" style="float:right;">Close</div>
+            <p class="hide">Discussions are not available for living people.</p>
+            <div class="gadget discussionCpGadget freshlook df">
+              <div class="anchorPanel">
+                <div class="createDiscussionPanel">
+                  <a class="createLink" href="">Close Details</a>
+                  <span class="actionBar">|</span>
+                  <img width="16" height="16" class="createIcon" title="Add a New Discussion"
+                       src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR42mMwNjZ8D8T/ycTvGSjQDMa0NYABCkaSAQxEAtoZMBoLA5gXKMrOAF0BXLjEGhTLAAAAAElFTkSuQmCC"/>
+                  <a class="createLink" href="">Add a New Discussion</a>
+                </div>
+                <div class="mainDescTable">
+                  <div class="discussionTable show">
+                    <div class="discussionBox">
+                      <div class="titleBox clearfix">
+                        <img class="titleIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAL5JREFUeNpiZMABjI0NE4BUPxALMBAHPgBxISMeA9+TYBjcUCY8kqQaBtbDxEBlwIItrM6ePc9IroFMJAY8UQYKUNPLTASSAQNVYhkYrgqgNEWioeB0yIJDcj0QBwIjRxCLZfOBVAKyGHIk4jLQAIjvAzWjiycCNSdCxRNwhSEp3poPSmYgQ4HsBbgMJDWs+kFhjMtQRrTw+Y8mvwCqkQFPni8AqplAjIEEDSMlHZJlGC4DyTYMa3hQagZAgAEAw/A+6PdP32AAAAAASUVORK5CYII="/>
+                        <a class="gwt-Anchor discussionTitle" href="" title="Close discussion details.">Photo upload</a>
+                        <div class="actionLinks actionLinksAdjust">
+                          <a class="actionLink" href="">Comment</a>
+                          <span class="spacerBar">|</span>
+                          <a class="actionLink" href="">Report Abuse</a>
+                        </div>
+                      </div>
+                      <div class="contentBox">
+                        <div class="headingLabel">Description</div>
+                        <div>
+                          <span class="discussionDescription wrappableDiv">I've uploaded a photo of my dad. How do I attach it to this person page?</span>
+                          <a class="actionLink readMoreLink hide" href="">More</a>
+                        </div>
+                      </div>
+                      <div class="contentBox">
+                        <div class="headingLabel">Contributor</div>
+                        <div class="contributorData">
+                          <span class="contribDate">18 October 2012</span>
+                          <span class="contribBy">by</span>
+                          <span class="contribName" title="Contributor contact information">DonQ</span>
+                        </div>
+                      </div>
+                    </div>
+                    <a class="cardCloseLink cardClose" href="" title="Close discussion details.">Close</a>
+                    <img class="cardCancelIcon cardClose" title="Close discussion details." src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAnklEQVR42q1U2w2AIAzsSJXHvyMwghsyEiMwAloFA8jDaEkuEGivvRYAaAwhcJNSWCkXfyBEeNqjM5gNrREPB5c59+DIFvpZTAkKPLKLmYQvKDJ7KacrcyAJjVK41sW+9tA0JcbuFAfkkEkmMp8kxABVYGGhinpHT4405+uePQy0+7yQA5ITrERc0piKzdZ+tgvJ+kTYHi3rN/L3Y9sBKAR6YG+ti80AAAAASUVORK5CYII="/>
+                    <div class="commentSection hide">
+                      <div class="showPanel">
+                        <img class="commentHeaderIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAANCAYAAACZ3F9/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIRJREFUeNpiZEADxsaG54GUAQN+cIEJiyAhTWA1TAxkAhZkp509e56RWI1MRDoNq0YGijUCna0ACjEi9F1gQRNYD8SBQL8+QDJsPpBKgPFh4cCCJSruAxXD+AuAChOh/AR0p+JzWgLIRpBmkCFYVQAV/Ifi+bhMwSpHSBMDSabhAQABBgBGPSchYOh7fgAAAABJRU5ErkJggg=="/>
+                        <a class="actionLink" href="">Show 1 comment by 1 person</a>
+                      </div>
+                    </div>
+                    <div class="commentSection border">
+                      <div class="hidePanel">
+                        <img class="commentHeaderIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAANCAYAAACZ3F9/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIRJREFUeNpiZEADxsaG54GUAQN+cIEJiyAhTWA1TAxkAhZkp509e56RWI1MRDoNq0YGijUCna0ACjEi9F1gQRNYD8SBQL8+QDJsPpBKgPFh4cCCJSruAxXD+AuAChOh/AR0p+JzWgLIRpBmkCFYVQAV/Ifi+bhMwSpHSBMDSabhAQABBgBGPSchYOh7fgAAAABJRU5ErkJggg=="/>
+                        <a class="actionLink" href="">Hide 1 comment by 1 person</a>
+                      </div>
+                      <div class="commentPanel">
+                        <div class="commentEntry">
+                          <span class="commentText wrappableDiv">I've followed the instructions given by Tim Cross, but don't &quot;see all the photos for the person.&quot; I don't see the photo that I uploaded and tagged.</span>
+                          <a class="actionLink readMoreLink" href="">More</a>
+                        </div>
+                        <div class="contribActionBox">
+                          <div class="timeStampText">
+                            <span class="contribDate">1 year ago</span>
+                            <span class="contribBy">by</span>
+                            <span class="contribName" title="Contributor contact information">DonQ</span>
+                          </div>
+                          <div class="commentActionLinks">
+                            <a class="actionLink" href="">Report Abuse</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="addCommentPanel addLink boxed">
+                        <div class="addCommentLinkSection">
+                          <img class="addCommentIcon" title="Add Comment" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR42mMwNjZ8D8T/ycTvGSjQDMa0NYABCkaSAQxEAtoZMBoLA5gXKMrOAF0BXLjEGhTLAAAAAElFTkSuQmCC"/>
+                          <a class="createCommentLink" href="">Add Comment</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-section openable">
+          <div class="section-wrap">
+            <h4 class="gadget-title">Notes</h4>
+            <div class="open-close-control">
+              <a class="open-close-button" href="" style="float:right;">Close</a>
+            </div>
+            <div class="notesControl notes-control">
+              <div class="addNotePanel">
+                <a class="open-close-details" href="">Close Details</a>
+                <span class="actionBar">|</span>
+                <a class="add-note fs-icon-before-add" href="">Add a New Note</a>
+              </div>
+              <ul>
+                <li class="expanded">
+                  <a class="close fs-icon-after-close" href="">Close</a>
+                  <a class="title fs-icon-before-note-small" href="">Note from Ancestral Quest</a>
+                  <div class="menu-bar">
+                    <a class="edit-link" href="">Edit</a>
+                    <span class="actionBar">|</span>
+                    <a class="delete-link" href="">Delete</a>
+                  </div>
+                  <h6>Note</h6>
+                  <p class="text read-more-control">Note from Ancestral Quest&nbsp;… <a class="more-less-link" href="">More</a></p>
+                  <div class="contributor">
+                    <div class="modified">Modified</div>
+                    <div>
+                      <span class="date-modified">26 August 2013</span>
+                      by
+                      <a class="contributor-link">Dallan</a>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-3 side-bar">
+        <div class="changeLogSummaryContainer gadget changeLogGadget summary">
+          <h5>Latest Changes</h5>
+          <div class="logEntry">
+            <a class="changeType fs-icon-change" href="">Parent-Child Source Attached</a>
+            <div class="changeDate">29 October 2013</div>
+            <div class="contributor">
+              <span class="byText">by <a class="byWho contributorLink" href="">DonQ</a></span>
+            </div>
+          </div>
+          <div class="logEntry">
+            <div class="changeType fs-icon-change">Source Tagged</div>
+            <div class="changeDate">19 September 2013 2013</div>
+            <div class="contributor">
+              <span class="byText">by <a class="byWho contributorLink" href="">DonQ</a></span>
+            </div>
+          </div>
+          <a class="moreLink" href="">Show all</a>
+        </div>
+        <div class="tasks-container gadget tasksGadget">
+          <h5 class="tasks-header">Tools</h5>
+          <a class="possible-duplicates-link fs-icon-duplicates" href="">Possible Duplicates</a>
+          <a class="report-abuse-link fs-icon-report" href="">Report Abuse</a>
+          <a class="person-link fs-icon-trash" href="">Delete Person</a>
+          <div class="unavailable hide">Tools are unavailable for living people.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

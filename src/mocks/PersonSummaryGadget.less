@@ -1,0 +1,637 @@
+/**
+ * Copyright 2012-2014 FamilySearch
+ */
+
+#ancestorPage.tombstoned #PersonSummary > .subContainer > .statusLine,
+#ancestorPage.tombstoned #SourcesSection,
+#ancestorPage.tombstoned #DiscussionsSection,
+.invalidPersonId #LifeSketch,
+.invalidPersonId #FamilyMembersSection,
+.invalidPersonId #SourcesSection,
+.invalidPersonId #DiscussionsSection,
+.invalidPersonId #TempleOrdinancesSection,
+.invalidPersonId .sideBar .changeLogGadget.summary,
+.invalidPersonId .viewTreeLink {
+  display: none;
+}
+
+.ordinances-content {
+  padding-bottom: 15px;
+}
+
+.gadget.personSummaryGadget {
+  display: block;
+  margin: 0;
+  position: static;
+  background-color: @person-summary-gadget-background-color;
+}
+
+.personSummaryGadget .subContainer {
+  background: @person-summary-gadget-subcontainer-background-color no-repeat;
+  border-bottom: @person-summary-gadget-subcontainer-border-bottom;
+  min-height: inherit;
+  position: relative;
+  padding: 25px 20px 46px 178px;
+  width: auto;
+  overflow: visible;
+}
+
+.personSummaryGadget .subContainer .tree-holder {
+  margin: 0 0 0 -20px;
+}
+
+.personSummaryGadget .subContainer {
+  font-size: 0;
+}
+
+.personSummaryGadget .subContainer h4 {
+  color: @person-summary-gadget-subcontainer-color;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 22px;
+  margin: 0;
+  padding: 0;
+}
+
+.personSummaryGadget .subContainer .person-information,
+.personSummaryGadget .subContainer .person-information .personId,
+.personSummaryGadget .subContainer .person-information .lifeSpan {
+  display: inline-block;
+}
+
+.personSummaryGadget .subContainer .person-information .personId {
+  margin-left: 24px;
+  padding-left: 0;
+  position: relative;
+}
+
+.personSummaryGadget .subContainer.has-person .person-information .personId:before {
+  content: "•";
+  display: inline-block;
+  left: -15px;
+  position: absolute;
+}
+
+.personSummaryGadget .subContainer h3 {
+  color: @person-summary-gadget-subcontainer-color;
+  margin: -4px 0 0 0;
+  overflow: hidden;
+  padding: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.personSummaryGadget .subContainer .personName {
+  display: block;
+  max-width: 736px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.locale-de .personSummaryGadget .subContainer .personName {
+  max-width: 660px;
+}
+
+.locale-fr .personSummaryGadget .subContainer .personName {
+  max-width: 700px;
+}
+
+.locale-it .personSummaryGadget .subContainer .personName {
+  max-width: 610px;
+}
+
+.locale-ja .personSummaryGadget .subContainer .personName {
+  max-width: 710px;
+}
+
+.locale-ru .personSummaryGadget .subContainer .personName {
+  max-width: 690px;
+}
+
+.personSummaryGadget .viewTreeLink {
+  font-size: 12px;
+}
+
+.personSummaryGadget .status {
+  color: #787069;
+  font-size: 12px;
+  font-weight: normal;
+  margin: 0px;
+  padding: 0px;
+}
+
+.personSummaryGadget .info, .personSummaryGadget .options {
+  margin-top: 30px;
+}
+
+.personSummaryGadget .info {
+  width: 550px;
+  float: left;
+}
+
+.personSummaryGadget .info a {
+  height: 13px;
+  float: left;
+  margin-right: 10px;
+}
+
+.personSummaryGadget .options {
+  width: 300px;
+  float: right;
+}
+
+.personSummaryGadget .options a {
+  height: 13px;
+  float: right;
+  margin-left: 35px;
+  padding-left: 20px;
+}
+
+.personSummaryGadget .statusLine {
+  padding: 14px 0 0 0;
+  position: relative;
+}
+
+.personSummaryGadget .statusLine .viewTreeLink {
+  margin-left: -78px;
+  padding-right: 20px;
+}
+
+.personSummaryGadget .status {
+  margin-right: 39px;
+  display: inline;
+}
+
+.personSummaryGadget .status .age {
+  margin-left: 5px;
+  color: #999999;
+}
+
+/* Can this be removed */
+.personSummaryGadget .statusLabel {
+  font-size: 12px;
+}
+
+.personSummaryGadget .badge {
+  display: inline-block;
+  margin-left: 4px;
+}
+
+.personSummaryGadget .badge:empty {
+  display: none;
+}
+
+.personSummaryGadget .subContainer.minimum {
+  min-height: 70px;
+}
+
+.personSummaryGadget .subContainer.minimum .statusLine {
+  display: none;
+}
+
+.personSummaryGadget .subContainer.no-nav {
+  padding-bottom: 36px;
+  padding-top: 35px;
+}
+
+.gadget.personSummaryGadget .subContainer.minimum {
+  margin-top: 20px;
+}
+
+.personSummaryGadget .statusLine {
+  display: none;
+}
+
+.personSummaryGadget .section-tabs {
+  position: relative;
+  margin-top: -26px;
+}
+
+.personSummaryGadget .section-tabs.minimum {
+  display: none;
+}
+
+/* TODO: remove tab css when memories experiment is permenant */
+.personSummaryGadget .section-tabs #memories-tab {
+  display: none;
+}
+
+.personSummaryGadget .section-tabs #photos-tab,
+.personSummaryGadget .section-tabs #stories-tab {
+  display: block;
+}
+
+.ex_memoriesEx .personSummaryGadget .section-tabs #memories-tab {
+  display: block;
+}
+
+.ex_memoriesEx .personSummaryGadget .section-tabs #photos-tab,
+.ex_memoriesEx .personSummaryGadget .section-tabs #stories-tab {
+  display: none;
+}
+/* TODO: remove thru here when memories experiment is permenant */
+
+/* TODO: remove tab css when ordTabEx is permenant */
+.personSummaryGadget .section-tabs #ordinances-tab {
+  display: none;
+}
+
+.ex_ordTabEx .personSummaryGadget .section-tabs #ordinances-tab {
+  display: block;
+}
+/* TODO: remove thru here when ordTabEx is permenant */
+
+#photos-tab,
+#stories-tab {
+  display: none;
+}
+
+.photos-enabled #photos-tab,
+.photos-enabled #stories-tab {
+  display: inherit;
+}
+
+.personSummaryGadget .tab-list {
+  margin: 0;
+  padding: 0 0 26px 178px;
+}
+
+.tombstoned .personSummaryGadget .tab-list {
+  visibility: hidden;
+}
+
+.personSummaryGadget .tab-list ul,
+.personSummaryGadget .tab-list li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.personSummaryGadget .tab-list li {
+  border: 1px solid transparent;
+  float: left;
+  margin-top: -4px;
+  height: 28px;
+}
+
+/* TODO: remove the entry for photos-tab and stories-tab when memories experiment is permenant */
+.personSummaryGadget .tab-list li:hover,
+.personSummaryGadget[data-section-showing=details] .tab-list li#details-tab,
+.personSummaryGadget[data-section-showing=memories] .tab-list li#memories-tab,
+.personSummaryGadget[data-section-showing=photos] .tab-list li#photos-tab,
+.personSummaryGadget[data-section-showing=stories] .tab-list li#stories-tab,
+.personSummaryGadget[data-section-showing=ordinances] .tab-list li#ordinances-tab {
+  border-color: #B7B7B7;
+  border-bottom-color: transparent;
+}
+
+.personSummaryGadget .tab-list a {
+  border: 1px solid transparent;
+  color: #191919;
+  font-size: 16px;
+  float: left;
+  padding: 4px 12px 4px;
+  text-decoration: none;
+}
+
+.personSummaryGadget .tab-list li:hover a {
+  background: #d2d1d1;
+  border-color: #fff;
+  border-bottom-color: transparent;
+  color: #333331;
+}
+
+/* TODO: remove the entry for photos-tab and stories-tab when memories experiment is permenant */
+.personSummaryGadget[data-section-showing=details] .tab-list li#details-tab a,
+.personSummaryGadget[data-section-showing=memories] .tab-list li#memories-tab a,
+.personSummaryGadget[data-section-showing=photos] .tab-list li#photos-tab a,
+.personSummaryGadget[data-section-showing=stories] .tab-list li#stories-tab a,
+.personSummaryGadget[data-section-showing=ordinances] .tab-list li#ordinances-tab a {
+  background: #ECEBEA;
+  border-color: #fff;
+  border-bottom-color: transparent;
+  color: #333331;
+}
+
+.personSummaryGadget .tab-list .badge {
+  background: #333331;
+  color: #fff;
+}
+
+.personSummaryGadget .section-navigation {
+  border-top: 1px solid #fff;
+  color: #333331;
+  display: none;
+  margin: 0;
+  padding: 15px 10px 0 20px;
+}
+
+.personSummaryGadget[data-section-showing=details] .section-navigation {
+  display: inherit;
+  color: #4B76B0;
+  font-size: 14px;
+}
+
+.tombstoned .personSummaryGadget .section-navigation,
+.personSummaryGadget .section-navigation.minimum {
+  display: none;
+}
+
+.personSummaryGadget .section-navigation a {
+  color: #333331;
+}
+
+.personSummaryGadget .navigation-separator {
+  padding: 0 5px;
+}
+
+.personSummaryGadget .subContainer.minimum {
+  margin-top: 0px;
+  min-height: 78px;
+  padding: 15px 20px 25px 130px;
+  width: auto;
+}
+
+.personSummaryGadget .profile-image {
+  background: url('https://edge.fscdn.org/assets/img/gender-large-a2a399f822f27be33025abde34b68554.png') scroll -248px 0;
+  display: none;
+  height: 124px;
+  left: 20px;
+  outline: none;
+  position: absolute;
+  top: 15px;
+  width: 124px;
+  z-index: 10;
+}
+
+.personSummaryGadget .minimum .profile-image {
+  background: url('https://edge.fscdn.org/assets/img/gender-1f59fe72a5405a44f46676cedd1c506c.png') no-repeat scroll -180px 0;
+  background-size: auto;
+  height: 90px;
+  top: 15px;
+  width: 90px;
+}
+
+.personSummaryGadget.gender-male .profile-image,
+.personSummaryGadget.gender-female .profile-image,
+.personSummaryGadget.gender-unknown .profile-image {
+  display: inherit;
+}
+
+.personSummaryControl.gender-male .profile-image-port,
+.personSummaryGadget.gender-male .profile-image {
+  background-position: 0 0;
+}
+.personSummaryGadget.gender-female .profile-image {
+  background-position: -124px 0;
+}
+
+.personSummaryControl.gender-female .profile-image-port,
+.personSummaryGadget.gender-female .minimum .profile-image {
+  background-position: -90px 0;
+}
+
+.personSummaryGadget.gender-female .profile-image.has-photo,
+.personSummaryGadget .profile-image.has-photo {
+  background-position: 0 0;
+  background-size: 100%;
+  border-radius: 50%;
+}
+
+.photos-enabled .personSummaryGadget .profile-image[data-event] {
+  cursor: pointer;
+}
+
+.ie8 .personSummaryGadget.gender-male .profile-image {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/gadgetrepo/org/familysearch/gadget/PersonSummaryGadget/1.x/images/profile_male.png', sizingMethod='scale');
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader( src='/gadgetrepo/org/familysearch/gadget/PersonSummaryGadget/1.x/images/profile_male.png', sizingMethod='scale')";
+}
+
+.ie8 .personSummaryGadget.gender-female .profile-image {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/gadgetrepo/org/familysearch/gadget/PersonSummaryGadget/1.x/images/profile_female.png', sizingMethod='scale');
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader( src='/gadgetrepo/org/familysearch/gadget/PersonSummaryGadget/1.x/images/profile_female.png', sizingMethod='scale')";
+}
+
+.personSummaryGadget .person-tree-link,
+#tree-style .personSummaryGadget .person-tree-link {
+  background-position: 0 2px;
+  display: inline;
+  margin-left: 20px;
+}
+
+.personSummaryGadget .tree-link,
+#tree-style .personSummaryGadget .tree-link {
+  color: #333331;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 22px;
+  margin: 0;
+  padding-left: 25px;
+  vertical-align: top;
+}
+
+.personSummaryGadget .minimum .tree-link,
+#tree-style .personSummaryGadget .minimum .tree-link {
+  display: none;
+}
+
+.personSummaryGadget.profile-image {
+  cursor: default;
+}
+
+.profile-image.has-photo {
+  cursor: pointer;
+}
+
+#psSelectPortraitDlg.fsModal {
+  width: 560px;
+}
+
+#psSelectPortraitDlg.fsModal div.fsModalBody {
+  color: #4d4d4a;
+  margin: 38px 0 0;
+  max-height: 400px;
+  padding: 0 10px 10px;
+  position: relative;
+  z-index: 1;
+}
+
+#psSelectPortraitDlg.fsModal div.fsModalHeaderBar h2 {
+  display: inline;
+  font-size: 30px;
+  line-height: 33px;
+  position: absolute;
+  top: 16px;
+}
+
+#psSelectPortraitDlg .ps-portrait-list {
+  padding-top: 16px;
+  margin:0 0 0 20px;
+  list-style: none;
+  overflow-y: auto;
+}
+
+#psSelectPortraitDlg .ps-portrait-list li {
+  margin-right: 30px;
+  display: inline;
+}
+
+#psSelectPortraitDlg .ps-portrait-list li:nth-child(4n+4) {
+  margin-right: 0;
+}
+
+#psSelectPortraitDlg .ps-portrait {
+  width: 96px;
+  height: 96px;
+  min-width: 96px;
+  min-height: 96px;
+  border-radius: 48px;
+  border-width: 2px;
+  border-color: #cccccc;
+  background-color: #cccccc;
+  border-style: solid;
+  margin-bottom: 20px;
+}
+
+.fsModal a.fsCloseButton .textInner {
+  right: 3px;
+  padding-top:4px;
+}
+
+#psSelectPortraitDlg div.successWaitMsg
+{
+  margin-top: 50px;
+  margin-bottom: 100px;
+  font-size: 20px;
+  text-align: center;
+  color: #4a7400;
+}
+
+.gadget.personSummaryGadget .relationshipsMain {
+  white-space: nowrap;
+  height: 90px;
+  padding: 10px 10px 10px 20px;
+  color: #333331;
+  margin-left: 90px;
+  width: 85%;
+}
+
+.personSummaryGadget .image-container {
+  position: relative;
+}
+
+.personSummaryGadget .profile-image.small {
+  left: -90px;
+  top: 0px;
+}
+
+.personSummaryGadget .eventsLabelColumn .eventLabel {
+  text-align: right;
+  padding-right: 10px;
+  color: #786E63;
+}
+
+.personSummaryGadget .row {
+  display: none;
+  margin-left: 0px;
+}
+
+.personSummaryGadget .row.loaded {
+  display: block;
+}
+
+.personSummaryGadget .column {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 10px;
+}
+
+.personSummaryGadget .column > div,
+.personSummaryGadget .column > .person-name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.personSummaryGadget .column > .person-name {
+  display: block;
+}
+
+.personSummaryGadget .empty .connector {
+  display: none;
+}
+
+.personSummaryGadget .connector {
+  border-top: solid 1px;
+  border-left: solid 1px;
+  border-bottom: solid 1px;
+  border-right: none;
+  height: 24px;
+  margin-top: 12px;
+  float: left;
+  width: 5px;
+}
+
+.personSummaryGadget .individualColumn {
+  width: 22%;
+  margin-left: 20px;
+}
+
+.personSummaryGadget .eventsLabelColumn {
+  width: 8%;
+  margin-top: 37px;
+}
+
+.personSummaryGadget .eventsDataColumn {
+  width: 32%;
+}
+
+.personSummaryGadget .parentsColumn,
+.personSummaryGadget .spouseColumn {
+  width: 19%;
+}
+
+.personSummaryGadget .eventData {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.tempProperties {
+  color: #000;
+  float: right;
+  font-size: 14px;
+  margin: 0;
+}
+
+@media print {
+  .personSummaryGadget .statusLine {
+    display: none !important;
+  }
+
+  .personSummaryGadget .subContainer {
+    background-color: transparent !important;
+    height: 100px !important;
+    margin-bottom: 35px !important;
+    padding-bottom: 0 !important;
+  }
+
+  .personSummaryGadget {
+    background: url('https://edge.fscdn.org/assets/img/FS-logo-6b25fc0d9c71aaaf7c3fe2f43d44067b.png') no-repeat scroll right top transparent;
+  }
+
+  .personSummaryGadget .tree-holder,
+  .personSummaryGadget .section-navigation,
+  .personSummaryGadget .tab-list {
+    display: none !important;
+  }
+
+  .personSummaryGadget .profile-image {
+    top: 0 !important;
+  }
+
+}

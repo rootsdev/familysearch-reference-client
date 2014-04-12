@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+
+<html class="">
+<head>
+    <title>FamilySearch Widgets</title>
+    <meta content="width=device-width" name="viewport">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href="static.css" rel="stylesheet">
+<!-- comment out js for mocks
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="familysearch-javascript-sdk/dist/familysearch-javascript-sdk.js"></script>
+
+    <script src="js/hogan-2.0.0.js"></script>
+    <script src="js/fs-widget-templates.js" type="text/javascript"></script>
+    <script src="js/jquery.timeago.js" type="text/javascript"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js" type="text/javascript"></script>
+-->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <style>
+        body {
+            padding-bottom: 60px;
+        }
+        .well h3 {
+            margin-top:0;
+        }
+        .panel-body .well {
+            background: #eee;
+            color: #555;
+        }
+        .panel-body .well:last-child {
+            margin-bottom: 0;
+        }
+
+    </style>
+    <style type="text/css">
+        .fancybox-margin{margin-right:0px;}
+    </style>
+</head>
+
+<body data-gclp-initialized="true" data-gistbox-initialized="true" style="">
+    <a href="https://github.com/rootsdev/SumoTheme/"><img alt="Fork me on GitHub" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" style="position: absolute; top: 53px; right: 0; border: 0;"></a>
+
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-target=".header-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span></button> <a class="navbar-brand" href="#">FamilySearch Widgets</a>
+            </div>
+            <div class="collapse navbar-collapse header-collapse">
+                <p class="navbar-text navbar-right">&nbsp;</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profileHeaderContainer" style="display: block;">
+            <div class="tree-family jumbotron ng-scope jumbo-male">
+                <div class="personWrapper">
+                    <span class="pid hidden-xs hidden-sm">277H-SWR</span>
+                    <div class="nameWrapper">
+                        <i class="icon-rounded fs-icon-male">&nbsp;</i>
+                        <h1>Pranas Paukstys</h1>
+                        <ul class="list-collapsed" style="display: block;">
+                            <li class="lifeSpan">August 16, 1919 - March 17, 1971</li>
+                            <li class="personActions"><small><a href="">View Tree</a> <a href="">Unwatch</a></small></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearboth"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="lifeSketchWidgetContainer" style="display: block;">
+                    <div class="panel panel-primary family-panel">
+                        <div class="panel-heading">
+                            <div class="options">
+                                <a class="panel-collapse" href="javascript:;"></a>
+                            </div>
+
+                            <h4 class="panel-title">Life Sketch</h4>
+                        </div>
+
+                        <div class="panel-body lifeSketchBody">
+                            <div class="well">
+                                <div class="form-group">
+                                    <label>Write a Life Sketch</label>
+                                    <textarea class="form-control" id="lifeSketch" placeholder="Provide a life sketch to explain what this person was like.">
+                                    </textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Reason this Information is Correct</label>
+                                    <textarea class="form-control" id="justification" placeholder="Explain why you feel this information is correct.">
+                                    </textarea>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        Modified<br>
+                                        April 2, 2014 by <a href="http://">Dovy</a>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary saveButton" type="submit">Save</button> <button class="btn btn-link cancelButton" type="submit">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="vitalsWidgetContainer" style="display: block;">
+                    <div class="panel panel-primary family-panel">
+                        <div class="panel-heading">
+                            <div class="options">
+                                <a class="panel-collapse" href="javascript:;"></a>
+                            </div>
+                            <h4 class="panel-title">Life Sketch</h4>
+                        </div>
+                        <div class="panel-body lifeSketchBody">
+                            <div class="well">
+                                <h3>Name</h3>
+
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label>Title</label> <input class="form-control" id="title" placeholder="" type="text">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm4 col-sm-4" style="display: block;">
+                                        <div class="form-group">
+                                            <label>First Names</label> <input class="form-control" id="firstName" type="text">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm4 col-sm-4" style="display: block;">
+                                        <div class="form-group">
+                                            <label>Last Name</label> <input class="form-control" id="lastName" type="text">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label>Suffix</label> <input class="form-control" id="suffix" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Reason this Information is Correct</label>
+                                    <textarea class="form-control" id="justification" placeholder="Explain why you feel this information is correct.">
+
+
+                                    </textarea>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        Modified<br>
+                                        April 2, 2014 by <a href="http://">Dovy</a>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary saveButton" type="submit">Save</button> <button class="btn btn-link cancelButton" type="submit">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="well">
+                                <h3>Gender</h3>
+
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary" href="#" id="genderMale">Male</a> <a class="btn btn-default" href="#" id="genderFemale">Female</a> <a class="btn btn-default" href="#" id="genderUnknown">Unknown</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Reason this Information is Correct</label>
+                                    <textarea class="form-control" id="justification" placeholder="Explain why you feel this information is correct.">
+
+
+                                    </textarea>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        Modified<br>
+                                        April 2, 2014 by <a href="http://">Dovy</a>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary saveButton" type="submit">Save</button> <button class="btn btn-link cancelButton" type="submit">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="well">
+                                <h3>Birth</h3>
+
+                                <div class="form-group">
+                                    <label>Birth Date</label> <input class="form-control" id="birthDate" placeholder="Date of Birth" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Birth Place</label> <input class="form-control" id="birthPlace" placeholder="Place of Birth" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Reason this Information is Correct</label>
+                                    <textarea class="form-control" id="justification" placeholder="Explain why you feel this information is correct.">
+
+
+                                    </textarea>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        Modified<br>
+                                        April 2, 2014 by <a href="http://">Dovy</a>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary saveButton" type="submit">Save</button> <button class="btn btn-link cancelButton" type="submit">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="well">
+                                <h3>Christening</h3>
+
+                                <div class="form-group">
+                                    <label>Christening Date</label> <input class="form-control" id="christeningDate" placeholder="Date of Christening" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Christening Place</label> <input class="form-control" id="christeningPlace" placeholder="Place of Christening" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Reason this Information is Correct</label>
+                                    <textarea class="form-control" id="justification" placeholder="Explain why you feel this information is correct.">
+
+
+                                    </textarea>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        Modified<br>
+                                        April 2, 2014 by <a href="http://">Dovy</a>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary saveButton" type="submit">Save</button> <button class="btn btn-link cancelButton" type="submit">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="well">
+                                <h3>Death</h3>
+
+                                <div class="form-group">
+                                    <label>Death Date</label> <input class="form-control" id="deathDate" placeholder="Date of Death" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Death Place</label> <input class="form-control" id="deathPlace" placeholder="Place of Death" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Reason this Information is Correct</label>
+                                    <textarea class="form-control" id="justification" placeholder="Explain why you feel this information is correct.">
+
+
+                                    </textarea>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        Modified<br>
+                                        April 2, 2014 by <a href="http://">Dovy</a>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary saveButton" type="submit">Save</button> <button class="btn btn-link cancelButton" type="submit">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="well">
+                                <h3>Burial</h3>
+
+                                <div class="form-group">
+                                    <label>Burial Date</label> <input class="form-control" id="burialDate" placeholder="Date of Burial" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Burial Place</label> <input class="form-control" id="burialPlace" placeholder="Place of Burial" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Reason this Information is Correct</label>
+                                    <textarea class="form-control" id="justification" placeholder="Explain why you feel this information is correct.">
+
+
+                                    </textarea>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        Modified<br>
+                                        April 2, 2014 by <a href="http://">Dovy</a>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary saveButton" type="submit">Save</button> <button class="btn btn-link cancelButton" type="submit">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-info changes-panel">
+                            <div class="panel-heading">
+                                <div class="options">
+                                    <a class="panel-collapse" href="javascript:;"></a>
+                                </div>
+
+                                <h4 class="panel-title">Changes</h4>
+                            </div>
+
+                            <div class="panel-body change-objects">
+                                <h5>Life Sketch Added <small><abbr class="timeago" title="2014-04-02T21:13:23.516Z">7 days ago</abbr> by <a class="contributorCard" data-cid="https://familysearch.org/platform/users/agents/MMNV-HVH.json?access_token=USYS2B6C12FBA12DA6C78E42DF1C22C06AF8_idses-prod03.a.fsglobal.net" data-pid="6H69-6G2" data-placement="bottom" href="#">Dovy</a></small></h5>
+                                <h5>Person Source Reference Added <small><abbr class="timeago" title="2014-02-07T23:24:03.336Z">2 months ago</abbr> by <a class="contributorCard" data-cid="https://familysearch.org/platform/users/agents/MMNV-HVH.json?access_token=USYS2B6C12FBA12DA6C78E42DF1C22C06AF8_idses-prod03.a.fsglobal.net" data-pid="6SSK-5YM" data-placement="bottom" href="#">Dovy</a></small></h5>
+                                <h5>Person Source Reference Added <small><abbr class="timeago" title="2014-02-07T20:34:42.094Z">2 months ago</abbr> by <a class="contributorCard" data-cid="https://familysearch.org/platform/users/agents/MMNV-HVH.json?access_token=USYS2B6C12FBA12DA6C78E42DF1C22C06AF8_idses-prod03.a.fsglobal.net" data-pid="6SS4-5F9" data-placement="bottom" href="#">Dovy</a></small></h5>
+                                <h5>Person Source Reference Added <small><abbr class="timeago" title="2014-02-07T20:01:11.258Z">2 months ago</abbr> by <a class="contributorCard" data-cid="https://familysearch.org/platform/users/agents/MMNV-HVH.json?access_token=USYS2B6C12FBA12DA6C78E42DF1C22C06AF8_idses-prod03.a.fsglobal.net" data-pid="6SS7-868" data-placement="bottom" href="#">Dovy</a></small></h5>
+                                <h5>Person Source Reference Added <small><abbr class="timeago" title="2014-02-07T19:57:39.630Z">2 months ago</abbr> by <a class="contributorCard" data-cid="https://familysearch.org/platform/users/agents/MMNV-HVH.json?access_token=USYS2B6C12FBA12DA6C78E42DF1C22C06AF8_idses-prod03.a.fsglobal.net" data-pid="6SS7-3VN" data-placement="bottom" href="#">Dovy</a></small></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="familyWidgetContainer" style="display: block;">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-primary family-panel">
+                                <div class="panel-heading">
+                                    <div class="options">
+                                        <a class="panel-collapse" href="javascript:;"></a>
+                                    </div>
+
+                                    <h4 class="panel-title">Spouses and Children</h4>
+                                </div>
+
+                                <div class="panel-body spouses-children">
+                                    <div class="panel panel-default tree-family">
+                                        <div class="panel-heading">
+                                            <div class="connector">
+                                                &nbsp;
+                                            </div>
+
+                                            <div class="coupleWrapper">
+                                                <div class="personWrapper">
+                                                    <div class="nameWrapper">
+                                                        <i class="fs-icon-male icon-rounded">&nbsp;</i> <a class="male personCard name" data-original-title="" data-pid="277H-SWR" href="#" title="">Pranas Paukstys</a>
+                                                    </div>
+
+                                                    <ul class="list-collapsed">
+                                                        <li class="lifeSpan" data-placement="bottom" data-toggle="tooltip" title="August 16, 1919 - March 17, 1971">1919-1971</li>
+
+                                                        <li class="separator">-</li>
+
+                                                        <li class="pid">277H-SWR</li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="personWrapper">
+                                                    <div class="nameWrapper">
+                                                        <i class="fs-icon-female icon-rounded">&nbsp;</i> <a class="female personCard name" data-original-title="" data-pid="277H-3CL" href="#" title="">Kazimiera Gurinskaite</a>
+                                                    </div>
+
+                                                    <ul class="list-collapsed">
+                                                        <li class="lifeSpan" data-placement="bottom" data-toggle="tooltip" title="b. January 21, 1921">1921-Living</li>
+
+                                                        <li class="separator">-</li>
+
+                                                        <li class="pid">277H-3CL</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="clearboth">
+                                                &nbsp;
+                                            </div>
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <table class="table-hover">
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="personWrapper">
+                                                            <div class="nameWrapper">
+                                                                <i class="fs-icon-female icon-rounded">&nbsp;</i> <a class="female personCard name" data-original-title="" data-pid="277H-R63" href="#" title="">Birute Marija Paukstys</a>
+                                                            </div>
+
+                                                            <ul class="list-collapsed">
+                                                                <li class="lifeSpan" data-placement="bottom" data-toggle="tooltip" title="December 19, 1946 - June 26, 2007">1946-2007</li>
+
+                                                                <li class="separator">-</li>
+
+                                                                <li class="pid">277H-R63</li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        <div class="personWrapper">
+                                                            <div class="nameWrapper">
+                                                                <i class="fs-icon-male icon-rounded">&nbsp;</i> <a class="male personCard name" data-original-title="" data-pid="2774-Z86" href="#" title="">Romualdas Bronius Paukstys</a>
+                                                            </div>
+
+                                                            <ul class="list-collapsed">
+                                                                <li class="lifeSpan" data-placement="bottom" data-toggle="tooltip" title="b. October 12, 1939">1939-Living</li>
+
+                                                                <li class="separator">-</li>
+
+                                                                <li class="pid">2774-Z86</li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=" col-sm-6">
+                            <div class="panel panel-primary family-panel">
+                                <div class="panel-heading">
+                                    <div class="options">
+                                        <a class="panel-collapse" href="javascript:;"></a>
+                                    </div>
+
+                                    <h4 class="panel-title">Parents and Children</h4>
+                                </div>
+
+                                <div class="panel-body parents-children">
+                                    <div class="panel panel-default tree-family">
+                                        <div class="panel-heading">
+                                            <div class="connector">
+                                                &nbsp;
+                                            </div>
+
+                                            <div class="coupleWrapper">
+                                                <div class="personWrapper">
+                                                    <div class="nameWrapper">
+                                                        <i class="fs-icon-male icon-rounded">&nbsp;</i> <a class="male personCard name" data-original-title="" data-pid="L851-NPH" href="#" title="">Bronius Paukstys</a>
+                                                    </div>
+
+                                                    <ul class="list-collapsed">
+                                                        <li class="lifeSpan" data-placement="bottom" data-toggle="tooltip" title="">Deceased</li>
+
+                                                        <li class="separator">-</li>
+
+                                                        <li class="pid">L851-NPH</li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="personWrapper">
+                                                    <div class="nameWrapper">
+                                                        <i class="fs-icon-female icon-rounded">&nbsp;</i> <a class="female personCard name" data-original-title="" data-pid="LDJS-T6K" href="#" title="">Mrs Paukstys</a>
+                                                    </div>
+
+                                                    <ul class="list-collapsed">
+                                                        <li class="lifeSpan" data-placement="bottom" data-toggle="tooltip" title="b. July 19, 2012">2012-Deceased</li>
+
+                                                        <li class="separator">-</li>
+
+                                                        <li class="pid">LDJS-T6K</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="clearboth">
+                                                &nbsp;
+                                            </div>
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <table class="table-hover">
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="personWrapper">
+                                                            <div class="nameWrapper">
+                                                                <i class="fs-icon-male icon-rounded">&nbsp;</i> <a class="male personCard name" data-original-title="" data-pid="277H-SWR" href="#" title="">Pranas Paukstys</a>
+                                                            </div>
+
+                                                            <ul class="list-collapsed">
+                                                                <li class="lifeSpan" data-placement="bottom" data-toggle="tooltip" title="August 16, 1919 - March 17, 1971">1919-1971</li>
+
+                                                                <li class="separator">-</li>
+
+                                                                <li class="pid">277H-SWR</li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="pedigreeWidgetContainer" style="display: block;">
+                    <ul class="pedigree-chart">
+                        <li class="branch">
+
+                            <a class="node node--pedigree node--focus personCard" href="#" data-pid="277H-SWR" data-original-title="" title="">
+                                <i class="node__image fs-icon-male icon-rounded">&nbsp;</i>
+                                <div class="node__body">
+                                    <h2 class="node__name">Pranas Paukstys</h2>
+                                    <small class="node__dates">1919-1971</small>
+                                </div>
+                            </a>
+
+
+                            <ul class="node-list">
+                                <li class="branch">
+                                    <a class="node node--pedigree personCard" href="#" data-pid="L851-NPH" data-original-title="" title="">
+                                        <i class="node__image fs-icon-male icon-rounded">&nbsp;</i>
+                                        <div class="node__body">
+                                            <h2 class="node__name">Bronius Paukstys</h2>
+                                            <small class="node__dates">Deceased</small>
+                                        </div>
+                                    </a>
+                                    <ul class="node-list">
+                                        <li class="branch hidden-xs">
+                                            <div class="node node--pedigree node--empty"></div>
+                                            <ul class="node-list hidden-sm">
+                                                <li class="branch node--add">
+                                                    <div class="node node--pedigree node--empty"></div>
+                                                </li>
+                                                <li class="branch node--add">
+                                                    <div class="node node--pedigree node--empty"></div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="branch hidden-xs">
+                                            <div class="node node--pedigree node--empty"></div>
+                                            <ul class="node-list hidden-sm">
+                                                <li class="branch node--add">
+                                                    <div class="node node--pedigree node--empty"></div>
+                                                </li>
+                                                <li class="branch node--add">
+                                                    <div class="node node--pedigree node--empty"></div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="branch">
+                                    <a class="node node--pedigree personCard" href="#" data-pid="LDJS-T6K" data-original-title="" title="">
+                                        <i class="node__image fs-icon-female icon-rounded">&nbsp;</i>
+                                        <div class="node__body">
+                                            <h2 class="node__name">Mrs Paukstys</h2>
+                                            <small class="node__dates">2012-Deceased</small>
+                                        </div>
+                                    </a>
+                                    <ul class="node-list">
+                                        <li class="branch hidden-xs">
+                                            <div class="node node--pedigree node--empty"></div>
+                                            <ul class="node-list hidden-sm">
+                                                <li class="branch node--add">
+                                                    <div class="node node--pedigree node--empty"></div>
+                                                </li>
+                                                <li class="branch node--add">
+                                                    <div class="node node--pedigree node--empty"></div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="branch hidden-xs">
+                                            <div class="node node--pedigree node--empty"></div>
+                                            <ul class="node-list hidden-sm">
+                                                <li class="branch node--add">
+                                                    <div class="node node--pedigree node--empty"></div>
+                                                </li>
+                                                <li class="branch node--add">
+                                                    <div class="node node--pedigree node--empty"></div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
