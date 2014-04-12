@@ -167,6 +167,8 @@
 }
 
 .freshlook.df {
+  width: auto;
+
   .commentHeaderIcon,
   .titleIcon,
   .createIcon,
@@ -189,12 +191,20 @@
     padding: 0 4px;
   }
 
-  .discussionTable.show .addCommentIcon {
-    padding: 8px 0;
-  }
+  .discussionTable {
+    width: auto;
 
-  .discussionTable.show .cardCancelIcon {
-    padding: 5px;
+    &.show {
+      width: auto;
+
+      .addCommentIcon {
+        padding: 8px 0;
+      }
+
+      .cardCancelIcon {
+        padding: 5px;
+      }
+    }
   }
 
   .contributorData {
