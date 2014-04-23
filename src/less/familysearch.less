@@ -1,0 +1,441 @@
+@male: #4888f8;
+@female: #dd407d;
+
+body {
+
+  &.familysearch_theme {
+    font-size: 16px;
+    line-height: 24px;
+    color: #333331;
+    font-family: 'Montserrat', Verdana, sans-serif;
+
+  }
+}
+.familysearch_theme {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "museo_slab500", serif;
+    color: #333331;
+  }
+  h1 {
+    color: #4d4d4a;
+    font-size: 48px;
+    line-height: 50px;
+  }
+  h2 {
+    color: #4d4d4a;
+    font-size: 36px;
+    line-height: 39px;
+  }
+  h3 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+  h4 {
+    font-size: 21px;
+    line-height: 24px;
+  }
+  a,
+  a:hover,
+  a:active {
+    color: #0051c4;
+  }
+  .mainContent {
+    padding: 20px;
+    background: #ECEBEA;
+    border-top: 1px solid #fff;
+  }
+  .profileHeaderContainer .jumbotron {
+    border-bottom: 1px solid #B7B7B7;
+    background: #CDCDCD no-repeat;
+    position: relative;
+    color: #333331;
+    .personWrapper .nameWrapper h1 {
+      font-size: 28px;
+      line-height: 32px;
+      color: #333331;
+      font-weight: bold;
+    }
+
+    .icon-rounded {
+      box-shadow: 0px 0px 0px 6px #ffffff;
+      width: 100px;
+      height: 100px;
+      font-size: 56px;
+      line-height: 100px;
+      padding-left: 0;
+
+      &.fs-icon-female {
+        background: #F4F4F4;
+        color: @female;
+      }
+      &.fs-icon-male {
+        background: #F4F4F4;
+        color: @male;
+      }
+    }
+    .list-collapsed {
+      line-height: 1em;
+      font-size: 16px;
+    }
+
+    .personActions {
+      margin-top: 10px;
+      a {
+        color: #333331;
+      }
+
+    }
+    .pid {
+      float: none;
+      display: inline-block;
+      padding-left: 30px;
+      li {
+        list-style: disc;
+      }
+    }
+
+
+  }
+
+
+
+  .panel {
+    background: #fff;
+    border: 1px solid #CACACA;
+    font-size: 14px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -webkit-box-shadow: 0;
+    -moz-box-shadow: 0;
+    box-shadow: 0;
+    .panel-title {
+      font-size: 20px;
+      .badge {
+        margin-top: 2px;
+      }
+    }
+    .panel-heading {
+      -webkit-border-radius: 12px;
+      -moz-border-radius: 12px;
+      border-radius: 12px;
+    }
+  }
+
+  .source-objects, .discussion-objects, .note-objects {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    .panel-heading {
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+    }
+  }
+
+  .family-panel h5 {
+    text-align: left;
+    margin-left: 18px;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+
+
+  .familyWidgetContainer {
+    .row {
+      .tree-family .panel-body table tr:hover {
+        background-color: #F7F6F3;
+      }
+      .family-panel .tree-family .panel-heading {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        -webkit-border-bottom-left-radius: 0;
+        -webkit-border-bottom-right-radius: 0;
+        -moz-border-radius-bottomleft: 0;
+        -moz-border-radius-bottomright: 0;
+      }
+    }
+  }
+
+
+
+  [class*=panel-].panel-primary .options a, .notesWidgetContainer h4 a i {
+    color: #333331;
+  }
+  .panel-heading .options > a {
+    opacity: .8;
+  }
+
+  .well.editing {
+    background-color: #ECEBEA;
+    border: 1px solid #CDCDCD;
+
+  }
+  .well.openDetails {
+    background-color: #fff;
+    border: 1px solid #CDCDCD;
+
+  }
+  label {
+    margin-bottom: 0;
+  }
+
+  .panel-primary > .panel-heading {
+    background: #fff;
+    border: 0;
+    padding-top:15px;
+    //padding-bottom: 0;
+  }
+
+  .family-panel .detailsWell.editing a, .family-panel .well.editing a, .family-panel .detailsWell.editing .btn-link, .family-panel .well.editing .btn-link {
+    color: #0051C4;
+    opacity: 1;
+  }
+
+  .family-panel .detailsWell:last-child, .family-panel .well:last-child {
+    margin-bottom: 20px;
+  }
+
+
+  .detailActions.pull-right {
+    a {
+      color: #333331;
+    }
+    float:none !important;
+    margin-bottom: 3px;
+    font-size: 12px;
+    line-height: 12px;
+    i {
+      display: none;
+    }
+  }
+
+  .closeDetail i {
+    display: inline-block !important;
+  }
+  .detailActions .btn {
+    padding-left: 0;
+    padding-right: 10px;
+    font-size: 14px;
+  }
+
+  .family-panel {
+    .detailsWell, .well {
+      padding: 11px 19px 0;
+      background-color: inherit;
+      .detailActions {
+        display: none;
+      }
+      .itemBody p:last-child {
+        margin: 0;
+      }
+      border-radius: 4px 4px 4px 4px;
+      margin: 5px 20px 0 20px;
+      font-size: 14px;
+      h3 {
+
+        border-radius: 0;
+        font-size: 20px;
+        font-weight: normal;
+        color: #4d4d4a;
+      }
+      &:last-child {
+        margin-bottom: 0px;
+      }
+      .form-group, .actionRow, .editingItem, .detailsItem {
+        display: none;
+      }
+      &.openDetails, &.openDetails:hover {
+
+        background: #fff;
+        //
+
+        .itemBody p:last-child {
+          //margin: 0 0 10px;
+        }
+
+        .detailsItem {
+          display: inline-block;
+        }
+        .non-form {
+          display: inline-block;
+        }
+      }
+      &.editing {
+        .detailModifiedSources, .detailsModifiedHistory, hr {
+          display: none;
+        }
+        background-color: #f3f3f1;
+        color: #333331;
+        .itemBody p:last-child {
+          //margin: 0 0 10px;
+        }
+        a, .btn-link {
+          color: #0051c4;
+          opacity: .6;
+          &:hover {
+            opacity: 1;
+          }
+        }
+        .form-group, .actionRow, .editingItem {
+          display: block;
+        }
+        .non-form, .detailActions {
+          display: none;
+        }
+      }
+      &.editing, &.openDetails {
+        hr {
+          margin: 10px 0;
+        }
+        .detailActions {
+          display: block;
+        }
+        .detailActions.pull-right {
+          float: right !important;
+        }
+
+
+        border: 1px solid #dedbd7;
+        border-radius: 3px;
+        -ms-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -o-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        box-shadow: 0 0 10px #dedbd7;
+        -ms-box-shadow: 0 0 10px #dedbd7;
+        -moz-box-shadow: 0 0 10px #dedbd7;
+        -o-box-shadow: 0 0 10px #dedbd7;
+        -webkit-box-shadow: 0 0 10px #dedbd7;
+        margin-bottom: 16px;
+        .itemBody p:last-child {
+          margin: 0 0 10px;
+        }
+
+        padding: 10px 18px 10px 18px;
+      }
+
+      h3 {
+        margin-top: 0;
+
+      }
+      .openDetails {
+
+      }
+      &:last-child {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  .tree-family.jumbotron {
+    margin-bottom: 0;
+
+    border-bottom: 1px solid #B7B7B7;
+  }
+
+  .sidebar {
+    .panel {
+      border-color: #ADACAB;
+      border-radius: 8px 8px 0 0;
+      -moz-border-radius: 8px 8px 0 0;
+      -webkit-border-radius: 8px 8px 0 0;
+    }
+    .panel-heading {
+
+      background: #DEDBD7;
+
+      padding: 5px 15px;
+      border-radius: 8px 8px 0 0;
+      -moz-border-radius: 8px 8px 0 0;
+      -webkit-border-radius: 8px 8px 0 0;
+      margin: 0;
+      border-bottom-color: #ADACAB;
+      a {
+        color: #3B3A35;
+      }
+      .panel-title {
+        color: #3B3A35;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: normal;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+
+  .family-panel .tree-family .panel-heading {
+    background-color: #F3F3F1;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+    width: auto;
+    padding: 0 10px;
+    height: auto;
+    border-radius: 2px;
+    border-color: #B1B1B1;
+  }
+  .family-panel .panel {
+    border: 0;
+    border-radius: 0;
+    margin: 20px;
+  }
+
+  .detailsWell h5 {
+    margin-top: 0;
+    font-size: 14px;
+    font-weight: normal;
+    color: #4d4d4a;
+  }
+
+  .detailsWell.editing h5 {
+    display: none;
+  }
+  .detailModified {
+    clear: both;
+    margin-top:10px;
+    font-size: .95em;
+    line-height: 1.3em;
+  }
+  .lifeSketchWidgetContainer {
+    .family-panel .well .detailsWell, .family-panel .detailsWell {
+      .detailActions {
+        display: inline-block;
+      }
+      &.editing {
+        .detailActions {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .familyWidgetContainer .family-panel .panel {
+    margin-top:10px;
+  }
+
+
+  .lowerBar {
+    margin: 0 -10px;
+  }
+  .detailsWell:hover {
+    background-color: inherit;
+    box-shadow: none;
+  }
+  .spousesAndChildren {
+    padding-left: 20px;
+    padding-right: 0;
+  }
+
+  .parentsAndChildren {
+    padding-right: 20px;
+    padding-left: 0;
+  }
+  .lowerBar a {
+    color: #fff;
+  }
+  .addNewNote {
+    padding: 0 15px;
+  }
+}
