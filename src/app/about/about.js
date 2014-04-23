@@ -1,6 +1,7 @@
-(function(app) {
-
-    app.config(function ($stateProvider) {
+angular.module("fsTree.about", [
+  'ui.router'
+  ])
+  .config(function ($stateProvider) {
         $stateProvider.state('about', {
             url: '/about',
             views: {
@@ -11,9 +12,9 @@
             },
             data:{ pageTitle: 'About' }
         });
-    });
+  })
 
-    app.controller('AboutController', function ($scope) {
+  .controller('AboutController', function ($scope) {
 
         var init = function() {
             // A definitive place to put everything that needs to run when the controller starts. Avoid
@@ -21,8 +22,4 @@
         };
 
         init();
-    });
-
-}(angular.module("fsTree.about", [
-    'ui.router'
-])));
+  });

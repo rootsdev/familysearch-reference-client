@@ -9,9 +9,10 @@
  * Regardless, so long as dependencies are managed correctly, the build process
  * will automatically take take of the rest.
  */
-(function(app) {
-
-    app.config(function ($stateProvider) {
+angular.module('fsTree.home', [
+    'ui.router'
+  ])
+  .config(function ($stateProvider) {
         $stateProvider.state('home', {
             url: '/home',
             views: {
@@ -22,11 +23,11 @@
             },
             data:{ pageTitle: 'Home' }
         });
-    });
+    })
 
-    // As you add controllers to a module and they grow in size, feel free to place them in their own files.
-    //  Let each module grow organically, adding appropriate organization and sub-folders as needed.
-    app.controller('HomeController', function ($scope) {
+  // As you add controllers to a module and they grow in size, feel free to place them in their own files.
+  //  Let each module grow organically, adding appropriate organization and sub-folders as needed.
+  .controller('HomeController', function ($scope) {
 
         var init = function() {
             // A definitive place to put everything that needs to run when the controller starts. Avoid
@@ -40,9 +41,4 @@
         $scope.someFunctionUsedByTheHomePage = function () {
             alert('Congratulations');
         };
-    });
-
-// The name of the module, followed by its dependencies (at the bottom to facilitate enclosure)
-}(angular.module("fsTree.home", [
-    'ui.router'
-])));
+  });
