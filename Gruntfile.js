@@ -405,7 +405,7 @@ module.exports = function(grunt) {
               port: 9000,
               hostname: 'localhost',
               serverreload: false,
-              bases: ['build', 'src/mocks'], // FS add mocks directory
+              bases: ['build', 'mocks'], // FS add mocks directory
               livereload: true
             }
           }
@@ -514,7 +514,7 @@ module.exports = function(grunt) {
              */
             mocks: {
               files: [
-                'src/mocks/**/*'
+                'mocks/**/*'
               ]
             },
 
