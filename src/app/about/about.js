@@ -1,4 +1,4 @@
-angular.module("fsClone.about", [
+angular.module('fsClone.about', [
   'ui.router'
 ])
 .config(function ($stateProvider) {

@@ -46,7 +46,7 @@ angular.module( 'fsClone', [
   'templates-app',
   'templates-common',
   'fsClone.home',
-  'fsClone.about'
+  'fsClone.about',
   'ui.state',
   'ui.route'
 ])
