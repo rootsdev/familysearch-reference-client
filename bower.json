@@ -1,5 +1,5 @@
 {
-    "name": "fsTree",
+    "name": "fsClone",
     "version": "0.0.1",
     "_comment": "Any dependencies added here require a manual edit to vendor_files in /Gruntfile.js and (??? verify the following) /build/karma-unit.js (e.g 'vendor/angular-resource/angular-resource.js')",
     "devDependencies": {

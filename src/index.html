@@ -1,35 +1,35 @@
 <!DOCTYPE html>
-<html ng-app="fsTree" ng-controller="AppController">
+<html ng-app="fsClone" ng-controller="AppController">
 <head>
-    <title ng-bind="pageTitle"></title>
+  <title ng-bind="pageTitle"></title>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+  <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+  <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
 
-    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
-    <script type="text/javascript" src="<%= file %>"></script><% }); %>
+  <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+  <script type="text/javascript" src="<%= file %>"></script><% }); %>
 </head>
 <body>
-    <header>
-        <nav class="container navbar-default">
-            <ul class="nav navbar-nav">
-                <li ui-sref-active="active">
-                    <a ui-sref="home">Home</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="about">About</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+<header>
+  <nav class="container navbar-default">
+    <ul class="nav navbar-nav">
+      <li ui-sref-active="active">
+        <a ui-sref="home">Home</a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="about">About</a>
+      </li>
+    </ul>
+  </nav>
+</header>
 
-    <div class="container" ui-view="main"></div>
+<div class="container" ui-view="main"></div>
 
-    <footer class="container">
-        (c) <%= date %> <%= author %>
-    </footer>
+<footer class="container">
+  (c) <%= date %> <%= author %>
+</footer>
 </body>
 </html>

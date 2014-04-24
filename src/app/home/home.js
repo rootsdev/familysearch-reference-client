@@ -9,36 +9,36 @@
  * Regardless, so long as dependencies are managed correctly, the build process
  * will automatically take take of the rest.
  */
-angular.module('fsTree.home', [
-    'ui.router'
-  ])
-  .config(function ($stateProvider) {
-        $stateProvider.state('home', {
-            url: '/home',
-            views: {
-                "main": {
-                    controller: 'HomeController',
-                    templateUrl: 'home/home.tpl.html'
-                }
-            },
-            data:{ pageTitle: 'Home' }
-        });
-    })
-
-  // As you add controllers to a module and they grow in size, feel free to place them in their own files.
-  //  Let each module grow organically, adding appropriate organization and sub-folders as needed.
-  .controller('HomeController', function ($scope) {
-
-        var init = function() {
-            // A definitive place to put everything that needs to run when the controller starts. Avoid
-            //  writing any code outside of this function that executes immediately.
-        };
-
-        init();
-
-        $scope.someVar = 'blue';
-        $scope.someList = ['one', 'two', 'three', 'four', 'five'];
-        $scope.someFunctionUsedByTheHomePage = function () {
-            alert('Congratulations');
-        };
+angular.module('fsClone.home', [
+  'ui.router'
+])
+.config(function ($stateProvider) {
+  $stateProvider.state('home', {
+    url: '/home',
+    views: {
+      "main": {
+        controller: 'HomeController',
+        templateUrl: 'home/home.tpl.html'
+      }
+    },
+    data:{ pageTitle: 'Home' }
   });
+})
+
+// As you add controllers to a module and they grow in size, feel free to place them in their own files.
+//  Let each module grow organically, adding appropriate organization and sub-folders as needed.
+.controller('HomeController', function ($scope) {
+
+  var init = function() {
+    // A definitive place to put everything that needs to run when the controller starts. Avoid
+    //  writing any code outside of this function that executes immediately.
+
+    $scope.someVar = 'blue';
+    $scope.someList = ['one', 'two', 'three', 'four', 'five'];
+    $scope.someFunctionUsedByTheHomePage = function () {
+      alert('Congratulations');
+    };
+  };
+
+  init();
+});
