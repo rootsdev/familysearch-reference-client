@@ -1,0 +1,16 @@
+<div class="panel panel-primary family-panel">
+  <div class="panel-heading">
+    <div class="options">
+      <a class="panel-collapse" href="" ng-click="toggleState()">
+        <span ng-show="isOpen()"><i class="fa fa-chevron-down">&nbsp;</i>Close</span>
+        <span ng-hide="isOpen()"><i class="fa fa-chevron-up">&nbsp;</i>Open</span>
+      </a>
+      <a ng-show="isDetailsOpenable()" class="toggleDetails hidden-xs" href="">
+        <span ng-hide="hasOpenDetails()" ng-click="openDetails({open:true})"><i class="fa fa-eye">&nbsp;</i>Show Details</span>
+        <span ng-show="hasOpenDetails()" ng-click="openDetails({open:false})"><i class="fa fa-eye-slash">&nbsp;</i>Hide Details</span>
+      </a>
+    </div>
+    <h4 class="panel-title">{{sectionTitle}}</h4>
+  </div>
+  <div ng-show="isOpen()" ng-transclude></div>
+</div>

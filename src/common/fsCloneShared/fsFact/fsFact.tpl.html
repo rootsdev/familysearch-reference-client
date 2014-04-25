@@ -1,0 +1,7 @@
+<div>
+  <div fs-item state="item.state" editable="true" deletable="true" exists="{{!!item.value}}">
+    <div fs-fact-summary type="{{type}}" item="item" ng-hide="isEditing()"></div>
+    <div fs-fact-details type="{{type}}" item="item" ng-show="isOpen()"></div>
+    <div fs-fact-editing type="{{type}}" item="item" ng-show="isEditing()"></div>
+  </div>
+</div>

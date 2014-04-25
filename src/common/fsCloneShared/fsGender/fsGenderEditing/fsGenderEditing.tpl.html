@@ -1,0 +1,29 @@
+<div>
+  <div class="form-group">
+    <div class=text-center">
+      <label class="radio-inline">
+        <input type="radio" id="genderMale" value="male" checked="checked"> Male
+      </label>
+      <label class="radio-inline">
+        <input type="radio" id="genderFemale" value="female"> Female
+      </label>
+      <label class="radio-inline">
+        <input type="radio" id="genderUnknown" value="unknown"> Unknown Gender
+      </label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Reason this Information is Correct</label>
+    <textarea class="form-control" name="justification"
+              placeholder="Explain why you feel this information is correct.">
+    </textarea>
+  </div>
+  <div class="detailsItem editingItem detailModified">
+    Modified<br>
+    <span class="modifiedDate">April 2, 2014</span> by <a href="http://" class="contributor">Dovy</a>
+  </div>
+  <div class="actionRow">
+    <button class="btn btn-primary saveButton" type="submit">Save</button>
+    <button class="btn btn-link cancelButton" type="submit" ng-click="cancel()">Cancel</button>
+  </div>
+</div>

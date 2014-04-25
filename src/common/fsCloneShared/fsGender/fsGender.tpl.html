@@ -1,0 +1,7 @@
+<div>
+  <div fs-item state="item.state" editable="true" exists="{{!!item.value}}">
+    <div fs-gender-summary item="item" ng-hide="isEditing()"></div>
+    <div fs-gender-details item="item" ng-show="isOpen()"></div>
+    <div fs-gender-editing item="item" ng-show="isEditing()"></div>
+  </div>
+</div>

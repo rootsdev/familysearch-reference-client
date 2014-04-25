@@ -1,0 +1,14 @@
+<div class="detailsWell" ng-class="{well: isOpen() || isEditing(), openDetails: isOpen(), editing: isEditing()}">
+  <div class="detailActions pull-right">
+    <a ng-show="editable" href="" class="btn btn-xs btn-link editDetail non-form" ng-click="edit()">
+      <i class="fa fa-edit">&nbsp;</i><span ng-hide="exists">Add</span><span ng-show="exists">Edit</span>
+    </a>
+    <a ng-show="deletable && exists" href="" class="deleteDetail btn btn-link btn-xs non-form" ng-click="remove()">
+      <i class="fa fa-trash-o">&nbsp;</i>Delete
+    </a>
+    <a href="" class="btn btn-xs btn-link detailsItem closeDetail" ng-click="close()">
+      <i class="fa fa-times-circle">&nbsp;</i>Close
+    </a>
+  </div>
+  <div ng-transclude></div>
+</div>

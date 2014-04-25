@@ -75,13 +75,11 @@ module.exports = function(grunt) {
          * recommended that you use wildcards.
          */
         vendor_files: {
-            js: [
+            js: [ // FS customize file list
                 'vendor/angular/angular.js',
-                
                 'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
-                'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
                 'vendor/angular-ui-router/release/angular-ui-router.js',
-                'vendor/angular-ui-utils/modules/route/route.js'
+                'vendor/lodash/dist/lodash.compat.js'
             ],
             css: [
             ],
@@ -129,6 +127,12 @@ module.exports = function(grunt) {
                         src: [ '**' ],
                         dest: '<%= build_dir %>/assets/',
                         cwd: 'src/assets',
+                        expand: true
+                    },
+                    {   // FS copy es5 shim as well
+                        src: [ 'es5-shim/es5-shim.min.js' ],
+                        dest: '<%= build_dir %>/assets/',
+                        cwd: 'vendor',
                         expand: true
                     }
                 ]
@@ -658,7 +662,7 @@ module.exports = function(grunt) {
     grunt.registerMultiTask('karmaconfig', 'Process karma config templates', function () {
         var jsFiles = filterForJS(this.filesSrc);
 
-        grunt.file.copy('karma/karma-unit.tpl.js', grunt.config('build_dir') + '/karma-unit.js', {
+        grunt.file.copy('karma/karma-unit.tpl', grunt.config('build_dir') + '/karma-unit.js', { // FS change extension to .tpl to keep WebStorm from complaining
             process: function (contents, path) {
                 // This is the variable looped over in the karma template of our index.html exposed as "scripts"
                 return grunt.template.process(contents, {
