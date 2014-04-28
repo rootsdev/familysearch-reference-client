@@ -9,7 +9,10 @@
           sectionTitle: '@',
           state: '=',
           detailsOpenable: '@',
-          items: '=' // array of objects with _state property
+          items: '=', // array of objects with _state property
+          addable: '@',
+          addLabel: '@',
+          add: '&'
         },
         link: function(scope, elem, attrs) {
 
@@ -30,7 +33,6 @@
           // item functions
 
           scope.openDetails = function(open) {
-            console.log('openDetails', open);
             _.forEach(scope.items, function(item) {
               if (item._state !== 'editing') {
                 item._state = open ? 'open' : 'closed';

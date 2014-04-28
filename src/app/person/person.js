@@ -35,6 +35,7 @@
       var init = function () {
         $scope.lifeSketchState = 'closed';
         $scope.vitalFactsState = 'open';
+        $scope.otherFactsState = 'open';
       };
 
       init();
