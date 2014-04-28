@@ -19,6 +19,7 @@
           };
 
           item._toggleOpen = function() {
+            console.log('toggleOpen');
             this._state = this._state === 'open' ? 'closed' : 'open';
           };
 

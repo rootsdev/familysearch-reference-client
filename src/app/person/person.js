@@ -36,6 +36,7 @@
         $scope.lifeSketchState = 'closed';
         $scope.vitalFactsState = 'open';
         $scope.otherFactsState = 'open';
+        $scope.notesState = 'open';
       };
 
       init();
