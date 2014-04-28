@@ -1,15 +1,13 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsItem', function () {
+    .directive('fsItemSummary', function() {
       return {
         transclude: true,
-        templateUrl: 'fsCloneShared/fsItem/fsItem.tpl.html',
+        templateUrl: 'fsCloneShared/fsItem/fsItemSummary/fsItemSummary.tpl.html',
         scope: {
           item: '=',
-          editable: '@',
-          deletable: '@',
-          remove: '&'
+          label: '@'
         }
       };
     });

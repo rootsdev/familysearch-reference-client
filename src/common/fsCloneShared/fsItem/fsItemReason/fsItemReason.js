@@ -1,9 +1,9 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsNameSummary', function() {
+    .directive('fsItemReason', function() {
       return {
-        templateUrl: 'fsCloneShared/fsName/fsNameSummary/fsNameSummary.tpl.html',
+        templateUrl: 'fsCloneShared/fsItem/fsItemReason/fsItemReason.tpl.html',
         scope: {
           item: '='
         }

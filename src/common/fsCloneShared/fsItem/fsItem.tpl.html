@@ -1,12 +1,12 @@
-<div class="detailsWell" ng-class="{well: isOpen() || isEditing(), openDetails: isOpen(), editing: isEditing()}">
+<div class="detailsWell" ng-class="{well: item._isOpen() || item._isEditing(), openDetails: item._isOpen(), editing: item._isEditing()}">
   <div class="detailActions pull-right">
-    <a ng-show="editable" href="" class="btn btn-xs btn-link editDetail non-form" ng-click="edit()">
-      <i class="fa fa-edit">&nbsp;</i><span ng-hide="exists">Add</span><span ng-show="exists">Edit</span>
+    <a ng-show="editable" href="" class="btn btn-xs btn-link editDetail non-form" ng-click="item._edit()">
+      <i class="fa fa-edit">&nbsp;</i><span ng-hide="item._exists()">Add</span><span ng-show="item._exists()">Edit</span>
     </a>
-    <a ng-show="deletable && exists" href="" class="deleteDetail btn btn-link btn-xs non-form" ng-click="remove()">
+    <a ng-show="deletable && item._exists()" href="" class="deleteDetail btn btn-link btn-xs non-form" ng-click="remove()">
       <i class="fa fa-trash-o">&nbsp;</i>Delete
     </a>
-    <a href="" class="btn btn-xs btn-link detailsItem closeDetail" ng-click="close()">
+    <a href="" class="btn btn-xs btn-link detailsItem closeDetail" ng-click="item._close()">
       <i class="fa fa-times-circle">&nbsp;</i>Close
     </a>
   </div>

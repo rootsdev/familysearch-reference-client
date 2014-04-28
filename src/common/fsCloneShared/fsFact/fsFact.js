@@ -3,21 +3,23 @@
   angular.module('fsCloneShared')
     .directive('fsFact', function() {
       return {
-        restrict: 'A',
-        replace: true,
         templateUrl: 'fsCloneShared/fsFact/fsFact.tpl.html',
         scope: {
-          item: '=',
-          type: '@'
+          item: '='
         },
-        link: function(scope, elem, attrs) {
-          scope.isOpen = function() {
-            return scope.item.state === 'open';
+        link: function(scope) {
+          scope.getDisplayType = function(item) {
+            return item.type.substring(item.type.lastIndexOf('/')+1);
           };
 
-          scope.isEditing = function() {
-            return scope.item.state === 'editing';
+          scope.save = function () {
+            // TBD
           };
+
+          scope.remove = function () {
+            // TBD
+          };
+
         }
       };
     });

@@ -1,0 +1,9 @@
+<div class="non-form">
+  <span class="eventLabel">{{label}}</span><br>
+  <a href="" class="btn btn-link non-form addDetail" ng-hide="item._exists()" ng-click="item._edit()">
+    <i class="fa fa-plus-square">&nbsp;</i>Add
+  </a>
+  <a href="" class="openEventDetails" ng-show="item._exists()" ng-click="item._toggleOpen()">
+    <div ng-transclude></div>
+  </a>
+</div>
