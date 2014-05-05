@@ -1,0 +1,413 @@
+@import "family.less";
+@import "pedigree.less";
+@import "popover.less";
+@import "editView.less";
+
+.tree-family .primaryEvents .event {
+  margin-left: 0;
+}
+.tree-family .primaryEvents .eventName {
+  font-weight: normal;
+  width: 50px;
+  color: #888;
+}
+.tree-family .primaryEvents .eventName.visible-xs, .tree-family .primaryEvents .eventName.visible-sm {
+  clear: left;
+  width: 18px;
+}
+
+.tree-family .primaryEvents .event span {
+  float: left;
+}
+
+.tree-family thead > tr > td, .tree-family tbody > tr > td, .tree-family tfoot > tr > td {
+  p2adding: 0;
+}
+
+.tree-family.jumbotron {
+    padding: 30px;
+}
+.jumbotron .icon-rounded:before {
+  margin-left: 23px;
+}
+
+.jumbotron .personWrapper .nameWrapper .lifeSpan, .jumbotron .personWrapper .nameWrapper a, .jumbotron .personWrapper .nameWrapper span {
+    padding-left:0;
+}
+
+.personWrapper span.pid {
+    float: left;
+    line-height: 1.428571429;
+}
+
+
+
+.jumbotron {
+  line-height: 1em;
+  .personWrapper {
+    .lifeSpan {
+      padding-right: 20px;
+    }
+    .pid {
+      opacity: .8;
+      float: none;
+      white-space:nowrap;
+      //display: inline-block !important;
+      li {
+        list-style: disc;
+        padding-left: 10px;
+      }
+    }
+  }
+  ul.list-collapsed {
+    padding-left: 0;
+  }
+}
+
+.nameWrapper i.hasImage {
+    overflow: hidden;
+    text-indent:-999px;
+}
+.jumbotron .nameWrapper .icon-rounded {
+    width: 124px;
+    height: 124px;
+    font-size: 70px;
+    line-height: 124px;
+    margin: 0 auto;
+    text-align: center;
+    margin-right: 30px;
+    box-shadow: 0px 0px 0px 10px rgba(255,255,255,.75);
+}
+.jumbotron ul.list-collapsed li {
+    float: none;
+}
+.jumbotron .personWrapper .nameWrapper {
+    height: auto;
+}
+.jumbotron .personWrapper .nameWrapper h1 {
+  margin: 0;
+  padding-top: 0px;
+  font-size: 55px;
+}
+.jumbotron .nameWrapper {
+  min-width: 350px;
+}
+.jumbotron .personActions {
+  line-height: 1 !important;
+}
+.jumbotron .personActions a {
+  color: #fff;
+  margin-right: 20px;
+}
+
+#container {
+    margin: 0 auto;
+    text-align:center;
+}
+.photo { 
+    max-width: 30%;
+    min-width: 200px;
+    margin: 10px 1%;
+    float: left;
+    border-radius: 8px;
+}
+body {
+    padding-bottom: 60px;
+}
+.fs-icons {
+    text-align: center;
+}
+.fs-icons .span3 {
+    font-size: 22px;
+    display: inline-block;
+    width: 15em;
+    padding: .25em .5em;
+    background: #eee;
+    margin: .5em 1em .5em 0;
+    text-align: left;
+}
+
+.resultsRecords .personWrapper {
+    padding-left: 5px;
+}
+
+.dots {
+    text-align: center;
+    line-height: 28px;
+    ;
+}
+.resultsRecords .dots {
+    float: right;
+}
+.dots span {
+  display: inline-block;
+  height: 5px;
+  width: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+.dots .male {
+    background: #4888f8;
+}
+  
+.dots .female {
+    background: #dd407d;    
+}
+
+.photos img {
+    min-height: 150px;
+    min-width: 50px;
+}
+.no-padding {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.no-padding .col-sm-12 {
+    padding-left: 0;
+    padding-right: 0;
+}
+.searchResultsTable {
+    min-width: 450px;
+}
+
+ul.polaroids li {
+    list-style: none;
+    float: left;
+    margin-right: 20px;
+}
+
+ul.polaroids a {
+    display:block;
+}
+
+ul.polaroids a:after, ul.polaroids a:after:hover {
+  content: attr(title);
+  display:block;
+  border-width: 1px 1px 1px 1px;
+  border-color: #aaa;
+  background: white;
+  text-decoration:none;
+  text-align: center;
+  padding-top: 7px;
+  font-weight: bold;
+  border-bottom: 0;
+  font-family: "Marker Felt", sans-serif;
+  color: #333;
+  font-size: 18px;  
+}
+/* By default, we tilt all our images -2 degrees */
+ul.polaroids a {
+    -webkit-transform: rotate(-2deg);
+    -moz-transform: rotate(-2deg);
+    -o-transform: rotate(-2deg);
+    -ms-transform: rotate(-2deg);
+    transform: rotate(-2deg);  
+}
+ 
+/* Rotate all even images 2 degrees */
+ul.polaroids li:nth-child(even) a, ul.polaroids li:nth-child(even) a:after {
+    -webkit-transform: rotate(2deg);
+    -moz-transform: rotate(2deg);
+    -o-transform: rotate(2deg);
+    -ms-transform: rotate(2deg);
+    transform: rotate(2deg);  
+}
+ 
+/* Don't rotate every third image, but offset its position */
+ul.polaroids li:nth-child(3n) a {
+    -webkit-transform: none;
+    -moz-transform: none;
+    -o-transform: none;
+    -ms-transform: none;
+    transform: none;
+  position: relative;
+  top: -5px;
+}
+ 
+/* Rotate every fifth image by 5 degrees and offset it */
+ul.polaroids li:nth-child(5n) a {
+    -webkit-transform: rotate(5deg);
+    -moz-transform: rotate(5deg);
+    -o-transform: rotate(5deg);
+    -ms-transform: rotate(5deg);
+    transform: rotate(5deg); 
+  position: relative;
+  right: 5px;
+}
+ 
+/* Keep default rotate for every eighth, but offset it */
+ul.polaroids li:nth-child(8n) a {
+  position: relative;
+  top: 8px;
+  right: 5px;
+}
+ 
+/* Keep default rotate for every eleventh, but offset it */
+ul.polaroids li:nth-child(11n) a {
+  position: relative;
+  top: 3px;
+  left: -5px;
+}
+
+/* Scale the images on hover, add transitions for smoothing things out, and ensure the hover appears on top */
+ul.polaroids a:hover {
+    text-decoration:none;
+    border-bottom-width: 1px;
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  position: relative;
+  z-index: 5;
+}
+
+.contributorCard h3 {
+  margin-top: 0;
+  padding-top: 0;
+}
+.contributorCard h3 {
+  margin-top: 0;
+  padding-top: 0;
+}
+.contributorCard .row div {
+  line-height: 1.5em !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.discussionWidgetContainer .family-panel {
+  .detailsWell.openDetails .non-form, .well.openDetails .non-form, .detailsWell.openDetails:hover .non-form, .well.openDetails:hover .non-form {
+    &.non-form-block {
+      display: block;
+    }
+  }
+}
+
+
+
+.discussionWidgetContainer {
+  .addNewDiscussion {
+    padding-top:0;
+  }
+  .fa {
+    color: #222;
+    &.openEventDetails {
+      font-size: 20px;
+    }
+  }
+  .discussionsBody {
+    padding-bottom: 10px;
+    .detailsWell {
+      position: relative;
+    }
+  }
+  .detailActions {
+    &.pull-right {
+      position: absolute;
+      right: 0;
+    }
+    padding-bottom: 10px;
+    .btn-xs {
+      padding-left: 0;
+    }
+  }
+  .additionalDiscussions {
+    border: 1px solid transparent;
+    border-top-color: #eee;
+    padding: 15px 15px 5px 15px;
+    .media-body .commentsBody {
+      display: none;
+    }
+    &.expanded {
+      .addCommentLink {
+        border-top: 1px solid white;
+        padding-top: 8px;
+      }
+
+
+      border: 1px solid;
+      border-color: #cdcdcd;
+      display: block;
+      background-color: #ECEBEA;
+      .media-body .commentsBody {
+        clear: both;
+        display: block;
+        padding-top: 8px;
+
+      }
+      .media-body .comment {
+        padding: 8px 0 0 0;
+        border-top: 1px solid white;
+        &.editing {
+          .form-group, .actionRow {
+            display: block;
+          }
+          .actionRow {
+            padding-bottom: 10px;
+          }
+          .commentDetails {
+            display: none;
+          }
+        }
+        .commentsBody {
+          display: block !important;
+        }
+
+        .detailsWell div {
+
+        }
+        display: block;
+      }
+    }
+  }
+
+}
+
+
+.sourcesBody {
+  i {
+    color: #555;
+  }
+  .detailsWell .detailsWell {
+    margin: 0 !important;
+    padding: 0 !important;
+    &.editing {
+      .detailsItem {
+        display:none !important;
+      }
+      padding: 11px 19px !important;
+    }
+  }
+
+  .detailsItem {
+    margin-top: 10px;
+  }
+  .addSourceJustification {
+    padding: 0;
+  }
+}
+
+.no-margin-top {
+  margin-top: 0;
+}
+.no-padding-left {
+  padding-left: 0 !important;
+}
+.no-padding-top {
+  padding-top: 0 !important;
+}
+.no-border-top {
+  border-top: 0;
+}
