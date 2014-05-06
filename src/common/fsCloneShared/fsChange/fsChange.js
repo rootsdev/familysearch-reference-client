@@ -1,0 +1,9 @@
+(function(){
+  'use strict';
+  angular.module('fsCloneShared')
+    .directive('fsChange', function () {
+      return {
+        templateUrl: 'fsCloneShared/fsChange/fsChange.tpl.html'
+      };
+    });
+})();

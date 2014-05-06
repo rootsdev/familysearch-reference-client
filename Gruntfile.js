@@ -34,7 +34,12 @@ module.exports = function(grunt) {
          * stylesheet, and 'unit' contains our app's unit tests.
          */
         app_files: {
-            js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
+            js: [
+              'src/common/fsCloneShared/fsCloneShared.js',
+              'src/**/*.js',
+              '!src/**/*.spec.js',
+              '!src/assets/**/*.js'
+            ],
             jsunit: [ 'src/**/*.spec.js' ],
 
             coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
@@ -200,6 +205,7 @@ module.exports = function(grunt) {
                 src: [
                     '<%= vendor_files.js %>',
                     'module.prefix',
+                    '<%= build_dir %>/src/common/fsCloneShared/fsCloneShared.js',
                     '<%= build_dir %>/src/**/*.js',
                     '<%= html2js.app.dest %>',
                     '<%= html2js.common.dest %>',
@@ -380,6 +386,7 @@ module.exports = function(grunt) {
                 dir: '<%= build_dir %>',
                 src: [
                     '<%= vendor_files.js %>',
+                    '<%= build_dir %>/src/common/fsCloneShared/fsCloneShared.js',
                     '<%= build_dir %>/src/**/*.js',
                     '<%= html2js.common.dest %>',
                     '<%= html2js.app.dest %>',
