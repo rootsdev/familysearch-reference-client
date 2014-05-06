@@ -3,7 +3,7 @@
 <html xmlns:ng="http://angularjs.org" lang="en" id="ng-app" ng-app="fsClone" ng-controller="AppController">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- TODO setting page title doesn't seem to be working; do we need to set it on root scope? -->
   <title ng-bind="pageTitle"></title>
@@ -22,11 +22,6 @@
   <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
   <script type="text/javascript" src="<%= file %>"></script><% }); %>
 
-  <!-- CORS doesn't work below IE8 so there's no hope -->
-  <!--[if lt IE 8]>
-  <p class="chromeframe">D'oh! You're using an outdated browser, man. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-  <![endif]-->
-
   <!--[if lt IE 9]>
   <script src="assets/es5-shim.min.js"></script>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -35,6 +30,10 @@
 
 </head>
 <body>
+<!-- CORS doesn't work below IE8 so there's no hope -->
+<!--[if lt IE 8]>
+<p class="chromeframe">D'oh! You're using an outdated browser, man. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
 <div class="navbar navbar-default navbar-static-top">
   <div class="container">
     <div class="navbar-header">
