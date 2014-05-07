@@ -37,6 +37,7 @@
         $scope.vitalFactsState = 'open';
         $scope.otherFactsState = 'open';
         $scope.familyMembersState = 'open';
+        $scope.sourcesSectionState = 'open';
         $scope.discussionsState = 'open';
         $scope.notesState = 'open';
       };

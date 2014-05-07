@@ -13,9 +13,12 @@
     <h4 class="panel-title">{{sectionTitle}}</h4>
   </div>
   <div ng-show="isOpen()">
-    <div class="row" ng-show="addable">
+    <div class="row" ng-show="addable || attachable">
       <div class="col-md-12" style="padding: 0 27px;">
-        <a href="" ng-click="add()" class="btn btn-link non-form addNewNote pull-right">
+        <a href="" ng-show="attachable" ng-click="attach()" class="btn btn-link non-form addNewNote pull-right">
+          <i class="fa fa-plus-square">&nbsp;</i>{{attachLabel}}
+        </a>
+        <a href="" ng-show="addable" ng-click="add()" class="btn btn-link non-form addNewNote pull-right">
           <i class="fa fa-plus-square">&nbsp;</i>{{addLabel}}
         </a>
       </div>

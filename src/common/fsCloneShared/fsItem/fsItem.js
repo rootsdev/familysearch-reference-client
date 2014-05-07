@@ -10,6 +10,8 @@
           editable: '@',
           deletable: '@',
           remove: '&'
+        },
+        link: function(scope, elem, attrs) {
         }
       };
     });

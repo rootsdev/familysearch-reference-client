@@ -7,6 +7,9 @@
         scope: {
           item: '=',
           showHistory: '@'
+        },
+        link: function(scope, elem, attrs) {
+          console.log('showHistory', scope.showHistory);
         }
       };
     });

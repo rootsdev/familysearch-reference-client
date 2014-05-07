@@ -12,7 +12,10 @@
           items: '=', // array of objects with _state property
           addable: '@',
           addLabel: '@',
-          add: '&'
+          add: '&',
+          attachable: '@',
+          attachLabel: '@',
+          attach: '&'
         },
         link: function(scope, elem, attrs) {
 
