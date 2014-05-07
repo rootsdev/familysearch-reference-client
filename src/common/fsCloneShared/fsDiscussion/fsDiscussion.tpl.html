@@ -1,0 +1,7 @@
+<div fs-item item="item" editable="true" deletable="true">
+  <div fs-discussion-summary item="item" ng-hide="item._isEditing()"></div>
+  <div fs-discussion-details item="item" ng-show="item._isOpen()"></div>
+  <hr ng-show="item._isOpen()"/>
+  <div fs-comments-section ng-show="item._isOpen()" state="commentsState"></div>
+  <div fs-discussion-edit item="item" ng-show="item._isEditing()" save="save()"></div>
+</div>

@@ -1,0 +1,18 @@
+<div class="additionalDiscussions non-form-block">
+  <a class="pull-left fa fa-comments-o showDiscussionResponses" href="#">&nbsp;</a>
+  <div class="media-body">
+    <div>
+      <a class="showDiscussionResponses" href="" ng-click="toggleState()">Show 2 comments by 1 person</a>
+      <br/><br/>
+    </div>
+    <div class="commentsBody" ng-show="isOpen()">
+      <div ng-repeat="comment in comments">
+        <div fs-comment item="comment"></div>
+        <hr/>
+      </div>
+      <div class="addCommentLink">
+        <a href="" class="btn btn-link non-form addDetail"><i class="fa fa-plus-square">&nbsp;</i>Add a Comment</a>
+      </div>
+    </div>
+  </div>
+</div>
