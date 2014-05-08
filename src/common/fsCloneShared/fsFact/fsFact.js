@@ -8,10 +8,6 @@
           item: '='
         },
         link: function(scope) {
-          scope.getDisplayType = function(item) {
-            return item.type.substring(item.type.lastIndexOf('/')+1);
-          };
-
           scope.save = function () {
             // TBD
           };

@@ -9,6 +9,13 @@
           save: '&'
         },
         link: function(scope) {
+          scope.form = {
+            prefix: scope.item.$getPrefix(),
+            given: scope.item.$getGivenName(),
+            surname: scope.item.$getSurname(),
+            suffix: scope.item.$getSuffix()
+          };
+
           scope.submit = function () {
             // TBD
           };

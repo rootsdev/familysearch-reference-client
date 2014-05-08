@@ -6,6 +6,8 @@
         templateUrl: 'fsCloneShared/fsGender/fsGenderSummary/fsGenderSummary.tpl.html',
         scope: {
           item: '='
+        },
+        link: function(scope) {
         }
       };
     });

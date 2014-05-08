@@ -3,10 +3,7 @@
     <div class="panel-body vitalsBody">
       <div fs-name item="vitals['name']"></div>
       <div fs-gender item="vitals['gender']"></div>
-      <div fs-fact item="vitals['birth']"></div>
-      <div fs-fact item="vitals['christening']"></div>
-      <div fs-fact item="vitals['death']"></div>
-      <div fs-fact item="vitals['burial']"></div>
+      <div fs-fact item="vitals[type]" ng-repeat="type in vitalFactTypes"></div>
     </div>
   </div>
 </div>

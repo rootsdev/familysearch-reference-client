@@ -9,6 +9,11 @@
           showHistory: '@'
         },
         link: function(scope, elem, attrs) {
+          if (scope.item && scope.item.attribution) {
+            scope.item.attribution.$getAgent().then(function(response) {
+              scope.agent = response.getAgent().$getAccountName();
+            });
+          }
         }
       };
     });

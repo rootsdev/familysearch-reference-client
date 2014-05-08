@@ -2,29 +2,27 @@
   <div class="row">
     <div class="col-sm-2">
       <div class="form-group">
-        <label>Title</label> <input class="form-control" id="title" placeholder="" type="text">
+        <label>Title</label> <input class="form-control" id="title" placeholder="" type="text" ng-model="form.prefix">
       </div>
     </div>
     <div class="col-sm4 col-sm-4">
       <div class="form-group">
-        <label>First Names</label> <input class="form-control" id="firstName" type="text">
+        <label>First Names</label> <input class="form-control" id="firstName" type="text" ng-model="form.given">
       </div>
     </div>
     <div class="col-sm4 col-sm-4">
       <div class="form-group">
-        <label>Last Name</label> <input class="form-control" id="lastName" type="text">
+        <label>Last Name</label> <input class="form-control" id="lastName" type="text" ng-model="form.surname">
       </div>
     </div>
     <div class="col-sm-2">
       <div class="form-group">
-        <label for="suffix">Suffix</label> <input class="form-control" id="suffix" name="suffix" type="text">
+        <label for="suffix">Suffix</label> <input class="form-control" id="suffix" name="suffix" type="text" ng-model="form.suffix">
       </div>
     </div>
   </div>
   <div class="form-group">
     <label>Reason this Information is Correct</label>
-    <textarea class="form-control" name="justification"
-              placeholder="Explain why you feel this information is correct.">
-    </textarea>
+    <textarea class="form-control" name="justification" placeholder="Explain why you feel this information is correct."></textarea>
   </div>
 </div>

@@ -3,7 +3,9 @@
     <h4 class="panel-title">Latest Changes</h4>
   </div>
   <div class="panel-body change-objects">
-    <div fs-change></div>
+    <div ng-repeat="change in changes">
+      <div fs-change change="change"></div>
+    </div>
     <small><a href="">Show all</a></small>
   </div>
 </div>

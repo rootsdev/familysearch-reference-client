@@ -1,5 +1,5 @@
 <div fs-item item="item" editable="true" deletable="true">
-  <div fs-fact-summary item="item" type="{{getDisplayType(item)}}" ng-hide="item._isEditing()"></div>
+  <div fs-fact-summary item="item" ng-hide="item._isEditing()"></div>
   <div fs-item-details item="item" ng-show="item._isOpen()"></div>
-  <div fs-fact-edit item="item" type="{{getDisplayType(item)}}" ng-show="item._isEditing()" save="save()"></div>
+  <div fs-fact-edit item="item" ng-show="item._isEditing()" save="save()"></div>
 </div>

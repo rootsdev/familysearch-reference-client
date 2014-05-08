@@ -1,3 +1,4 @@
-<div fs-item-summary label="Name" item="item">
-  <span>Pranas Bronius Paukstys</span>
+<div fs-item-summary label="{{item.type | fsGedcomxLabel}}" item="item">
+  <div ng-show="!!getAlternateNameType(item)">{{getAlternateNameType(item)}}</div>
+  <div>{{item.$getFullText()}}</div>
 </div>

@@ -1,6 +1,6 @@
-<h5>Life Sketch Added
+<h5>{{change.title}}
   <small>
-    <abbr class="timeago" title="2014-04-02T21:13:23.516Z">7 days ago</abbr> by
-    <a class="contributorCard" data-cid="https://familysearch.org/platform/users/agents/MMNV-HVH.json?access_token=USYS2B6C12FBA12DA6C78E42DF1C22C06AF8_idses-prod03.a.fsglobal.net" data-pid="6H69-6G2" data-placement="bottom" href="#">Dovy</a>
+    <abbr class="timeago">{{change.updated | date:'dd-MMM-yyyy'}}</abbr> by
+    <a class="contributorCard" href="">{{change.$getAgentName()}}</a>
   </small>
 </h5>
