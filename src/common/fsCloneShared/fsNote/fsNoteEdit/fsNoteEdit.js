@@ -9,6 +9,11 @@
           save: '&'
         },
         link: function(scope) {
+          scope.form = {
+            subject: scope.item ? scope.item.subject : '',
+            text: scope.item ? scope.item.text : ''
+          };
+
           scope.submit = function () {
             // TBD
           };
