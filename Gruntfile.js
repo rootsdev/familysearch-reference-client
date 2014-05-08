@@ -23,6 +23,7 @@ module.exports = function(grunt) {
     var fileConfig = {
         build_dir: 'build',
         compile_dir: 'bin',
+        dist_dir: 'dist',
 
         /**
          * This is a collection of file patterns for our app code (the
@@ -122,7 +123,8 @@ module.exports = function(grunt) {
          */
         clean: [
             '<%= build_dir %>',
-            '<%= compile_dir %>'
+            '<%= compile_dir %>',
+            '<%= dist_dir %>'
         ],
 
         /**
@@ -219,6 +221,15 @@ module.exports = function(grunt) {
                 ],
                 dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
             }
+            ,
+            distribution_js: {
+                src: [
+                    'src/common/fsCloneShared/fsCloneShared.js',
+                    'src/common/**/*.js'
+                ],
+                dest: '<%= dist_dir %>/fsclone-all-<%= pkg.version %>.js'
+            }
+
         },
 
         /**
