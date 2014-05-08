@@ -1,14 +1,14 @@
 (function(){
   'use strict';
   angular.module('fsClone', [
-    'fsClone.person',
+    'fsCloneShared',
     'templates-app',
     'templates-common',
     'ui.router.state',
     'ui.router'
   ])
     .config(function ($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise('/person');
+      $urlRouterProvider.otherwise('/');
     })
 
     .run(function () {

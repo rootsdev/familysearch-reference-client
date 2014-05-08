@@ -36,6 +36,7 @@ module.exports = function(grunt) {
         app_files: {
             js: [
               'src/common/fsCloneShared/fsCloneShared.js',
+              'src/app/app.js',
               'src/**/*.js',
               '!src/**/*.spec.js',
               '!src/assets/**/*.js'
@@ -84,7 +85,8 @@ module.exports = function(grunt) {
                 'vendor/angular/angular.js',
                 'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
                 'vendor/angular-ui-router/release/angular-ui-router.js',
-                'vendor/lodash/dist/lodash.compat.js'
+                'vendor/lodash/dist/lodash.compat.js',
+                'vendor/familysearch-javascript-sdk/familysearch-javascript-sdk.js'
             ],
             css: [
             ],
@@ -206,6 +208,7 @@ module.exports = function(grunt) {
                     '<%= vendor_files.js %>',
                     'module.prefix',
                     '<%= build_dir %>/src/common/fsCloneShared/fsCloneShared.js',
+                    '<%= build_dir %>/src/app/app.js',
                     '<%= build_dir %>/src/**/*.js',
                     '<%= html2js.app.dest %>',
                     '<%= html2js.common.dest %>',
@@ -387,6 +390,7 @@ module.exports = function(grunt) {
                 src: [
                     '<%= vendor_files.js %>',
                     '<%= build_dir %>/src/common/fsCloneShared/fsCloneShared.js',
+                    '<%= build_dir %>/src/app/app.js',
                     '<%= build_dir %>/src/**/*.js',
                     '<%= html2js.common.dest %>',
                     '<%= html2js.app.dest %>',

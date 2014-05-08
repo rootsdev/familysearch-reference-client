@@ -5,7 +5,7 @@
  * automatically.
  */
 describe('person', function () {
-  beforeEach(module('fsClone.person'));
+  beforeEach(module('fsClone'));
 
   it('should have a dummy test', inject(function () {
     expect(true).toBeTruthy();

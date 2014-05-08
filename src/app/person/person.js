@@ -1,47 +1,35 @@
-/**
- * Each section of the site has its own module. It probably also has
- * submodules, though this boilerplate is too simple to demonstrate it. Within
- * 'src/app/home', however, could exist several additional folders representing
- * additional modules that would then be listed as dependencies of this one.
- * For example, a 'note' section could have the submodules 'note.create',
- * 'note.delete', 'note.edit', etc.
- *
- * Regardless, so long as dependencies are managed correctly, the build process
- * will automatically take take of the rest.
- */
 (function(){
   'use strict';
-  angular.module('fsClone.person', [
-    'fsCloneShared',
-    'ui.router'
-  ])
+  angular.module('fsClone')
     .config(function ($stateProvider) {
       $stateProvider.state('person', {
-        url: '/person',
-        views: {
-          'main': {
-            controller: 'PersonController',
-            templateUrl: 'person/person.tpl.html'
+        url: '/person/:personId',
+        controller: 'PersonController',
+        templateUrl: 'person/person.tpl.html',
+        data: { pageTitle: 'Person' },
+        resolve: {
+          person: function($stateParams, fsApi) {
+            return fsApi.getPerson($stateParams.personId).then(function(response) {
+              return response.getPerson();
+            });
           }
-        },
-        data: { pageTitle: 'Person' }
+        }
       });
     })
+    .controller('PersonController', function ($scope, person) {
+      var sections = [
+        'lifeSketch',
+        'vitalFacts',
+        'otherFacts',
+        'familyMembers',
+        'sources',
+        'discussions',
+        'notes'
+      ];
+      $scope.states = {};
+      sections.forEach(function(section) {
+        $scope.states[section] = section === 'lifeSketch' ? 'closed' : 'open';
+      });
 
-    // As you add controllers to a module and they grow in size, feel free to place them in their own files.
-    // Let each module grow organically, adding appropriate organization and sub-folders as needed.
-    .controller('PersonController', function ($scope) {
-
-      var init = function () {
-        $scope.lifeSketchState = 'closed';
-        $scope.vitalFactsState = 'open';
-        $scope.otherFactsState = 'open';
-        $scope.familyMembersState = 'open';
-        $scope.sourcesSectionState = 'open';
-        $scope.discussionsState = 'open';
-        $scope.notesState = 'open';
-      };
-
-      init();
     });
 })();
