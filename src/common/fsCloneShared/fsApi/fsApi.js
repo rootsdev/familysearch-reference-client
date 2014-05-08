@@ -14,6 +14,10 @@
         auto_signin: true
       });
 
+      $window.FamilySearch.Person.prototype._isMale = function() {
+        return this.$getDisplayGender() === 'Male';
+      };
+
       return $window.FamilySearch;
     });
 })();

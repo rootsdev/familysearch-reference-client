@@ -26,10 +26,13 @@
         'discussions',
         'notes'
       ];
+
       $scope.states = {};
       sections.forEach(function(section) {
         $scope.states[section] = section === 'lifeSketch' ? 'closed' : 'open';
       });
+
+      $scope.person = person;
 
     });
 })();
