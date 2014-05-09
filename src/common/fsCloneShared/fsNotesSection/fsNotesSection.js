@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsNotesSection', function (fsItemHelpers, fsApi, $q) {
+    .directive('fsNotesSection', function (fsItemHelpers, fsApi) {
       return {
         templateUrl: 'fsCloneShared/fsNotesSection/fsNotesSection.tpl.html',
         scope: {
@@ -9,18 +9,11 @@
           pid: '='
         },
         link: function(scope) {
-          scope.notes = [];
+          scope.noteRefs = [];
           fsApi.getPersonNoteRefs(scope.pid).then(function(response) {
-            var promises = _.map(response.getNoteRefs(), function(ref) {
-              return fsApi.getPersonNote(ref);
-            });
-            $q.all(promises).then(function(responses) {
-              scope.notes = _.map(responses, function(response) {
-                return response.getNote();
-              });
-              _.forEach(scope.notes, function(note) {
-                fsItemHelpers.mixinStateFunctions(note);
-              });
+            scope.noteRefs = response.getNoteRefs();
+            _.forEach(scope.noteRefs, function(noteRef) {
+              fsItemHelpers.mixinStateFunctions(noteRef);
             });
           });
 

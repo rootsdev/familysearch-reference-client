@@ -42,10 +42,11 @@
           scope.$watch(function() { return itemFn()._state; }, function(newValue) {
             var item = itemFn();
             if (newValue === 'open' && scope.agent === null && item && item.attribution) {
-              console.log('getting agent');
+              item._state = 'closed';
               item.attribution.$getAgent().then(function(response) {
                 scope.agent = response.getAgent();
-                console.log('got agent');
+                // finally ready to open
+                item._state = 'open';
               });
             }
           });
