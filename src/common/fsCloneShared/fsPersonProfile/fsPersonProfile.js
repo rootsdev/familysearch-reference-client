@@ -7,7 +7,7 @@
         scope: {
           person: '='
         },
-        link: function(scope, elem, attrs) {
+        link: function(scope) {
           console.log(scope.person);
         }
       };

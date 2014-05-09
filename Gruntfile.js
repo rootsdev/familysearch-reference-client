@@ -321,25 +321,22 @@ module.exports = function(grunt) {
          * nonetheless inside 'src/'.
          */
         jshint: {
-            src: [
-                '<%= app_files.js %>'
-            ],
-            test: [
-                '<%= app_files.jsunit %>'
-            ],
-            gruntfile: [
-                'Gruntfile.js'
-            ],
+          src: {
             options: {
-                curly: true,
-                immed: true,
-                newcap: true,
-                noarg: true,
-                sub: true,
-                boss: true,
-                eqnull: true
+              jshintrc: '.jshintrc'
             },
-            globals: {}
+            src: [
+              '<%= app_files.js %>'
+            ]
+          },
+          test: {
+            options: {
+              jshintrc: '.jshintrc.spec'
+            },
+            src: [
+              '<%= app_files.jsunit %>'
+            ]
+          }
         },
 
         /**
@@ -493,12 +490,11 @@ module.exports = function(grunt) {
             },
 
             /**
-             * When the Gruntfile changes, we just want to lint it. In fact, when
-             * your Gruntfile changes, it will automatically be reloaded!
+             * When your Gruntfile changes, it will automatically be reloaded!
              */
             gruntfile: {
                 files: 'Gruntfile.js',
-                tasks: [ 'jshint:gruntfile' ],
+                tasks: [ ],
                 options: {
                     livereload: false
                 }

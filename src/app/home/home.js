@@ -11,7 +11,7 @@
     })
     .controller('HomeController', function ($scope, $state, fsApi) {
       $scope.signIn = function() {
-        fsApi.getAccessToken().then(function(response) {
+        fsApi.getAccessToken().then(function() {
           $state.go('person', { personId: 'KW72-8QQ' });
         });
       };

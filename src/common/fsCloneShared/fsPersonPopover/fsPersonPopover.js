@@ -8,7 +8,7 @@
         scope: {
           person: '='
         },
-        link: function(scope, elem, attrs) {
+        link: function(scope) {
           scope.sourcesCount = null;
           scope.notesCount = null;
 

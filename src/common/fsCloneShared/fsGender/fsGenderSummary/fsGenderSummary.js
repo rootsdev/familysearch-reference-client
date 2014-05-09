@@ -7,7 +7,7 @@
         scope: {
           gender: '='
         },
-        link: function(scope) {
+        link: function() {
         }
       };
     });

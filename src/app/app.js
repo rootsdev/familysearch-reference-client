@@ -21,6 +21,6 @@
     .run(function () {
     })
 
-    .controller('AppController', function ($scope) {
+    .controller('AppController', function () {
     });
 })();

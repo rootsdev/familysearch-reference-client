@@ -8,7 +8,7 @@
           state: '=',
           pid: '='
         },
-        link: function(scope, elem, attrs) {
+        link: function(scope) {
           scope.notes = [];
           fsApi.getPersonNoteRefs(scope.pid).then(function(response) {
             var promises = _.map(response.getNoteRefs(), function(ref) {

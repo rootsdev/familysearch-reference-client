@@ -7,7 +7,7 @@
         scope: {
           state: '='
         },
-        link: function(scope, elem, attrs) {
+        link: function(scope) {
           scope.toggleState = function() {
             scope.state = scope.state === 'open' ? 'closed' : 'open';
           };

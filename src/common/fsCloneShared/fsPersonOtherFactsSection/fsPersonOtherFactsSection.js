@@ -8,7 +8,7 @@
           state: '=',
           person: '='
         },
-        link: function(scope, elem, attrs) {
+        link: function(scope) {
           scope.names = _.reject(scope.person.$getNames(), function(name) {
             return name.id === (scope.person.$getPreferredName() ? scope.person.$getPreferredName().id : '');
           });

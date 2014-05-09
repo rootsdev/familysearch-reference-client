@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsItemHelpers', function ($q) {
+    .factory('fsItemHelpers', function () {
       return {
         mixinStateFunctions: function(item) {
           item._state = item._state || 'closed';
@@ -14,7 +14,7 @@
             return this._state === 'editing';
           };
 
-          item._exists = function(param) {
+          item._exists = function() {
             return !!this.id;
           };
 
@@ -39,7 +39,7 @@
 
         mixinAgentFunctions: function(scope, itemFn) {
           scope.agent = null;
-          scope.$watch(function() { return itemFn()._state; }, function(newValue, oldValue) {
+          scope.$watch(function() { return itemFn()._state; }, function(newValue) {
             var item = itemFn();
             if (newValue === 'open' && scope.agent === null && item && item.attribution) {
               console.log('getting agent');

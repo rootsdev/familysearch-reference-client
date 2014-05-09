@@ -8,7 +8,7 @@
           state: '=',
           person: '='
         },
-        link: function(scope, elem, attrs) {
+        link: function(scope) {
           scope.vitals = {
             name: scope.person.$getPreferredName() || new fsApi.Name({}),
             gender: scope.person.gender || {}

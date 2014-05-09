@@ -7,7 +7,7 @@
         scope: {
           state: '='
         },
-        link: function(scope, elem, attrs) {
+        link: function(scope) {
           scope.sources = [
             {id: 'foo', title: 'My Title'}
           ];

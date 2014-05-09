@@ -11,7 +11,7 @@
           deletable: '@',
           remove: '&'
         },
-        link: function(scope, elem, attrs) {
+        link: function() {
         }
       };
     });

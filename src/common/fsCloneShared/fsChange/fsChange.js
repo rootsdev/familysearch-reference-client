@@ -7,7 +7,7 @@
         scope: {
           change: '='
         },
-        link: function(scope) {
+        link: function() {
         }
       };
     });

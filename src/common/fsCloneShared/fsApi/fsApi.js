@@ -2,6 +2,7 @@
   'use strict';
   angular.module('fsCloneShared')
     .provider('fsApi', function fsApiProvider(){
+        /* jshint camelcase:false */
         var app_key = '';
         var environment = '';
         var auth_callback = '';

@@ -1,0 +1,27 @@
+{
+  "bitwise": true,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "es3": true,
+  "forin": true,
+  "immed": true,
+  "latedef": "nofunc",
+  "newcap": true,
+  "noarg": true,
+  "noempty": true,
+  "nonew": true,
+  "plusplus": false,
+  "quotmark": "single",
+  "undef": true,
+  "unused": true,
+  "strict": false,
+  "trailing": false,
+  "eqnull": true,
+  "sub": true,
+  "globals": {
+    "angular": false,
+    "_": false,
+    "console": false
+  }
+}

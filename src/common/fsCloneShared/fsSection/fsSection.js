@@ -17,7 +17,7 @@
           attachLabel: '@',
           attach: '&'
         },
-        link: function(scope, elem, attrs) {
+        link: function(scope) {
 
           // section functions
 

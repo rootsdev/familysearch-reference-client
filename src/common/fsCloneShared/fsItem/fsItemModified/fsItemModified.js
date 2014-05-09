@@ -9,7 +9,7 @@
           agent: '=',
           showHistory: '@'
         },
-        link: function(scope, elem, attrs) {
+        link: function() {
         }
       };
     });

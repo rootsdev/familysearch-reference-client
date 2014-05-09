@@ -8,7 +8,7 @@
           source: '=',
           editable: '@'
         },
-        link: function(scope, elem, attrs) {
+        link: function(scope) {
           scope.edit = function() {
             scope.source._editingJustification = true;
           };

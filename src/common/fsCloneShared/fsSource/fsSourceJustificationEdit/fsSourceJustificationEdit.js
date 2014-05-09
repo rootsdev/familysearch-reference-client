@@ -7,7 +7,7 @@
         scope: {
           source: '='
         },
-        link: function(scope, elem, attrs) {
+        link: function(scope) {
           scope.cancelEdit = function() {
             scope.source._editingJustification = false;
           };
