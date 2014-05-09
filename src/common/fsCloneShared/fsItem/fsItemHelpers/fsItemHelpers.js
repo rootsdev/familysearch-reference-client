@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsItemHelpers', function () {
+    .factory('fsItemHelpers', function ($q) {
       return {
         mixinStateFunctions: function(item) {
           item._state = item._state || 'closed';
@@ -35,7 +35,18 @@
             this._state = this._exists() ? 'open' : 'closed';
           };
 
+        },
+
+        setAgent: function(scope, item) {
+          if (scope.agent === null && item && item.attribution) {
+            console.log('getAgent');
+            item.attribution.$getAgent().then(function(response) {
+              scope.agent = response.getAgent();
+              console.log('agent got');
+            });
+          }
         }
+
       };
     });
 })();

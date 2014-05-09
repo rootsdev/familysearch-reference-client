@@ -5,7 +5,8 @@
       return {
         templateUrl: 'fsCloneShared/fsItem/fsItemDetails/fsItemDetails.tpl.html',
         scope: {
-          item: '='
+          item: '=',
+          agent: '='
         }
       };
     });

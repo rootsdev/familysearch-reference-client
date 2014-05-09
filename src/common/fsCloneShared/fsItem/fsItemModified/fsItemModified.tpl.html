@@ -1,5 +1,5 @@
 <div class="detailsItem editingItem detailModified">
   <!-- TODO ng-show="showHistory" when we have a history view -->
   Modified<span ng-show="false" class="detailsModifiedHistory">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="" class="changeHistory">History</a></span><br>
-  <span class="modifiedDate">{{item.attribution.modified | date:'dd-MMM-yyyy'}}</span> by <a href="" class="contributor">{{agent}}</a>
+  <span class="modifiedDate">{{item.attribution.modified | date:'dd-MMM-yyyy'}}</span> by <a href="" class="contributor">{{agent.$getAccountName()}}</a>
 </div>
