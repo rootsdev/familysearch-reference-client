@@ -37,14 +37,18 @@
 
         },
 
-        setAgent: function(scope, item) {
-          if (scope.agent === null && item && item.attribution) {
-            console.log('getAgent');
-            item.attribution.$getAgent().then(function(response) {
-              scope.agent = response.getAgent();
-              console.log('agent got');
-            });
-          }
+        mixinAgentFunctions: function(scope, itemFn) {
+          scope.agent = null;
+          scope.$watch(function() { return itemFn()._state; }, function(newValue, oldValue) {
+            var item = itemFn();
+            if (newValue === 'open' && scope.agent === null && item && item.attribution) {
+              console.log('getting agent');
+              item.attribution.$getAgent().then(function(response) {
+                scope.agent = response.getAgent();
+                console.log('got agent');
+              });
+            }
+          });
         }
 
       };

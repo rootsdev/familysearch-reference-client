@@ -8,11 +8,7 @@
           name: '='
         },
         link: function(scope) {
-          // TODO fsItemHelpers.mixinAgentFunctions(state)
-          scope.agent = null;
-          scope.setAgent = function(name) {
-            fsItemHelpers.setAgent(scope, name);
-          };
+          fsItemHelpers.mixinAgentFunctions(scope, function() { return scope.name; });
 
           scope.save = function () {
             // TBD
