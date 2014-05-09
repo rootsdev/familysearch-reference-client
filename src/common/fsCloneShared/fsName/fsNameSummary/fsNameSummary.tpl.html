@@ -1,4 +1,4 @@
 <div fs-item-summary label="{{name.type | fsGedcomxLabel}}" item="name">
-  <div ng-show="!!getAlternateNameType(name)">{{getAlternateNameType(name)}}</div>
+  <div ng-show="name.type | fsAlternateNameTitle">{{name.type | fsAlternateNameTitle}}</div>
   <div>{{name.$getFullText()}}</div>
 </div>

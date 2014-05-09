@@ -7,11 +7,7 @@
         scope: {
           fact: '='
         },
-        link: function(scope) {
-          // TODO move this to a filter
-          scope.getCustomFactTitle = function (fact) {
-            return fact.type && fact.type.indexOf('data:,') === 0 ? decodeURI(fact.type.substr(6)) : '';
-          };
+        link: function() {
         }
       };
     });
