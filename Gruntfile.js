@@ -23,6 +23,7 @@ module.exports = function(grunt) {
     var fileConfig = {
         build_dir: 'build',
         compile_dir: 'bin',
+        dist_dir: '<%= build_dir %>/dist',
 
         /**
          * This is a collection of file patterns for our app code (the
@@ -218,7 +219,16 @@ module.exports = function(grunt) {
                     'module.suffix'
                 ],
                 dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
+            },
+            dist_js: {
+                src: [
+                    '<%= build_dir %>/src/common/fsCloneShared/fsCloneShared.js',
+                    '<%= build_dir %>/src/common/**/*.js',
+                    '<%= build_dir %>/templates-common.js'
+                ],
+                dest: '<%= dist_dir %>/fsclone-all-<%= pkg.version %>.js'
             }
+
         },
 
         /**
@@ -619,7 +629,7 @@ module.exports = function(grunt) {
 
     // The 'compile' task gets your app ready for deployment by concatenating and minifying your code.
     grunt.registerTask('compile', [
-        'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'uglify', 'index:compile'
+        'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'concat:dist_js', 'uglify', 'index:compile'
     ]);
 
     // A utility function to get all app JavaScript sources.
