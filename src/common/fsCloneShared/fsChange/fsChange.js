@@ -8,7 +8,6 @@
           change: '='
         },
         link: function(scope) {
-          console.log('change', scope.change);
         }
       };
     });

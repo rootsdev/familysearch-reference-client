@@ -21,7 +21,6 @@
               _.forEach(scope.notes, function(note) {
                 fsItemHelpers.mixinStateFunctions(note);
               });
-              console.log('notes', scope.notes);
             });
           });
 

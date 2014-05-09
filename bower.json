@@ -4,7 +4,7 @@
   "_comment": "Any dependencies added here require a manual edit to vendor_files in /Gruntfile.js",
   "dependencies": {
     "angular": "~1.2.9",
-    "angular-bootstrap": "~0.10.0",
+    "angular-bootstrap-jbruni": "git://github.com/jbruni/bootstrap-bower-jbruni.git#~0.10.5",
     "angular-ui-router": "~0.2.7",
     "lodash": "~2.4.1",
     "es5-shim": "~3.0.2",

@@ -83,7 +83,10 @@ module.exports = function(grunt) {
         vendor_files: {
             js: [ // FS customize file list
                 'vendor/angular/angular.js',
-                'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
+                // TODO when angular-bootstrap v0.12 comes out, check whether
+                // it includes https://github.com/angular-ui/bootstrap/issues/220
+                //'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
+                'vendor/angular-bootstrap-jbruni/ui-bootstrap-tpls.min.js',
                 'vendor/angular-ui-router/release/angular-ui-router.js',
                 'vendor/lodash/dist/lodash.compat.js',
                 'vendor/familysearch-javascript-sdk/familysearch-javascript-sdk.js'

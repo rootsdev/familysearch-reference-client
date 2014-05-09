@@ -4,6 +4,7 @@
     'fsCloneShared',
     'templates-app',
     'templates-common',
+    'ui.bootstrap',
     'ui.router.state',
     'ui.router'
   ])
