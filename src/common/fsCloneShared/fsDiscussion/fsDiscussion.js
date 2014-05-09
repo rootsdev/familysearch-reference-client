@@ -5,7 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsDiscussion/fsDiscussion.tpl.html',
         scope: {
-          item: '='
+          discussion: '='
         },
         link: function(scope) {
           scope.commentsState = 'closed';

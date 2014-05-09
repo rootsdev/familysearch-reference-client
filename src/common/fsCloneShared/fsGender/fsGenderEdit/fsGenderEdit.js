@@ -5,7 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsGender/fsGenderEdit/fsGenderEdit.tpl.html',
         scope: {
-          item: '=',
+          gender: '=',
           save: '&'
         },
         link: function(scope) {

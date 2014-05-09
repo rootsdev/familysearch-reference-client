@@ -9,7 +9,7 @@
           sectionTitle: '@',
           state: '=',
           detailsOpenable: '@',
-          items: '=', // array of objects with _state property
+          items: '=', // collection of objects with _state property
           addable: '@',
           addLabel: '@',
           add: '&',

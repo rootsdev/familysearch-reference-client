@@ -5,7 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsNote/fsNote.tpl.html',
         scope: {
-          item: '='
+          note: '='
         },
         link: function(scope) {
           scope.save = function () {

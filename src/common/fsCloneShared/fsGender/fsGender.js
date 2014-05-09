@@ -5,12 +5,13 @@
       return {
         templateUrl: 'fsCloneShared/fsGender/fsGender.tpl.html',
         scope: {
-          item: '='
+          gender: '='
         },
         link: function(scope) {
+          // TODO fsItemHelpers.mixinAgentFunctions(state)
           scope.agent = null;
-          scope.setAgent = function(item) {
-            fsItemHelpers.setAgent(scope, item);
+          scope.setAgent = function(gender) {
+            fsItemHelpers.setAgent(scope, gender);
           };
 
           scope.save = function () {

@@ -5,7 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsDiscussion/fsDiscussionEdit/fsDiscussionEdit.tpl.html',
         scope: {
-          item: '=',
+          discussion: '=',
           save: '&'
         },
         link: function(scope) {

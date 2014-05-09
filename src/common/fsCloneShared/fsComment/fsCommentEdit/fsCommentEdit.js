@@ -5,7 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsComment/fsCommentEdit/fsCommentEdit.tpl.html',
         scope: {
-          item: '=',
+          comment: '=',
           save: '&'
         },
         link: function(scope) {

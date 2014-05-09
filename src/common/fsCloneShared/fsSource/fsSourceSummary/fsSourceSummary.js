@@ -5,7 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsSource/fsSourceSummary/fsSourceSummary.tpl.html',
         scope: {
-          item: '='
+          source: '='
         }
       };
     });

@@ -1,11 +1,11 @@
 <div class="otherInfoWidgetContainer">
-  <div fs-section section-title="Other Information" state="state" details-openable="true" items="facts" addable="true" add-label="Add" add="add()">
+  <div fs-section section-title="Other Information" state="state" details-openable="true" items="allItems" addable="true" add-label="Add" add="add()">
     <div class="panel-body otherInfoBody">
       <div ng-repeat="name in names">
-        <div fs-name item="name"></div>
+        <div fs-name name="name"></div>
       </div>
       <div ng-repeat="fact in facts">
-        <div fs-fact item="fact"></div>
+        <div fs-fact fact="fact"></div>
       </div>
     </div>
   </div>

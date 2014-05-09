@@ -5,14 +5,15 @@
       return {
         templateUrl: 'fsCloneShared/fsName/fsNameSummary/fsNameSummary.tpl.html',
         scope: {
-          item: '='
+          name: '='
         },
         link: function(scope) {
+          // TODO turn this into a filter
           var map = {
             'http://gedcomx.org/AlsoKnownAs' : 'Also Known As'
           };
-          scope.getAlternateNameType = function(item) {
-            return map[item.type] ? map[item.type] : '';
+          scope.getAlternateNameType = function(name) {
+            return map[name.type] ? map[name.type] : '';
           };
         }
       };

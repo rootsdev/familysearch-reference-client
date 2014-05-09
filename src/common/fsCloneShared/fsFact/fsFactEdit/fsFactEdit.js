@@ -5,13 +5,13 @@
       return {
         templateUrl: 'fsCloneShared/fsFact/fsFactEdit/fsFactEdit.tpl.html',
         scope: {
-          item: '=',
+          fact: '=',
           save: '&'
         },
         link: function(scope) {
           scope.form = {
-            date: scope.item ? scope.item.$getDate() : '',
-            place: scope.item ? scope.item.$getPlace() : ''
+            date: scope.fact ? scope.fact.$getDate() : '',
+            place: scope.fact ? scope.fact.$getPlace() : ''
           };
 
           scope.submit = function () {

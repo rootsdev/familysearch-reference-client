@@ -5,15 +5,15 @@
       return {
         templateUrl: 'fsCloneShared/fsName/fsNameEdit/fsNameEdit.tpl.html',
         scope: {
-          item: '=',
+          name: '=',
           save: '&'
         },
         link: function(scope) {
           scope.form = {
-            prefix: scope.item.$getPrefix(),
-            given: scope.item.$getGivenName(),
-            surname: scope.item.$getSurname(),
-            suffix: scope.item.$getSuffix()
+            prefix: scope.name.$getPrefix(),
+            given: scope.name.$getGivenName(),
+            surname: scope.name.$getSurname(),
+            suffix: scope.name.$getSuffix()
           };
 
           scope.submit = function () {

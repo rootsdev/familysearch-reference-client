@@ -5,7 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsComment/fsCommentDetails/fsCommentDetails.tpl.html',
         scope: {
-          item: '='
+          comment: '='
         }
       };
     });

@@ -5,7 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsNote/fsNoteDetails/fsNoteDetails.tpl.html',
         scope: {
-          item: '='
+          note: '='
         }
       };
     });

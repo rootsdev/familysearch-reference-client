@@ -5,11 +5,12 @@
       return {
         templateUrl: 'fsCloneShared/fsFact/fsFactSummary/fsFactSummary.tpl.html',
         scope: {
-          item: '='
+          fact: '='
         },
         link: function(scope) {
-          scope.getCustomFactTitle = function (item) {
-            return item.type && item.type.indexOf('data:,') === 0 ? decodeURI(item.type.substr(6)) : '';
+          // TODO move this to a filter
+          scope.getCustomFactTitle = function (fact) {
+            return fact.type && fact.type.indexOf('data:,') === 0 ? decodeURI(fact.type.substr(6)) : '';
           };
         }
       };

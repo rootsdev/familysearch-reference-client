@@ -5,13 +5,13 @@
       return {
         templateUrl: 'fsCloneShared/fsNote/fsNoteEdit/fsNoteEdit.tpl.html',
         scope: {
-          item: '=',
+          note: '=',
           save: '&'
         },
         link: function(scope) {
           scope.form = {
-            subject: scope.item ? scope.item.subject : '',
-            text: scope.item ? scope.item.text : ''
+            subject: scope.note ? scope.note.subject : '',
+            text: scope.note ? scope.note.text : ''
           };
 
           scope.submit = function () {

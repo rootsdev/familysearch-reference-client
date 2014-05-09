@@ -5,11 +5,11 @@
       return {
         templateUrl: 'fsCloneShared/fsSource/fsSourceJustificationEdit/fsSourceJustificationEdit.tpl.html',
         scope: {
-          item: '='
+          source: '='
         },
         link: function(scope, elem, attrs) {
           scope.cancelEdit = function() {
-            scope.item._editingJustification = false;
+            scope.source._editingJustification = false;
           };
 
           scope.submit = function() {

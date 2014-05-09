@@ -1,6 +1,6 @@
-<div fs-item-summary label="{{item.type | fsGedcomxLabel}}" item="item">
-  <div class="eventTitle" ng-show="!!getCustomFactTitle(item)">{{getCustomFactTitle(item)}}</div>
-  <div class="eventDescription" ng-show="!!item.value">{{item.value}}</div>
-  <div class="eventDate" ng-show="!!item.$getDate()">{{item.$getDate()}}</div>
-  <div class="eventLocation" ng-show="!!item.$getPlace()">{{item.$getPlace()}}</div>
+<div fs-item-summary label="{{fact.type | fsGedcomxLabel}}" item="fact">
+  <div class="eventTitle" ng-show="!!getCustomFactTitle(fact)">{{getCustomFactTitle(fact)}}</div>
+  <div class="eventDescription" ng-show="!!fact.value">{{fact.value}}</div>
+  <div class="eventDate" ng-show="!!fact.$getDate()">{{fact.$getDate()}}</div>
+  <div class="eventLocation" ng-show="!!fact.$getPlace()">{{fact.$getPlace()}}</div>
 </div>

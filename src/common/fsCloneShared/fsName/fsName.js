@@ -5,12 +5,13 @@
       return {
         templateUrl: 'fsCloneShared/fsName/fsName.tpl.html',
         scope: {
-          item: '='
+          name: '='
         },
         link: function(scope) {
+          // TODO fsItemHelpers.mixinAgentFunctions(state)
           scope.agent = null;
-          scope.setAgent = function(item) {
-            fsItemHelpers.setAgent(scope, item);
+          scope.setAgent = function(name) {
+            fsItemHelpers.setAgent(scope, name);
           };
 
           scope.save = function () {

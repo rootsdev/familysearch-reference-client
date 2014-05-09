@@ -5,7 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsSource/fsSource.tpl.html',
         scope: {
-          item: '='
+          source: '='
         },
         link: function(scope) {
           scope.save = function () {

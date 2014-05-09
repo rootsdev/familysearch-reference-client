@@ -1,5 +1,5 @@
-<div fs-item item="item" editable="true" deletable="true">
-  <div fs-fact-summary item="item" ng-hide="item._isEditing()" ng-click="setAgent(item)"></div>
-  <div fs-item-details item="item" agent="agent" ng-show="item._isOpen()"></div>
-  <div fs-fact-edit item="item" ng-show="item._isEditing()" save="save()"></div>
+<div fs-item item="fact" editable="true" deletable="true">
+  <div fs-fact-summary fact="fact" ng-hide="fact._isEditing()" ng-click="setAgent(fact)"></div>
+  <div fs-item-details item="fact" agent="agent" ng-show="fact._isOpen()"></div>
+  <div fs-fact-edit fact="fact" ng-show="fact._isEditing()" save="save()"></div>
 </div>
