@@ -4,30 +4,31 @@
       &nbsp;
     </div>
     <div class="coupleWrapper">
-      <div fs-person-small></div>
-      <div fs-person-small></div>
+      <div fs-person-small person="husband" show-popover="{{showPopover(husband)}}" default-gender="Male"></div>
+      <div fs-person-small person="wife" show-popover="{{showPopover(wife)}}" default-gender="Female"></div>
     </div>
     <div class="event">
-      <div class="noCoupleRelationship">No Couple Relationship</div>
-      <div class="eventName">Married</div>
-      <div class="eventDate" title="15 May 1913">15 MAY 1913</div>
-      <div class="eventPlace" title="Salt Lake City, Salt Lake, Utah, United States">Salt Lake City,Salt Lake,Utah</div>
+      <div ng-hide="!!couple" class="noCoupleRelationship">No Couple Relationship</div>
+      <div ng-show="!!couple.$getMarriageFact()" class="eventName">Married</div>
+      <div ng-show="!!couple.$getMarriageFact().$getDate()" class="eventDate">{{couple.$getMarriageFact().$getDate()}}</div>
+      <div ng-show="!!couple.$getMarriageFact().$getPlace()" class="eventPlace"
+           title="{{couple.$getMarriageFact().$getNormalizedPlace()}}">{{couple.$getMarriageFact().$getPlace()}}</div>
     </div>
     <div class="clearboth">
       &nbsp;
     </div>
     <div class="lowerBar">
-      <a href="" class="editCouple">EDIT COUPLE</a>
+      <a ng-show="!!couple" href="" class="editCouple">EDIT COUPLE</a>
     </div>
   </div>
   <div class="childrenHolder">
-    <a href="" class="childHide"><span class=""><i class="fa fa-chevron-up"></i></span>Children (1)</a>
+    <a href="" class="childHide"><span class=""><i class="fa fa-chevron-up"></i></span>Children ({{children.length}})</a>
     <div class="panel-body">
       <table class="table-hover childrenList">
         <tbody>
-        <tr>
+        <tr ng-repeat="child in children">
           <td>
-            <div fs-person-small edit-parents="true"></div>
+            <div fs-person-small person="child" edit-parents="true" show-popover="{{showPopover(child)}}"></div>
           </td>
         </tr>
         <tr class="actionRow">

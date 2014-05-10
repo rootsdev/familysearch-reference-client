@@ -9,7 +9,11 @@
                 <i class="fa fa-plus-square">&nbsp;</i>Add Spouse
               </a>
             </div>
-            <div fs-family-members></div>
+            <div ng-repeat="family in spouseFamilies">
+              <div fs-family-members husband="family.husband" wife="family.wife" focus-id="person.id"
+                  relationship-id="family.relationshipId" preferred-relationship-id="preferredCoupleId"
+                  children="family.children" couple="family.couple"></div>
+            </div>
             <a href="" class="btn btn-link non-form addChild unknownFather">
               <i class="fa fa-plus-square">&nbsp;</i>Add Child with an Unknown Father
             </a>
@@ -23,7 +27,10 @@
               </a>
             </div>
             <div class="panel-body parents-children">
-              <div fs-family-members></div>
+              <div ng-repeat="family in parentFamilies">
+                <div fs-family-members husband="family.husband" wife="family.wife" focus-id="person.id"
+                    relationship-id="family.relationshipId" preferred-relationship-id="preferredParentsId"></div>
+              </div>
           </div>
         </div>
       </div>

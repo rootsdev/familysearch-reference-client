@@ -9,6 +9,7 @@
           person: '='
         },
         link: function(scope) {
+          console.log('fsPersonPopover', scope.person);
           scope.sourcesCount = null;
           scope.notesCount = null;
 

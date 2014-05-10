@@ -5,7 +5,13 @@
       return {
         templateUrl: 'fsCloneShared/fsPersonSmall/fsPersonSmall.tpl.html',
         scope: {
-          editParents: '@'
+          person: '=',
+          editParents: '@',
+          showPopover: '@',
+          defaultGender: '@'
+        },
+        link: function(scope) {
+          console.log('fsPersonSmall', scope.showPopover, scope.defaultGender, scope.person);
         }
       };
     });
