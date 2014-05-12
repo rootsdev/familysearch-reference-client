@@ -1,7 +1,83 @@
 <div>
   <script id="fsPersonPopover.html" type="text/ng-template">
     <div style="background-color: #fff">
-      <div>{{person.$getDisplayName()}}</div>
+        <div class="cardFrame">
+            <div class="content">
+                <div class="profile-image"></div>
+                <div class="person clearfix">
+
+                    <div class="nameWrapper">
+                        <i class="icon-rounded" ng-class="{'fs-icon-male': person._isMale(), 'fs-icon-female': !person._isMale()}">&nbsp;</i>
+                        <a href="#" class="male personcard name widgetAction" data-pid="{{person.id}}" data-type="person">{{person.$getDisplayName()}}</a><br />
+                        <span class="pid">{{person.id}}</span>
+                    </div>
+
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="engageWatch gadget watchGadget">
+                        <a class="watch notwatching" href="" title="Be notified of updates to this person and add to my watch list.">
+                            <span class="watchLabel fs-icon-watch-off" title="Be notified of updates to this person and add to my watch list.">Watch</span>
+                            <span class="unwatchLabel fs-icon-watch-on" title="Stop being notified of updates to this person and remove from my watch list.">Unwatch</span>
+                            <span class="unavailableLabel fs-icon-watch-disabled" title="Service is temporarily unavailable.">Watch</span>
+                        </a>
+                    </div>
+                </div>
+
+                <table class="eventTable">
+                    <tbody>
+                    <tr class="event birth">
+                        <th>Birth</th>
+
+                        <td>
+                            <div class="date ellipses-text" title="Standard: {{person.$getBirthDate()}}">{{person.$getBirthDate()}}</div>
+
+                            <div class="ellipses-text">
+                                <div class="place" title=
+                                        "Standard: {{person.$getBirthPlace()}}">
+                                    {{person.$getBirthPlace()}}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="event death">
+                        <th>Death</th>
+                        <td>
+                            <div class="date ellipses-text" title="{{ person.living ? 'Living' : 'Standard: '+person.$getDeathDate()}}">
+                                {{person.living ? 'Living' : person.$getDeathDate()}}
+                            </div>
+                            <div class="ellipses-text">
+                                <div class="place" title="{{person.$getDeathPlace()}}">{{person.$getDeathPlace()}}</div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                    <tbody class="engageStatus">
+                    <tr>
+                        <th></th>
+
+                        <td class="sections" colspan="2">
+                            <ul class="clearfix">
+                                <li class="sources-label"><span>{{sourcesCount}}</span>Sources</li>
+                                <li class="discussions-label"><span>{{discussionsCount}}</span>Discussions</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+
+                <div class="buttonBarBG"></div>
+
+                <div class="actionBar">
+                    <a class="fs-icon-pedigree tree hide widgetAction" href="#" data-pid="{{id}}" data-type="pedigree">Tree</a>
+                    <a class="details widgetAction" href="" ng-click="navigateTo()"><i ng-class="{'fs-icon-male': person._isMale(), 'fs-icon-female': !person._isMale()}">&nbsp;</i>Person</a>
+                </div>
+            </div>
+        </div>
+
+
     </div>
   </script>
   <div tabindex="0" popover-trigger="focus" ng-focus="focus()" popover-placement="top" popover-template="fsPersonPopover.html" style="outline-width: 0">

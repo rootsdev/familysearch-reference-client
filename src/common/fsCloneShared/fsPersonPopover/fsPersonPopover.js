@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsPersonPopover', function () {
+    .directive('fsPersonPopover', function (fsApi, $state) {
       return {
         transclude: true,
         templateUrl: 'fsCloneShared/fsPersonPopover/fsPersonPopover.tpl.html',
@@ -10,17 +10,28 @@
         },
         link: function(scope) {
           console.log('fsPersonPopover', scope.person);
+
           scope.sourcesCount = null;
-          scope.notesCount = null;
+          scope.discussionsCount = null;
 
           scope.focus = function() {
             if (scope.sourcesCount === null) {
-              scope.sourcesCount = 2; // fetch count
+                fsApi.getPersonSourceRefs(scope.person.id).then(function(response){
+                    scope.sourcesCount = response ? response.getSourceRefs().length : 0;
+                });
             }
-            if (scope.notesCount === null) {
-              scope.notesCount = 3; // fetch count
+            if (scope.discussionsCount === null) {
+                fsApi.getPersonDiscussionRefs(scope.person.id).then(function(response){
+                    scope.discussionsCount = response ? response.getDiscussionRefs().length : 0;
+                });
             }
           };
+
+          scope.navigateTo = function() {
+              $state.go('person', { personId: scope.person.id });
+          };
+
+
         }
       };
     });
