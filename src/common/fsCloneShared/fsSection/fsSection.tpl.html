@@ -2,23 +2,23 @@
   <div class="panel-heading">
     <div class="options">
       <a class="panel-collapse" href="" ng-click="toggleState()">
-        <span ng-show="isOpen()"><i class="fa fa-chevron-down">&nbsp;</i>Close</span>
-        <span ng-hide="isOpen()"><i class="fa fa-chevron-up">&nbsp;</i>Open</span>
+        <span ng-show="state === 'open'"><i class="fa fa-chevron-down">&nbsp;</i>Close</span>
+        <span ng-hide="state === 'open'"><i class="fa fa-chevron-up">&nbsp;</i>Open</span>
       </a>
-      <a ng-show="isDetailsOpenable()" class="toggleDetails hidden-xs" href="">
+      <a ng-show="detailsOpenable === 'true' && state === 'open'" class="toggleDetails hidden-xs" href="">
         <span ng-hide="hasOpenDetails()" ng-click="openDetails(true)"><i class="fa fa-eye">&nbsp;</i>Show Details</span>
         <span ng-show="hasOpenDetails()" ng-click="openDetails(false)"><i class="fa fa-eye-slash">&nbsp;</i>Hide Details</span>
       </a>
     </div>
     <h4 class="panel-title">{{sectionTitle}}</h4>
   </div>
-  <div ng-show="isOpen()">
-    <div class="row" ng-show="addable || attachable">
+  <div ng-show="state === 'open'">
+    <div class="row" ng-show="addable === 'true' || attachable === 'true'">
       <div class="col-md-12" style="padding: 0 27px;">
-        <a href="" ng-show="attachable" ng-click="attach()" class="btn btn-link non-form addNewNote pull-right">
+        <a href="" ng-show="attachable === 'true'" ng-click="attach()" class="btn btn-link non-form addNewNote pull-right">
           <i class="fa fa-plus-square">&nbsp;</i>{{attachLabel}}
         </a>
-        <a href="" ng-show="addable" ng-click="add()" class="btn btn-link non-form addNewNote pull-right">
+        <a href="" ng-show="addable === 'true'" ng-click="add()" class="btn btn-link non-form addNewNote pull-right">
           <i class="fa fa-plus-square">&nbsp;</i>{{addLabel}}
         </a>
       </div>

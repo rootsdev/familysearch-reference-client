@@ -21,14 +21,6 @@
 
           // section functions
 
-          scope.isOpen = function() {
-            return scope.state === 'open';
-          };
-
-          scope.isDetailsOpenable = function() {
-            return scope.detailsOpenable && scope.isOpen();
-          };
-
           scope.toggleState = function() {
             scope.state = scope.state === 'open' ? 'closed' : 'open';
           };
