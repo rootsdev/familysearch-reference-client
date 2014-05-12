@@ -8,7 +8,7 @@
 
                     <div class="nameWrapper">
                         <i class="icon-rounded" ng-class="{'fs-icon-male': person._isMale(), 'fs-icon-female': !person._isMale()}">&nbsp;</i>
-                        <a href="#" class="male personcard name widgetAction" data-pid="{{person.id}}" data-type="person">{{person.$getDisplayName()}}</a><br />
+                        <a href="#" class="male personcard name widgetAction">{{person.$getDisplayName()}}</a><br />
                         <span class="pid">{{person.id}}</span>
                     </div>
 
@@ -58,8 +58,14 @@
 
                         <td class="sections" colspan="2">
                             <ul class="clearfix">
-                                <li class="sources-label"><span>{{sourcesCount}}</span>Sources</li>
-                                <li class="discussions-label"><span>{{discussionsCount}}</span>Discussions</li>
+                                <li class="sources-label">
+                                  <span class="badge">{{sourcesCount}}</span>
+                                  <span ng-pluralize count="sourcesCount" when="{'1': 'Source', 'other': 'Sources'}"></span>
+                                </li>
+                                <li class="discussions-label">
+                                  <span class="badge">{{discussionsCount}}</span>
+                                  <span ng-pluralize count="discussionsCount" when="{'1': 'Discussion', 'other': 'Discussions'}"></span>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -71,7 +77,7 @@
                 <div class="buttonBarBG"></div>
 
                 <div class="actionBar">
-                    <a class="fs-icon-pedigree tree hide widgetAction" href="#" data-pid="{{id}}" data-type="pedigree">Tree</a>
+                    <a class="fs-icon-pedigree tree hide widgetAction" href="">Tree</a>
                     <a class="details widgetAction" href="" ng-click="navigateTo()"><i ng-class="{'fs-icon-male': person._isMale(), 'fs-icon-female': !person._isMale()}">&nbsp;</i>Person</a>
                 </div>
             </div>
