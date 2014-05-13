@@ -12,15 +12,13 @@
           scope.sources = [];
           scope.person.$getSourceRefs().then(function(response) {
             response.getSourceRefs().forEach(function(sourceRef) {
-              sourceRef.$getSourceDescription().then(function(response) {
-                var source = {
-                  ref: sourceRef,
-                  description: response.getSourceDescription(),
-                  id: sourceRef.id
-                };
-                fsItemHelpers.mixinStateFunctions(scope, source);
-                scope.sources.push(source);
-              });
+              var source = {
+                ref: sourceRef,
+                description: response.getSourceDescription(sourceRef.$sourceDescriptionId),
+                id: sourceRef.id
+              };
+              fsItemHelpers.mixinStateFunctions(scope, source);
+              scope.sources.push(source);
             });
           });
 
