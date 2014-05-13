@@ -19,13 +19,9 @@
         },
         link: function(scope) {
 
-          // section functions
-
           scope.toggleState = function() {
-            scope.state = scope.state === 'open' ? 'closed' : 'open';
+            scope.state.value = scope.state.value === 'open' ? 'closed' : 'open';
           };
-
-          // item functions
 
           scope.openDetails = function(open) {
             _.forEach(scope.items, function(item) {
