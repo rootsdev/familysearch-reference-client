@@ -5,15 +5,22 @@
       return {
         templateUrl: 'fsCloneShared/fsSourcesSection/fsSourcesSection.tpl.html',
         scope: {
-          state: '='
+          state: '=',
+          person: '='
         },
         link: function(scope) {
-          scope.sources = [
-            {id: 'foo', title: 'My Title'}
-          ];
-
-          _.forEach(scope.sources, function(source) {
-            fsItemHelpers.mixinStateFunctions(scope, source);
+          scope.sources = [];
+          scope.person.$getSourceRefs().then(function(response) {
+            response.getSourceRefs().forEach(function(sourceRef) {
+              sourceRef.$getSourceDescription().then(function(response) {
+                var source = {
+                  ref: sourceRef,
+                  description: response.getSourceDescription()
+                };
+                fsItemHelpers.mixinStateFunctions(scope, source);
+                scope.sources.push(source);
+              });
+            });
           });
 
           scope.add = function() {

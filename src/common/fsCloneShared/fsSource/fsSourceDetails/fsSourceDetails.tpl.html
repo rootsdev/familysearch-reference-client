@@ -6,31 +6,27 @@
     <!-- report abuse isn't available through the api
     <a href="" class="detatchDetail btn btn-link btn-xs non-form"><i class="fa fa-warning">&nbsp;</i>Report Abuse</a>
     -->
-    <a href="" class="detatchDetail btn btn-link btn-xs non-form popupTags"><i class="fa fa-tags">&nbsp;</i>Tags<span class="badge" style="margin-left:5px;">5</span></a>
-  </div>
-
-  <div class="detailsItem">
-    <span class="eventLabel">url</span><br>
-    <a href="http://trees.ancestry.com/tree/3319960/person/-1749097799" target="_blank" class="openEventDetails">
-      http://trees.ancestry.com/tree/3319960/person/-1749097799
+    <a href="" class="detatchDetail btn btn-link btn-xs non-form popupTags">
+      <i class="fa fa-tags">&nbsp;</i>Tags<span class="badge" style="margin-left:5px;">{{source.ref.$getTags().length}}</span>
     </a>
   </div>
 
-  <div class="detailsItem">
+  <div class="detailsItem" style="display:block;">
+    <span class="eventLabel">url</span><br>
+    <a href="{{source.description.about}}" target="_blank" class="openEventDetails">{{source.description.about}}</a>
+  </div>
+  <div class="detailsItem" style="display:block;">
     <span class="eventLabel">citation</span><br>
-    "Pranas Paukstys - Overview - Ancestry.com." Pranas Paukstys - Overview - Ancestry.com. N.p., n.d. Web. 21 Mar. 2013.
+    {{source.description.$getCitation()}}
   </div>
-
-  <div class="detailsItem">
+  <div class="detailsItem" style="display:block;">
     <span class="eventLabel">notes</span><br>
-    Tree Connect bookmarklet available at RecordSeek.com.
+    {{source.description.$getText()}}
   </div>
-
   <div class="detailsWell sourceItem">
     <hr/>
     <div fs-source-justification source="source" editable="true" ng-hide="source._editingJustification"></div>
     <div fs-source-justification-edit source="source" ng-show="source._editingJustification"></div>
   </div>
-
-  <div fs-item-modified item="source"></div>
+  <div fs-item-modified item="source.ref" agent="agent"></div>
 </div>
