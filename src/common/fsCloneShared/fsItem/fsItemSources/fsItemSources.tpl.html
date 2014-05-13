@@ -2,10 +2,13 @@
   <hr>
   <!-- Place a link and badge if there are sources, just the text if there are none. -->
   <span>Sources</span>&nbsp;&nbsp;|&nbsp;
-  <span><a href="" class="popupTags">Tags</a> <a href=""><span class="badge">5</span></a></span><br/>
+  <span><a href="" class="popupTags" title="Tag this source">Tags <span class="badge">{{sources.length}}</span></a></span><br/>
 
   <div class="popupSources">
-    <a href="" class="popupSource">Death Certificate for Pranas Paukstys</a><br/>
-    <a href="" class="popupSource"><i>&nbsp;</i>Death Certificate for Pranas Paukstys</a>
+    <div ng-repeat="source in sources">
+      <span fs-source-popover source="source">
+        <a href="" class="popupSource">{{source.description.$getTitle()}}</a><br/>
+      </span>
+    </div>
   </div>
 </div>

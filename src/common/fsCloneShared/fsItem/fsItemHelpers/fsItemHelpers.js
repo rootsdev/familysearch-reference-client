@@ -1,9 +1,10 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsItemHelpers', function () {
+    .factory('fsItemHelpers', function ($q) {
+
       return {
-        mixinStateFunctions: function(item) {
+        mixinStateFunctions: function(scope, item) {
           item._state = item._state || 'closed';
 
           item._isOpen = function() {
@@ -19,7 +20,6 @@
           };
 
           item._toggleOpen = function() {
-            console.log('toggleOpen');
             this._state = this._state === 'open' ? 'closed' : 'open';
           };
 
@@ -35,21 +35,50 @@
             this._state = this._exists() ? 'open' : 'closed';
           };
 
-        },
+          item._onOpen = function (callback) {
+            if (!item._onOpenCallbacks) {
+              item._onOpenCallbacks = [];
+            }
+            item._onOpenCallbacks.push(callback);
+            if (item._state === 'open') {
+              callback(item);
+            }
+          };
 
-        mixinAgentFunctions: function(scope, itemFn) {
-          scope.agent = null;
-          scope.$watch(function() { return itemFn()._state; }, function(newValue) {
-            var item = itemFn();
-            if (newValue === 'open' && scope.agent === null && item && item.attribution) {
-              item._state = 'closed';
-              item.attribution.$getAgent().then(function(response) {
-                scope.agent = response.getAgent();
-                // finally ready to open
-                item._state = 'open';
+          // run open state handlers on item open
+          scope.$watch(function () {
+            return item._state;
+          }, function (newValue) {
+            if (newValue === 'open') {
+              var promises = [];
+              item._onOpenCallbacks.forEach(function (callback) {
+                // if the callback returns a promise, don't open the item until the promise is fulfilled
+                var promise = callback(item);
+                if (promise && promise.then) {
+                  promises.push(promise);
+                }
               });
+              if (promises.length) {
+                // close the item until all handlers have completed
+                item._state = 'closed';
+                $q.all(promises).then(function () {
+                  // we're finally ready to open the item
+                  item._state = 'open';
+                });
+              }
             }
           });
+        },
+
+        agentSetter: function(scope) {
+          return function(item) {
+            if (item && item.attribution && !scope.agent) {
+              return item.attribution.$getAgent().then(function (response) {
+                scope.agent = response.getAgent();
+              });
+            }
+            return null;
+          };
         }
 
       };

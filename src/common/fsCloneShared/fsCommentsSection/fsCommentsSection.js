@@ -22,7 +22,7 @@
           ];
 
           _.forEach(scope.comments, function(comment) {
-            fsItemHelpers.mixinStateFunctions(comment);
+            fsItemHelpers.mixinStateFunctions(scope, comment);
           });
 
           scope.add = function() {

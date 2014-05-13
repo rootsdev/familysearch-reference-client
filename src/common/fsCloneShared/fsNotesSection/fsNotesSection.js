@@ -13,7 +13,7 @@
           fsApi.getPersonNoteRefs(scope.pid).then(function(response) {
             scope.noteRefs = response.getNoteRefs();
             _.forEach(scope.noteRefs, function(noteRef) {
-              fsItemHelpers.mixinStateFunctions(noteRef);
+              fsItemHelpers.mixinStateFunctions(scope, noteRef);
             });
           });
 

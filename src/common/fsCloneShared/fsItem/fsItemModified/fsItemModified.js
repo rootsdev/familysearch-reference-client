@@ -8,8 +8,6 @@
           item: '=',
           agent: '=',
           showHistory: '@'
-        },
-        link: function() {
         }
       };
     });

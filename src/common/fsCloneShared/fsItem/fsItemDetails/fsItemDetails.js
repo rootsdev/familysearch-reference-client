@@ -6,7 +6,9 @@
         templateUrl: 'fsCloneShared/fsItem/fsItemDetails/fsItemDetails.tpl.html',
         scope: {
           item: '=',
-          agent: '='
+          agent: '=',
+          person: '=',
+          sourceRefs: '='
         }
       };
     });

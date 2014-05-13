@@ -46,7 +46,7 @@
       </div>
     </div>
   </script>
-  <span tabindex="0" popover-trigger="focus" popover-placement="right" popover-template="fsAgentPopover.html" style="outline-width: 0">
+  <span tabindex="0" popover-trigger="focus" popover-placement="{{popoverPlacement || 'right'}}" popover-template="fsAgentPopover.html" style="outline-width: 0">
     <span ng-transclude></span>
   </span>
 </span>

@@ -7,7 +7,14 @@
         scope: {
           change: '='
         },
-        link: function() {
+        link: function(scope) {
+          scope.setAgent = function() {
+            if (!scope.agent) {
+              scope.change.$getAgent().then(function(response) {
+                scope.agent = response.getAgent();
+              });
+            }
+          };
         }
       };
     });

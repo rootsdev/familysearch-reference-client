@@ -5,10 +5,11 @@
       return {
         templateUrl: 'fsCloneShared/fsName/fsName.tpl.html',
         scope: {
-          name: '='
+          name: '=',
+          sourceRefs: '='
         },
         link: function(scope) {
-          fsItemHelpers.mixinAgentFunctions(scope, function() { return scope.name; });
+          scope.name._onOpen(fsItemHelpers.agentSetter(scope));
 
           scope.save = function () {
             // TBD

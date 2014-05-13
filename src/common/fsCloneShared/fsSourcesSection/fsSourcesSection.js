@@ -13,7 +13,7 @@
           ];
 
           _.forEach(scope.sources, function(source) {
-            fsItemHelpers.mixinStateFunctions(source);
+            fsItemHelpers.mixinStateFunctions(scope, source);
           });
 
           scope.add = function() {

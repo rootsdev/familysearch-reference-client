@@ -6,9 +6,8 @@
         transclude: true,
         templateUrl: 'fsCloneShared/fsAgentPopover/fsAgentPopover.tpl.html',
         scope: {
-          agent: '='
-        },
-        link: function() {
+          agent: '=',
+          popoverPlacement: '@'
         }
       };
     });

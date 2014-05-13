@@ -13,7 +13,7 @@
           ];
 
           _.forEach(scope.discussions, function(discussion) {
-            fsItemHelpers.mixinStateFunctions(discussion);
+            fsItemHelpers.mixinStateFunctions(scope, discussion);
           });
 
           scope.add = function() {

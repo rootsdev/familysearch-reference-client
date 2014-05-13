@@ -18,7 +18,7 @@
           scope.allItems = scope.names.concat(scope.facts);
 
           _.forEach(scope.allItems, function(item) {
-            fsItemHelpers.mixinStateFunctions(item);
+            fsItemHelpers.mixinStateFunctions(scope, item);
           });
 
           scope.add = function() {

@@ -19,7 +19,11 @@
           scope.vitalFactTypes = fsVitalFactTypes;
 
           _.forEach(scope.vitals, function(vital) {
-            fsItemHelpers.mixinStateFunctions(vital);
+            fsItemHelpers.mixinStateFunctions(scope, vital);
+          });
+
+          scope.person.$getSourceRefs().then(function(response) {
+            scope.sourceRefs = response.getSourceRefs();
           });
 
         }

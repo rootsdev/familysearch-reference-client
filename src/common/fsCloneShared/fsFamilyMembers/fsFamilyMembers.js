@@ -5,7 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsFamilyMembers/fsFamilyMembers.tpl.html',
         scope: {
-          family: '=', // {husband, wife, relationshipId, children?, couple?}
+          family: '=', // {husband, wife, relationshipId, children (optional), couple (optional)}
           focusId: '=',
           showPreferred: '@',
           preferred: '=' // {relationshipId}
