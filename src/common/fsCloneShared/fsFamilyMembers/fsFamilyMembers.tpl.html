@@ -4,8 +4,8 @@
       &nbsp;
     </div>
     <div class="coupleWrapper">
-      <div fs-person-small person="husband" show-popover="{{showPopover(husband)}}" default-gender="Male"></div>
-      <div fs-person-small person="wife" show-popover="{{showPopover(wife)}}" default-gender="Female"></div>
+      <div fs-person-small person="family.husband" show-popover="{{showPopover(family.husband)}}" default-gender="Male"></div>
+      <div fs-person-small person="family.wife" show-popover="{{showPopover(family.wife)}}" default-gender="Female"></div>
     </div>
     <div class="event">
       <div ng-hide="!!couple" class="noCoupleRelationship">No Couple Relationship</div>
@@ -18,12 +18,16 @@
       &nbsp;
     </div>
     <div class="lowerBar">
+      <div ng-show="showPreferred === 'true'" style="text-align: left; float: left; padding-left: 10px; color: #fff">
+        <input type="checkbox" ng-model="isPreferred" ng-change="changePreferred()">
+        PREFERRED
+      </div>
       <a ng-show="!!couple" href="" class="editCouple">EDIT COUPLE</a>
     </div>
   </div>
   <div class="childrenHolder">
-    <a href="" class="childHide"><span class=""><i class="fa fa-chevron-up"></i></span>Children ({{children.length}})</a>
-    <div class="panel-body">
+    <a href="" class="childHide" ng-click="toggleHideChildren()"><span class=""><i class="fa fa-chevron-up"></i></span>Children ({{children.length}})</a>
+    <div class="panel-body" ng-hide="family._hideChildren">
       <table class="table-hover childrenList">
         <tbody>
         <tr ng-repeat="child in children">

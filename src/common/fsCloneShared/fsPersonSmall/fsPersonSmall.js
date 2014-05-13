@@ -10,8 +10,7 @@
           showPopover: '@',
           defaultGender: '@'
         },
-        link: function(scope) {
-          console.log('fsPersonSmall', scope.showPopover, scope.defaultGender, scope.person);
+        link: function() {
         }
       };
     });

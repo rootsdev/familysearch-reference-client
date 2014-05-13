@@ -4,15 +4,16 @@
           <div class=" col-sm-6 spousesAndChildren immediateFamily">
             <h5>Spouses and Children</h5>
             <div class="familyActions">
-              <a href="" class="hideChildren"><i class="fa fa-eye-slash">&nbsp;</i>Hide All</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+              <a href="" ng-hide="hasHiddenChildren(spouseFamilies)" ng-click="hideChildren(spouseFamilies, true)" class="hideChildren"><i class="fa fa-eye-slash">&nbsp;</i>Hide All</a>
+              <a href="" ng-show="hasHiddenChildren(spouseFamilies)" ng-click="hideChildren(spouseFamilies, false)" class="hideChildren"><i class="fa fa-eye">&nbsp;</i>Show All</a>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
               <a href="" class="btn btn-link non-form addSpouse">
                 <i class="fa fa-plus-square">&nbsp;</i>Add Spouse
               </a>
             </div>
             <div ng-repeat="family in spouseFamilies">
-              <div fs-family-members husband="family.husband" wife="family.wife" focus-id="person.id"
-                  relationship-id="family.relationshipId" preferred-relationship-id="preferredCoupleId"
-                  children="family.children" couple="family.couple"></div>
+              <div fs-family-members family="family" focus-id="person.id"
+                  show-preferred="{{showPreferred(family, spouseFamilies) ? 'true' : 'false'}}" preferred="preferredCouple"></div>
             </div>
             <a href="" class="btn btn-link non-form addChild unknownFather">
               <i class="fa fa-plus-square">&nbsp;</i>Add Child with an Unknown Father
@@ -21,15 +22,17 @@
           <div class="col-sm-6 parentsAndChildren immediateFamily">
             <h5>Parents and Siblings</h5>
             <div class="familyActions">
-              <a href="" class="hideChildren"><i class="fa fa-eye-slash">&nbsp;</i>Hide All</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+              <a href="" ng-hide="hasHiddenChildren(parentFamilies)" ng-click="hideChildren(parentFamilies, true)" class="hideChildren"><i class="fa fa-eye-slash">&nbsp;</i>Hide All</a>
+              <a href="" ng-show="hasHiddenChildren(parentFamilies)" ng-click="hideChildren(parentFamilies, false)" class="hideChildren"><i class="fa fa-eye">&nbsp;</i>Show All</a>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
               <a href="" class="btn btn-link non-form addSpouse">
                 <i class="fa fa-plus-square">&nbsp;</i>Add Parent
               </a>
             </div>
             <div class="panel-body parents-children">
               <div ng-repeat="family in parentFamilies">
-                <div fs-family-members husband="family.husband" wife="family.wife" focus-id="person.id"
-                    relationship-id="family.relationshipId" preferred-relationship-id="preferredParentsId"></div>
+                <div fs-family-members family="family" focus-id="person.id"
+                    show-preferred="{{showPreferred(family, parentFamilies) ? 'true' : 'false'}}" preferred="preferredParents"></div>
               </div>
           </div>
         </div>
