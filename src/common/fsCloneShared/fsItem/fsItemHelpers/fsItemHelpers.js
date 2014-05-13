@@ -45,11 +45,11 @@
             }
           };
 
-          // run open state handlers on item open
+          // run on-open callbacks on item open
           scope.$watch(function () {
             return item._state;
           }, function (newValue) {
-            if (newValue === 'open') {
+            if (newValue === 'open' && !!item._onOpenCallbacks) {
               var promises = [];
               item._onOpenCallbacks.forEach(function (callback) {
                 // if the callback returns a promise, don't open the item until the promise is fulfilled
