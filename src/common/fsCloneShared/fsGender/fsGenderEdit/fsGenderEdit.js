@@ -6,6 +6,7 @@
         templateUrl: 'fsCloneShared/fsGender/fsGenderEdit/fsGenderEdit.tpl.html',
         scope: {
           gender: '=',
+          agent: '=',
           save: '&'
         },
         link: function(scope) {

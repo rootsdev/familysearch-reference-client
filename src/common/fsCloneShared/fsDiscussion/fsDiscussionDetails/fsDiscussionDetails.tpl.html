@@ -1,9 +1,9 @@
 <div class="media detailsItem">
-  <a href="" class="btn btn-xs btn-link addComment"><i class="fa fa-edit">&nbsp;</i>Comment</a>
+  <a href="" class="btn btn-xs btn-link addComment" ng-click="addComment()"><i class="fa fa-edit">&nbsp;</i>Comment</a>
   <br/><br/>
   <div>
     Description<br/>
-    <p>Here's the body of the discussion.</p>
+    <p>{{disc.discussion.details}}</p>
   </div>
-  <div fs-item-modified item="discussion"></div>
+  <div fs-discussion-contributor disc="disc" agent="agent"></div>
 </div>

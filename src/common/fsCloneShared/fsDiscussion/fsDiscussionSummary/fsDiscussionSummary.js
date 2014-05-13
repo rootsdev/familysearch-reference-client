@@ -5,7 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsDiscussion/fsDiscussionSummary/fsDiscussionSummary.tpl.html',
         scope: {
-          discussion: '='
+          disc: '='
         }
       };
     });

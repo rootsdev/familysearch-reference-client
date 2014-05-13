@@ -6,6 +6,7 @@
         templateUrl: 'fsCloneShared/fsNote/fsNoteEdit/fsNoteEdit.tpl.html',
         scope: {
           note: '=',
+          agent: '=',
           save: '&'
         },
         link: function(scope) {

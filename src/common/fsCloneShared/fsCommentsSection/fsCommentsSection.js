@@ -5,24 +5,31 @@
       return {
         templateUrl: 'fsCloneShared/fsCommentsSection/fsCommentsSection.tpl.html',
         scope: {
-          state: '='
+          state: '=',
+          discussion: '='
         },
         link: function(scope) {
           scope.toggleState = function() {
-            scope.state = scope.state === 'open' ? 'closed' : 'open';
+            scope.state.value = scope.state.value === 'open' ? 'closed' : 'open';
           };
 
           scope.isOpen = function() {
-            return scope.state === 'open';
+            return scope.state.value === 'open';
           };
 
-          scope.comments = [
-            {id: 'foo'},
-            {id: 'bar'}
-          ];
-
-          _.forEach(scope.comments, function(comment) {
-            fsItemHelpers.mixinStateFunctions(scope, comment);
+          scope.$watch(function() {
+            return scope.state.value;
+          }, function(newValue) {
+            if (newValue === 'open' && !scope.comments) {
+              scope.state.value = 'closed';
+              scope.discussion.$getComments().then(function(response) {
+                scope.comments = response.getComments();
+                _.forEach(scope.comments, function(comment) {
+                  fsItemHelpers.mixinStateFunctions(scope, comment);
+                });
+                scope.state.value = 'open';
+              });
+            }
           });
 
           scope.add = function() {

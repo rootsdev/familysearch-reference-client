@@ -15,7 +15,8 @@
               sourceRef.$getSourceDescription().then(function(response) {
                 var source = {
                   ref: sourceRef,
-                  description: response.getSourceDescription()
+                  description: response.getSourceDescription(),
+                  id: sourceRef.id
                 };
                 fsItemHelpers.mixinStateFunctions(scope, source);
                 scope.sources.push(source);

@@ -90,7 +90,9 @@ module.exports = function(grunt) {
                 'vendor/angular-bootstrap-jbruni/ui-bootstrap-tpls.min.js',
                 'vendor/angular-ui-router/release/angular-ui-router.js',
                 'vendor/lodash/dist/lodash.compat.js',
-                'vendor/familysearch-javascript-sdk/familysearch-javascript-sdk.js'
+                'vendor/familysearch-javascript-sdk/familysearch-javascript-sdk.js',
+                'vendor/moment/moment.js',
+                'vendor/angular-moment/angular-moment.js'
             ],
             css: [
             ],

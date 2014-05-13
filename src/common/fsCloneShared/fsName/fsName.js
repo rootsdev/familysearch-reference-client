@@ -10,6 +10,7 @@
         },
         link: function(scope) {
           scope.name._onOpen(fsItemHelpers.agentSetter(scope));
+          scope.name._onEdit(fsItemHelpers.agentSetter(scope));
 
           scope.save = function () {
             // TBD

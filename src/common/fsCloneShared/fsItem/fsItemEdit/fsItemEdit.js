@@ -7,6 +7,8 @@
         templateUrl: 'fsCloneShared/fsItem/fsItemEdit/fsItemEdit.tpl.html',
         scope: {
           item: '=',
+          agent: '=',
+          hideModified: '@',
           submit: '&'
         }
       };

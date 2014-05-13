@@ -1,9 +1,11 @@
 <div class="commentDetails">
-  <p>This is a test.<a href="" class="expandDiscussion"><small>More</small></a></p>
+  <p>{{comment.text}}<a href="" class="expandDiscussion" style="display:none"><small>More</small></a></p>
   <p>
-    <small><abbr class="timeago" title="2013-12-09T22:56:07.839Z">4 months ago</abbr></small>
+    <small><abbr class="timeago" am-time-ago="comment.created"></abbr></small>
     by
-    <a class="contributorCard" href="#" data-pid="MMMM-QVX2" data-original-title="" title="">MMMM-QVX2</a>
+    <span fs-agent-popover agent="agent">
+      <a href="" class="contributor">{{agent.$getAccountName()}}</a>
+    </span>
     <span class="pull-right">
       <a href="" class="btn btn-xs btn-link editDiscussionDetail" ng-click="comment._edit()"><i class="fa fa-edit">&nbsp;</i>Edit</a>
       <a href="" class="btn btn-link btn-xs"><i class="fa fa-trash-o">&nbsp;</i>Delete</a>

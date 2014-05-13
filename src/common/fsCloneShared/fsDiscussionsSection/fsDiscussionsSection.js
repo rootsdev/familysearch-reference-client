@@ -5,15 +5,23 @@
       return {
         templateUrl: 'fsCloneShared/fsDiscussionsSection/fsDiscussionsSection.tpl.html',
         scope: {
-          state: '='
+          state: '=',
+          person: '='
         },
         link: function(scope) {
-          scope.discussions = [
-            {id: 'foo'}
-          ];
-
-          _.forEach(scope.discussions, function(discussion) {
-            fsItemHelpers.mixinStateFunctions(scope, discussion);
+          scope.discs = [];
+          scope.person.$getDiscussionRefs().then(function(response) {
+            response.getDiscussionRefs().forEach(function(discussionRef) {
+              discussionRef.$getDiscussion().then(function(response) {
+                var disc = {
+                  ref: discussionRef,
+                  discussion: response.getDiscussion(),
+                  id: discussionRef.resourceId
+                };
+                fsItemHelpers.mixinStateFunctions(scope, disc);
+                scope.discs.push(disc);
+              });
+            });
           });
 
           scope.add = function() {

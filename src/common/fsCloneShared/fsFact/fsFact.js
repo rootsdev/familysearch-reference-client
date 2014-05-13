@@ -11,6 +11,7 @@
         },
         link: function(scope) {
           scope.fact._onOpen(fsItemHelpers.agentSetter(scope));
+          scope.fact._onEdit(fsItemHelpers.agentSetter(scope));
 
           scope.save = function () {
             // TBD

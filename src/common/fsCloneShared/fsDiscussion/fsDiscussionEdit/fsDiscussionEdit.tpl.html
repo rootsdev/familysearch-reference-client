@@ -1,11 +1,11 @@
-<div fs-item-edit item="discussion" submit="submit()">
+<div fs-item-edit item="disc" hide-modified="true" submit="submit()">
   <div class="form-group">
     <label>Write a title for your discussion.</label>
-    <textarea class="form-control" name="title" placeholder="Give a title for this discussion."></textarea>
+    <textarea class="form-control" name="title" placeholder="Give a title for this discussion.">{{disc.discussion.title}}</textarea>
   </div>
   <div class="form-group">
     <label>Write a description.</label>
-    <textarea class="form-control" name="description" placeholder="Give more details about this discussion.">
-    </textarea>
+    <textarea class="form-control" name="description" placeholder="Give more details about this discussion.">{{disc.discussion.details}}</textarea>
   </div>
+  <div fs-discussion-contributor disc="disc" agent="agent"></div>
 </div>

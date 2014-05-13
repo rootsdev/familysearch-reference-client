@@ -15,6 +15,7 @@
                 // noteRef maintains the state; bind note._cancelEdit to noteRef
                 scope.note._cancelEdit = _.bind(noteRef._cancelEdit, noteRef);
                 // set the agent
+                // the agent must also be set for edit, but the note must be open before it can be edited so it will be set
                 return scope.note.attribution.$getAgent().then(function(response) {
                   scope.agent = response.getAgent();
                 });

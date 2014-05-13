@@ -1,5 +1,5 @@
 <div fs-item item="gender" editable="true">
   <div fs-gender-summary gender="gender" ng-hide="gender._isEditing()"></div>
   <div fs-item-details item="gender" agent="agent" source-refs="sourceRefs" ng-show="gender._isOpen()"></div>
-  <div fs-gender-edit gender="gender" ng-show="gender._isEditing()" save="save()"></div>
+  <div fs-gender-edit gender="gender" agent="agent" ng-show="gender._isEditing()" save="save()"></div>
 </div>

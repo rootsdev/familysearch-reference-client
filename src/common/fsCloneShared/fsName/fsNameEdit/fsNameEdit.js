@@ -6,6 +6,7 @@
         templateUrl: 'fsCloneShared/fsName/fsNameEdit/fsNameEdit.tpl.html',
         scope: {
           name: '=',
+          agent: '=',
           save: '&'
         },
         link: function(scope) {

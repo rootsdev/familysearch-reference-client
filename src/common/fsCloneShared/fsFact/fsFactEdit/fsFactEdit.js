@@ -6,6 +6,7 @@
         templateUrl: 'fsCloneShared/fsFact/fsFactEdit/fsFactEdit.tpl.html',
         scope: {
           fact: '=',
+          agent: '=',
           save: '&'
         },
         link: function(scope) {
