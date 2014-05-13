@@ -2,11 +2,13 @@
   <div class="nameWrapper">
     <i class="icon-rounded" ng-class="{'fs-icon-male': person ? person._isMale() : defaultGender === 'Male',
                                        'fs-icon-female': person ? !person._isMale() : defaultGender === 'Female'}">&nbsp;</i>
-    <span ng-show="!!person && showPopover === 'true'" fs-person-popover person="person">
-      <a class="personCard name" href="" title="">{{person.$getDisplayName()}}</a>
+    <span ng-show="!!person" fs-person-popover person="person">
+      <!-- TODO set a style if isFocus -->
+      <a class="personCard name" href=""
+         ng-style="{'font-weight': isFocus === 'true' ? 'bold' : 'normal', 'color': isFocus === 'true' ? '#333' : '#0051c4'}">
+        {{person.$getDisplayName()}}
+      </a>
     </span>
-    <span ng-show="!!person && showPopover !== 'true'" class="personCard name"
-          style="font-weight: bold; padding-left: 10px;">{{person.$getDisplayName()}}</span>
     <a ng-hide="!!person" class="personCard name" href="" title="">Add or Find Spouse</a>
   </div>
   <a href="" class="editParents pull-right" ng-show="!!person && editParents === 'true'">Edit Parents</a>

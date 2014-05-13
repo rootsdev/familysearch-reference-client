@@ -7,7 +7,7 @@
         scope: {
           person: '=',
           editParents: '@',
-          showPopover: '@',
+          isFocus: '@',
           defaultGender: '@'
         },
         link: function() {

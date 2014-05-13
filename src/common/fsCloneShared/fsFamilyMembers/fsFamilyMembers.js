@@ -41,8 +41,8 @@
             scope.family._hideChildren = scope.family._hideChildren ? false : true;
           };
 
-          scope.showPopover = function(person) {
-            return person && person.id !== scope.focusId ? 'true' : '';
+          scope.isFocus = function(person) {
+            return person && person.id === scope.focusId ? 'true' : 'false';
           };
 
           scope.$watch(function() { return scope.preferred.relationshipId; }, function() {

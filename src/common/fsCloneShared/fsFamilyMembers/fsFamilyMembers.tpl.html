@@ -4,8 +4,8 @@
       &nbsp;
     </div>
     <div class="coupleWrapper">
-      <div fs-person-small person="family.husband" show-popover="{{showPopover(family.husband)}}" default-gender="Male"></div>
-      <div fs-person-small person="family.wife" show-popover="{{showPopover(family.wife)}}" default-gender="Female"></div>
+      <div fs-person-small person="family.husband" is-focus="{{isFocus(family.husband)}}" default-gender="Male"></div>
+      <div fs-person-small person="family.wife" is-focus="{{isFocus(family.wife)}}" default-gender="Female"></div>
     </div>
     <div class="event">
       <div ng-hide="!!couple" class="noCoupleRelationship">No Couple Relationship</div>
@@ -32,7 +32,7 @@
         <tbody>
         <tr ng-repeat="child in children">
           <td>
-            <div fs-person-small person="child" edit-parents="true" show-popover="{{showPopover(child)}}"></div>
+            <div fs-person-small person="child" edit-parents="true" is-focus="{{isFocus(child)}}"></div>
           </td>
         </tr>
         <tr class="actionRow">
