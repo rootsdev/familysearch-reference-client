@@ -2,8 +2,10 @@
   <!-- TODO ng-show="showHistory === 'true'" when we have a history view -->
   Modified<span ng-show="false" class="detailsModifiedHistory">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="" class="changeHistory">History</a></span><br>
   <span class="modifiedDate">{{item.attribution.modified | date:'dd-MMM-yyyy'}}</span>
-  by
-  <span fs-agent-popover agent="agent">
-    <a href="" class="contributor">{{agent.$getAccountName()}}</a>
+  <span ng-show="!!agent">
+    by
+    <span fs-agent-popover agent="agent">
+      <a href="" class="contributor">{{agent.$getAccountName()}}</a>
+    </span>
   </span>
 </div>
