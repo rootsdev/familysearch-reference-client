@@ -2,6 +2,8 @@
 @import "pedigree.less";
 @import "popover.less";
 @import "editView.less";
+@import "searchadd.less";
+@import "tree.less";
 
 .tree-family .primaryEvents .event {
   margin-left: 0;
@@ -274,4 +276,140 @@ ul.polaroids a:hover {
 }
 .contributorCard .row div {
   line-height: 1.5em !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.discussionWidgetContainer .family-panel {
+  .detailsWell.openDetails .non-form, .well.openDetails .non-form, .detailsWell.openDetails:hover .non-form, .well.openDetails:hover .non-form {
+    &.non-form-block {
+      display: block;
+    }
+  }
+}
+
+
+
+.discussionWidgetContainer {
+  .addNewDiscussion {
+    padding-top:0;
+  }
+  .fa {
+    color: #222;
+    &.openEventDetails {
+      font-size: 20px;
+    }
+  }
+  .discussionsBody {
+    padding-bottom: 10px;
+    .detailsWell {
+      position: relative;
+    }
+  }
+  .detailActions {
+    &.pull-right {
+      position: absolute;
+      right: 0;
+    }
+    padding-bottom: 10px;
+    .btn-xs {
+      padding-left: 0;
+    }
+  }
+  .additionalDiscussions {
+    border: 1px solid transparent;
+    border-top-color: #eee;
+    padding: 15px 15px 5px 15px;
+    .media-body .commentsBody {
+      display: none;
+    }
+    &.expanded {
+      .addCommentLink {
+        border-top: 1px solid white;
+        padding-top: 8px;
+      }
+
+
+      border: 1px solid;
+      border-color: #cdcdcd;
+      display: block;
+      background-color: #ECEBEA;
+      .media-body .commentsBody {
+        clear: both;
+        display: block;
+        padding-top: 8px;
+
+      }
+      .media-body .comment {
+        padding: 8px 0 0 0;
+        border-top: 1px solid white;
+        &.editing {
+          .form-group, .actionRow {
+            display: block;
+          }
+          .actionRow {
+            padding-bottom: 10px;
+          }
+          .commentDetails {
+            display: none;
+          }
+        }
+        .commentsBody {
+          display: block !important;
+        }
+
+        .detailsWell div {
+
+        }
+        display: block;
+      }
+    }
+  }
+
+}
+
+
+.sourcesBody {
+  i {
+    color: #555;
+  }
+  .detailsWell .detailsWell {
+    margin: 0 !important;
+    padding: 0 !important;
+    &.editing {
+      .detailsItem {
+        display:none !important;
+      }
+      padding: 11px 19px !important;
+    }
+  }
+
+  .detailsItem {
+    margin-top: 10px;
+  }
+  .addSourceJustification {
+    padding: 0;
+  }
+}
+
+.no-margin-top {
+  margin-top: 0;
+}
+.no-padding-left {
+  padding-left: 0 !important;
+}
+.no-padding-top {
+  padding-top: 0 !important;
+}
+.no-border-top {
+  border-top: 0;
 }

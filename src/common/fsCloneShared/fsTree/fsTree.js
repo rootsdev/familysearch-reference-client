@@ -1,12 +1,12 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsPersonPopover', function (fsApi, $state) {
+    .directive('fsTree', function (fsApi, $state) {
       return {
-        transclude: true,
-        templateUrl: 'fsCloneShared/fsPersonPopover/fsPersonPopover.tpl.html',
+        templateUrl: 'fsCloneShared/fsTree/fsTree.tpl.html',
         scope: {
-          person: '='
+          person: '=',
+          spouse: '='
         },
         link: function(scope) {
           scope.sourcesCount = null;
@@ -29,9 +29,6 @@
               $state.go('person', { personId: scope.person.id });
           };
 
-          scope.navigateToTree = function() {
-              $state.go('tree', { personId: scope.person.id });
-          };
 
         }
       };

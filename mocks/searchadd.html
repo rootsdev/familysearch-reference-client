@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="">
+<head>
+    <title>FamilySearch Widgets</title>
+    <meta content="width=device-width" name="viewport">
+  <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
+  <link href="bootstrap.css" rel="stylesheet">
+  <!-- Dovy's customized bootstrap file -->
+  <link rel="stylesheet" type="text/css" href="assets/fsClone-0.0.1.css"/>
+  <link href="assets/museo/museo.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="static.js" type="text/javascript"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+</head>
+
+<body data-gclp-initialized="true" data-gistbox-initialized="true" style="">
+    <a href="https://github.com/rootsdev/SumoTheme/"><img alt="Fork me on GitHub" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" style="position: absolute; top: 53px; right: 0; border: 0;"></a>
+
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-target=".header-collapse" data-toggle="collapse" type="button"><span
+                        class="sr-only">Toggle navigation</span></button>
+                <a class="navbar-brand" href="#">FamilySearch Widgets</a>
+            </div>
+            <div class="collapse navbar-collapse header-collapse">
+                <p class="navbar-text navbar-right"><a href="#" class="changeTheme" style="color: #ff0010; font-weight: bold;"><i class="fa fa-exchange">&nbsp;</i>Switch to Boostrap Theme</a></p>
+            </div>
+        </div>
+    </div>
+    <div id="themeContainer" class="familysearch_theme">
+        <div class="container">
+            <div class="mainContent">
+                <h3>Add or Find Person</h3>
+                <ul class="nav nav-tabs" id="searchadd">
+                    <li class="active"><a href="#addNewPerson">Add Person</a></li>
+                    <li><a href="#findPerson">Find Person</a></li>
+                    <li><a href="#findPersonByID">Find by ID Number</a></li>
+                </ul>
+
+                <div id='addPerson' class="tab-content">
+
+                    <div class="tab-pane active" id="addNewPerson">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label for="titleNewNames">Title</label>
+                                    <input type="input" class="form-control" id="titleNewNames" name="titleName" placeholder="Title">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="firstNewNames">First Names</label>
+                                    <input type="input" class="form-control" id="firstNewNames" name="lastName" placeholder="First Names">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="lastNewName">Last Name</label>
+                                    <input type="input" class="form-control" id="lastNewName" name="firstNames" placeholder="Last Name">
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label for="suffixNewName">Suffix</label>
+                                    <input type="input" class="form-control" id="suffixNewName" name="suffixName" placeholder="Suffix">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div id="genderNew" class="form-group">
+                                    <label for="genderNew">Gender</label>
+                                    <div class="input-group">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="gender" value="male"> Male
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="gender" value="female"> Female
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="gender" value="unknown"> Unknown
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="birthDateNew">Date of Birth</label>
+                                    <input type="input" class="form-control" id="birthDateNew" name="birthDate" placeholder="Date of Birth">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="birthPlaceNew">Place of Birth</label>
+                                    <input type="input" class="form-control" id="birthPlaceNew" name="birthPlace" placeholder="Place of Birth">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div id="livingStatusNew" class="form-group">
+                                    <div class="input-group">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="livingStatus" value="living"> Living
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="livingStatus" value="deceased"> Deceased
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="deathDateNew">Date of Death</label>
+                                    <input type="input" class="form-control" id="deathDateNew" name="deathDate" placeholder="Date of Death">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="deathPlaceNew">Place of Death</label>
+                                    <input type="input" class="form-control" id="deathPlaceNew" name="deathPlace" placeholder="Place of Death">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="button" class="formSubmit btn btn-primary">Continue</button> <button type="button" class="clearSearch btn btn-link">Clear</button> | <button type="button" class="cancelSearch btn btn-link">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane " id="findPerson">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="firstNames">First Names</label>
+                                    <div class="input-group">
+                                        <input type="input" class="form-control" id="firstNames" name="firstNames" placeholder="Given name(s) of the individual">
+                                        <span class="input-group-addon"><input type="checkbox" id="firstNamesExact" name="firstNamesExact"> </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="firstNames">Last Name</label>
+                                    <div class="input-group">
+                                        <input type="input" class="form-control" id="lastName" name="lastName" placeholder="Last name of the individual">
+                                        <span class="input-group-addon"><input type="checkbox" id="lastNameExact" name="lastNameExact"> </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <div class="input-group">
+                                        <select id="gender" name="gender">
+                                            <option selected="selected" value="">Any</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Unknown">Unknown</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="event">Event</label>
+                                    <div class="input-group">
+                                        <select id="event" name="event">
+                                            <option value="">-- Select --</option>
+                                            <option value="Birth">Birth</option>
+                                            <option value="Christening">Christening</option>
+                                            <option value="Marriage">Marriage</option>
+                                            <option value="Death">Death</option>
+                                            <option value="Burial">Burial</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 text-center yearRange">
+                                <label for="range" class="text-center">Year (Range)</label>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="input-group">
+                                            <input type="input" class="form-control" id="rangeFrom" name="rangeFrom" placeholder="From">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="input-group">
+                                            <input type="input" class="form-control" id="rangeTo" name="rangeTo" placeholder="To">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="eventPlace">Place</label>
+                                    <div class="input-group">
+                                        <input type="input" class="form-control" id="eventPlace" name="eventPlace" placeholder="Place this event occurred">
+                                        <span class="input-group-addon"><input type="checkbox" id="eventPlaceExact" name="eventPlaceExact"> </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="firstNamesFather">Father First Names</label>
+                                    <div class="input-group">
+                                        <input type="input" class="form-control" id="firstNamesFather" name="firstNamesFather" placeholder="Father's given name(s)">
+                                        <span class="input-group-addon"><input type="checkbox" id="firstNamesFatherExact" name="firstNamesFatherExact"> </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="firstNames">Father Last Name</label>
+                                    <div class="input-group">
+                                        <input type="input" class="form-control" id="lastNameFather" name="lastNameFather" placeholder="Father's last name">
+                                        <span class="input-group-addon"><input type="checkbox" id="lastNameFatherExact" name="lastNameFatherExact"> </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="firstNamesFather">Mother First Names</label>
+                                    <div class="input-group">
+                                        <input type="input" class="form-control" id="firstNamesMother" name="firstNamesMother" placeholder="Mother's given name(s)">
+                                        <span class="input-group-addon"><input type="checkbox" id="firstNamesMotherExact" name="firstNamesMotherExact"> </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="firstNames">Mother Last Name</label>
+                                    <div class="input-group">
+                                        <input type="input" class="form-control" id="lastNameMother" name="lastNameMother" placeholder="Mother's last name">
+                                        <span class="input-group-addon"><input type="checkbox" id="lastNameMotherExact" name="lastNameMotherExact"> </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="firstNamesFather">Spouse First Names</label>
+                                    <div class="input-group">
+                                        <input type="input" class="form-control" id="firstNamesSpouse" name="firstNamesSpouse" placeholder="Spouse's given name(s)">
+                                        <span class="input-group-addon"><input type="checkbox" id="firstNamesSpouseExact" name="firstNamesSpouseExact"> </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="firstNames">Spouse Last Name</label>
+                                    <div class="input-group">
+                                        <input type="input" class="form-control" id="lastNameSpouse" name="lastNameSpouse" placeholder="Spouse's last name">
+                                        <span class="input-group-addon"><input type="checkbox" id="lastNameSpouseExact" name="lastNameSpouseExact"> </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="checkbox pull-right">
+                                    <label>
+                                         <input type="checkbox" class="matchAllFindPerson"> Match All Exactly
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="button" class="formSubmit btn btn-primary">Find</button> <button type="button" class="advancedSearch btn btn-link">Advanced Search</button> | <button type="button" class="clearSearch btn btn-link">Clear</button> | <button type="button" class="cancelSearch btn btn-link">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="findPersonByID">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="personIDNumber">ID Number</label>
+                                    <input type="input" class="form-control" id="personIDNumber" name="personIDNumber" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="button" class="formSubmit btn btn-primary">Find</button> <button type="button" class="clearSearch btn btn-link">Clear</button> | <button type="button" class="cancelSearch btn btn-link">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
