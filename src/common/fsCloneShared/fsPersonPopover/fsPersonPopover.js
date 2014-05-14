@@ -29,6 +29,9 @@
               $state.go('person', { personId: scope.person.id });
           };
 
+          scope.navigateToTree = function() {
+              $state.go('tree', { personId: scope.person.id });
+          };
 
         }
       };
