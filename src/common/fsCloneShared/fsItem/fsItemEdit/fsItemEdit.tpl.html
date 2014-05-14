@@ -2,7 +2,7 @@
   <div ng-transclude></div>
   <div fs-item-modified item="item" agent="agent" ng-hide="hideModified === 'true'"></div>
   <div class="actionRow">
-    <button class="btn btn-primary saveButton" type="submit" ng-click="submit()">Save</button>
-    <button class="btn btn-link cancelButton" type="submit" ng-click="item._cancelEdit()">Cancel</button>
+    <button class="btn btn-primary saveButton" type="submit" ng-click="$emit('save', item)">Save</button>
+    <button class="btn btn-link cancelButton" type="submit" ng-click="$emit('cancel', item)">Cancel</button>
   </div>
 </div>

@@ -23,6 +23,10 @@
             this._state = this._state === 'open' ? 'closed' : 'open';
           };
 
+          item._open = function() {
+            this._state = 'open';
+          };
+
           item._close = function() {
             this._state = 'closed';
           };

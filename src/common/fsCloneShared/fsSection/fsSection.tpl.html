@@ -15,10 +15,10 @@
   <div ng-show="state.value === 'open'">
     <div class="row" ng-show="addable === 'true' || attachable === 'true'">
       <div class="col-md-12" style="padding: 0 27px;">
-        <a href="" ng-show="attachable === 'true'" ng-click="attach()" class="btn btn-link non-form addNewNote pull-right">
+        <a href="" ng-show="attachable === 'true'" ng-click="$emit('attach')" class="btn btn-link non-form addNewNote pull-right">
           <i class="fa fa-plus-square">&nbsp;</i>{{attachLabel}}
         </a>
-        <a href="" ng-show="addable === 'true'" ng-click="add()" class="btn btn-link non-form addNewNote pull-right">
+        <a href="" ng-show="addable === 'true'" ng-click="$emit('add')" class="btn btn-link non-form addNewNote pull-right">
           <i class="fa fa-plus-square">&nbsp;</i>{{addLabel}}
         </a>
       </div>

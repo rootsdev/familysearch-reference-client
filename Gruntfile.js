@@ -627,7 +627,8 @@ module.exports = function(grunt) {
 
     // The 'compile' task gets your app ready for deployment by concatenating and minifying your code.
     grunt.registerTask('compile', [
-        'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'concat:dist_js', 'uglify', 'index:compile'
+      //'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'concat:dist_js', 'uglify', 'index:compile'
+      'recess:compile', 'copy:compile_assets', 'concat:compile_js', 'concat:dist_js', 'index:compile'
     ]);
 
     // A utility function to get all app JavaScript sources.

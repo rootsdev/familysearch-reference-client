@@ -12,6 +12,7 @@
             if (!!scope.noteRef && !scope.note) {
               return noteRef.$getNote().then(function(response) {
                 scope.note = response.getNote();
+                console.log('fsNote', scope.note);
                 // noteRef maintains the state; bind note._cancelEdit to noteRef
                 scope.note._cancelEdit = _.bind(noteRef._cancelEdit, noteRef);
                 // set the agent
@@ -23,14 +24,6 @@
             }
             return null;
           });
-
-          scope.save = function () {
-            // TBD
-          };
-
-          scope.remove = function () {
-            // TBD
-          };
 
         }
       };

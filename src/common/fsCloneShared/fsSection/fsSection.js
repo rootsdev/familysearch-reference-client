@@ -2,6 +2,9 @@
   'use strict';
   angular.module('fsCloneShared')
     .directive('fsSection', function () {
+
+      // emit: add(), attach()
+
       return {
         transclude: true,
         templateUrl: 'fsCloneShared/fsSection/fsSection.tpl.html',
@@ -12,10 +15,8 @@
           items: '=', // collection of objects with _state property
           addable: '@',
           addLabel: '@',
-          add: '&',
           attachable: '@',
-          attachLabel: '@',
-          attach: '&'
+          attachLabel: '@'
         },
         link: function(scope) {
 
