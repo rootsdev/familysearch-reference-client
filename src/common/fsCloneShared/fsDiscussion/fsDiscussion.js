@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsDiscussion', function() {
+    .directive('fsDiscussion', function(fsCurrentUser) {
       return {
         templateUrl: 'fsCloneShared/fsDiscussion/fsDiscussion.tpl.html',
         scope: {
@@ -20,6 +20,11 @@
           }
           scope.disc._onOpen(setAgent);
           scope.disc._onEdit(setAgent);
+
+          scope.isAuthor = false;
+          fsCurrentUser.get().then(function(currentUser) {
+            scope.isAuthor = scope.disc.discussion.$getAgentId() === currentUser.id;
+          });
 
           scope.save = function () {
             // TBD
