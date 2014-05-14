@@ -6,5 +6,6 @@
       'http://gedcomx.org/Christening',
       'http://gedcomx.org/Death',
       'http://gedcomx.org/Burial'
-    ]);
+    ])
+    .constant('fsDeathFactType', 'http://gedcomx.org/Death');
 })();

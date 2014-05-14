@@ -5,12 +5,15 @@
       return {
         templateUrl: 'fsCloneShared/fsChangesSection/fsChangesSection.tpl.html',
         scope: {
-          pid: '='
+          person: '='
         },
         link: function(scope) {
-          fsApi.getPersonChanges(scope.pid, {count: 3}).then(function(response) {
-            scope.changes = response.getChanges();
-          });
+          //noinspection JSUnresolvedVariable
+          if (!scope.person.living) {
+            fsApi.getPersonChanges(scope.person.id, {count: 3}).then(function(response) {
+              scope.changes = response.getChanges();
+            });
+          }
         }
       };
     });

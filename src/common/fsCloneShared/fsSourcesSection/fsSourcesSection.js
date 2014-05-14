@@ -10,19 +10,20 @@
         },
         link: function(scope) {
           scope.sources = [];
-          scope.person.$getSourceRefs().then(function(response) {
-            response.getSourceRefs().forEach(function(sourceRef) {
-              sourceRef.$getSourceDescription().then(function(response) {
+          //noinspection JSUnresolvedVariable
+          if (!scope.person.living) {
+            scope.person.$getSourceRefs().then(function(response) {
+              response.getSourceRefs().forEach(function(sourceRef) {
                 var source = {
                   ref: sourceRef,
-                  description: response.getSourceDescription(),
+                  description: response.getSourceDescription(sourceRef.$sourceDescriptionId),
                   id: sourceRef.id
                 };
                 fsItemHelpers.mixinStateFunctions(scope, source);
                 scope.sources.push(source);
               });
             });
-          });
+          }
 
           scope.add = function() {
             // TBD
