@@ -1,3 +1,4 @@
+.tree-wrapper {position:relative; width:2500px; margin-left:-120px; background:#ecebea; font-family: "ProximaNova", Verdana, sans-serif;}
 .sans-serif {font-family: 'Montserrat', Verdana, sans-serif;}
 .all-family-wrapper {position:relative; width:300px}
 .next-gen-kids {margin:30px 22px 0 0}
@@ -30,7 +31,9 @@
     -o-box-sizing: border-box;
     box-sizing: border-box;
     width: 300px;
+    color:#555555;
 }
+.name-line {font-size: 16px;}
 .couple-icon {
     border-radius: 50%;
     width: 28px;
@@ -38,14 +41,15 @@
     line-height: 28px;
     display: block;
     text-align: center;
-    padding: 4px 0 0 4px;
+    padding: 0 0 0 4px;
     margin-top: 5px;
     font-size:20px;
 }
 .couple-icon-female {background: #dd407d; color: #fff; }
 .couple-icon-male {background: #4888f8; color: #fff;}
-.pedigree-lifeSpan {margin-right:10px;}
-.pedigree-pid {margin-left:10px;clear:right;}
+.pedigree-lifeSpan {font-size:14px; margin-right:10px;}
+.dot-guy {font-size:70%; margin-top:2px}
+.pedigree-pid {font-size:14px; margin-left:10px;clear:right;}
 .kid-list-arrow {
     background:#787068;
     padding:5px;
@@ -73,7 +77,7 @@
 .wife-parents-arrow-closed {background:#787068; color:#ffffff;width:20px; height:37px; padding-top:8px; text-align: center; border-bottom-right-radius: 7px; -moz-border-bottom-right-radius: 7px; -webkit-border-bottom-right-radius: 7px;}
 .wife-parents-arrow-open {background:#59534d; color:#ffffff;width:20px; height:37px; padding-top:8px; text-align: center}
 .child-list-item {margin:-50px 0 70px 0; position:relative}
-.child-connector-top {border-top:solid 1px #787068;border-right:solid 1px #787068; position:absolute; top: 40px; right:280px; width:20px; height:65px; z-index:1}
+.child-connector-top {border-top:solid 1px #787068;border-right:solid 1px #787068; position:absolute; top: 41px; right:280px; width:20px; height:85px; z-index:1}
 .child-connector-middle {border-right:solid 1px #787068; position:absolute; top:-5px; right:280px; width:20px; height:115px; z-index:1}
 .child-connector-middle-bar {height: 5px; width:20px; border-top:solid 1px #787068; position:absolute; top:45px; left:600px; z-index: 1}
 .child-connector-bottom {border-bottom:solid 1px #787068;border-right:solid 1px #787068; position:absolute; top: -10px; right:280px; width:20px; height:65px; z-index:1}
