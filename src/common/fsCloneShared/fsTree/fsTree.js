@@ -31,5 +31,17 @@
             };
         }
       };
+    })
+
+    .directive('fsTreeCoupleCard',function() {
+      return {
+        restrict: 'E',
+        scope: {
+          person: '=',
+          spouse: '='
+        },
+        templateUrl: 'fsCloneShared/fsTree/fsTreeCoupleCard.tpl.html'
+
+      };
     });
 })();
