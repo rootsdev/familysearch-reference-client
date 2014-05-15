@@ -35,10 +35,6 @@
             this._state = 'editing';
           };
 
-          item._cancelEdit = function() {
-            this._state = this._exists() ? 'open' : 'closed';
-          };
-
           item._onOpen = function (callback) {
             if (!item._onOpenCallbacks) {
               item._onOpenCallbacks = [];

@@ -1,29 +1,42 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsNote', function(_) {
+    .directive('fsNote', function(fsApi) {
       return {
         templateUrl: 'fsCloneShared/fsNote/fsNote.tpl.html',
         scope: {
           noteRef: '='
         },
         link: function(scope) {
-          scope.noteRef._onOpen(function(noteRef) {
-            if (!!scope.noteRef && !scope.note) {
-              return noteRef.$getNote().then(function(response) {
-                scope.note = response.getNote();
-                console.log('fsNote', scope.note);
-                // noteRef maintains the state; bind note._cancelEdit to noteRef
-                scope.note._cancelEdit = _.bind(noteRef._cancelEdit, noteRef);
-                // set the agent
-                // the agent must also be set for edit, but the note must be open before it can be edited so it will be set
-                return scope.note.attribution.$getAgent().then(function(response) {
-                  scope.agent = response.getAgent();
+          function populateNote(noteRef) {
+            if (!scope.note) {
+              if (!noteRef.id) {
+                scope.note = new fsApi.Note({
+                  $personId: noteRef.$personId,
+                  $childAndParentsId: noteRef.$childAndParentsId,
+                  $coupleId: noteRef.$coupleId,
+                  subject: '',
+                  text: ''
                 });
-              });
+                scope.agent = null;
+              }
+              else {
+                noteRef._busy = true;
+                return noteRef.$getNote().then(function(response) {
+                  scope.note = response.getNote();
+                  // set the agent
+                  return scope.note.attribution.$getAgent().then(function(response) {
+                    scope.agent = response.getAgent();
+                    noteRef._busy = false;
+                  });
+                });
+              }
             }
             return null;
-          });
+          }
+
+          scope.noteRef._onOpen(populateNote);
+          scope.noteRef._onEdit(populateNote);
 
         }
       };

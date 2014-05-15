@@ -12,26 +12,24 @@
           agent: '='
         },
         link: function(scope) {
+          // populate the form from the note
           scope.$watch(function() {
             return scope.note;
           }, function() {
-            console.log('fsNoteEdit', scope.note);
             scope.form = {
               subject: scope.note ? scope.note.subject : '',
               text: scope.note ? scope.note.text : ''
             };
           });
 
+          // save the form to the note
           scope.$on('save', function(event, note) {
-            //noinspection JSUnresolvedFunction
             event.stopPropagation();
-
-            console.log('fsNoteEdit save', note);
-            scope.note.subject = scope.form.subject;
-            scope.note.text = scope.form.text;
-
-            scope.$parent.$emit('save', scope.note, scope.form.reason);
+            note.subject = scope.form.subject;
+            note.text = scope.form.text;
+            scope.$parent.$emit('save', note, scope.form.reason);
           });
+
         }
       };
     });
