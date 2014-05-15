@@ -92,8 +92,10 @@ module.exports = function(grunt) {
                 'vendor/lodash/dist/lodash.compat.js',
                 'vendor/familysearch-javascript-sdk/familysearch-javascript-sdk.js',
                 'vendor/moment/moment.js',
-                'vendor/angular-panhandler/dist/angular-panhandler.min.js',
-                'vendor/angular-moment/angular-moment.js'
+                'vendor/angular-moment/angular-moment.js',
+                'vendor/hamsterjs/hamster.js',
+                'vendor/angular-mousewheel/mousewheel.js',
+                'vendor/angular-pan-zoom/build/panzoom.0.1-snapshot.min.js'
             ],
             css: [
             ],

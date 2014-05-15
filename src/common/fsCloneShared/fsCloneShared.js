@@ -1,1 +1,1 @@
-angular.module('fsCloneShared', ['loDash', 'angularMoment', 'panhandler']);
+angular.module('fsCloneShared', ['loDash', 'angularMoment', 'panzoom']);

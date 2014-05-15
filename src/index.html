@@ -11,6 +11,8 @@
   <!-- Latest compiled and minified bootstrap CSS -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
+
+
   <!-- fonts -->
   <link href="assets/museo/museo.css" rel="stylesheet">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -18,6 +20,10 @@
 
   <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
   <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+
+
+  <!-- Latest compiled and minified jQuery -- before we load any of our own scripts, angular in particular -->
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
   <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
   <script type="text/javascript" src="<%= file %>"></script><% }); %>

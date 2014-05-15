@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "_comment": "Any dependencies added here require a manual edit to vendor_files in /Gruntfile.js",
   "dependencies": {
-    "angular": "~1.2.9",
+    "angular": "~1.2.16",
     "angular-bootstrap-jbruni": "git://github.com/jbruni/bootstrap-bower-jbruni.git#~0.10.5",
-     "angular-panhandler": "~0.0.2",
+    "hamsterjs": "1.0.4",
+    "angular-mousewheel": "1.0.4",
     "angular-ui-router": "~0.2.7",
+    "angular-pan-zoom": "git://github.com/mvindahl/angular-pan-zoom.git#7f63240876bd77c8f7cd3aff54e7a78f15669efd",
     "lodash": "~2.4.1",
     "es5-shim": "~3.0.2",
     "familysearch-javascript-sdk": "~0.9.4",
@@ -14,5 +16,8 @@
   },
   "devDependencies": {
     "angular-mocks": "~1.2.9"
+  },
+  "resolutions": {
+    "angular": "~1.2.16"
   }
 }
