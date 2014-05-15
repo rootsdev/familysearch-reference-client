@@ -1,21 +1,23 @@
 <div class="additionalDiscussions non-form-block">
-  <a class="pull-left fa fa-comments-o showDiscussionResponses" href="">&nbsp;</a>
-  <div class="media-body">
-    <div>
-      <a class="showDiscussionResponses" href="" ng-show="discussion.numberOfComments > 0" ng-click="toggleState()">
-        <span ng-show="isOpen()">Hide</span>
-        <span ng-hide="isOpen()">Show</span>
-        <span ng-pluralize count="discussion.numberOfComments" when="{'1': '1 Comment', 'other': '{} Comments'}"></span></a>
-      <br/><br/>
-    </div>
-    <div ng-show="isOpen()">
-      <div ng-repeat="comment in comments">
-        <div fs-comment comment="comment"></div>
-        <hr/>
+  <div ng-show="discussion.numberOfComments > 0">
+    <a class="pull-left fa fa-comments-o showDiscussionResponses" href="">&nbsp;</a>
+    <div class="media-body">
+      <div>
+        <a class="showDiscussionResponses" href="" ng-click="toggleState()">
+          <span ng-show="isOpen()">Hide</span>
+          <span ng-hide="isOpen()">Show</span>
+          <span ng-pluralize count="discussion.numberOfComments" when="{'1': '1 Comment', 'other': '{} Comments'}"></span></a>
+        <br/><br/>
+      </div>
+      <div ng-show="isOpen()">
+        <div ng-repeat="comment in comments">
+          <div fs-comment comment="comment"></div>
+          <hr/>
+        </div>
       </div>
     </div>
-    <div class="addCommentLink" ng-show="isOpen() || discussion.numberOfComments === 0">
-      <a href="" class="btn btn-link non-form addDetail"><i class="fa fa-plus-square">&nbsp;</i>Add a Comment</a>
-    </div>
+  </div>
+  <div class="addCommentLink" ng-show="isOpen() || discussion.numberOfComments === 0">
+    <a href="" class="btn btn-link non-form addDetail"><i class="fa fa-plus-square">&nbsp;</i>Add a Comment</a>
   </div>
 </div>

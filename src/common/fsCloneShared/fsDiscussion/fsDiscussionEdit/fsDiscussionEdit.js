@@ -6,13 +6,28 @@
         templateUrl: 'fsCloneShared/fsDiscussion/fsDiscussionEdit/fsDiscussionEdit.tpl.html',
         scope: {
           disc: '=',
-          agent: '=',
-          save: '&'
+          agent: '='
         },
         link: function(scope) {
-          scope.submit = function () {
-            // TBD
-          };
+          // populate the form from the discussion
+          scope.$watch(function() {
+            return scope.disc.discussion;
+          }, function() {
+            scope.form = {
+              title: scope.disc.discussion ? scope.disc.discussion.title : '',
+              details: scope.disc.discussion ? scope.disc.discussion.details : ''
+            };
+          });
+
+          // save the form to the note
+          scope.$on('save', function(event, disc) {
+            event.stopPropagation();
+            console.log('fsDiscussionEdit save', disc, scope.form);
+            disc.discussion.title = scope.form.title;
+            disc.discussion.details = scope.form.details;
+            scope.$parent.$emit('save', disc);
+          });
+
         }
       };
     });

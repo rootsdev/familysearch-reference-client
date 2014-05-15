@@ -22,9 +22,12 @@
             return scope.state.value;
           }, function(newValue) {
             if (newValue === 'open' && !scope.comments) {
-              scope.state.value = 'closed';
+              console.log('getting comments');
+              scope.state.value = 'loading';
+              scope.comments = [];
               scope.discussion.$getComments().then(function(response) {
                 scope.comments = response.getComments();
+                console.log('got comments', scope.comments);
                 _.forEach(scope.comments, function(comment) {
                   fsItemHelpers.mixinStateFunctions(scope, comment);
                 });

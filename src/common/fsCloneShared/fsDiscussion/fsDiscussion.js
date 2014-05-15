@@ -10,9 +10,12 @@
         link: function(scope) {
           scope.commentsState = {value: 'closed'};
 
-          function setAgent() {
-            if (!scope.agent) {
-              return scope.disc.discussion.$getAgent().then(function(response) {
+          // set agent
+          function setAgent(disc) {
+            if (!scope.agent && disc.discussion.$getAgentId()) {
+              disc._busy = true;
+              return disc.discussion.$getAgent().then(function(response) {
+                disc._busy = false;
                 scope.agent = response.getAgent();
               });
             }
@@ -21,9 +24,14 @@
           scope.disc._onOpen(setAgent);
           scope.disc._onEdit(setAgent);
 
-          scope.isAuthor = false;
-          fsCurrentUser.get().then(function(currentUser) {
-            scope.isAuthor = scope.disc.discussion.$getAgentId() === currentUser.id;
+          // set isAuthor
+          scope.isAuthor = null;
+          scope.disc._onOpen(function() {
+            if (scope.isAuthor === null && scope.disc.discussion.$getAgentId()) {
+              fsCurrentUser.get().then(function(currentUser) {
+                scope.isAuthor = scope.disc.discussion.$getAgentId() === currentUser.id;
+              });
+            }
           });
 
         }
