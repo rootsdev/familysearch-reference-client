@@ -9,6 +9,7 @@
           discussion: '='
         },
         link: function(scope) {
+
           scope.toggleState = function() {
             scope.state.value = scope.state.value === 'open' ? 'closed' : 'open';
           };
@@ -31,10 +32,6 @@
               });
             }
           });
-
-          scope.add = function() {
-            // TBD
-          };
 
         }
       };

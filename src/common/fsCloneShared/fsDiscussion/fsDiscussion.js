@@ -26,14 +26,6 @@
             scope.isAuthor = scope.disc.discussion.$getAgentId() === currentUser.id;
           });
 
-          scope.save = function () {
-            // TBD
-          };
-
-          scope.remove = function () {
-            // TBD
-          };
-
         }
       };
     });

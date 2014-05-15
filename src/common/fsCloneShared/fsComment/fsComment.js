@@ -6,16 +6,6 @@
         templateUrl: 'fsCloneShared/fsComment/fsComment.tpl.html',
         scope: {
           comment: '='
-        },
-        link: function(scope) {
-          scope.save = function () {
-            // TBD
-          };
-
-          scope.remove = function () {
-            // TBD
-          };
-
         }
       };
     });

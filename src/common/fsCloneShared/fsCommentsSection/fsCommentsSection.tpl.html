@@ -8,7 +8,7 @@
         <span ng-pluralize count="discussion.numberOfComments" when="{'1': '1 Comment', 'other': '{} Comments'}"></span></a>
       <br/><br/>
     </div>
-    <div class="commentsBody" ng-show="isOpen()">
+    <div ng-show="isOpen()">
       <div ng-repeat="comment in comments">
         <div fs-comment comment="comment"></div>
         <hr/>
