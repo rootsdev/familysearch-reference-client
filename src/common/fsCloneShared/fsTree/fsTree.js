@@ -43,5 +43,56 @@
         templateUrl: 'fsCloneShared/fsTree/fsTreeCoupleCard.tpl.html'
 
       };
-    });
+    })
+
+
+    .directive('fsTree1',function() {
+      return {
+        scope: {
+          person: '=',
+          spouse: '=',
+          expandable: '@'
+        },
+        templateUrl: 'fsCloneShared/fsTree/fsTree1.tpl.html',
+        controller: function() {
+        }
+
+      };
+    })
+
+    .directive('fsTree2',function() {
+      return {
+        scope: {
+          person: '=',
+          spouse: '='
+        },
+        templateUrl: 'fsCloneShared/fsTree/fsTree2.tpl.html'
+
+      };
+    })
+
+    .directive('fsTree3',function() {
+      return {
+        scope: {
+          person: '=',
+          spouse: '='
+        },
+        templateUrl: 'fsCloneShared/fsTree/fsTree3.tpl.html'
+
+      };
+    })
+
+    .directive('fsTree4',function() {
+      return {
+        scope: {
+          person: '=',
+          spouse: '='
+        },
+        templateUrl: 'fsCloneShared/fsTree/fsTree4.tpl.html'
+
+      };
+    })
+
+
+  ;
 })();
