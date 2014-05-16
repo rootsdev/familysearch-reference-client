@@ -11,7 +11,7 @@
         },
         link: function(scope) {
           scope.addComment = function() {
-            scope.commentsState.value = 'open';
+            scope.commentsState.value = 'adding';
           };
         }
       };

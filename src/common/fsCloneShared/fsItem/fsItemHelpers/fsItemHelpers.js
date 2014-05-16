@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsItemHelpers', function ($q) {
+    .factory('fsItemHelpers', function (_, $q) {
 
       return {
         mixinStateFunctions: function(scope, item) {
@@ -55,7 +55,7 @@
             }
           };
 
-          function runCallbacks(newValue, oldValue, callbacks) {
+          function runCallbacks(newValue, callbacks) {
             var promises = [];
             callbacks.forEach(function (callback) {
               // if the callback returns a promise, don't change the item state until the promise is fulfilled
@@ -66,7 +66,7 @@
             });
             if (promises.length) {
               // wait until all handlers have completed before changing the state
-              item._state = oldValue;
+              item._state = 'loading';
               $q.all(promises).then(function () {
                 // we're finally ready to change the state
                 item._state = newValue;
@@ -77,12 +77,12 @@
           // run on-open callbacks on item open
           scope.$watch(function () {
             return item._state;
-          }, function (newValue, oldValue) {
+          }, function (newValue) {
             if (newValue === 'open' && !!item._onOpenCallbacks) {
-              runCallbacks(newValue, oldValue, item._onOpenCallbacks);
+              runCallbacks(newValue, item._onOpenCallbacks);
             }
             else if (newValue === 'editing' && !!item._onEditCallbacks) {
-              runCallbacks(newValue, oldValue, item._onEditCallbacks);
+              runCallbacks(newValue, item._onEditCallbacks);
             }
           });
         },
@@ -96,6 +96,10 @@
             }
             return null;
           };
+        },
+
+        findById: function(coll, id) {
+          return _.find(coll, function(item) { return !!id ? item.id === id : !item.id; });
         }
 
       };

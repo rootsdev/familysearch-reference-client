@@ -1,11 +1,11 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsChangeMessageModal', function fsChangeMessageModal(_, $modal) {
+    .factory('fsConfirmationModal', function fsConfirmationModal(_, $modal) {
       return {
-        open: function(opts) { // {title, subTitle, okLabel}
+        open: function(opts) { // {title, subTitle, showChangeMessage, okLabel}
           return $modal.open({
-            templateUrl: 'fsCloneShared/fsChangeMessageModal/fsChangeMessageModal.tpl.html',
+            templateUrl: 'fsCloneShared/fsConfirmationModal/fsConfirmationModal.tpl.html',
             size: 'sm',
             controller: function($scope) {
               _.extend($scope, opts);

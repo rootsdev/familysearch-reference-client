@@ -1,8 +1,10 @@
 <div class="detailsItem editingItem detailModified" style="display: block">
   Contributor<br>
   <span class="modifiedDate">{{disc.discussion.created | date:'dd-MMM-yyyy'}}</span>
-  by
-  <span fs-agent-popover agent="agent">
-    <a href="" class="contributor">{{agent.$getAccountName()}}</a>
+  <span ng-show="!!agent">
+    by
+    <span fs-agent-popover agent="agent">
+      <a href="" class="contributor">{{agent.$getAccountName()}}</a>
+    </span>
   </span>
 </div>

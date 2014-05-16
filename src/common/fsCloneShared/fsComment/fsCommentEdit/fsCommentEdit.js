@@ -5,13 +5,25 @@
       return {
         templateUrl: 'fsCloneShared/fsComment/fsCommentEdit/fsCommentEdit.tpl.html',
         scope: {
-          comment: '=',
-          save: '&'
+          comment: '='
         },
-        link: function(scope) {
-          scope.submit = function () {
-            // TBD
-          };
+        link: function (scope) {
+          // populate the form from the comment
+          scope.$watch(function () {
+            return scope.comment;
+          }, function () {
+            scope.form = {
+              text: scope.comment.text
+            };
+          });
+
+          // save the form to the comment
+          scope.$on('save', function (event, comment) {
+            event.stopPropagation();
+            comment.text = scope.form.text;
+            scope.$parent.$emit('save', comment);
+          });
+
         }
       };
     });

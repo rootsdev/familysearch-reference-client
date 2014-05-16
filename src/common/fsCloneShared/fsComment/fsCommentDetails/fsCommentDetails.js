@@ -8,13 +8,17 @@
           comment: '='
         },
         link: function(scope) {
-          scope.comment.$getAgent().then(function(response) {
-            scope.agent = response.getAgent();
-          });
+          // set agent
+          if (scope.comment.$getAgentId()) {
+            scope.comment.$getAgent().then(function(response) {
+              scope.agent = response.getAgent();
+            });
+          }
 
+          // set isAuthor
           scope.isAuthor = false;
           fsCurrentUser.get().then(function(currentUser) {
-            scope.isAuthor = scope.comment.$getAgentId() === currentUser.id;
+            scope.isAuthor = scope.comment.$getAgentId() === currentUser.id || !scope.comment.$getAgentId(); // new comment
           });
 
         }

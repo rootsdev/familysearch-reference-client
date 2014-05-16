@@ -2,11 +2,12 @@
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">
-        <textarea class="form-control" name="comment" placeholder="Write a comment">{{comment.text}}</textarea>
+        <textarea class="form-control" ng-model="form.text" placeholder="Write a comment"></textarea>
       </div>
       <div class="actionRow">
-        <button class="btn btn-primary saveComment" type="submit"ng-click="submit()">Save</button>
-        <button class="btn btn-link cancelComment" type="submit" ng-click="comment._cancelEdit()">Cancel</button>
+        <button class="btn btn-primary saveComment" type="submit" ng-click="$emit('save', comment)">Save</button>
+        <button class="btn btn-link cancelComment" type="submit" ng-click="$emit('cancel', comment)">Cancel</button>
+        <span ng-show="comment._busy"><i class="fa fa-spinner fa-spin"></i></span>
       </div>
     </div>
   </div>
