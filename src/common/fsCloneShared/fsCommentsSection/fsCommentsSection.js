@@ -73,6 +73,7 @@
               // delete comment
               comment.$delete().then(function() {
                 _.remove(scope.comments, {id: comment.id});
+                scope.discussion.numberOfComments--; // keep synchronized
                 $rootScope.$emit('deleted', comment);
               });
             });
