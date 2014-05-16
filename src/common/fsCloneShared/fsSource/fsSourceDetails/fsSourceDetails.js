@@ -17,14 +17,6 @@
             return null;
           });
 
-          scope.save = function () {
-            // TBD
-          };
-
-          scope.remove = function () {
-            // TBD
-          };
-
         }
       };
     });
