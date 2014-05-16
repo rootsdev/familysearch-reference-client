@@ -22,7 +22,6 @@
           // save the form to the note
           scope.$on('save', function(event, disc) {
             event.stopPropagation();
-            console.log('fsDiscussionEdit save', disc, scope.form);
             disc.discussion.title = scope.form.title;
             disc.discussion.details = scope.form.details;
             scope.$parent.$emit('save', disc);

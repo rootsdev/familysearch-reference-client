@@ -28,7 +28,8 @@
           }
 
           // add
-          scope.$on('add', function() {
+          scope.$on('add', function(event) {
+            event.stopPropagation();
             // if not already adding
             if (!fsItemHelpers.findById(scope.discs, null)) {
               var disc = {
@@ -43,7 +44,8 @@
           });
 
           // delete
-          scope.$on('delete', function(event, disc) {
+          scope.$on('delete', function(event) { //, disc) {
+            event.stopPropagation();
             fsConfirmationModal.open({
               title: 'Delete Discussion',
               subTitle: 'Are you sure that you want to delete this discussion and all of its comments?',
@@ -61,6 +63,7 @@
 
           // save
           scope.$on('save', function(event, disc) {
+            event.stopPropagation();
             disc._busy = true;
             disc.discussion.$save(null, true).then(function() {
               // save discussion ref if new
@@ -75,6 +78,7 @@
 
           // cancel save
           scope.$on('cancel', function(event, disc) {
+            event.stopPropagation();
             if (!!disc.id) {
               disc._open();
             }

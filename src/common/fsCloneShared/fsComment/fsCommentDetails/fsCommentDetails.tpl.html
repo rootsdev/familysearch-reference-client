@@ -8,7 +8,7 @@
     </span>
     <span ng-show="isAuthor" class="pull-right">
       <a href="" class="btn btn-xs btn-link editDiscussionDetail" ng-click="comment._edit()"><i class="fa fa-edit">&nbsp;</i>Edit</a>
-      <a href="" class="btn btn-link btn-xs"><i class="fa fa-trash-o">&nbsp;</i>Delete</a>
+      <a href="" class="btn btn-link btn-xs" ng-click="$emit('delete', comment)"><i class="fa fa-trash-o">&nbsp;</i>Delete</a>
     </span>
   </p>
 </div>

@@ -19,7 +19,8 @@
           });
 
           // add
-          scope.$on('add', function() {
+          scope.$on('add', function(event) {
+            event.stopPropagation();
             // if not already adding
             if (!fsItemHelpers.findById(scope.noteRefs, null)) {
               var noteRef = new fsApi.NoteRef();
@@ -32,6 +33,7 @@
 
           // delete
           scope.$on('delete', function(event, noteRef) {
+            event.stopPropagation();
             fsConfirmationModal.open({
               title: 'Delete Note',
               subTitle: 'Reason to Delete This Note',
@@ -48,6 +50,7 @@
 
           // save
           scope.$on('save', function(event, note, changeMessage) {
+            event.stopPropagation();
             note._busy = true;
             var noteRef = fsItemHelpers.findById(scope.noteRefs, note.id);
             note.$save(changeMessage, true).then(function() {
@@ -62,6 +65,7 @@
 
           // cancel save
           scope.$on('cancel', function(event, note) {
+            event.stopPropagation();
             var noteRef = fsItemHelpers.findById(scope.noteRefs, note.id);
             if (!!noteRef.id) {
               noteRef._open();
