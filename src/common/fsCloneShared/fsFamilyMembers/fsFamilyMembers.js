@@ -45,12 +45,16 @@
             return person && person.id === scope.focusId ? 'true' : 'false';
           };
 
-          scope.$watch(function() { return scope.preferred.relationshipId; }, function() {
-            scope.isPreferred = !!scope.family.relationshipId && scope.family.relationshipId === scope.preferred.relationshipId;
+          scope.$watch(function() {
+            return scope.preferred.relationshipId;
+          }, function() {
+            scope.isPreferred = {
+              value: !!scope.family.relationshipId && scope.family.relationshipId === scope.preferred.relationshipId
+            };
           });
 
           scope.changePreferred = function() {
-            scope.preferred.relationshipId = scope.family.relationshipId;
+            scope.$emit('save', scope.family.relationshipId, scope.isPreferred.value);
           };
 
         }

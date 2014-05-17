@@ -1,20 +1,16 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsGender', function(fsItemHelpers) {
+    .directive('fsGender', function(fsUtils) {
       return {
         templateUrl: 'fsCloneShared/fsGender/fsGender.tpl.html',
         scope: {
           gender: '=',
-          sourceRefs: '='
+          sources: '='
         },
         link: function(scope) {
-          scope.gender._onOpen(fsItemHelpers.agentSetter(scope));
-          scope.gender._onEdit(fsItemHelpers.agentSetter(scope));
-
-          scope.save = function () {
-            // TBD
-          };
+          scope.gender._onOpen(fsUtils.agentSetter(scope));
+          scope.gender._onEdit(fsUtils.agentSetter(scope));
 
         }
       };

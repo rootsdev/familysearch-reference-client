@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsItemHelpers', function (_, $q) {
+    .factory('fsUtils', function (_, $q, fsApi) {
 
       return {
         mixinStateFunctions: function(scope, item) {
@@ -98,10 +98,34 @@
           };
         },
 
-        findById: function(coll, id) {
-          return _.find(coll, function(item) { return !!id ? item.id === id : !item.id; });
-        }
+        // pass in a name, fact, or gender
+        getItemTag: function(item) {
+          if (item instanceof fsApi.Name) {
+            return 'http://gedcomx.org/Name';
+          }
+          else if (item instanceof fsApi.Fact) {
+            return item.type;
+          }
+          else { // the only other possibility
+            return 'http://gedcomx.org/Gender';
+          }
+        },
 
+        findById: function(coll, id) {
+          return _.find(coll, function (item) {
+            return !!id ? item.id === id : !item.id;
+          });
+        },
+
+        findElement: function(element, className) {
+          var spans = element.find('span');
+          for (var i = 0, len = spans.length; i < len; i++) {
+            if (spans[i].className.indexOf(className) >= 0) {
+              return angular.element(spans[i]);
+            }
+          }
+          return null;
+        }
       };
     });
 })();

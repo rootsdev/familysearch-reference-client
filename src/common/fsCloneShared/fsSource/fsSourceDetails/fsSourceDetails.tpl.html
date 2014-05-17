@@ -2,13 +2,15 @@
   <div class="detailActions">
     <a href="" class="btn btn-xs btn-link editDetail non-form"><i class="fa fa-external-link">&nbsp;</i>View</a>
     <a href="" class="btn btn-xs btn-link editDetail non-form"><i class="fa fa-edit">&nbsp;</i>Edit</a>
-    <a href="" class="detatchDetail btn btn-link btn-xs non-form"><i class="fa fa-unlink">&nbsp;</i>Detach</a>
+    <a href="" class="detatchDetail btn btn-link btn-xs non-form" ng-click="$emit('delete', source.ref)"><i class="fa fa-unlink">&nbsp;</i>Detach</a>
     <!-- report abuse isn't available through the api
     <a href="" class="detatchDetail btn btn-link btn-xs non-form"><i class="fa fa-warning">&nbsp;</i>Report Abuse</a>
     -->
-    <a href="" class="detatchDetail btn btn-link btn-xs non-form popupTags">
-      <i class="fa fa-tags">&nbsp;</i>Tags<span class="badge" style="margin-left:5px;">{{source.ref.$getTags().length}}</span>
-    </a>
+    <span fs-vital-tags-popover source-ref="source.ref">
+      <a href="" class="detatchDetail btn btn-link btn-xs non-form popupTags">
+        <i class="fa fa-tags">&nbsp;</i>Tags<span class="badge" style="margin-left:5px;">{{source.ref.$getTags().length}}</span>
+      </a>
+    </span>
   </div>
 
   <div class="detailsItem" style="display:block;">
@@ -25,8 +27,8 @@
   </div>
   <div class="detailsWell sourceItem">
     <hr/>
-    <div fs-source-justification source="source" editable="true" ng-hide="source._editingJustification"></div>
-    <div fs-source-justification-edit source="source" ng-show="source._editingJustification"></div>
+    <div fs-source-justification source-ref="source.ref" editable="true" ng-hide="source.ref._editingJustification"></div>
+    <div fs-source-justification-edit source-ref="source.ref" ng-show="source.ref._editingJustification"></div>
   </div>
   <div fs-item-modified item="source.description" agent="agent"></div>
 </div>

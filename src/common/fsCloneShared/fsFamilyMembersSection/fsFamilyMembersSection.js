@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFamilyMembersSection', function (_, fsApi) {
+    .directive('fsFamilyMembersSection', function (_, $rootScope, fsApi) {
 
       function getSpouseFamilies(pwr, self) {
         var families = _.map(pwr.getSpouseRelationships(), function(couple) {
@@ -40,22 +40,20 @@
           person: '='
         },
         link: function(scope) {
-          scope.preferredCouple = {};
-          scope.preferredParents = {};
 
           fsApi.getPersonWithRelationships(scope.person.id, {persons: true}).then(function(response) {
             scope.spouseFamilies = getSpouseFamilies(response, scope.person);
-            console.log('spouseFamilies', scope.spouseFamilies);
             scope.parentFamilies = getParentFamilies(response);
-            console.log('parentFamilies', scope.parentFamilies);
           });
+
+          scope.preferredCouple = {};
           fsApi.getPreferredSpouse(scope.person.id).then(function(response) {
             scope.preferredCouple.relationshipId = response;
-            console.log('preferredCouple', response);
           });
+
+          scope.preferredParents = {};
           fsApi.getPreferredParents(scope.person.id).then(function(response) {
             scope.preferredParents.relationshipId = response;
-            console.log('preferredParents', response);
           });
 
           scope.showPreferred = function(family, families) {
@@ -75,7 +73,29 @@
             });
           };
 
-
+          // set/delete preferred spouse/parents
+          scope.$on('save', function(event, relationshipId, isSet) {
+            event.stopPropagation();
+            var isSpouseFamily = _.contains(scope.spouseFamilies, relationshipId);
+            var promise;
+            if (isSpouseFamily) {
+              promise = isSet ? fsApi.setPreferredSpouse(scope.person.id, relationshipId)
+                              : fsApi.deletePreferredSpouse(scope.person.id);
+            }
+            else {
+              promise = isSet ? fsApi.setPreferredParents(scope.person.id, relationshipId)
+                              : fsApi.deletePreferredParents(scope.person.id);
+            }
+            promise.then(function() {
+              if (isSpouseFamily) {
+                scope.preferredCouple.relationshipId = isSet ? relationshipId : null;
+              }
+              else {
+                scope.preferredParents.relationshipId = isSet ? relationshipId : null;
+              }
+              $rootScope.$emit('saved', relationshipId, isSet);
+            });
+          });
 
         }
       };

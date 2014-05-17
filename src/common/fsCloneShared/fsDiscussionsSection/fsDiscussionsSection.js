@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsDiscussionsSection', function ($q, $rootScope, fsItemHelpers, fsApi, fsConfirmationModal) {
+    .directive('fsDiscussionsSection', function ($q, $rootScope, fsApi, fsConfirmationModal, fsUtils) {
       return {
         templateUrl: 'fsCloneShared/fsDiscussionsSection/fsDiscussionsSection.tpl.html',
         scope: {
@@ -20,7 +20,7 @@
                     discussion: response.getDiscussion(),
                     id: discussionRef.resourceId // so ._exists() and findById() work
                   };
-                  fsItemHelpers.mixinStateFunctions(scope, disc);
+                  fsUtils.mixinStateFunctions(scope, disc);
                   scope.discs.push(disc);
                 });
               });
@@ -31,13 +31,13 @@
           scope.$on('add', function(event) {
             event.stopPropagation();
             // if not already adding
-            if (!fsItemHelpers.findById(scope.discs, null)) {
+            if (!fsUtils.findById(scope.discs, null)) {
               var disc = {
                 ref: new fsApi.DiscussionRef({ $personId: scope.person.id }),
                 discussion: new fsApi.Discussion(),
                 id: null
               };
-              fsItemHelpers.mixinStateFunctions(scope, disc);
+              fsUtils.mixinStateFunctions(scope, disc);
               disc._edit();
               scope.discs.unshift(disc);
             }
