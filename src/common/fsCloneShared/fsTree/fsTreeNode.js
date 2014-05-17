@@ -6,10 +6,11 @@
         templateUrl: 'fsCloneShared/fsTree/fsTreeNode.tpl.html',
         scope: {
           person: '=',
-          spouse: '='
+          spouse: '=',
+          expandable: '@'
         },
-        link: function() {
-
+        controller: function($scope) {
+          $scope.expandable = false;
         }
       };
     });
