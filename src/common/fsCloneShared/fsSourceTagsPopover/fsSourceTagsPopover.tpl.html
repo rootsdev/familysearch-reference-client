@@ -1,0 +1,19 @@
+<span>
+  <script id="fsSourceTagsPopover.html" type="text/ng-template">
+    <div style="background-color: #fff">
+      <div class="cardFrame">
+        <div class="content">
+          <div ng-repeat="source in form.sources">
+            <input type="checkbox" ng-model="source.tagged"/> {{source.title}}
+          </div>
+          <button class="btn btn-primary" type="submit" ng-click="save()">Tag</button>
+          <a href="" ng-click="cancel()">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </script>
+  <span class="fsSourceTagsPopover" tabindex="0" ng-click="show()" popover-trigger="fsSourceTagsPopoverShow"
+        popover-placement="right" popover-template="fsSourceTagsPopover.html" style="outline-width: 0">
+    <span ng-transclude></span>
+  </span>
+</span>

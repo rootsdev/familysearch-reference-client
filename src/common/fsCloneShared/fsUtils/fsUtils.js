@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsUtils', function (_, $q, fsApi) {
+    .factory('fsUtils', function (_, $q, fsApi, fsCurrentUser) {
 
       return {
         mixinStateFunctions: function(scope, item) {
@@ -125,7 +125,31 @@
             }
           }
           return null;
+        },
+
+        // sometimes we can't refresh something we just saved, so we have to approximate the updated attribution
+        approximateAttribution: function(item) {
+          fsCurrentUser.get().then(function(currentUser) {
+            item.attribution.contributor = { resourceId: currentUser.treeUserId };
+            item.attribution.modified = Date.now();
+          });
+        },
+
+        allPromisesSerially: function(arr, promiseGenerator) {
+          function await(i) {
+            if (i < arr.length) {
+              return promiseGenerator(arr[i]).then(function() {
+                return await(i+1);
+              });
+            }
+            else {
+              return $q.when(null);
+            }
+          }
+
+          return await(0);
         }
+
       };
     });
 })();

@@ -2,7 +2,10 @@
   <hr>
   <!-- Place a link and badge if there are sources, just the text if there are none. -->
   <span>Sources</span>&nbsp;&nbsp;|&nbsp;
-  <span><a href="" class="popupTags" title="Tag this source">Tags <span class="badge">{{getSources().length}}</span></a></span><br/>
+  <span fs-source-tags-popover item="item" sources="sources">
+    <a href="" class="popupTags" title="Tag this source">Tags <span class="badge">{{getSources().length}}</span></a>
+  </span>
+  <br/>
 
   <div class="popupSources">
     <div ng-repeat="source in getSources()">

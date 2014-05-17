@@ -36,10 +36,7 @@
               source._busy = false;
               sourceRef._editingJustification = false;
               // we can't refresh sourceRefs unfortunately, so attempt to approximate new attribution
-              fsCurrentUser.get().then(function(currentUser) {
-                sourceRef.attribution.contributor = { resourceId: currentUser.treeUserId };
-                sourceRef.attribution.modified = Date.now();
-              });
+              fsUtils.approximateAttribution(sourceRef);
               $rootScope.$emit('saved', sourceRef);
             });
           });
