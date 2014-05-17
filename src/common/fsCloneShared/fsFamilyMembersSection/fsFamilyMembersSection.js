@@ -74,26 +74,26 @@
           };
 
           // set/delete preferred spouse/parents
-          scope.$on('save', function(event, relationshipId, value) {
+          scope.$on('save', function(event, relationshipId, isSet) {
             event.stopPropagation();
             var isSpouseFamily = _.contains(scope.spouseFamilies, relationshipId);
             var promise;
             if (isSpouseFamily) {
-              promise = value ? fsApi.setPreferredSpouse(scope.person.id, relationshipId)
+              promise = isSet ? fsApi.setPreferredSpouse(scope.person.id, relationshipId)
                               : fsApi.deletePreferredSpouse(scope.person.id);
             }
             else {
-              promise = value ? fsApi.setPreferredParents(scope.person.id, relationshipId)
+              promise = isSet ? fsApi.setPreferredParents(scope.person.id, relationshipId)
                               : fsApi.deletePreferredParents(scope.person.id);
             }
             promise.then(function() {
               if (isSpouseFamily) {
-                scope.preferredCouple.relationshipId = value ? relationshipId : null;
+                scope.preferredCouple.relationshipId = isSet ? relationshipId : null;
               }
               else {
-                scope.preferredParents.relationshipId = value ? relationshipId : null;
+                scope.preferredParents.relationshipId = isSet ? relationshipId : null;
               }
-              $rootScope.$emit('saved', relationshipId, value);
+              $rootScope.$emit('saved', relationshipId, isSet);
             });
           });
 

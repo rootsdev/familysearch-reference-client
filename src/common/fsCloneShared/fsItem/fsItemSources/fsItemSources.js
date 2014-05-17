@@ -10,7 +10,6 @@
           sourceRefs: '='
         },
         link: function(scope) {
-          // register an open state handler that gets sourceDescriptions for each applicable sourceRef
           function getItemTag(item) {
             if (item instanceof fsApi.Name) {
               return 'http://gedcomx.org/Name';
@@ -23,6 +22,7 @@
             }
           }
 
+          // register an open state handler that gets sourceDescriptions for each applicable sourceRef
           scope.item._onOpen(function(item) {
             if (!!scope.sourceRefs && !scope.sources) {
               scope.sources = [];

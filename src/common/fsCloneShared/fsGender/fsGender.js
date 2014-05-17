@@ -12,10 +12,6 @@
           scope.gender._onOpen(fsItemHelpers.agentSetter(scope));
           scope.gender._onEdit(fsItemHelpers.agentSetter(scope));
 
-          scope.save = function () {
-            // TBD
-          };
-
         }
       };
     });
