@@ -3,20 +3,20 @@
   angular.module('fsCloneShared')
     .config(function($tooltipProvider){
       $tooltipProvider.setTriggers({
-        'fsSourceTagsPopoverShow': 'fsSourceTagsPopoverHide'
+        'fsVitalTagsPopoverShow': 'fsVitalTagsPopoverHide'
       });
     })
 
-    .directive('fsSourceTagsPopover', function (_, fsTagTypes, fsUtils) {
+    .directive('fsVitalTagsPopover', function (_, fsTagTypes, fsUtils) {
 
       return {
         transclude: true,
-        templateUrl: 'fsCloneShared/fsSourceTagsPopover/fsSourceTagsPopover.tpl.html',
+        templateUrl: 'fsCloneShared/fsVitalTagsPopover/fsVitalTagsPopover.tpl.html',
         scope: {
           sourceRef: '='
         },
         link: function(scope, element) {
-          var el = fsUtils.findElement(element, 'fsSourceTagsPopover');
+          var el = fsUtils.findElement(element, 'fsVitalTagsPopover');
 
           scope.show = function() {
             // set form from sourceRef
@@ -29,7 +29,7 @@
             });
 
             setTimeout(function() { // popover expects to be triggered outside of angular
-              el.triggerHandler('fsSourceTagsPopoverShow');
+              el.triggerHandler('fsVitalTagsPopoverShow');
             }, 0);
           };
 
@@ -45,7 +45,7 @@
 
           scope.cancel = function() {
             setTimeout(function() {
-              el.triggerHandler('fsSourceTagsPopoverHide');
+              el.triggerHandler('fsVitalTagsPopoverHide');
             }, 0);
           };
 
