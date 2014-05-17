@@ -6,8 +6,7 @@
         templateUrl: 'fsCloneShared/fsName/fsNameEdit/fsNameEdit.tpl.html',
         scope: {
           name: '=',
-          agent: '=',
-          save: '&'
+          agent: '='
         },
         link: function(scope) {
           scope.form = {
@@ -17,9 +16,6 @@
             suffix: scope.name.$getSuffix()
           };
 
-          scope.submit = function () {
-            // TBD
-          };
         }
       };
     });

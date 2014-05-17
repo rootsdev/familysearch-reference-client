@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsPersonOtherFactsSection', function (fsItemHelpers, _, fsApi, fsVitalFactTypes) {
+    .directive('fsPersonOtherFactsSection', function (fsUtils, _, fsApi, fsVitalFactTypes) {
       return {
         templateUrl: 'fsCloneShared/fsPersonOtherFactsSection/fsPersonOtherFactsSection.tpl.html',
         scope: {
@@ -18,7 +18,7 @@
           scope.allItems = scope.names.concat(scope.facts);
 
           _.forEach(scope.allItems, function(item) {
-            fsItemHelpers.mixinStateFunctions(scope, item);
+            fsUtils.mixinStateFunctions(scope, item);
           });
 
           scope.add = function() {

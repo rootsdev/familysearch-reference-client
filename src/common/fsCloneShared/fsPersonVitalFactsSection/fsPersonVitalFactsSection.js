@@ -1,18 +1,19 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsPersonVitalFactsSection', function ($rootScope, fsItemHelpers, fsApi, fsVitalFactTypes, fsDeathFactType) {
+    .directive('fsPersonVitalFactsSection', function ($rootScope, fsUtils, fsApi, fsVitalFactTypes, fsDeathFactType) {
       return {
         templateUrl: 'fsCloneShared/fsPersonVitalFactsSection/fsPersonVitalFactsSection.tpl.html',
         scope: {
           state: '=',
-          person: '='
+          person: '=',
+          sources: '='
         },
         link: function(scope) {
           scope.vitalFactTypes = fsVitalFactTypes;
 
           // read
-          function readVitals() {
+          function read() {
             var oldVitals = scope.vitals;
             scope.vitals = {
               name: scope.person.$getPreferredName() || new fsApi.Name({}),
@@ -23,7 +24,7 @@
             });
             scope.vitals[fsDeathFactType]._living = scope.person.living;
             _.forEach(scope.vitals, function(vital) {
-              fsItemHelpers.mixinStateFunctions(scope, vital);
+              fsUtils.mixinStateFunctions(scope, vital);
             });
             // override exists function for death to count living as exists
             scope.vitals[fsDeathFactType]._exists = (function() {
@@ -39,24 +40,19 @@
               });
             }
           }
-          readVitals();
-
-          // read source refs
-          scope.person.$getSourceRefs().then(function(response) {
-            scope.sourceRefs = response.getSourceRefs();
-          });
+          read();
 
           // add
 //          scope.$on('add', function(event) {
 //            event.stopPropagation();
 //            // if not already adding
-//            if (!fsItemHelpers.findById(scope.discs, null)) {
+//            if (!fsUtils.findById(scope.discs, null)) {
 //              var disc = {
 //                ref: new fsApi.DiscussionRef({ $personId: scope.person.id }),
 //                discussion: new fsApi.Discussion(),
 //                id: null
 //              };
-//              fsItemHelpers.mixinStateFunctions(scope, disc);
+//              fsUtils.mixinStateFunctions(scope, disc);
 //              disc._edit();
 //              scope.discs.unshift(disc);
 //            }
@@ -94,7 +90,7 @@
             }
             scope.person.$save(null, true).then(function() {
               item._open();
-              readVitals(); // re-read to correctly handle things like living
+              read(); // re-read to correctly handle things like living
               $rootScope.$emit('saved', item);
             });
           });

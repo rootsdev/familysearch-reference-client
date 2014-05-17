@@ -6,8 +6,7 @@
         templateUrl: 'fsCloneShared/fsFact/fsFactEdit/fsFactEdit.tpl.html',
         scope: {
           fact: '=',
-          agent: '=',
-          save: '&'
+          agent: '='
         },
         link: function(scope) {
           scope.form = {
@@ -20,9 +19,6 @@
             return fact.type === fsDeathFactType;
           };
 
-          scope.submit = function () {
-            // TBD
-          };
         }
       };
     });

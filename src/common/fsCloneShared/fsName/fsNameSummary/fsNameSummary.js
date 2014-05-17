@@ -6,8 +6,6 @@
         templateUrl: 'fsCloneShared/fsName/fsNameSummary/fsNameSummary.tpl.html',
         scope: {
           name: '='
-        },
-        link: function() {
         }
       };
     });

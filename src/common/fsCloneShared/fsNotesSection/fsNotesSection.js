@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsNotesSection', function ($rootScope, _, fsItemHelpers, fsApi, fsConfirmationModal) {
+    .directive('fsNotesSection', function ($rootScope, _, fsApi, fsConfirmationModal, fsUtils) {
       return {
         templateUrl: 'fsCloneShared/fsNotesSection/fsNotesSection.tpl.html',
         scope: {
@@ -14,7 +14,7 @@
           fsApi.getPersonNoteRefs(scope.person.id).then(function(response) {
             scope.noteRefs = response.getNoteRefs();
             _.forEach(scope.noteRefs, function(noteRef) {
-              fsItemHelpers.mixinStateFunctions(scope, noteRef);
+              fsUtils.mixinStateFunctions(scope, noteRef);
             });
           });
 
@@ -22,10 +22,10 @@
           scope.$on('add', function(event) {
             event.stopPropagation();
             // if not already adding
-            if (!fsItemHelpers.findById(scope.noteRefs, null)) {
+            if (!fsUtils.findById(scope.noteRefs, null)) {
               var noteRef = new fsApi.NoteRef();
               noteRef.$personId = scope.person.id;
-              fsItemHelpers.mixinStateFunctions(scope, noteRef);
+              fsUtils.mixinStateFunctions(scope, noteRef);
               noteRef._edit();
               scope.noteRefs.unshift(noteRef);
             }
@@ -52,7 +52,7 @@
           scope.$on('save', function(event, note, changeMessage) {
             event.stopPropagation();
             note._busy = true;
-            var noteRef = fsItemHelpers.findById(scope.noteRefs, note.id);
+            var noteRef = fsUtils.findById(scope.noteRefs, note.id);
             note.$save(changeMessage, true).then(function() {
               note._busy = false;
               // update noteRef from note and mark it open
@@ -66,7 +66,7 @@
           // cancel save
           scope.$on('cancel', function(event, note) {
             event.stopPropagation();
-            var noteRef = fsItemHelpers.findById(scope.noteRefs, note.id);
+            var noteRef = fsUtils.findById(scope.noteRefs, note.id);
             if (!!noteRef.id) {
               noteRef._open();
             }

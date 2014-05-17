@@ -23,13 +23,14 @@
           </div>
           <div class="sectionBox">
             <div class="headlingLabel">Modified</div>
-            <div>{{source.ref.attribution.modified | date:'dd-MMM-yyyy'}} by {{source.agent.$getAccountName()}}</div>
+            <div>{{source.ref.attribution.modified | date:'dd-MMM-yyyy'}} by {{agent.$getAccountName()}}</div>
           </div>
         </div>
       </div>
     </div>
   </script>
-  <span tabindex="0" popover-trigger="focus" popover-placement="right" popover-template="fsSourcePopover.html" style="outline-width: 0">
+  <span tabindex="0" class="fsSourcePopover" ng-click="show()" popover-trigger="fsSourcePopoverShow"
+        popover-placement="right" popover-template="fsSourcePopover.html" style="outline-width: 0">
     <span ng-transclude></span>
   </span>
 </span>

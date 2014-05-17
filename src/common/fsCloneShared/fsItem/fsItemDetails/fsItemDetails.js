@@ -7,8 +7,7 @@
         scope: {
           item: '=',
           agent: '=',
-          person: '=',
-          sourceRefs: '='
+          sources: '='
         }
       };
     });

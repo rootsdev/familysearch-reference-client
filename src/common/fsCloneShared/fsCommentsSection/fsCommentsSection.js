@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsCommentsSection', function ($rootScope, fsItemHelpers, fsApi, fsConfirmationModal) {
+    .directive('fsCommentsSection', function ($rootScope, fsApi, fsConfirmationModal, fsUtils) {
       return {
         templateUrl: 'fsCloneShared/fsCommentsSection/fsCommentsSection.tpl.html',
         scope: {
@@ -18,7 +18,7 @@
           };
 
           scope.isAdding = function() {
-            return fsItemHelpers.findById(scope.comments, null);
+            return fsUtils.findById(scope.comments, null);
           };
 
           // read
@@ -26,7 +26,7 @@
             return scope.discussion.$getComments().then(function(response) {
               scope.comments = response.getComments();
               _.forEach(scope.comments, function (comment) {
-                fsItemHelpers.mixinStateFunctions(scope, comment);
+                fsUtils.mixinStateFunctions(scope, comment);
               });
               // keep numberOfComments synchronized
               scope.discussion.numberOfComments = scope.comments.length;
@@ -56,8 +56,12 @@
             // if not already adding
             if (!scope.isAdding()) {
               var comment = new fsApi.Comment({ $discussionId: scope.discussion.id });
-              fsItemHelpers.mixinStateFunctions(scope, comment);
+              fsUtils.mixinStateFunctions(scope, comment);
               comment._edit();
+              if (!scope.comments) { // the only time this is called without comments set is when there are 0 comments
+                scope.state.value = 'open';
+                scope.comments = [];
+              }
               scope.comments.push(comment);
             }
           });
