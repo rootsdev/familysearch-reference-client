@@ -31,7 +31,7 @@
       var sections = [
         'lifeSketch',
         'vitalFacts',
-        'otherFacts',
+        'otherInfo',
         'familyMembers',
         'sources',
         'discussions',
