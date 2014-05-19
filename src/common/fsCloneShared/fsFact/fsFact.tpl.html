@@ -1,4 +1,4 @@
-<div fs-item item="fact" editable="true" deletable="true">
+<div fs-item item="fact" editable="true" deletable="{{isDeletable() ? 'true' : 'false'}}">
   <div fs-fact-summary fact="fact" ng-hide="fact._isEditing()"></div>
   <div fs-item-details item="fact" agent="agent" sources="sources" ng-show="fact._isOpen()"></div>
   <div fs-fact-edit fact="fact" agent="agent" ng-show="fact._isEditing()"></div>
