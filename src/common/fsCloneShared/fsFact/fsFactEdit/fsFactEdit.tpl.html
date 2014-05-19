@@ -5,14 +5,26 @@
   </div>
   <div class="form-group">
     <label>{{fact.type | fsGedcomxLabel}} Date</label>
-    <input class="form-control" placeholder="Date of {{fact.type | fsGedcomxLabel}}" type="text" ng-model="form.date">
+    <input class="form-control" placeholder="Date of {{fact.type | fsGedcomxLabel}}" type="text" ng-model="form.date"
+        ng-disabled="form.living === 'true'" ng-blur="setStdDate()" typeahead-min-length="4" typeahead-wait-ms="400"
+        typeahead="date for date in getStdDates($viewValue)">
+    <div>
+      <span ng-show="!!form.stdDate && form.living !== 'true'">Standard: {{form.stdDate}}</span>
+      &nbsp;
+    </div>
   </div>
   <div class="form-group">
     <label>{{fact.type | fsGedcomxLabel}} Place</label>
-    <input class="form-control" placeholder="Place of {{fact.type | fsGedcomxLabel}}" type="text" ng-model="form.place">
+    <input class="form-control" placeholder="Place of {{fact.type | fsGedcomxLabel}}" type="text" ng-model="form.place"
+           ng-disabled="form.living === 'true'" ng-blur="setStdPlace()" typeahead-min-length="2" typeahead-wait-ms="400"
+           typeahead="place for place in getStdPlaces($viewValue)">
+    <div>
+      <span ng-show="!!form.stdPlace && form.living !== 'true'">Standard: {{form.stdPlace}}</span>
+      &nbsp;
+    </div>
   </div>
   <div class="form-group">
     <label>Reason this Information is Correct</label>
-    <textarea class="form-control" name="justification" placeholder="Explain why you feel this information is correct."></textarea>
+    <textarea class="form-control" ng-model="form.reason" placeholder="Explain why you feel this information is correct."></textarea>
   </div>
 </div>

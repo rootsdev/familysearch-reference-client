@@ -1,9 +1,9 @@
 <div class="vitalsWidgetContainer">
   <div fs-section section-title="Vital Information" state="state" details-openable="true" items="vitals">
     <div class="panel-body vitalsBody">
-      <div fs-name name="vitals['name']" sources="sources"></div>
-      <div fs-gender gender="vitals['gender']" sources="sources"></div>
-      <div fs-fact fact="vitals[type]" sources="sources" ng-repeat="type in vitalFactTypes"></div>
+      <div fs-name name="vitals[0]" sources="sources"></div>
+      <div fs-gender gender="vitals[1]" sources="sources"></div>
+      <div fs-fact fact="vital" sources="sources" ng-repeat="vital in vitals.slice(2)"></div>
     </div>
   </div>
 </div>

@@ -89,7 +89,7 @@
 
         agentSetter: function(scope) {
           return function(item) {
-            if (item && item.attribution && !scope.agent) {
+            if (item && item.attribution && item.attribution.$getAgentId() && !scope.agent) {
               return item.attribution.$getAgent().then(function (response) {
                 scope.agent = response.getAgent();
               });
