@@ -17,7 +17,7 @@
           function init() {
             var oldVitals = scope.vitals;
             scope.vitals = [
-              scope.person.$getPreferredName() || new fsApi.Name({}),
+              scope.person.$getPreferredName() || new fsApi.Name({type: 'http://gedcomx.org/BirthName', preferred: true}),
               scope.person.gender || {}
             ];
             fsVitalFactTypes.forEach(function(type) {
@@ -68,7 +68,10 @@
             event.stopPropagation();
             item._busy = true;
             if (item instanceof fsApi.Name) {
-              console.log('save name', item);
+              item.$setChangeMessage(changeMessage);
+              if (!item.id) {
+                scope.person.$addName(item);
+              }
             }
             else if (item instanceof fsApi.Fact) {
               console.log('fact saving', item);
@@ -80,9 +83,8 @@
             else if (item.type) { // gender
               scope.person.$setGender(item.type, changeMessage);
             }
-            console.log('person saving', scope.person);
+            console.log('saving person', scope.person);
             scope.person.$save(null, true).then(function() {
-              console.log('person saved', scope.person);
               item._open();
               init(); // re-init to correctly handle things like living
               $rootScope.$emit('saved', item);

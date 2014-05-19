@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFactEdit', function(_, fsDeathFactType, fsApi) {
+    .directive('fsFactEdit', function(_, $filter, $q, fsApi, fsDeathFactType, fsOtherFactTypes, fsUtils) {
       return {
         templateUrl: 'fsCloneShared/fsFact/fsFactEdit/fsFactEdit.tpl.html',
         scope: {
@@ -11,15 +11,27 @@
         link: function(scope) {
           scope.form = {
             living: scope.fact._living ? 'true' : 'false',
+            value: scope.fact.value,
             date: scope.fact.$getDate(),
             stdDate: scope.fact.$getNormalizedDate(),
             formalDate: scope.fact.$getFormalDate(),
             place: scope.fact.$getPlace(),
             stdPlace: scope.fact.$getNormalizedPlace()
           };
+          var factType = _.find(fsOtherFactTypes, {type: scope.fact.type});
+          if (!!factType) {
+            scope.hasValue = factType.hasValue;
+            scope.hasDatePlace = factType.hasDatePlace;
+          }
+          else {
+            scope.isCustom = true;
+            scope.form.title = $filter('fsCustomFactTitle')(scope.fact.type);
+            scope.hasValue = true;
+            scope.hasDatePlace = true;
+          }
 
-          var oldDate = scope.fact.$getDate();
-          var oldPlace = scope.fact.$getPlace();
+          var oldDate = scope.form.date;
+          var oldPlace = scope.fact.place;
 
           scope.isDeath = function(fact) {
             return fact.type === fsDeathFactType;
@@ -33,8 +45,11 @@
           };
 
           scope.setStdDate = function() {
-            if (oldDate !== scope.form.date) {
-              fsApi.getDate(scope.form.date).then(function(response) {
+            if (oldDate === scope.form.date) {
+              return $q.when(null);
+            }
+            else {
+              return fsApi.getDate(scope.form.date).then(function(response) {
                 var date = response.getDate();
                 scope.form.stdDate = date.valid ? date.normalized : '';
                 scope.form.formalDate = date.valid ? date.$getFormalDate() : '';
@@ -52,8 +67,11 @@
           };
 
           scope.setStdPlace = function() {
-            if (oldPlace !== scope.form.place) {
-              fsApi.getPlaceSearch(scope.form.place).then(function(response) {
+            if (oldPlace === scope.form.place) {
+              return $q.when(null);
+            }
+            else {
+              return fsApi.getPlaceSearch(scope.form.place).then(function(response) {
                 var places = response.getPlaces();
                 scope.form.stdPlace = places.length > 0 ? places[0].$getNormalizedPlace() : '';
                 oldPlace = scope.form.place;
@@ -70,13 +88,24 @@
               }
             }
             else {
-              fact
-                .$setDate(scope.form.date)
-                .$setNormalizedDate(scope.form.stdDate)
-                .$setFormalDate(scope.form.formalDate)
-                .$setPlace(scope.form.place)
-                .$setNormalizedPlace(scope.form.stdPlace);
-              scope.$parent.$emit('save', fact, scope.form.reason);
+              $q.all([scope.setStdDate(), scope.setStdPlace()]).then(function() { // in case blur hasn't fired
+                fact
+                  .$setDate(scope.form.date)
+                  .$setNormalizedDate(scope.form.stdDate)
+                  .$setFormalDate(scope.form.formalDate)
+                  .$setPlace(scope.form.place)
+                  .$setNormalizedPlace(scope.form.stdPlace);
+                if (scope.isCustom) {
+                  fact.type = fsUtils.encodeCustomFactType(scope.form.title);
+                }
+                if (scope.form.value) {
+                  fact.value = scope.form.value;
+                }
+                else {
+                  delete fact.value;
+                }
+                scope.$parent.$emit('save', fact, scope.form.reason);
+              });
             }
           });
 

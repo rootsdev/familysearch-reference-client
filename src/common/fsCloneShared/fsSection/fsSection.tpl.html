@@ -18,9 +18,17 @@
         <a href="" ng-show="attachable === 'true'" ng-click="$emit('attach')" class="btn btn-link non-form addNewNote pull-right">
           <i class="fa fa-plus-square">&nbsp;</i>{{attachLabel}}
         </a>
-        <a href="" ng-show="addable === 'true'" ng-click="$emit('add')" class="btn btn-link non-form addNewNote pull-right">
-          <i class="fa fa-plus-square">&nbsp;</i>{{addLabel}}
-        </a>
+        <div ng-show="addable === 'true'" class="btn btn-link non-form addNewNote pull-right">
+          <a href="" ng-if="!addMenu" ng-click="$emit('add')"><i class="fa fa-plus-square">&nbsp;</i>{{addLabel}}</a>
+          <div ng-if="!!addMenu" dropdown style="position:relative;">
+            <a href="" class="dropdown-toggle" style="padding-left:100px;"><i class="fa fa-plus-square">&nbsp;</i>{{addLabel}}</a>
+            <ul class="dropdown-menu">
+              <li ng-click="$emit('add', menuItem.value)" ng-repeat="menuItem in addMenu">
+                {{menuItem.label}}
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
     <div ng-transclude></div>

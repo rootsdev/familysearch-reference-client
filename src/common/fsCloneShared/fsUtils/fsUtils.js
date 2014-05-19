@@ -135,6 +135,10 @@
           });
         },
 
+        encodeCustomFactType: function(title) {
+          return 'data:,' + encodeURI(title);
+        },
+
         allPromisesSerially: function(arr, promiseGenerator) {
           function await(i) {
             if (i < arr.length) {

@@ -3,18 +3,26 @@
     <input type="radio" ng-model="form.living" value="true">&nbsp;Living
     &nbsp;&nbsp;&nbsp;<input type="radio" ng-model="form.living" value="false">&nbsp;Deceased
   </div>
-  <div class="form-group">
-    <label>{{fact.type | fsGedcomxLabel}} Date</label>
+  <div ng-show="isCustom" class="form-group">
+    <label>Title of {{fact.type | fsGedcomxLabel}}</label>
+    <input class="form-control" placeholder="Title of {{fact.type | fsGedcomxLabel}}" type="text" ng-model="form.title">
+  </div>
+  <div ng-show="hasValue" class="form-group">
+    <label>Description of {{fact.type | fsGedcomxLabel}}</label>
+    <input class="form-control" placeholder="Description of {{fact.type | fsGedcomxLabel}}" type="text" ng-model="form.value">
+  </div>
+  <div ng-show="hasDatePlace" class="form-group">
+    <label>Date of {{fact.type | fsGedcomxLabel}}</label>
     <input class="form-control" placeholder="Date of {{fact.type | fsGedcomxLabel}}" type="text" ng-model="form.date"
-        ng-disabled="form.living === 'true'" ng-blur="setStdDate()" typeahead-min-length="4" typeahead-wait-ms="400"
-        typeahead="date for date in getStdDates($viewValue)">
+           ng-disabled="form.living === 'true'" ng-blur="setStdDate()" typeahead-min-length="4" typeahead-wait-ms="400"
+           typeahead="date for date in getStdDates($viewValue)">
     <div>
       <span ng-show="!!form.stdDate && form.living !== 'true'">Standard: {{form.stdDate}}</span>
       &nbsp;
     </div>
   </div>
-  <div class="form-group">
-    <label>{{fact.type | fsGedcomxLabel}} Place</label>
+  <div ng-show="hasDatePlace" class="form-group">
+    <label>Place of {{fact.type | fsGedcomxLabel}}</label>
     <input class="form-control" placeholder="Place of {{fact.type | fsGedcomxLabel}}" type="text" ng-model="form.place"
            ng-disabled="form.living === 'true'" ng-blur="setStdPlace()" typeahead-min-length="2" typeahead-wait-ms="400"
            typeahead="place for place in getStdPlaces($viewValue)">
