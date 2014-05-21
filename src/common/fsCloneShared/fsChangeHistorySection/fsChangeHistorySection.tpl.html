@@ -1,0 +1,15 @@
+<div class="changeHistory">
+    <div class="profileHeaderContainer" fs-profile-header person="person"></div>
+    <div class="mainContent">
+        <table class="table table-hover table-responsive">
+            <thead>
+                <th class="changeInformation">Information</th>
+                <th class="changeDate">Details</th>
+                <th class="changeActions"></th>
+            </thead>
+            <tbody ng-repeat="change in changes">
+                <tr fs-change-history change="changeHistory"></tr>
+            </tbody>
+        </table>
+    </div>
+</div>

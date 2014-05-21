@@ -5,12 +5,12 @@
       return {
         templateUrl: 'fsCloneShared/fsTree/fsTreeNode.tpl.html',
         scope: {
-          person: '=',
-          spouse: '=',
+          family: '=',
           expandable: '@'
         },
         controller: function($scope) {
           $scope.expandable = false;
+          $scope.islive = !!$scope.family;
         }
       };
     });

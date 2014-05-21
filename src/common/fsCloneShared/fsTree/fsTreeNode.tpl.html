@@ -90,13 +90,16 @@
                 <div class="pull-left fs-icon-male couple-icon couple-icon-male" style="margin-right:8px;">&nbsp;</div>
             </div>
             <div class="pull-left">
-                <a href="" class="name-line">Husband's Name</a><br>
+                <a ng-show="!family.hasHusband()" href="" class="name-line">Husband's Name</a>
+                <a ng-show="family.hasHusband()" href="" class="name-line">{{family.husbandDescription.displayName()}}</a>
+                <br>
 
                 <div class="pedigree-lifeSpan pull-left">lifespan</div>
                 <div class="pull-left dot-guy">•</div>
                 <div class="pull-left pedigree-pid">ID#</div>
                 <div class="clearboth">&nbsp;</div>
             </div>
+
             <div class="clearboth">&nbsp;</div>
         </div>
         <div>
@@ -105,8 +108,9 @@
                     &nbsp;</div>
             </div>
             <div class="pull-left">
-                <a href="" class="name-line">Wife's Name</a><br>
-
+                <a ng-show="!family.hasWife()" href="" class="name-line">Wife's Name</a>
+                <a ng-show="family.hasWife()" href="" class="name-line">{{family.wifeDescription.displayName()}}</a>
+                <br>
                 <div class="pedigree-lifeSpan pull-left">lifespan</div>
                 <div class="pull-left dot-guy">•</div>
                 <div class="pull-left pedigree-pid">ID#</div>

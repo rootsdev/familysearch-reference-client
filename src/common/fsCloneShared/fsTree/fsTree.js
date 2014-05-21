@@ -8,13 +8,14 @@
           person: '=',
           spouse: '='
         },
-        controller: function($scope) {
-            var scope = $scope;
-            scope.config = {};
-            scope.model = {};
+        controller: function($scope, fsApi, Family) {
+            $scope.family = new Family($scope.person, $scope.spouse);
 
-            scope.navigateTo = function() {
-                $state.go('person', { personId: scope.person.id });
+            $scope.config = {};
+            $scope.model = {};
+
+            $scope.navigateTo = function() {
+                $state.go('person', { personId: $scope.person.id });
             };
         }
       };

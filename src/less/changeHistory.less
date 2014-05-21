@@ -1,0 +1,50 @@
+.changeHistory {
+  .jumbotron {
+    padding: 20px !important;
+    .personActions {
+      display: none !important;
+    }
+  }
+  h1 {
+    font-size: 18px !important;
+  }
+  .lifeSpan, .pid {
+    font-size: 16px;
+  }
+  .jumbotron .icon-rounded {
+    height: 60px !important;
+    width: 60px !important;
+    font-size: 32px !important;
+    line-height: 58px !important;
+    //margin-left: -10px !important;
+    &:before {
+      margin-left: 14px !important;
+    }
+  }
+  .changeInformation {
+    width: 170px;
+  }
+  .changeActions {
+    width: 150px;
+    text-align: center;
+  }
+  table {
+    margin-bottom: 0;
+    tbody {
+      background: #fff;
+    }
+  }
+  @media (max-width: 768px) {
+    .changeInformation {
+      width: 70px;
+    }
+    .changeActions {
+      width: 15%;
+    }
+  }
+  @media (max-width: 530px) {
+    .pid {
+      display: none !important;
+    }
+  }
+}
