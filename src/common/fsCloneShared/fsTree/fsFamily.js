@@ -71,6 +71,10 @@
           result = result.$getFullText();
         }
         return result;
+      },
+
+      allSpouses: function() {
+          return this.relationships ? this.relationships.getSpouses() : [];
       }
     };
 
@@ -117,6 +121,12 @@
       },
       hasHusband: function() { return !!this.husbandDescription; },
       hasWife: function() { return !!this.wifeDescription; },
+      hasAlternateHusbands: function() {
+        return this.hasWife() && this.wifeDescription.allSpouses().length > 1;
+      },
+      hasAlternateWives: function() {
+        return this.hasHusband() && this.husbandDescription.allSpouses().length > 1;
+      },
       husbandDescription: null,
       wifeDescription: null
 

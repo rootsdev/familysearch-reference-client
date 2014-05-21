@@ -11,20 +11,52 @@
 
 
     <!--All husbands closed-->
-    <div class="all-husbands-wrapper" style="display:none;">
+
+    <div class="all-wives-wrapper" style="display:none">
+        <div class="pull-left text-right sans-serif all-family-label">
+            <p style="padding-top:8px">All Wives</p>
+        </div>
+        <div class="pull-right all-wives-arrow-closed">
+            <span class="fs-icon-arrow-left"></span>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+    </div>
+
+
+    <div fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" enabled="true"
+         class="all-husbands-wrapper" style="z-index: 100">
+
         <div class="pull-left text-right sans-serif all-family-label">
             <p style="padding-top:8px">All Husbands</p>
         </div>
         <div class="pull-right all-husbands-arrow-closed">
             <span class="fs-icon-arrow-left"></span>
         </div>
+        <div class="pull-left text-right sans-serif all-family-label">
+            <div class="all-family-list fs-tree-popover-content">
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+            </div>
+        </div>
+
         <div class="clearfix">&nbsp;</div>
     </div>
 
     <!--All husbands open-->
-    <div  class="all-husbands-wrapper" style="z-index: 999999;display:none;">
+    <div class="all-husbands-wrapper" style="z-index: 999999;display:none;">
         <div class="pull-left text-right sans-serif all-family-list-wrapper">
             <p style="padding-top:8px">All Husbands</p>
+
             <div class="all-family-list">
                 List<br>
                 List<br>
@@ -61,6 +93,7 @@
     <div class="all-wives-wrapper" style="display:none">
         <div class="pull-left text-right sans-serif all-family-list-wrapper">
             <p style="padding-top:8px">All Wives</p>
+
             <div class="all-family-list">
                 List<br>
                 List<br>
@@ -83,7 +116,7 @@
     </div>
 </div>
 
-<div class="pull-left">
+<div class="pull-left tree-hover-point">
     <div class="pull-left couple-card">
         <div>
             <div class="pull-left">
@@ -91,7 +124,8 @@
             </div>
             <div class="pull-left">
                 <a ng-show="!family.hasHusband()" href="" class="name-line">Husband's Name</a>
-                <a ng-show="family.hasHusband()" href="" class="name-line">{{family.husbandDescription.displayName()}}</a>
+                <a ng-show="family.hasHusband()" href=""
+                   class="name-line">{{family.husbandDescription.displayName()}}</a>
                 <br>
 
                 <div class="pedigree-lifeSpan pull-left">lifespan</div>
@@ -111,6 +145,7 @@
                 <a ng-show="!family.hasWife()" href="" class="name-line">Wife's Name</a>
                 <a ng-show="family.hasWife()" href="" class="name-line">{{family.wifeDescription.displayName()}}</a>
                 <br>
+
                 <div class="pedigree-lifeSpan pull-left">lifespan</div>
                 <div class="pull-left dot-guy">•</div>
                 <div class="pull-left pedigree-pid">ID#</div>
@@ -163,79 +198,79 @@
 </div>
 
 
-    <div class="pull-left all-family-wrapper">
+<div class="pull-left all-family-wrapper">
 
-        <!--All husband's parents closed-->
-        <div class="all-husbands-wrapper" style="display:none;">
-            <div class="pull-left husband-parents-arrow-closed">
-                <span class="fs-icon-arrow-right"></span>
-            </div>
-            <div class="pull-left sans-serif all-family-label">
-                <p style="padding:8px 0 0 5px">All Parents</p>
-            </div>
-            <div class="clearfix">&nbsp;</div>
+    <!--All husband's parents closed-->
+    <div class="all-husbands-wrapper" style="display:none;">
+        <div class="pull-left husband-parents-arrow-closed">
+            <span class="fs-icon-arrow-right"></span>
         </div>
-
-        <!--All husband's parents open-->
-        <div class="all-husbands-wrapper" style="z-index: 999999;display:none;">
-            <div class="pull-left husband-parents-arrow-open">
-                <span class="fs-icon-arrow-right"></span>
-            </div>
-            <div class="pull-left sans-serif all-family-list-wrapper">
-                <p style="padding:8px 0 0 5px">All Parents</p>
-
-                <div class="all-family-list" style="margin:0 0 0 5px">
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                </div>
-            </div>
-            <div class="clearfix">&nbsp;</div>
+        <div class="pull-left sans-serif all-family-label">
+            <p style="padding:8px 0 0 5px">All Parents</p>
         </div>
-
-        <!--All wife's parents closed-->
-        <div class="all-wives-wrapper" style="display:none;">
-            <div class="pull-left wife-parents-arrow-closed">
-                <span class="fs-icon-arrow-right"></span>
-            </div>
-            <div class="pull-left sans-serif all-family-label">
-                <p style="padding:8px 0 0 5px">All Parents</p>
-            </div>
-            <div class="clearfix">&nbsp;</div>
-        </div>
-
-        <!--All wife's parents open-->
-        <div class="all-wives-wrapper" style="display:none">
-            <div class="pull-left wife-parents-arrow-open">
-                <span class="fs-icon-arrow-right"></span>
-            </div>
-            <div class="pull-left sans-serif all-family-list-wrapper">
-                <p style="padding:8px 0 0 5px">All Parents</p>
-
-                <div class="all-family-list" style="margin:0 0 0 5px">
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                    List<br>
-                </div>
-            </div>
-            <div class="clearfix">&nbsp;</div>
-        </div>
+        <div class="clearfix">&nbsp;</div>
     </div>
+
+    <!--All husband's parents open-->
+    <div class="all-husbands-wrapper" style="z-index: 999999;display:none;">
+        <div class="pull-left husband-parents-arrow-open">
+            <span class="fs-icon-arrow-right"></span>
+        </div>
+        <div class="pull-left sans-serif all-family-list-wrapper">
+            <p style="padding:8px 0 0 5px">All Parents</p>
+
+            <div class="all-family-list" style="margin:0 0 0 5px">
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+            </div>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+    </div>
+
+    <!--All wife's parents closed-->
+    <div class="all-wives-wrapper" style="display:none;">
+        <div class="pull-left wife-parents-arrow-closed">
+            <span class="fs-icon-arrow-right"></span>
+        </div>
+        <div class="pull-left sans-serif all-family-label">
+            <p style="padding:8px 0 0 5px">All Parents</p>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+    </div>
+
+    <!--All wife's parents open-->
+    <div class="all-wives-wrapper" style="display:none">
+        <div class="pull-left wife-parents-arrow-open">
+            <span class="fs-icon-arrow-right"></span>
+        </div>
+        <div class="pull-left sans-serif all-family-list-wrapper">
+            <p style="padding:8px 0 0 5px">All Parents</p>
+
+            <div class="all-family-list" style="margin:0 0 0 5px">
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+            </div>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+    </div>
+</div>
