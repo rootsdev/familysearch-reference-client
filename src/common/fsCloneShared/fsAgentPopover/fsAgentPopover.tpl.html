@@ -4,7 +4,7 @@
       <div class="cardFrame">
         <div class="content">
           <div class="contact serif">
-            <span class="name">MMD8-3NT</span>
+            <span class="name">{{agent.id}}</span>
           </div>
           <table class="contact eventTable">
             <tbody>
@@ -26,20 +26,18 @@
                 <div class="date ellipses-text">{{agent.$getEmail()}}</div>
               </td>
             </tr>
-            <!-- TODO not sure how to get a phone number or a mailing address from an agent
             <tr class="event">
               <th>Phone Number</th>
               <td>
-                <div class="date ellipses-text">{{agent.$getEmail()}}</div>
+                <div class="date ellipses-text">{{agent.$getPhoneNumber()}}</div>
               </td>
             </tr>
             <tr class="event">
               <th>Mailing Address</th>
               <td>
-                <div class="date ellipses-text">{{agent.$getEmail()}}</div>
+                <div class="date ellipses-text">{{agent.$getAddress()}}</div>
               </td>
             </tr>
-            -->
             </tbody>
           </table>
         </div>
