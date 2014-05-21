@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFactEdit', function(_, $filter, $q, fsApi, fsDeathFactType, fsOtherFactTypes, fsUtils) {
+    .directive('fsFactEdit', function(_, $filter, $q, fsApi, fsDeathFactType, fsVitalFactTypes, fsOtherFactTypes, fsUtils) {
       return {
         templateUrl: 'fsCloneShared/fsFact/fsFactEdit/fsFactEdit.tpl.html',
         scope: {
@@ -18,16 +18,23 @@
             place: scope.fact.$getPlace(),
             stdPlace: scope.fact.$getNormalizedPlace()
           };
-          var factType = _.find(fsOtherFactTypes, {type: scope.fact.type});
-          if (!!factType) {
-            scope.hasValue = factType.hasValue;
-            scope.hasDatePlace = factType.hasDatePlace;
+
+          if (_.contains(fsVitalFactTypes, scope.fact.type)) {
+            scope.hasValue = false;
+            scope.hasDatePlace = true;
           }
           else {
-            scope.isCustom = true;
-            scope.form.title = $filter('fsCustomFactTitle')(scope.fact.type);
-            scope.hasValue = true;
-            scope.hasDatePlace = true;
+            var factType = _.find(fsOtherFactTypes, {type: scope.fact.type});
+            if (!!factType) {
+              scope.hasValue = factType.hasValue;
+              scope.hasDatePlace = factType.hasDatePlace;
+            }
+            else {
+              scope.isCustom = true;
+              scope.form.title = $filter('fsCustomFactTitle')(scope.fact.type);
+              scope.hasValue = true;
+              scope.hasDatePlace = true;
+            }
           }
 
           var oldDate = scope.form.date;

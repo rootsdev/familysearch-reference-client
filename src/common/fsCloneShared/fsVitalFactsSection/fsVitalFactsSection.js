@@ -46,21 +46,30 @@
           init();
 
           // delete
-          scope.$on('delete', function(event, fact, changeMessage) {
+          scope.$on('delete', function(event, fact) {
             event.stopPropagation();
-            (fact.type === fsDeathFactType ? $q.when(changeMessage) : fsConfirmationModal.open({
-              title: 'Delete '+ $filter('fsGedcomxLabel')(fact.type),
-              subTitle: 'Reason for Deleting This Information',
-              showChangeMessage: true,
-              okLabel: 'Delete'
-            })).then(function(changeMessage) {
-              fact._busy = true;
-              scope.person.$deleteFact(fact, changeMessage);
-              scope.person.$save(null, true).then(function() {
-                init(); // re-init to correctly handle things like living
-                $rootScope.$emit('deleted', fact);
+            if (fact.type === fsDeathFactType) {
+              fsConfirmationModal.open({
+                title: 'Unable to bring someone back from the dead',
+                subTitle: 'You cannot change a person\'s status from deceased to living here. ' +
+                  'Instead, please contact FamilySearch support at https://familysearch.org/ask/help'
               });
-            });
+            }
+            else {
+              fsConfirmationModal.open({
+                title: 'Delete '+ $filter('fsGedcomxLabel')(fact.type),
+                subTitle: 'Reason for Deleting This Information',
+                showChangeMessage: true,
+                okLabel: 'Delete'
+              }).then(function(changeMessage) {
+                fact._busy = true;
+                scope.person.$deleteFact(fact, changeMessage);
+                scope.person.$save(null, true).then(function() {
+                  init(); // re-init to correctly handle things like living
+                  $rootScope.$emit('deleted', fact);
+                });
+              });
+            }
           });
 
           // save
