@@ -1,28 +1,42 @@
 <div fs-item-edit item="name" agent="agent">
+  <div ng-hide="name.preferred" class="form-group">
+    <select ng-model="form.nameType" ng-options="nameType.value as nameType.label for nameType in nameTypes"></select>
+  </div>
+  <div class="form-group">
+    Name&nbsp;&nbsp;|&nbsp;&nbsp;Template:
+    <span style="position:relative">
+      <a href="" dropdown-toggle>{{form.template.template}}</a>&#9660;
+      <ul class="dropdown-menu">
+        <li ng-click="" ng-repeat="template in templates">
+          <a href="" ng-click="setTemplate(template)">
+            <span ng-show="template === form.template" style="margin-left: -10px">&#10003;</span>
+            <span ng-hide="template === form.template">&nbsp;</span>
+            {{template.template}}
+          </a>
+        </li>
+      </ul>
+    </span>
+  </div>
   <div class="row">
-    <div class="col-sm-2">
+    <div ng-show="showLangLabel()" ng-class="getColumnClass()">&nbsp;</div>
+    <div ng-class="getColumnClass(column.type)" ng-repeat="column in columns">
+      {{column.label}}
+    </div>
+  </div>
+  <div class="row" ng-repeat="nameForm in form.nameForms">
+    <div ng-show="showLangLabel()" ng-class="getColumnClass()">
       <div class="form-group">
-        <label>Title</label> <input class="form-control" id="title" placeholder="" type="text" ng-model="form.prefix">
+        <label>{{nameForm.label}}</label>
       </div>
     </div>
-    <div class="col-sm4 col-sm-4">
-      <div class="form-group">
-        <label>First Names</label> <input class="form-control" id="firstName" type="text" ng-model="form.given">
-      </div>
-    </div>
-    <div class="col-sm4 col-sm-4">
-      <div class="form-group">
-        <label>Last Name</label> <input class="form-control" id="lastName" type="text" ng-model="form.surname">
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="form-group">
-        <label for="suffix">Suffix</label> <input class="form-control" id="suffix" name="suffix" type="text" ng-model="form.suffix">
+    <div ng-class="getColumnClass(column.type)" ng-repeat="column in columns">
+      <div class="form-group" ng-show="!!getPart(nameForm, column.type)">
+        <input class="form-control" placeholder="{{column.label}}" type="text" ng-model="getPart(nameForm, column.type).value">
       </div>
     </div>
   </div>
   <div class="form-group">
     <label>Reason this Information is Correct</label>
-    <textarea class="form-control" name="justification" placeholder="Explain why you feel this information is correct."></textarea>
+    <textarea class="form-control" ng-model="form.reason" placeholder="Explain why you feel this information is correct."></textarea>
   </div>
 </div>

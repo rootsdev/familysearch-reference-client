@@ -3,8 +3,6 @@
   angular.module('fsCloneShared')
     .filter('fsGedcomxLabel', function() {
       var map = {
-        'AlsoKnownAs': 'Alternate Name',
-        'BirthName': 'Name',
         'Stillbirth': 'Sillborn',
         'Ethnicity': 'Race',
         'NationalId': 'National Identity',

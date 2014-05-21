@@ -21,8 +21,6 @@
         },
         link: function(scope) {
 
-          console.log('addMenu', scope.addMenu);
-
           scope.toggleState = function() {
             scope.state.value = scope.state.value === 'open' ? 'closed' : 'open';
           };

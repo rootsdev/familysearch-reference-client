@@ -1,4 +1,3 @@
-<div fs-item-summary label="{{name.type | fsGedcomxLabel}}" item="name">
-  <div ng-show="name.type | fsAlternateNameTitle">{{name.type | fsAlternateNameTitle}}</div>
-  <div>{{name.$getFullText()}}</div>
+<div fs-item-summary label="{{name.preferred ? 'Name' : (!name.type ? 'OtherName' : name.type) | fsGedcomxLabel}}" item="name">
+  <div ng-repeat="nameForm in name.nameForms | orderBy:nameFormOrderByFn">{{nameForm.fullText}}</div>
 </div>

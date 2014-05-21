@@ -2,7 +2,6 @@
   'use strict';
   angular.module('fsCloneShared')
     .constant('fsOtherFactTypes', [
-      {type: 'http://gedcomx.org/AlsoKnownAs', isName: true},
       {type: 'http://gedcomx.org/Stillbirth', hasDatePlace: true},
       {type: 'http://gedcomx.org/BarMitzvah', hasDatePlace: true},
       {type: 'http://gedcomx.org/BatMitzvah', hasDatePlace: true},

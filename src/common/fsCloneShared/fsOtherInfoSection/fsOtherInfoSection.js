@@ -1,7 +1,8 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsOtherInfoSection', function (_, $rootScope, $filter, fsUtils, fsApi, fsVitalFactTypes, fsOtherFactTypes) {
+    .directive('fsOtherInfoSection', function (_, $rootScope, $filter, fsUtils, fsApi,
+                                               fsVitalFactTypes, fsOtherFactTypes, fsNameTypes, fsAlsoKnownAsNameType) {
       return {
         templateUrl: 'fsCloneShared/fsOtherInfoSection/fsOtherInfoSection.tpl.html',
         scope: {
@@ -9,9 +10,45 @@
           person: '='
         },
         link: function(scope) {
+          function getNameIndex(name) {
+            var index = fsNameTypes.indexOf(name.type);
+            if (index >= 0) {
+              return index;
+            }
+            return fsNameTypes.length;
+          }
+
           function factTypeComparer(a, b) {
-            var indexA = _.findIndex(fsOtherFactTypes, {type: a.type});
-            var indexB = _.findIndex(fsOtherFactTypes, {type: b.type});
+            // sort names above facts by type, then last-mod date
+            var indexA, indexB;
+            if (a instanceof fsApi.Name && b instanceof fsApi.Name) {
+              indexA = getNameIndex(a);
+              indexB = getNameIndex(b);
+              if (indexA === indexB) {
+                if (a.attribution && b.attribution) {
+                  return a.attribution.modified - b.attribution.modified;
+                }
+                else if (a.attribution) {
+                  return -1;
+                }
+                else if (b.attribution) {
+                  return 1;
+                }
+                return 0;
+              }
+              else {
+                return indexA - indexB;
+              }
+            }
+            else if (a instanceof fsApi.Name) {
+              return -1;
+            }
+            else if (b instanceof fsApi.Name) {
+              return 1;
+            }
+            // sort facts by fact type, then date
+            indexA = _.findIndex(fsOtherFactTypes, {type: a.type});
+            indexB = _.findIndex(fsOtherFactTypes, {type: b.type});
             if (indexA === indexB && a.$getFormalDate && a.$getFormalDate() && b.$getFormalDate && b.$getFormalDate()) {
               return a.$getFormalDate() < b.$getFormalDate() ? -1 : 1;
             }
@@ -42,13 +79,13 @@
 
           init();
 
-          scope.addMenu = _.map(fsOtherFactTypes, function(otherFactType) {
+          // add menu is Alternate Name + other fact types + custom
+          scope.addMenu = _.map([{type: fsAlsoKnownAsNameType}].concat(fsOtherFactTypes).concat([{type: ''}]), function(other) {
             return {
-              label: $filter('fsGedcomxLabel')(otherFactType.type),
-              value: otherFactType.type
+              label: other.type === fsAlsoKnownAsNameType ? 'Alternate Name' : $filter('fsGedcomxLabel')(other.type),
+              value: other.type
             };
           });
-          scope.addMenu.push({label:'Custom Event', value: ''});
 
           scope.isName = function(item) {
             return (item instanceof fsApi.Name);
@@ -59,8 +96,7 @@
             event.stopPropagation();
             // if not already adding
             if (!fsUtils.findById(scope.items, null)) {
-              var otherFactType = _.find(fsOtherFactTypes, {type: type});
-              var item = otherFactType && otherFactType.isName ? new fsApi.Name({type: type}) : new fsApi.Fact({type: type});
+              var item = type === fsAlsoKnownAsNameType ? new fsApi.Name({type: type}) : new fsApi.Fact({type: type});
               fsUtils.mixinStateFunctions(scope, item);
               item._edit();
               scope.items.push(item);
@@ -97,7 +133,6 @@
               }
             }
             item.$setChangeMessage(changeMessage);
-            console.log('save', item, scope.person);
             scope.person.$save(null, true).then(function() {
               item._open();
               init(); // re-init items so we get the new item.id
