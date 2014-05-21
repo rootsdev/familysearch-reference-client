@@ -16,8 +16,8 @@
       fsApiProvider
         .setAppKey('WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK')
         .setEnvironmentName('sandbox')
-        //.setAuthCallback('http://localhost:9000/#!/auth');
-        .setAuthCallback('http://demo.werelate.org/#/auth');
+        .setAuthCallback('http://localhost:9000/#!/auth');
+        //.setAuthCallback('http://demo.werelate.org/#/auth');
     })
 
     .run(function () {
