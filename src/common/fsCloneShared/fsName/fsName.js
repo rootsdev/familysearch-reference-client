@@ -5,6 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsName/fsName.tpl.html',
         scope: {
+          person: '=',
           name: '=',
           sources: '='
         },

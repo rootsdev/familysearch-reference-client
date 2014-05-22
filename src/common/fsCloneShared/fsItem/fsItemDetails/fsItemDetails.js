@@ -5,6 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsItem/fsItemDetails/fsItemDetails.tpl.html',
         scope: {
+          person: '=',
           item: '=',
           agent: '=',
           sources: '='

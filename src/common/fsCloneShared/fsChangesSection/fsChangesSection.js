@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsChangesSection', function (fsApi, $rootScope) {
+    .directive('fsChangesSection', function (fsApi, $rootScope, fsChangeHistoryModal) {
       return {
         templateUrl: 'fsCloneShared/fsChangesSection/fsChangesSection.tpl.html',
         scope: {
@@ -16,6 +16,10 @@
               });
             }
           }
+
+          scope.showChangesModal = function() {
+            fsChangeHistoryModal.open({person: scope.person});
+          };
 
           var unbindSaved = $rootScope.$on('saved', function() {
             console.log('refresh changes');

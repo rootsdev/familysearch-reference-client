@@ -95,7 +95,8 @@ module.exports = function(grunt) {
                 'vendor/angular-moment/angular-moment.js',
                 'vendor/hamsterjs/hamster.js',
                 'vendor/angular-mousewheel/mousewheel.js',
-                'vendor/angular-pan-zoom/build/panzoom.0.1-snapshot.min.js'
+                'vendor/angular-pan-zoom/build/panzoom.0.1-snapshot.min.js',
+                'vendor/ngInfiniteScroll/build/ng-infinite-scroll.js'
             ],
             css: [
             ],

@@ -12,7 +12,8 @@
     "lodash": "~2.4.1",
     "es5-shim": "~3.0.2",
     "familysearch-javascript-sdk": "~0.9.8",
-    "angular-moment": "~0.7.0"
+    "angular-moment": "~0.7.0",
+    "ngInfiniteScroll": "~1.1.2"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.9"

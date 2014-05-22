@@ -152,6 +152,12 @@
           }
 
           return await(0);
+        },
+
+        setConstructor: function(obj, constructorFunction) {
+          var result = Object.create(constructorFunction.prototype);
+          _.extend(result, obj);
+          return result;
         }
 
       };

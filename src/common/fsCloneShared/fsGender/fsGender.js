@@ -5,6 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsGender/fsGender.tpl.html',
         scope: {
+          person: '=',
           gender: '=',
           sources: '='
         },
