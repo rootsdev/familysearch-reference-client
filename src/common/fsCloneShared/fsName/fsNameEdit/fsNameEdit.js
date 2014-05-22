@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsNameEdit', function(_, $filter, fsNameTemplates, fsNameLanguages, fsNameUtils, fsNameTypes) {
+    .directive('fsNameEdit', function(_, $filter, fsUtils, fsNameTemplates, fsNameLanguages, fsNameUtils, fsNameTypes) {
 
       function partComparator(data) {
         return function(a, b) {
@@ -164,10 +164,11 @@
             });
             // set the nameForms
             name.nameForms = _.map(scope.form.nameForms, function(nameForm) {
-              return {
+              return fsUtils.removeEmptyProperties({
+                lang: nameForm.lang, // will be removed if empty
                 parts: _.filter(nameForm.parts, function(part) { return !!part.value; }),
                 fullText: getFullText(nameForm, scope.primaryLang)
-              };
+              });
             });
             // set the type and emit the save event
             name.$setType(scope.form.nameType);

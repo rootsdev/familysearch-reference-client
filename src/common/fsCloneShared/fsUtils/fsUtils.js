@@ -158,6 +158,10 @@
           var result = Object.create(constructorFunction.prototype);
           _.extend(result, obj);
           return result;
+        },
+
+        removeEmptyProperties: function(obj) {
+          return _.omit(obj, function(value) { return _.isEmpty(value) && value !== 0; });
         }
 
       };
