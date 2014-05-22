@@ -5,7 +5,7 @@
 
       return {
         scope: {
-          enabled: '=',
+          family: '=',
           popoverArrow: '@',
           popoverHover: '@',
           popoverContent: '@'
