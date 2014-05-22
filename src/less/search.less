@@ -1,0 +1,1352 @@
+/***********************************************************************/
+/* Search Form
+/***********************************************************************/
+.searchFormWrapper {
+  background: #fff;
+  border: none;
+  display: none;
+  float: none;
+  font-size: 1em;
+  line-height: 1.2308;
+  margin: 10px;
+  width: auto;
+}
+
+.searchFormWrapper.show {
+  display: block;
+}
+
+.searchFormWrapper.show.none {
+  display: none;
+}
+
+.mainHeader {
+  background: #ECEBEA;
+  margin: 0;
+  padding: 10px 20px;
+  font-size: 24px;
+  color: #333331;
+}
+
+.record .hide {
+  display: none;
+}
+
+.treeDestinationPage{
+  position: relative;
+  background: #fff;
+}
+
+.modalPage #searchGadgetContent {
+  margin: 0 -20px;
+}
+
+/***********************/
+/* Search Tabs
+/***********************/
+.searchTabs {
+  background: #ECEBEA;
+  border-bottom: 1px solid #B7B7B7;
+  display: block;
+  height: 34px;
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.searchTabs > a {
+  border-bottom: 0.2em solid transparent;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 0 0 20px;
+  padding: 7px 20px;
+  text-decoration: none;
+  font-size: 16px;
+  border-width: 0;
+  color: #333331;
+}
+
+/* highlight active tab */
+.nameSearch .nameSearchTab,
+.idSearch .idSearchTab,
+.newIndividualSearch .addNewIndividualTab {
+  background: #fff;
+  border: 1px solid #B7B7B7;
+  border-bottom-width: 0;
+  padding-bottom: 8px;
+  color: #3C3B36;
+}
+
+/***********************/
+/* Basic Search Form
+/***********************/
+.searchForm {
+  padding: 20px;
+  margin: 0;
+  float: left;
+}
+
+/* hide forms */
+.newIndividualSearch,
+.nameSearch,
+.idSearch {
+  display: none;
+}
+
+/* show active form */
+.newIndividualSearch .newIndividualSearch,
+.nameSearch .nameSearch,
+.idSearch .idSearch {
+  display: block;
+}
+
+/* Set horizontal lines and passing for all fieldset sections in the form */
+.searchForm fieldset {
+  margin: 0 0 0.8em 0;
+  border-bottom: 1px solid #C3C1BD;
+  padding: 0;
+}
+
+.searchForm .column {
+  float: left;
+  margin: 0 0 28px 0;
+  padding: 0;
+  width: auto;
+}
+
+.column.col1 {
+  margin-right: 20px;
+  clear: left;
+}
+
+.column input[type=text] {
+  width: 286px;
+}
+
+.column input[type=checkbox]:focus,
+.column input[type=radio]:focus {
+  outline: #AAAAFF ridge 1px;
+}
+
+/* keep the border radius on non-advanced fields */
+.column input[type=text][name=eventYearFrom],
+.column input[type=text][name=eventYearTo] {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.column select {
+  width: 140px;
+}
+
+/* Language specific styles */
+.locale-it .column select,
+.locale-ru .column select {
+  width: 190px;
+}
+
+.locale-ja .column select {
+  width: 170px;
+}
+
+.locale-de .column select,
+.locale-es .column select,
+.locale-fr .column select {
+  width: 160px;
+}
+
+.text,
+.checkholder,
+.select {
+  border: 0 none;
+  width: auto;
+  padding: 0 0 1px 0;
+  background-color: #FFFFFF;
+  display: inline-block;
+  margin: 0;
+  position: relative;
+  vertical-align: middle;
+  outline: 0;
+}
+
+/* Hide the checkbox on the basic page */
+.checkholder {
+  display: none;
+}
+
+.column.gender {
+  clear: both;
+  display: block;
+  float: none;
+}
+
+.eventType,
+.eventDateRange {
+  display: inline-block;
+  float: left;
+}
+
+.eventType {
+  margin-right: 20px;
+}
+
+.eventDateSpan {
+  overflow: hidden;
+  width: auto;
+}
+
+.disabled > label {
+  color: #CCCBC4;
+}
+
+.disabled .text,
+.disabled .checkholder {
+  border-color: #DEDBD7;
+}
+
+.disabled .checkholder {
+  background-color: #F8F9F8;
+}
+
+.column input[type=text][name=eventYearFrom],
+.column input[type=text][name=eventYearTo]
+{
+  width: 57px;
+}
+
+/* Japanese string requires more space */
+.locale-ja input[type=text][name=eventYearFrom],
+.locale-ja input[type=text][name=eventYearTo]
+{
+  width: 85px;
+}
+
+.fieldError {
+  background-color: #FFF0CF;
+  border: 1px solid #FFDE20;
+  border-left-width: 10px;
+  color: #3C3B36;
+  display: none;
+  font-weight: bold;
+  font-size: 12px;
+  margin: 3px 0 0 0;
+  overflow: hidden;
+  padding: 2px 9px;
+  position: relative;
+  top: 2px;
+}
+
+.eventDateSpan .fieldError {
+  width: 117px;
+}
+
+.eventPlaceSpan .fieldError {
+  width: 271px;
+}
+
+.matchExact {
+  display: none;
+}
+
+/***********************/
+/* Advanced Search Form
+/***********************/
+.advanced input[type=text] {
+  width: 258px;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+  position: relative;
+}
+
+/* Show the checkbox on the advanced page. */
+.advanced .checkholder {
+  background-color: #eeeeee;
+  border: 1px solid #ccc;
+  border-left-width: 1px;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: normal;
+  height: 24px;
+  line-height: 20px;
+  margin: 0;
+  margin-left: -5px;
+  min-width: 16px;
+  padding: 3px;
+  position: static;
+  right: 0;
+  text-align: center;
+  text-shadow: 0 1px 0 #ffffff;
+  top: 0;
+  width: auto;
+}
+
+/* Browser specific styles */
+.ie8 .advanced .checkholder {
+  padding: 6px 4px 0 6px;
+  width: 16px;
+}
+
+.webkit .advanced .checkholder {
+  padding: 5px 7px 1px;
+  margin-bottom: 9px;
+}
+
+.opera .advanced .checkholder {
+  padding: 6px 7px 0;
+}
+
+.advanced input[type=checkbox] {
+  margin: 0;
+}
+
+.advanced .matchExact {
+  color: #333331;
+  cursor: default;
+  display: block;
+  float: right;
+  font-size: 16px;
+  line-height: 22px;
+  margin: 0 0 8px 8px;
+  padding: 0;
+  text-align: right;
+}
+
+/* ID needed to override engage-style.css:476 margin:0; */
+/* TODO: remove when verified the style is not needed in engage-style.css */
+#content .advanced input.matchExact {
+  clear: left;
+  margin: 4px 9px 0 7px;
+}
+
+.advanced .showBasicSearch {
+  display: inline;
+}
+
+/***********************/
+/* Action Bar
+/***********************/
+.actions {
+  margin: 0;
+}
+
+.showAdvancedSearch,
+.showBasicSearch {
+  margin-left: 10px;
+}
+
+/* hide links on pages */
+.showBasicSearch,
+.advanced .showAdvancedSearch,
+.idSearch .showAdvancedSearch,
+.newIndividualSearch .showAdvancedSearch {
+  display: none;
+}
+
+.showBasicSearch:focus,
+.showAdvancedSearch:focus {
+  border: 1px dotted;
+}
+
+.newIndividualSearch .clearSearch,
+.idSearch .clearSearch {
+  border: none;
+  margin: 0;
+}
+
+.clearSearch,
+.cancelSearch {
+  border-left: 1px solid;
+  margin-left: 15px;
+  padding-left: 15px;
+}
+
+/***********************************************************************/
+/* Search Results
+/***********************************************************************/
+.searchResults,
+.loadingView,
+.loading .resultsRecords,
+.loading .refineBar,
+.loading.show .searchResultsTable {
+  display: none;
+}
+
+.searchResults.show {
+  background-color: transparent;
+  border: none;
+  display: block;
+  padding: 0 10px 150px;
+  width: auto;
+}
+
+/* loadingView */
+.loading .loadingView,
+.searchGadget.loading .searchResults .loadingView {
+  display: block;
+}
+
+.loadingView {
+  display: none;
+  height: 100px;
+  margin: 144px auto;
+  position: relative;
+  width: 400px;
+}
+
+.loadingView .spinner-large-gray,
+.loadingView .spinner-large-white {
+  display:block;
+  margin: 0 auto;
+}
+
+.loadingView .loadingText {
+  color: #99938D;
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0 auto;
+  padding-top: 18px;
+  text-align: center;
+}
+
+/***********************/
+/* Refine Bar
+/***********************/
+.refineBar {
+  margin: 0;
+  padding: 20px 10px;
+  position: relative;
+  left: 0;
+}
+
+.refineLinks {
+  float: left;
+  height: auto;
+  padding-right: 4px;
+  padding-top: 4px;
+  text-align: center;
+}
+
+.searchBtn {
+  float: left;
+  margin-right: 9px;
+  margin-top: 13px;
+  position: relative;
+}
+
+.refinementsList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.refinementsListItem {
+  display: block;
+  float: left;
+  line-height: 14px;
+  margin-right: .9em;
+}
+
+.refineLabel {
+  color: #666662;
+  display: block;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0;
+  padding: 0 5px;
+}
+
+.refineButton {
+  background: #666662;
+  border: 0 none;
+  border-radius: 5px 0 0 5px;
+  color: #fff;
+  display: block;
+  font-weight: normal;
+  font-size: 1em;
+  float: left;
+  line-height: 32px;
+  margin: 0;
+  min-width: 35px;
+  padding: 0 15px;
+  text-shadow: 0 -1px #000;
+}
+
+.refineX {
+  background: #666662;
+  border-radius: 0 5px 5px 0;
+  border: 1px solid #666662;
+  border-left-color: #ECEBEA;
+  float: left;
+  height: 30px;
+  margin: 0;
+  width: 30px;
+}
+
+.refineX:before {
+  content: 'X';
+  color: #fff;
+  font-size: 13px;
+  text-align: center;
+  width: 100%;
+  line-height: 30px;
+  display: block;
+}
+
+.refineX:hover {
+  text-decoration: none;
+}
+
+/***********************/
+/* Search Results Table
+/***********************/
+.searchResultsTable {
+  background: #fff;
+  border-collapse: collapse;
+  clear: both;
+  margin: 0;
+  padding: 0;
+  table-layout: fixed;
+  text-align: left;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.searchResultsTable th {
+  border: 0;
+  padding-bottom: 6px;
+  padding-top: 10px;
+  color: #393933;
+  font-size: 14px;
+}
+
+.searchResultsTable .name {
+  font-size: 16px;
+  line-height: 22px;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+
+.column-label {
+  display: none;
+}
+
+.personHeader {
+  padding-left: 35px;
+}
+
+.eventsHeader {
+  padding-left: 0px;
+}
+
+.resultsRecords {
+  display: table-row-group;
+}
+
+.improveResultsTd {
+  padding: 0;
+  border: 0;
+  font-size: 1.3em;
+}
+
+.improveResultsWrapper {
+  background: #8BB9FB;
+  position: relative;
+  margin: 0;
+  width: 100%;
+}
+
+.partialMatchContainer,
+.partialMatchContainer .partialMatch,
+.partialMatchContainer .resultsLabel {
+  background: #FEDF8F;
+}
+
+.improveResults,
+.partialMatch {
+  background: #8BB9FB;
+  color: #333331;
+  display: block;
+  float: left;
+  font-size: 14px;
+  margin: 0;
+  padding: 15px;
+}
+
+.resultsLabel {
+  background: #8BB9FB;
+  color: #333331;
+  float: right;
+  font-size: 14px;
+  padding: 15px;
+}
+
+.record ul {
+  list-style: none;
+  margin: 0;
+}
+
+/* tr */
+.record {
+  background: #fff;
+  border-color: #F0EFED;
+  border-style: solid;
+  border-width: 0.1em 0;
+  display: table-row;
+  margin: 0;
+  outline: 0 none;
+  position: static;
+  padding: 15px 5px;
+  vertical-align: baseline;
+  color: #333331;
+  font-size: 16px;
+}
+
+.record.selected {
+  background-color: #F6F5F3;
+}
+
+/* td */
+.record td {
+  border-color: #CCC8C4;
+  border-style: solid;
+  border-width: 0.1em 0;
+  overflow: hidden;
+  padding: 10px 20px 1px 10px;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+/* deleted person */
+.deleted-title > td {
+  background: #4d4d4a;
+  border: 5px solid #4d4d4a;
+  border-top-width: 0;
+  color: #FFFFFF;
+  padding: 3px;
+}
+
+.deleted-person > td {
+  border: 5px solid #4d4d4a;
+  border-width: 5px 0 5px 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.deleted-person .individualColumn {
+  border-left-width: 5px;
+}
+
+.searchResultsTable:not(.showAction) .deleted-person .spouseColumn,
+.deleted-person .actionColumn {
+  border-right-width:5px;
+}
+
+/* individual column */
+/* .searchResultsTable needed to not overwrite PersonSummaryGadget.css on Possible Duplicates page */
+.searchResultsTable .individualColumn {
+  padding-left: 10px;
+}
+
+/* events column */
+.searchResultsTable .eventsColumn {
+  padding-left: 0;
+}
+
+.searchResultsTable .events {
+  margin: 0;
+  vertical-align: top;
+}
+
+.searchResultsTable .event {
+  position: relative;
+}
+
+.searchResultsTable .eventLabel {
+  color: #666661;
+  display: inline-block;
+  margin-right: 10px;
+  text-align: right;
+  font-size: 14px;
+  vertical-align: top;
+  width: 105px;
+}
+
+.searchResultsTable .eventData {
+  line-height: 1.2;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: absolute;
+  left: 115px; /* There is more spacing given to the label to allow for international languages */
+  right: 0;
+  width: auto;
+  color: #333331;
+}
+
+/* spouse column */
+.searchResultsTable .spouseColumn,
+.searchResults .resultsRecords .record td.allData,
+.searchResults .resultsRecords .record td.allData .eventsColumn {
+  padding-left: 0;
+}
+
+/* actionColumn */
+.searchResultsTable .actionColumn {
+  width: 0;
+}
+
+.searchResultsTable .showAction .actionColumn {
+  width: 110px;
+}
+
+/* pagination */
+.paginationRow {
+  display: table-row;
+}
+
+.none .paginationRow {
+  display: none;
+}
+
+.paginationTd {
+  font-size: 14px;
+  padding: 0;
+  border-width: 0;
+}
+
+.pagination {
+  margin: 15px 0 0 15px;
+}
+
+.paginationItem {
+  border: 1px solid #D4D4D4;
+  color: #4B76B0;
+  display: inline-block;
+  margin: 0 5px 0 0;
+  padding: 5px 8px;
+  text-align: center;
+}
+
+.paginationItem.searchPagePrev,
+.paginationItem.searchPageNext {
+  padding-left: 1em;
+  padding-right: 1em;
+  width: auto;
+}
+
+.paginationItem:hover,
+.paginationItem.selected {
+  border-color: #4B76B0;
+  background-color: #D6E5F6;
+}
+
+.paginationItem.selected {
+  cursor: default;
+}
+
+.paginationItem.selected:hover {
+  text-decoration: none;
+}
+
+/* no results */
+.none th {
+  visibility: hidden;
+}
+
+.none .noResultsLabel {
+  display: block;
+  font-size: 1.3em;
+  text-align: center;
+  color: #3C3B36;
+  padding: 2em 0;
+  position: relative;
+}
+
+.noResultsLabel,
+.resultsLabel.noResultsLabel,
+.none .resultsLabel,
+.loading .resultsLabel,
+.noResultsRecords {
+  display: none;
+}
+
+/***********************/
+/* Match Results
+/***********************/
+.searchResults h3 {
+  font-size: 18px;
+}
+
+.matchTitle {
+  font-size: 28px;
+  color: #4C4C4A;
+  margin: 15px 10px 0;
+}
+
+.matchHeader {
+  background: none;
+  color: #3B3A35;
+  font-size: 16px;
+  padding: 10px 10px 0;
+}
+
+/* no result */
+.addPersonOverride,
+.noResultsAdd {
+  background: #fff;
+  color: #393933;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  padding: 20px;
+}
+
+.noResultsLabel > span,
+.noResultsAdd > span,
+.resultsLable > span {
+  padding-left: 10px;
+}
+
+.addPersonOverride .submit,
+.noResultsAdd .submit {
+  display: block;
+  margin: 10px 0 0;
+}
+
+.noResultsAdd {
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+/***********************/
+/* Sticky Header
+/***********************/
+.stickyWrapper.stuck .sticky {
+  background-color: #ECEBEA;
+  box-shadow: none;
+  left: auto;
+  margin-top: 0;
+  padding: 0;
+  z-index: 10;
+}
+
+.stickyWrapper th {
+  border-bottom: 1px solid #CCC8C4;
+}
+
+.stickyWrapper.stuck .refineBar {
+  margin-top: 0;
+}
+
+.stickyWrapper.stuck .searchResultsTable {
+  padding-left: 1px;
+}
+
+/***********************************************************************/
+/* Possible Duplicates
+/***********************************************************************/
+/* #tree-style needed to overwrite engage-style.css#292 */
+#tree-style .goto-links {
+  margin: 0 -30px;
+}
+
+.possible-duplicates .personSummaryGadget {
+  background-color: #CDCDCD;
+  margin: 0 -30px;
+}
+
+nav {
+  border-bottom: 1px solid #B7B7B7;
+  background: #ECEBEA;
+  z-index: 10;
+  margin: 0 -30px;
+  padding-left: 120px;
+  height: 34px;
+  position: static;
+  display: block;
+}
+
+.possibleDuplicatesTab {
+  padding: 7px 15px;
+  font-size: 16px;
+  line-height: 20px;
+  color: #333331;
+  border: 0 none;
+  display: inline-block;
+  margin: 0;
+}
+
+.possibleDuplicatesTab:not(:first-child) {
+  margin-left: 10px;
+}
+
+.possibleDuplicatesTab.selected {
+  border: 1px solid #B7B7B7;
+  border-bottom-width: 0;
+  background: #fff;
+  color: #313230;
+  cursor: default;
+}
+
+.duplicates-title,
+.merge-by-id-title {
+  font-size: 28px;
+  margin: 20px 0 0;
+}
+
+.merging-complicated-warning {
+  background-color: #FFF8D0;
+  background-position: 15px 15px;
+  border-radius: 6px;
+  line-height: 16px;
+  padding: 15px 15px 15px 50px;
+  margin-bottom:10px;
+}
+
+.merging-complicated-warning p {
+  padding: 0 0 0 12px;
+}
+
+.duplicates-list-title,
+.unmergeable-duplicates-list-title {
+  color: #4c4c4a;
+  font-size: 24px;
+  margin: 10px 0 15px;
+}
+
+.possible-duplicates .unmergeable-duplicates-list-title  {
+  margin: 30px 0 10px;
+}
+
+.loading .duplicates-list-title,
+.loading .unmergeable-duplicates-list-title {
+  display: none;
+}
+
+/***********************/
+/* Results Table
+/***********************/
+.searchGadget.loading .duplicatesTable,
+.searchGadget.noResults .duplicatesTable,
+.searchGadget.loading .unmergeableDuplicatesTable,
+.searchGadget.noResults .unmergeableDuplicatesTable {
+  display: none;
+}
+
+.duplicatesTable th {
+  padding: 0 0 0 6px;
+}
+
+[data-active-view='not-a-match'] .eventsHeader {
+  padding-left: 25px;
+}
+
+/* individual column */
+.individualColumn .searchRating {
+  margin-top: 3px;
+  margin-left: 28px;
+}
+
+.individualColumn .searchRating > span {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+}
+
+.individualColumn .searchRating .solidCircle  {
+  background: url('https://edge.fscdn.org/assets/img/solid-circle-11484c6f296c67527ae15ccec6392f41.png') top left no-repeat;
+}
+
+.individualColumn .searchRating .halfCircle  {
+  background: url('https://edge.fscdn.org/assets/img/half-circle-8b56c32eb4f064e933dc45661a5c6dec.png') top left no-repeat;
+}
+
+.individualColumn .searchRating .emptyCircle  {
+  background: url('https://edge.fscdn.org/assets/img/empty-circle-44b912061faa5fb905a3a87893488074.png') top left no-repeat;
+}
+
+/* contributor */
+.individualColumn .contributor {
+  color: #4d4d4a;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 10px 0;
+}
+
+.individualColumn .contributorDate {
+  display: block;
+}
+
+/* events column */
+.unmergeableMessagingText {
+  font-size: 14px;
+  color: #787069;
+  margin-top: 25px;
+  padding: 15px;
+  white-space: normal;
+}
+.unmergeableMessagingTextLink {
+  padding-left:5px;
+}
+
+/* action column */
+.showAction .actionColumn {
+  padding: 10px 1px 1px 1px ;
+  text-align: center;
+  width: 160px;
+}
+
+.showAction .actionColumn .notMatchLink {
+  display: block;
+  font-size: 14px;
+  padding: 5px;
+  text-align: center;
+  white-space: normal;
+}
+
+/* reason row */
+.notAMatchRecords {
+  border-bottom: 0.1em solid;
+  border-color: #CCC8C4;
+}
+
+.notAMatchRecords .record {
+  border: 0;
+}
+
+.notAMatchRecords .record td:not(.reason) {
+  border-bottom: 0;
+}
+
+.notAMatchRecords .record .reason {
+  border-top: 0;
+  white-space: normal;
+}
+
+/* merge by ID */
+.mergeByIDView .column {
+  display: inline-block;
+  padding: 0;
+  margin: 0 0 28px 0;
+  width: 298px;
+  float:left;
+}
+
+.mergeByIDView .column:first-child {
+  margin-right: 20px;
+}
+
+.mergeByIDView input[type=text] {
+  margin: 6px 0 0 -5px;
+  padding: 8px 6px 4px;
+  width: 200px;
+}
+
+/* locales */
+.locale-de #possibleDuplicatesPage .possible-duplicates .searchResultsTable.showAction .actionColumn,
+.locale-es #possibleDuplicatesPage .possible-duplicates .searchResultsTable.showAction .actionColumn {
+  width: 210px;
+}
+
+.locale-pt #possibleDuplicatesPage .possible-duplicates .searchResultsTable.showAction .actionColumn,
+.locale-ru #possibleDuplicatesPage .possible-duplicates .searchResultsTable.showAction .actionColumn {
+  width: 278px;
+}
+
+.locale-it #possibleDuplicatesPage .possible-duplicates .searchResultsTable.showAction .actionColumn,
+.locale-fr #possibleDuplicatesPage .possible-duplicates .searchResultsTable.showAction .actionColumn {
+  width: 172px;
+}
+
+.locale-zh #possibleDuplicatesPage .possible-duplicates .searchResultsTable.showAction .actionColumn,
+.locale-ja #possibleDuplicatesPage .possible-duplicates .searchResultsTable.showAction .actionColumn,
+.locale-ko #possibleDuplicatesPage .possible-duplicates .searchResultsTable.showAction .actionColumn {
+  width: 135px;
+}
+
+.locale-es .searchResultsTable.showAction .actionColumn {
+  width: 142px;
+}
+.locale-fr .searchResultsTable.showAction .actionColumn {
+  width: 148px;
+}
+.locale-de .searchResultsTable.showAction .actionColumn {
+  width: 134px;
+}
+.locale-it .searchResultsTable.showAction .actionColumn {
+  width: 128px;
+}
+.locale-pt .searchResultsTable.showAction .actionColumn {
+  width: 134px;
+}
+
+/***********************************************************************/
+/* Date and Place Auto-complete
+/***********************************************************************/
+.ui-autocomplete {
+  background-color: #FFFFFF;
+  border: 1px solid #B5BFB3;
+  max-height: 102px;
+  overflow: auto;
+}
+
+.ui-menu-item {
+  list-style: none;
+  margin: 2px 2px 2px -15px;
+}
+
+.ui-menu-item .ui-corner-all {
+  color: #3C3B36;
+  display: block;
+  padding: 0 2px;
+}
+
+.ui-menu-item .ui-corner-all:hover {
+  text-decoration: none;
+}
+
+.ui-menu-item .ui-corner-all.ui-state-hover {
+  background-color: #EDECE8;
+}
+
+.eventDateSpan .ui-autocomplete {
+  width: 164px;
+}
+
+.eventPlaceSpan .ui-autocomplete {
+  width: 294px;
+}
+
+/*
+* jQuery UI Autocomplete 1.8.16
+*
+* Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Autocomplete#theming
+*/
+.ui-autocomplete {
+  cursor: default;
+  position: absolute;
+}
+
+/*
+* jQuery UI Menu 1.8.16
+*
+* Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Menu#theming
+*/
+.ui-menu {
+  display: block;
+  float: left;
+  list-style: none;
+  margin: 0;
+  padding: 2px;
+}
+
+.ui-menu .ui-menu {
+  margin-top: -3px;
+}
+
+.ui-menu .ui-menu-item {
+  clear: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  zoom: 1;
+}
+
+.ui-menu .ui-state-focus {
+  background-color: #ECEBEA;
+}
+
+.ui-menu .ui-menu-item a {
+  display: block;
+  line-height: 1.5;
+  padding: .2em .4em;
+  text-decoration: none;
+  zoom: 1;
+}
+
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+  font-weight: normal;
+}
+
+@media screen and (max-width: 400px) {
+  .column input[type=text] {
+    width: 206px;
+  }
+}
+
+/*************************************************************************
+* Responsive Tables
+**************************************************************************/
+@media screen and (max-width: 750px) {
+  /* responsive search form */
+  .searchTabs > a {
+    margin: 0;
+  }
+
+
+  .searchResultsTable colgroup,
+  .searchResultsTable thead {
+    display: none;
+  }
+
+  .searchResultsTable .paginationTd {
+    width: 100%;
+  }
+
+  .searchResultsTable .column-label {
+    display: table-cell;
+    margin: 0;
+    vertical-align: middle;
+    padding: 10px 5px 10px 10px;
+    width: 73px;
+  }
+
+  .searchResultsTable .deleted-title,
+  .searchResultsTable .record {
+    display: table;
+    table-layout: fixed;
+    border-width: 0;
+    width: 100%;
+  }
+
+  .searchResultsTable td {
+    display: block;
+    border-color: rgba(204, 200, 196, 0.25);
+  }
+
+  /* deleted person */
+  .searchResultsTable .deleted-title > td {
+    border: 0
+  }
+
+  .searchResultsTable .deleted-title,
+  .searchResultsTable .deleted-person,
+  .searchResultsTable .deleted-person .individualColumn {
+    border: 5px solid #4D4D48;
+  }
+
+  .searchResultsTable .deleted-person .individualColumn {
+    border-width: 5px 5px 0;
+  }
+
+  .searchResultsTable .deleted-person > td {
+    border: 0.1em solid rgba(204,200,169,.25);
+    border-right: 0;
+  }
+
+  /* individual column */
+  .searchResultsTable .individualColumn {
+    padding: 15px;
+    background-color: #CDCDCD;
+    border-top: 1px solid #B7B7B7;
+    border-left: 1px solid #B7B7B7;
+    box-shadow: 1px 3px 7px;
+    display: table-caption;
+    position: relative;
+  }
+
+  .searchResultsTable .improveResults,
+  .searchResultsTable .partialMatch {
+    padding: 15px 15px 0;
+  }
+
+  .searchResultsTable .improveResultsWrapper {
+    white-space: normal;
+  }
+
+  .searchResultsTable .eventsColumn,
+  .searchResultsTable .parentsColumn,
+  .searchResultsTable .spouseColumn,
+  .searchResultsTable .actionColumn {
+    display: table-row;
+  }
+
+  .searchResultsTable .parentsColumn .parents-container,
+  .searchResultsTable .spouseColumn .spouse-container {
+    vertical-align: middle;
+    padding: 10px 10px 10px 80px;
+    display: table-cell;
+  }
+
+  .searchResultsTable .events {
+    display: table-cell;
+    padding: 15px 15px 10px 5px;
+  }
+
+  .searchResultsTable .event:last-child {
+    padding-bottom: 0;
+  }
+
+  .searchResultsTable .eventLabel {
+    width: 75px;
+  }
+
+  .searchResultsTable .eventData {
+    left: 90px;
+  }
+
+  .searchResultsTable .actionList,
+  .searchResultsTable .actionColumnFiller  {
+    display: table-cell;
+    padding: 10px;
+  }
+
+  .notAMatchRecords .record td:not(.reason) {
+    border-bottom: 0.1em solid;
+    border-color: rgba(204, 200, 196, 0.25);
+  }
+
+  .duplicatesTable .actionList > li {
+    display: inline-block;
+  }
+
+  .showAction .actionColumn .notMatchLink,
+  .actionList .undoNotAMatch {
+    white-space: nowrap;
+    margin-left: 10px;
+  }
+
+  /* IE styles */
+  /* this is a hack to get a table to be 'display: block' in IE9 */
+  /* see http://stackoverflow.com/questions/9990173/can-you-make-ie-9-or-earlier-lay-out-table-elements-as-if-they-were-regular-di */
+  .ie9 .searchResultsTable table,
+  .ie9 .searchResultsTable tbody,
+  .ie9 .searchResultsTable tr,
+  .ie9 .searchResultsTable td {
+    display:block;
+    width:100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float:left;
+    clear:left;
+  }
+
+  .ie9 .searchResultsTable .eventData {
+    right: inherit;
+  }
+
+  .ie9 .searchResultsTable {
+    border-collapse: separate;
+  }
+}
