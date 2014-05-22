@@ -65,7 +65,6 @@
           });
 
           popoverArrowElements.on('click',function(){
-            console.log('specific click');
             if ( !popoverArrowClicked ) {
               popoverArrowClicked = popoverArrowClicked +1;
             } else {
