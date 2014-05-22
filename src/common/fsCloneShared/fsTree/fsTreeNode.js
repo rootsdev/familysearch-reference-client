@@ -11,6 +11,9 @@
         controller: function($scope) {
           $scope.expandable = false;
           $scope.islive = !!$scope.family;
+
+
+
         }
       };
     });

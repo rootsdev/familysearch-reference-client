@@ -9,7 +9,7 @@
           spouse: '='
         },
         controller: function($scope, fsApi, Family) {
-            $scope.family = new Family($scope.person, $scope.spouse);
+            $scope.family = Family.prototype.build($scope.person, $scope.spouse);
 
             $scope.config = {};
             $scope.model = {};
