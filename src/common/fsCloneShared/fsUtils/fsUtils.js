@@ -87,6 +87,12 @@
           });
         },
 
+        copyItemState: function(fromItem, toItem) {
+          toItem._state = fromItem._state;
+          toItem._onOpenCallbacks = fromItem._onOpenCallbacks;
+          toItem._onEditCallbacks = fromItem._onEditCallbacks;
+        },
+
         agentSetter: function(scope) {
           return function(item) {
             if (item && item.attribution && item.attribution.$getAgentUrl() && !scope.agent) {

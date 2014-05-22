@@ -12,7 +12,6 @@
         link: function(scope) {
           scope.name._onOpen(fsUtils.agentSetter(scope));
           scope.name._onEdit(fsUtils.agentSetter(scope));
-
         }
       };
     });

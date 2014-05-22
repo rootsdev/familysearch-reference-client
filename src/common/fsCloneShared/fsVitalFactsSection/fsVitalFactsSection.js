@@ -35,10 +35,10 @@
                 return oldExists.call(this) || this._living;
               };
             })();
-            // copy existing states
+            // copy old item state
             if (!!oldVitals) {
               for (var i = 0; i < oldVitals.length; i++) {
-                scope.vitals[i]._state = oldVitals[i]._state;
+                fsUtils.copyItemState(oldVitals[i], scope.vitals[i]);
               }
             }
           }
