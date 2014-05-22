@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsSourceDetails', function() {
+    .directive('fsSourceDetails', function(fsAgentCache) {
       return {
         templateUrl: 'fsCloneShared/fsSource/fsSourceDetails/fsSourceDetails.tpl.html',
         scope: {
@@ -10,8 +10,8 @@
         link: function(scope) {
           scope.source._onOpen(function(source) {
             if (source.ref.attribution && !scope.agent) {
-              return source.ref.attribution.$getAgent().then(function (response) {
-                scope.agent = response.getAgent();
+              return fsAgentCache.getAgent(source.ref.attribution.$getAgentUrl()).then(function(agent) {
+                scope.agent = agent;
               });
             }
             return null;

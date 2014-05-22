@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsDetachSourceConfirmationModal', function fsDetachSourceConfirmationModal(_, $modal) {
+    .factory('fsDetachSourceConfirmationModal', function fsDetachSourceConfirmationModal(_, $modal, fsAgentCache) {
       return {
         open: function(opts) { // {person, sourceRef}
           return $modal.open({
@@ -11,9 +11,8 @@
               _.extend($scope, opts);
 
               if (opts.sourceRef.attribution) {
-                opts.sourceRef.attribution.$getAgent().then(function(response) {
-                  $scope.agent = response.getAgent();
-                  console.log('got agent', response.getAgent());
+                fsAgentCache.getAgent(opts.sourceRef.attribution.$getAgentUrl()).then(function(agent) {
+                  $scope.agent = agent;
                 });
               }
 

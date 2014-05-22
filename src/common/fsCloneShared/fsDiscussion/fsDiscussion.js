@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsDiscussion', function(fsCurrentUser) {
+    .directive('fsDiscussion', function(fsCurrentUser, fsAgentCache) {
       return {
         templateUrl: 'fsCloneShared/fsDiscussion/fsDiscussion.tpl.html',
         scope: {
@@ -12,11 +12,11 @@
 
           // set agent
           function setAgent(disc) {
-            if (!scope.agent && disc.discussion.$getAgentId()) {
+            if (!scope.agent && disc.discussion.$getAgentUrl()) {
               disc._busy = true;
-              return disc.discussion.$getAgent().then(function(response) {
+              return fsAgentCache.getAgent(disc.discussion.$getAgentUrl()).then(function(agent) {
                 disc._busy = false;
-                scope.agent = response.getAgent();
+                scope.agent = agent;
               });
             }
             return null;

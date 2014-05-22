@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsUtils', function (_, $q, fsApi, fsCurrentUser) {
+    .factory('fsUtils', function (_, $q, fsApi, fsCurrentUser, fsAgentCache) {
 
       return {
         mixinStateFunctions: function(scope, item) {
@@ -89,9 +89,9 @@
 
         agentSetter: function(scope) {
           return function(item) {
-            if (item && item.attribution && item.attribution.$getAgentId() && !scope.agent) {
-              return item.attribution.$getAgent().then(function (response) {
-                scope.agent = response.getAgent();
+            if (item && item.attribution && item.attribution.$getAgentUrl() && !scope.agent) {
+              return fsAgentCache.getAgent(item.attribution.$getAgentUrl()).then(function(agent) {
+                scope.agent = agent;
               });
             }
             return null;

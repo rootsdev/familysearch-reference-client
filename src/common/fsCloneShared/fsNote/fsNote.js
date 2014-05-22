@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsNote', function(fsApi) {
+    .directive('fsNote', function(fsApi, fsAgentCache) {
       return {
         templateUrl: 'fsCloneShared/fsNote/fsNote.tpl.html',
         scope: {
@@ -25,8 +25,8 @@
                 return noteRef.$getNote().then(function(response) {
                   scope.note = response.getNote();
                   // set the agent
-                  return scope.note.attribution.$getAgent().then(function(response) {
-                    scope.agent = response.getAgent();
+                  return fsAgentCache.getAgent(scope.note.attribution.$getAgentUrl()).then(function(agent) {
+                    scope.agent = agent;
                     noteRef._busy = false;
                   });
                 });

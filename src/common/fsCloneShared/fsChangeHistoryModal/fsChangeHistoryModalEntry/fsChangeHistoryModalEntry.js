@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsChangeHistoryModalEntry', function(_, fsApi, fsUtils, fsChangeUtils) {
+    .directive('fsChangeHistoryModalEntry', function(_, fsApi, fsUtils, fsChangeUtils, fsAgentCache) {
       return {
         templateUrl: 'fsCloneShared/fsChangeHistoryModal/fsChangeHistoryModalEntry/fsChangeHistoryModalEntry.tpl.html',
         scope: {
@@ -10,8 +10,8 @@
         link: function(scope) {
           scope.setAgent = function() {
             if (!scope.agent) {
-              scope.change.$getAgent().then(function(response) {
-                scope.agent = response.getAgent();
+              fsAgentCache.getAgent(scope.change.$getAgentUrl()).then(function(agent) {
+                scope.agent = agent;
               });
             }
           };

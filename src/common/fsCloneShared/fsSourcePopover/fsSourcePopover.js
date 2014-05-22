@@ -7,7 +7,7 @@
       });
     })
 
-    .directive('fsSourcePopover', function (fsUtils) {
+    .directive('fsSourcePopover', function (fsUtils, fsAgentCache) {
       return {
         transclude: true,
         templateUrl: 'fsCloneShared/fsSourcePopover/fsSourcePopover.tpl.html',
@@ -20,8 +20,8 @@
           scope.show = function() {
             // set agent
             if (!scope.agent && !!scope.source.ref.attribution) {
-              scope.source.ref.attribution.$getAgent().then(function(response) {
-                scope.agent = response.getAgent();
+              fsAgentCache.getAgent(scope.source.ref.attribution.$getAgentUrl()).then(function(agent) {
+                scope.agent = agent;
               });
             }
 

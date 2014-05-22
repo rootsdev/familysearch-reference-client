@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsCommentDetails', function(fsCurrentUser) {
+    .directive('fsCommentDetails', function(fsCurrentUser, fsAgentCache) {
       return {
         templateUrl: 'fsCloneShared/fsComment/fsCommentDetails/fsCommentDetails.tpl.html',
         scope: {
@@ -9,9 +9,9 @@
         },
         link: function(scope) {
           // set agent
-          if (scope.comment.$getAgentId()) {
-            scope.comment.$getAgent().then(function(response) {
-              scope.agent = response.getAgent();
+          if (scope.comment.$getAgentUrl()) {
+            fsAgentCache.getAgent(scope.comment.$getAgentUrl()).then(function(agent) {
+              scope.agent = agent;
             });
           }
 

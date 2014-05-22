@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsChange', function () {
+    .directive('fsChange', function (fsAgentCache) {
       return {
         templateUrl: 'fsCloneShared/fsChange/fsChange.tpl.html',
         scope: {
@@ -10,8 +10,8 @@
         link: function(scope) {
           scope.setAgent = function() {
             if (!scope.agent) {
-              scope.change.$getAgent().then(function(response) {
-                scope.agent = response.getAgent();
+              fsAgentCache.getAgent(scope.change.$getAgentUrl()).then(function(agent) {
+                scope.agent = agent;
               });
             }
           };
