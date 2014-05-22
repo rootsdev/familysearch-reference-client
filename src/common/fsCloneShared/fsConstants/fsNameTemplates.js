@@ -5,7 +5,7 @@
       {template: 'Standard', langs: ['']},
       {template: 'Spanish', langs: ['es']},
       {template: 'Portuguese', langs: ['pt']},
-      {template: 'Cyrillic', langs: ['ru', '']},
+      {template: 'Cyrillic', langs: ['ru-Cyrl', '']},
       {template: 'Chinese', langs: ['zh-Hani', '']},
       {template: 'Japanese', langs: ['ja-Hani', 'ja', '']},
       {template: 'Khmer', langs: ['km', '']},

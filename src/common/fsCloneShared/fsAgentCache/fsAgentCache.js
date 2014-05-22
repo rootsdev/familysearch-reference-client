@@ -5,13 +5,13 @@
       var agentMap = {};
 
       return {
-        getAgent: function(url) {
-          var key = url.substr(url.indexOf('?')+1); // remove access token
+        getAgent: function(urlOrId) {
+          var key = urlOrId.substr(urlOrId.indexOf('?')+1); // remove access token from url
           if (!!agentMap[key]) {
             return $q.when(agentMap[key]);
           }
           else {
-            return fsApi.getAgent(url).then(function(response) {
+            return fsApi.getAgent(urlOrId).then(function(response) {
               var agent = response.getAgent();
               agentMap[key] = agent;
               return agent;

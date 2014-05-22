@@ -20,7 +20,10 @@
           scope.show = function() {
             // set agent
             if (!scope.agent && !!scope.source.ref.attribution) {
-              fsAgentCache.getAgent(scope.source.ref.attribution.$getAgentUrl()).then(function(agent) {
+              // can't always use $getAgentUrl() because we may have approximated the attribution
+              // ( see fsUtils.approximateAttribution() )
+              fsAgentCache.getAgent(scope.source.ref.attribution.$getAgentUrl() ||
+                                    scope.source.ref.attribution.$getAgentId()).then(function(agent) {
                 scope.agent = agent;
               });
             }
