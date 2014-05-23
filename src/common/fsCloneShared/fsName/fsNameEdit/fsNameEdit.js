@@ -51,21 +51,22 @@
         });
         // apply the parts in this template to existing name forms that are in this template's languages
         var nameParts = _.find(fsNameLanguages, { lang: template.langs[0] }).parts;
-        _.filter(nameForms, function(nameForm) { return _.contains(template.langs, nameForm.lang); }).forEach(function(nameForm) {
-          // remove empty parts from existing nameForm
-          nameForm.parts = _.filter(nameForm.parts, function(part) {
-            return !!part.value;
+        _.filter(nameForms, function(nameForm) { return _.contains(template.langs, nameForm.lang); })
+          .forEach(function(nameForm) {
+            // remove empty parts from existing nameForm
+            nameForm.parts = _.filter(nameForm.parts, function(part) {
+              return !!part.value;
+            });
+            // add parts to existing nameForm that are in the current template language
+            nameForm.parts = nameForm.parts.concat(_.map(
+              _.reject(nameParts, function(namePart) { return _.any(nameForm.parts, {type: namePart.type}); }),
+              function(namePart) {
+                return {
+                  type: namePart.type,
+                  value: ''
+                };
+              }));
           });
-          // add parts to existing nameForm that are in the current template language
-          nameForm.parts = nameForm.parts.concat(_.map(
-            _.reject(nameParts, function(namePart) { return _.any(nameForm.parts, {type: namePart.type}); }),
-            function(namePart) {
-              return {
-                type: namePart.type,
-                value: ''
-              };
-            }));
-        });
         // add additional nameForms for template languages not already found in nameForms
         nameForms = nameForms.concat(_.map(
           _.reject(template.langs, function(lang) { return _.any(nameForms, {lang: lang}); }), function(lang) {
