@@ -4,8 +4,10 @@
       &nbsp;
     </div>
     <div class="coupleWrapper">
-      <div fs-person-small person="family.husband" is-focus="{{isFocus(family.husband)}}" default-gender="Male"></div>
-      <div fs-person-small person="family.wife" is-focus="{{isFocus(family.wife)}}" default-gender="Female"></div>
+      <div fs-person-small ng-show="!!family.husband" person="family.husband" is-focus="{{isFocus(family.husband)}}"></div>
+      <div fs-family-members-add-spouse ng-hide="!!family.husband" gender="Male"></div>
+      <div fs-person-small ng-show="!!family.wife" person="family.wife" is-focus="{{isFocus(family.wife)}}"></div>
+      <div fs-family-members-add-spouse ng-hide="!!family.wife" gender="Female"></div>
     </div>
     <div class="event">
       <div ng-hide="!!couple" class="noCoupleRelationship">No Couple Relationship</div>
@@ -37,7 +39,7 @@
         </tr>
         <tr class="actionRow">
           <td>
-            <a href="" class="btn btn-link non-form addChild">
+            <a href="" ng-click="addChild()" class="btn btn-link non-form addChild">
               <i class="fa fa-plus-square">&nbsp;</i>Add Child
             </a>
           </td>

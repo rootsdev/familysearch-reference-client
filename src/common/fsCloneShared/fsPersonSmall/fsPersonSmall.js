@@ -7,10 +7,7 @@
         scope: {
           person: '=',
           editParents: '@',
-          isFocus: '@',
-          defaultGender: '@'
-        },
-        link: function() {
+          isFocus: '@'
         }
       };
     });

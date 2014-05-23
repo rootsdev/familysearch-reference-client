@@ -1,24 +1,19 @@
 <div class="personWrapper">
   <div class="nameWrapper">
-    <i class="icon-rounded" ng-class="{'fs-icon-male': person ? person._isMale() : defaultGender === 'Male',
-                                       'fs-icon-female': person ? !person._isMale() : defaultGender === 'Female'}">&nbsp;</i>
-    <span ng-show="!!person" fs-person-popover person="person">
+    <i class="icon-rounded" ng-class="{'fs-icon-male': person._isMale(),
+                                       'fs-icon-female': !person._isMale()}">&nbsp;</i>
+    <span fs-person-popover person="person">
       <!-- TODO set a style if isFocus -->
       <a class="personCard name" href=""
          ng-style="{'font-weight': isFocus === 'true' ? 'bold' : 'normal', 'color': isFocus === 'true' ? '#333' : '#0051c4'}">
         {{person.$getDisplayName()}}
       </a>
     </span>
-    <a ng-hide="!!person" class="personCard name" href="" title="">Add or Find Spouse</a>
   </div>
-  <a href="" class="editParents pull-right" ng-show="!!person && editParents === 'true'">Edit Parents</a>
-  <ul ng-show="!!person" class="list-collapsed">
+  <a href="" class="editParents pull-right" ng-show="editParents === 'true'">Edit Parents</a>
+  <ul class="list-collapsed">
     <li class="lifeSpan">{{person.$getDisplayLifeSpan()}}</li>
     <li class="separator">-</li>
     <li class="pid">{{person.id}}</li>
   </ul>
-  <ul ng-hide="!!person" class="list-collapsed">
-    <li>&nbsp;</li>
-  </ul>
-</div>
 </div>
