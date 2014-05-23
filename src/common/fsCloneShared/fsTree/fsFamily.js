@@ -175,23 +175,93 @@
       },
 
       nameOf: function(description) {
-        if ( description && description.person ) {
-          var result = description.person.$getPreferredName();
-          if ( !_.isString(result) ) {
-            result = result.$getFullText();
-          }
-          return result;
+        if ( !description ) {
+          return '';
         }
+        description = description.person ? description.person : description;
+
+        var result = description.person.$getPreferredName();
+        if ( !_.isString(result) ) {
+          result = result.$getFullText();
+        }
+        return result;
+      },
+
+      alternateHusbands: function() {
+        if ( !this.hasAlternateHusbands() ) {
+          return [];
+        }
+        return this.wifeDescription.relationships.getSpouses();
+
+      },
+
+      alternateWives: function() {
+        if ( !this.hasAlternateWives() ) {
+          return [];
+        }
+        return this.husbandDescription.relationships.getSpouses();
+      },
+
+      children: function() {
+        if ( !this.hasChildren() ) {
+          return [];
+        }
+        if ( this.hasWife() && this.hasHusband()) {
+          return this.husbandDescription.relationships.getChildrenOf(this.wifeDescription.person.id);
+        }
+        if ( this.hasHusband() ) {
+          return this.husbandDescription.relationships.getChildrenOf(null);
+        }
+        return this.wifeDescription.relationships.getChildrenOf(null);
+
+      },
+
+      alternatePaternalParents: function() {
+        if (!_.isUndefined(this.cachedAlternatePaternalParents) ) {
+          return this.cachedAlternatePaternalParents;
+        }
+        if ( !this.hasAlternatePaternalParents()) {
+          return [];
+        } else {
+          var that = this;
+          var parentRelationships = this.husbandDescription.relationships.getParentRelationships();
+          var parents = _.map(parentRelationships,function(onePairOfParents){
+            return {
+              father:  onePairOfParents.$getFatherId() ? that.husbandDescription.relationships.getPerson( onePairOfParents.$getFatherId() ) : null,
+              mother: onePairOfParents.$getMotherId() ? that.husbandDescription.relationships.getPerson( onePairOfParents.$getMotherId() ) : null
+            };
+          });
+          this.cachedAlternatePaternalParents = _.toArray(parents);
+        }
+        return this.cachedAlternatePaternalParents;
       },
 
       hasHusband: function() { return !!this.husbandDescription; },
       hasWife: function() { return !!this.wifeDescription; },
+
       hasAlternateHusbands: function() {
         return this.hasWife() && this.wifeDescription.allSpouses().length > 1;
       },
       hasAlternateWives: function() {
         return this.hasHusband() && this.husbandDescription.allSpouses().length > 1;
       },
+
+      hasAlternatePaternalParents: function() {
+        return this.hasHusband() && this.husbandDescription.relationships.getParentRelationships().length > 1;
+      },
+      hasAlternateMaternalParents: function() {
+        return this.hasWife() && this.wifeDescription.relationships.getParentRelationships().length > 1;
+      },
+      hasChildren: function() {
+        if ( this.hasWife() && this.hasHusband()) {
+          return this.husbandDescription.relationships.getChildRelationshipsOf(this.wifeDescription.person.id).length>0;
+        }
+        if ( this.hasHusband()) {
+          return this.husbandDescription.relationships.getChildRelationshipsOf(null).length>0;
+        }
+        return this.hasWife() && this.wifeDescription.relationships.getChildRelationshipsOf(null).length>0;
+      },
+
       husbandDescription: null,
       wifeDescription: null
 

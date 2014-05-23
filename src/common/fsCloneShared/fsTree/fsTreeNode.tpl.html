@@ -22,18 +22,7 @@
         </div>
         <div class="pull-left text-right sans-serif all-family-label">
             <div class="all-family-list fs-tree-popover-content">
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
+                <span ng-repeat="person in family.alternateHusbands()" ><a fs-person-popover person="person">{{person.$getPreferredName().$getFullText()}}</a><br></span>
             </div>
         </div>
 
@@ -42,7 +31,7 @@
 
     <!--Alternate wives-->
     <div ng-show="family.hasAlternateWives()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" enabled="true"
-         class="all-husbands-wrapper" style="z-index: 100">
+         class="all-wives-wrapper" style="z-index: 100">
 
         <div class="pull-left text-right sans-serif all-family-label">
             <p style="padding-top:8px">All Wives</p>
@@ -52,18 +41,7 @@
         </div>
         <div class="pull-left text-right sans-serif all-family-label">
             <div class="all-family-list fs-tree-popover-content">
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
+                <span ng-repeat="person in family.alternateWives()" ><a fs-person-popover person="person">{{person.$getPreferredName().$getFullText()}}</a><br></span>
             </div>
         </div>
 
@@ -115,65 +93,57 @@
     <!-- list of kids hover controls -->
     <div>
         <!--list of kids collapsed-->
-        <div class="pull-left" style="display:none;">
+        <div class="pull-left" ng-show="family.hasChildren()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)">
             <div class="pull-left kid-list-arrow-closed">
                 <div class="fs-icon-arrow-down"></div>
             </div>
             <div class="pull-left sans-serif kid-list-label">
                 Children
             </div>
+            <div class="all-family-list">
+                <span ng-repeat="person in family.children()" ><a fs-person-popover person="person">{{person.$getPreferredName().$getFullText()}}</a><br></span>
+            </div>
         </div>
         <div class="clearboth">&nbsp;</div>
-
-        <!--list of kids expanded-->
-        <div class="pull-left kid-list-wrapper" style="display:none">
-            <div class="pull-left kid-list-arrow">
-                <div class="fs-icon-arrow-down"></div>
-            </div>
-            <div class="pull-left sans-serif kid-list-label" style="margin-top:3px">
-                Children
-            </div>
-            <div class="clearboth">&nbsp;</div>
-            <div class="all-family-list">
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-            </div>
-        </div>
     </div>
 </div>
 
 
 <div class="pull-left all-family-wrapper">
 
-    <!--All husband's parents closed-->
-    <div class="all-husbands-wrapper" style="display:none;">
+
+    <!--Alternate parents of the husband-->
+    <div ng-show="family.hasAlternatePaternalParents()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" class="all-husbands-wrapper" >
+
         <div class="pull-left husband-parents-arrow-closed">
             <span class="fs-icon-arrow-right"></span>
         </div>
         <div class="pull-left sans-serif all-family-label">
             <p style="padding:8px 0 0 5px">All Parents</p>
         </div>
+        <div class="pull-left sans-serif all-family-list-wrapper">
+            <div class="all-family-list" style="margin:0 0 0 5px">
+                <span ng-repeat="parents in family.alternatePaternalParents()" >
+                    <a fs-person-popover person="parents.father">{{parents.father.$getPreferredName().$getFullText()}}</a><br>
+                    <a fs-person-popover person="parents.mother">{{parents.mother.$getPreferredName().$getFullText()}}</a><br>
+                    <span>-----</span>
+                </span>
+            </div>
+        </div>
+
         <div class="clearfix">&nbsp;</div>
     </div>
 
-    <!--All husband's parents open-->
-    <div class="all-husbands-wrapper" style="z-index: 999999;display:none;">
-        <div class="pull-left husband-parents-arrow-open">
+    <!--Alternate parents of the wife-->
+    <div ng-show="family.hasAlternateMaternalParents()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" class="all-husbands-wrapper" >
+
+        <div class="pull-left husband-parents-arrow-closed">
             <span class="fs-icon-arrow-right"></span>
         </div>
-        <div class="pull-left sans-serif all-family-list-wrapper">
+        <div class="pull-left sans-serif all-family-label">
             <p style="padding:8px 0 0 5px">All Parents</p>
-
+        </div>
+        <div class="pull-left sans-serif all-family-list-wrapper">
             <div class="all-family-list" style="margin:0 0 0 5px">
                 List<br>
                 List<br>
@@ -189,16 +159,33 @@
                 List<br>
             </div>
         </div>
+
         <div class="clearfix">&nbsp;</div>
     </div>
 
     <!--All wife's parents closed-->
-    <div class="all-wives-wrapper" style="display:none;">
+    <div class="all-wives-wrapper" ng-show="family.hasAlternateMaternalParents()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)">
         <div class="pull-left wife-parents-arrow-closed">
             <span class="fs-icon-arrow-right"></span>
         </div>
         <div class="pull-left sans-serif all-family-label">
             <p style="padding:8px 0 0 5px">All Parents</p>
+        </div>
+        <div class="pull-left sans-serif all-family-list-wrapper">
+            <div class="all-family-list" style="margin:0 0 0 5px">
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+                List<br>
+            </div>
         </div>
         <div class="clearfix">&nbsp;</div>
     </div>
