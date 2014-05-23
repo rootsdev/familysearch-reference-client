@@ -1,1 +1,8 @@
-angular.module('fsCloneShared', ['loDash', 'angularMoment', 'panzoom', 'ui.bootstrap', 'infinite-scroll']);
+angular.module('fsCloneShared', [
+  'loDash',
+  'angularMoment',
+  'panzoom',
+  'ui.bootstrap',
+  'infinite-scroll',
+  'angular-growl'
+]);

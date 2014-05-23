@@ -13,7 +13,8 @@
     "es5-shim": "~3.0.2",
     "familysearch-javascript-sdk": "~0.9.8",
     "angular-moment": "~0.7.0",
-    "ngInfiniteScroll": "~1.1.2"
+    "ngInfiniteScroll": "~1.1.2",
+    "angular-growl-v2": "~0.6.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.9"

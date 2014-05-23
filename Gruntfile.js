@@ -96,9 +96,11 @@ module.exports = function(grunt) {
                 'vendor/hamsterjs/hamster.js',
                 'vendor/angular-mousewheel/mousewheel.js',
                 'vendor/angular-pan-zoom/build/panzoom.0.1-snapshot.min.js',
-                'vendor/ngInfiniteScroll/build/ng-infinite-scroll.js'
+                'vendor/ngInfiniteScroll/build/ng-infinite-scroll.js',
+                'vendor/angular-growl-v2/build/angular-growl.js'
             ],
             css: [
+                'vendor/angular-growl-v2/build/angular-growl.min.css'
             ],
             assets: [
             ]
@@ -410,7 +412,6 @@ module.exports = function(grunt) {
                     '<%= build_dir %>/src/**/*.js',
                     '<%= html2js.common.dest %>',
                     '<%= html2js.app.dest %>',
-                    '<%= vendor_files.css %>',
                     '<%= recess.build.dest %>'
                 ]
             },
