@@ -113,7 +113,10 @@
         templateUrl: 'fsCloneShared/fsName/fsNameEdit/fsNameEdit.tpl.html',
         scope: {
           name: '=',
-          agent: '='
+          agent: '=',
+          hideModified: '@',
+          hideButtons: '@',
+          hideReason: '@'
         },
         link: function(scope) {
           scope.templates = fsNameTemplates;
@@ -125,11 +128,22 @@
           });
           scope.nameTypes.push({label: 'Other', value: ''});
           scope.primaryLang = fsNameUtils.getPrimaryLang(scope.name.nameForms);
-          scope.form = {};
-          scope.form.nameType = scope.name.type || '';
-          scope.form.template = fsNameUtils.getTemplate(scope.primaryLang);
-          scope.form.nameForms = updateNameForms(copyNameForms(scope.name.nameForms), scope.form.template);
-          scope.columns = getColumns(scope.form.nameForms, scope.primaryLang);
+
+          // name data may change in fsFindAddPersonForm
+          console.log('fsNameEdit init');
+          scope.$watch(function() {
+            console.log('fsNameEdit watch', scope.name, scope.name.nameForms);
+            return scope.name;
+          }, function() {
+            console.log('fsNameEdit watch changed', scope.name);
+            var template = fsNameUtils.getTemplate(scope.primaryLang);
+            scope.form = {
+              nameType: scope.name.type || '',
+              template: template,
+              nameForms: updateNameForms(copyNameForms(scope.name.nameForms), template)
+            };
+            scope.columns = getColumns(scope.form.nameForms, scope.primaryLang);
+          }, true);
 
           scope.showLangLabel = function() {
             return scope.form.nameForms.length > 1;
@@ -150,21 +164,26 @@
           };
 
           scope.setTemplate = function(template) {
+            console.log('fsNameEdit template', template);
             scope.form.template = template;
             scope.primaryLang = scope.form.template.langs[0];
             scope.form.nameForms = updateNameForms(scope.form.nameForms, scope.form.template);
             scope.columns = getColumns(scope.form.nameForms, scope.primaryLang);
+            console.log('fsNameEdit nameForms', scope.form.nameForms);
           };
 
           // save the nameForms to the name
-          scope.$on('save', function(event, name) {
-            event.stopPropagation();
+          scope.$on('save', function(event) {  // ignore item parameter so we can respond to broadcasted save in fsFindAddPersonForm
+            if (event.stopPropagation) {
+              event.stopPropagation();
+            }
+            console.log('fsNameEdit save');
             // remove empty form.nameForms
             scope.form.nameForms = _.filter(scope.form.nameForms, function(nameForm) {
               return _.any(nameForm.parts, function(part) { return !!part.value; });
             });
             // set the nameForms
-            name.nameForms = _.map(scope.form.nameForms, function(nameForm) {
+            scope.name.nameForms = _.map(scope.form.nameForms, function(nameForm) {
               return fsUtils.removeEmptyProperties({
                 lang: nameForm.lang, // will be removed if empty
                 parts: _.filter(nameForm.parts, function(part) { return !!part.value; }),
@@ -172,8 +191,8 @@
               });
             });
             // set the type and emit the save event
-            name.$setType(scope.form.nameType);
-            scope.$parent.$emit('save', name, scope.form.reason);
+            scope.name.$setType(scope.form.nameType);
+            scope.$parent.$emit('save', scope.name, scope.form.reason);
           });
 
         }

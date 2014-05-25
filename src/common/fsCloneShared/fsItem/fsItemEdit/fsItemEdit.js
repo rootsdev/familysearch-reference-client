@@ -11,7 +11,8 @@
         scope: {
           item: '=',
           agent: '=',
-          hideModified: '@'
+          hideModified: '@',
+          hideButtons: '@'
         }
       };
     });

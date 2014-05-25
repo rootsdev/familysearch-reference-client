@@ -2,40 +2,12 @@
   <h3>Adding Person</h3>
   <h6>Good News! We may have found a match!</h6>
   <div class="searchResults new show">
-    <div class="refineBar hiddenHeader" style="display: none; width: 1160px;">
-      <div class="refineLinks">
-        <a href="#" class="newSearch btn btn-default">New</a>
-        <a href="#" class="refineSearch btn btn-default">Refine</a>
-        <div class="btn-group">
-          <button type="button" class="btn btn-danger">Action</button>
-          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-            <span class="caret"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <ul class="refinementsList clearfix"><li data-refine="given">
-        <label class="refineLabel">First Name</label>
-        <a href="" class="refineButton isName" eventname="refineButtonClick" eventdata="given">pranas</a><a href="" class="refineX" eventname="refineXClick" eventdata="given"> </a>
-      </li><li data-refine="surname">
-        <label class="refineLabel">Last Name</label>
-        <a href="" class="refineButton isName" eventname="refineButtonClick" eventdata="surname">paukstys</a><a href="" class="refineX" eventname="refineXClick" eventdata="surname"> </a>
-      </li></ul>
-    </div>
-
     <div class="refineBar">
       <div class="refineLinks">
-        <a href="#" class="newSearch btn btn-default">New</a>
-        <a href="#" class="refineSearch btn btn-default" >Refine</a>
+        <a href="" class="newSearch btn btn-default" ng-click="$emit('refine', true)">New</a>
+        <a href="" class="refineSearch btn btn-default" ng-click="$emit('refine', false)">Refine</a>
       </div>
+      <!-- TODO
       <ul class="refinementsList clearfix">
         <li data-refine="given">
           <label class="refineLabel">First Name</label>
@@ -46,8 +18,9 @@
           <button type="button" class="label label-info removeRefinement">paukstys <span class="fa fa-times"></span></button>
         </li>
       </ul>
+      -->
     </div>
-    <table class="searchResultsTable grid" data-config="{&quot;stickyHeader&quot;: true, &quot;stickyPrepend&quot;: &quot;#searchPage .refineBar&quot; }" data-control-init="Grid" id="searchPage_searchResultsGrid">
+    <table class="searchResultsTable grid">
       <thead class="hiddenHeader">
       <tr>
         <th class="personHeader">Person</th>
@@ -62,15 +35,19 @@
       </tr>
       </thead>
 
+      <!-- TODO when to display? -->
       <tfoot class="resultsFoot">
       <tr>
         <td colspan="5">
-          <div class="noResultsLabel">
+          <div ng-hide="count > 0">
             No results found.
           </div>
 
-          <div class="noResultsAdd hide">
-            There is no match.<span><input class="submit addperson" type="submit" value="Add"></span>
+          <div class="noResultsAdd">
+            <span ng-hide="count > 0">There is no match</span>
+            <span ng-show="count > 0">None of these is a match</span>
+            <input ng-clock="$emit('add')" class="addperson" type="submit" value="Add">
+            <span ng-show="busy" style="padding-left: 10px"><i class="fa fa-spinner fa-spin"></i></span>
           </div>
         </td>
       </tr>
@@ -82,241 +59,32 @@
           <div class="improveResultsWrapper">
             <div class="improveResults">
               These results strongly match your search terms.
-            </div><span class="resultsLabel resultsFound">1-1 of 1 results</span><br style="clear:both">
+            </div><span class="resultsLabel resultsFound">{{begin}}-{{end}} of {{count}} results</span><br style="clear:both">
           </div>
         </td>
       </tr>
 
-      <tr class="record" ng-repeat="result in results">
-        <td class="individualColumn">
-          <div class="person-info-container">
-            <div class="person-gender-container medium fs-icon-male icon-rounded">
-              &nbsp;
-            </div>
+      <tr fs-search-result result="result" ng-repeat="result in results"></tr>
 
-            <ul class="person-info">
-              <li class="person-name"><a data-pid="277H-SWR" href="#" >{{result.$getPrimaryPerson().$getDisplayName()}}</a></li>
-              <li class="person-id">277H-SWR</li>
-            </ul>
-          </div>
-        </td>
-
-        <td class="eventsColumn">
-          <div class="column-label">
-            Events
-          </div>
-
-          <ul class="events">
-            <li class="event birth"><label class="eventLabel">birth</label><span class="eventData">16 August 1919, Lithuania</span></li>
-
-            <li class="event death"><label class="eventLabel">death</label><span class="eventData">17 March 1971, Chicago, Cook, Illinois, United States</span></li>
-          </ul>
-        </td>
-
-        <td class="parentsColumn">
-          <div class="column-label">
-            Parents
-          </div>
-
-          <div class="parents-container couple">
-            <div class="connector">
-              &nbsp;
-            </div>
-
-            <div class="coupleWrapper">
-              <div class="personWrapper">
-                <div class="nameWrapper">
-                  <a class="male personCard name" data-original-title="" data-pid="L851-NPH" href="#" title=""><i class="fs-icon-small-male">&nbsp;</i>Bronius Paukstys</a>
-                </div>
-              </div>
-
-              <div class="personWrapper">
-                <div class="nameWrapper">
-                  <a class="female personCard name" data-original-title="" data-pid="LDJS-T6K" href="#" title=""><i class="fs-icon-small-female icon-rounded">&nbsp;</i>Mrs Paukstys</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </td>
-
-        <td class="spouseColumn">
-          <div class="column-label">
-            Spouse
-          </div>
-
-          <div class="spouse-container">
-            <div class="person-info-container">
-              <div class="person-gender-container small"></div>
-
-              <ul class="person-info">
-                <li class="person-name"><a class="female personCard name" data-original-title="" data-pid="LDJS-T6K" href="#" title=""><i class="fs-icon-small-female icon-rounded">&nbsp;</i>Kazimiera Gurinskaite</a></li>
-              </ul>
-            </div>
-          </div>
-        </td>
-      </tr>
-
+      <!-- I'm unable to re-create a "do not strongly match" scenario from FS, so I'm commenting this out for now
+           Once we know what the differentiator is, we can use a filter function on the ng-repeat loops
       <tr class="messageBar partial">
         <td class="improveResultsTd" colspan="5">
           <div class="improveResultsWrapper partialMatchContainer">
             <div class="partialMatch">
               The following results do not strongly match what you searched for, but they may help.
-            </div><span class="resultsLabel resultsFound">1-15 of 20 results</span><br style="clear:both">
-          </div>
-        </td>
-      </tr>
-      <tr class="record">
-        <td class="individualColumn">
-          <div class="person-info-container">
-            <div class="person-gender-container medium fs-icon-female icon-rounded">
-              &nbsp;
-            </div>
-
-            <ul class="person-info">
-              <li class="person-name"><a data-pid="277H-SWR" href="#" >Sarah Paukstys</a></li>
-
-              <li class="person-id">277H-SWR</li>
-            </ul>
-          </div>
-        </td>
-
-        <td class="eventsColumn">
-          <div class="column-label">
-            Events
-          </div>
-
-          <ul class="events">
-            <li class="event birth"><label class="eventLabel">birth</label><span class="eventData">16 August 1919, Lithuania</span></li>
-
-            <li class="event death"><label class="eventLabel">death</label><span class="eventData">17 March 1971, Chicago, Cook, Illinois, United States</span></li>
-          </ul>
-        </td>
-
-        <td class="parentsColumn">
-          <div class="column-label">
-            Parents
-          </div>
-
-          <div class="parents-container couple">
-            <div class="connector">
-              &nbsp;
-            </div>
-
-            <div class="coupleWrapper">
-              <div class="personWrapper">
-                <div class="nameWrapper">
-                  <a class="male personCard name" data-original-title="" data-pid="" href="#" title=""><i class="fs-icon-small-male">&nbsp;</i></a>
-                </div>
-              </div>
-
-              <div class="personWrapper">
-                <div class="nameWrapper">
-                  <a class="female personCard name" data-original-title="" data-pid="LDJS-T6K" href="#" title=""><i class="fs-icon-small-female icon-rounded">&nbsp;</i>Mrs Paukstys</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </td>
-
-        <td class="spouseColumn">
-          <div class="column-label">
-            Spouse
-          </div>
-
-          <div class="spouse-container">
-            <div class="person-info-container">
-              <div class="person-gender-container small"></div>
-
-              <ul class="person-info">
-                <li class="person-name"><a class="female personCard name" data-original-title="" data-pid="LDJS-T6K" href="#" title=""><i class="fs-icon-small-male">&nbsp;</i>John Gurinskaite</a></li>
-              </ul>
-            </div>
+            </div><span class="resultsLabel resultsFound">{{begin}}-{{end}} of {{count}} results</span><br style="clear:both">
           </div>
         </td>
       </tr>
 
-      <tr class="record">
-        <td class="individualColumn">
-          <div class="person-info-container">
-            <div class="person-gender-container medium fs-icon-unknown icon-rounded">
-              &nbsp;
-            </div>
-
-            <ul class="person-info">
-              <li class="person-name"><a data-pid="277H-SWR" href="#" >[Unknown] Paukstys</a></li>
-
-              <li class="person-id">277H-SWR</li>
-            </ul>
-          </div>
-        </td>
-
-        <td class="eventsColumn">
-          <div class="column-label">
-            Events
-          </div>
-
-          <ul class="events">
-            <li class="event birth"><label class="eventLabel">birth</label><span class="eventData">16 August 1919, Lithuania</span></li>
-
-            <li class="event death"><label class="eventLabel">death</label><span class="eventData">17 March 1971, Chicago, Cook, Illinois, United States</span></li>
-          </ul>
-        </td>
-
-        <td class="parentsColumn">
-          <div class="column-label">
-            Parents
-          </div>
-
-          <div class="parents-container couple">
-            <div class="connector">
-              &nbsp;
-            </div>
-
-            <div class="coupleWrapper">
-              <div class="personWrapper">
-                <div class="nameWrapper">
-                  <a class="male personCard name" data-original-title="" data-pid="#" href="#" title=""><i class="fs-icon-small-male">&nbsp;</i></a>
-                </div>
-              </div>
-
-              <div class="personWrapper">
-                <div class="nameWrapper">
-                  <a class="female personCard name" data-original-title="" data-pid="#" href="#" title=""><i class="fs-icon-small-female icon-rounded">&nbsp;</i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </td>
-
-        <td class="spouseColumn">
-          <div class="column-label">
-            Spouse
-          </div>
-
-          <div class="spouse-container">
-            <div class="person-info-container">
-              <div class="person-gender-container small"></div>
-
-              <ul class="person-info">
-                <li class="person-name"><a class="female personCard name" data-original-title="" data-pid="LDJS-T6K" href="#" title=""><i class="fs-icon-small-unknown">&nbsp;</i>John Gurinskaite</a></li>
-              </ul>
-            </div>
-          </div>
-        </td>
-      </tr>
+      <tr fs-search-result result="result" ng-repeat="result in results"></tr>
+      -->
 
       </tbody>
     </table>
-    <div class="row">
-      <ul class="pagination">
-        <li class="disabled"><a href="#">&laquo;</a></li>
-        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">&raquo;</a></li>
-      </ul>
+    <div ng-hide="!!context">
+      <span pagination page="currentPage" total-items="count" items-per-page="pageSize" on-select-page="pageChanged(page)"></span>
     </div>
 
   </div>

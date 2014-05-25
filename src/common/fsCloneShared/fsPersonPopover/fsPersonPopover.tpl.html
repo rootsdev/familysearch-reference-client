@@ -86,7 +86,7 @@
 
     </div>
   </script>
-  <div tabindex="0" popover-trigger="focus" ng-focus="focus()" popover-placement="top" popover-template="fsPersonPopover.html" style="outline-width: 0;" class="popover-scaffolding">
+  <div tabindex="0" popover-trigger="focus" ng-focus="focus()" popover-placement="{{popoverPlacement || 'top'}}" popover-template="fsPersonPopover.html" style="outline-width: 0;" class="popover-scaffolding">
     <div ng-transclude class="popover-scaffolding"></div>
   </div>
 </div>

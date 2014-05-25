@@ -6,7 +6,8 @@
         transclude: true,
         templateUrl: 'fsCloneShared/fsPersonPopover/fsPersonPopover.tpl.html',
         scope: {
-          person: '='
+          person: '=',
+          popoverPlacement: '@'
         },
         link: function(scope) {
           scope.sourcesCount = null;

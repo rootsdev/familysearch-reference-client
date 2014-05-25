@@ -6,18 +6,12 @@
         templateUrl: 'fsCloneShared/fsFact/fsFactEdit/fsFactEdit.tpl.html',
         scope: {
           fact: '=',
-          agent: '='
+          agent: '=',
+          hideModified: '@',
+          hideButtons: '@',
+          hideReason: '@'
         },
         link: function(scope) {
-          scope.form = {
-            living: scope.fact._living ? 'true' : 'false',
-            value: scope.fact.value,
-            date: scope.fact.$getDate(),
-            stdDate: scope.fact.$getNormalizedDate(),
-            formalDate: scope.fact.$getFormalDate(),
-            place: scope.fact.$getPlace(),
-            stdPlace: scope.fact.$getNormalizedPlace()
-          };
 
           if (_.contains(fsVitalFactTypes, scope.fact.type)) {
             scope.hasValue = false;
@@ -37,8 +31,23 @@
             }
           }
 
-          var oldDate = scope.form.date;
-          var oldPlace = scope.fact.place;
+          // fact data may change in fsFindAddPersonForm
+          var oldDate, oldPlace;
+          scope.$watch(function() {
+            return scope.fact;
+          }, function() {
+            scope.form = {
+              living: scope.fact._living === true ? 'true' : (scope.fact._living === false ? 'false' : ''),
+              value: scope.fact.value,
+              date: scope.fact.$getDate(),
+              stdDate: scope.fact.$getNormalizedDate(),
+              formalDate: scope.fact.$getFormalDate(),
+              place: scope.fact.$getPlace(),
+              stdPlace: scope.fact.$getNormalizedPlace()
+            };
+            oldDate = scope.form.date;
+            oldPlace = scope.form.place;
+          }, true);
 
           scope.isDeath = function(fact) {
             return fact.type === fsDeathFactType;
@@ -52,7 +61,13 @@
           };
 
           scope.setStdDate = function() {
-            if (oldDate === scope.form.date) {
+            if (!scope.form.date) {
+              scope.form.stdDate = '';
+              scope.form.formalDate = '';
+              oldDate = scope.form.date;
+              return $q.when(null);
+            }
+            else if (oldDate === scope.form.date && !!scope.form.stdDate) {
               return $q.when(null);
             }
             else {
@@ -74,7 +89,12 @@
           };
 
           scope.setStdPlace = function() {
-            if (oldPlace === scope.form.place) {
+            if (!scope.form.place) {
+              scope.form.stdPlace = '';
+              oldPlace = scope.form.place;
+              return $q.when(null);
+            }
+            else if (oldPlace === scope.form.place && !!scope.form.stdPlace) {
               return $q.when(null);
             }
             else {
@@ -87,31 +107,36 @@
           };
 
           // save the form to the fact
-          scope.$on('save', function(event, fact) {
-            event.stopPropagation();
-            if (scope.isDeath(fact) && scope.form.living === 'true') {
-              if (!fact._living) {
-                scope.$parent.$emit('delete', fact, scope.form.reason);
+          scope.$on('save', function(event) { // ignore item parameter so we can respond to broadcasted save in fsFindAddPersonForm
+            if (event.stopPropagation) {
+              event.stopPropagation();
+            }
+            if (scope.isDeath(scope.fact) && scope.form.living === 'true') {
+              if (!scope.fact._living) {
+                scope.$parent.$emit('delete', scope.fact, scope.form.reason);
               }
             }
             else {
               $q.all([scope.setStdDate(), scope.setStdPlace()]).then(function() { // in case blur hasn't fired
-                fact
+                scope.fact
                   .$setDate(scope.form.date)
                   .$setNormalizedDate(scope.form.stdDate)
                   .$setFormalDate(scope.form.formalDate)
                   .$setPlace(scope.form.place)
                   .$setNormalizedPlace(scope.form.stdPlace);
                 if (scope.isCustom) {
-                  fact.type = fsUtils.encodeCustomFactType(scope.form.title);
+                  scope.fact.type = fsUtils.encodeCustomFactType(scope.form.title);
+                }
+                if (scope.isDeath(scope.fact) && scope.form.living === 'false') {
+                  scope.fact._living = false;
                 }
                 if (scope.form.value) {
-                  fact.value = scope.form.value;
+                  scope.fact.value = scope.form.value;
                 }
                 else {
-                  delete fact.value;
+                  delete scope.fact.value;
                 }
-                scope.$parent.$emit('save', fact, scope.form.reason);
+                scope.$parent.$emit('save', scope.fact, scope.form.reason);
               });
             }
           });

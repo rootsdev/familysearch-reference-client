@@ -20,7 +20,7 @@
         {type: 'http://gedcomx.org/Surname', label: 'Last Names'},
         {type: 'http://gedcomx.org/Suffix', label: 'Suffix'}
       ]},
-      {lang: 'ru-Cyrl', form: 'Cyrillic', separator: ' ', parts: [
+      {lang: 'ru-Cyrl', label: 'Cyrillic', separator: ' ', parts: [
         {type: 'http://gedcomx.org/Prefix', label: 'Title'},
         {type: 'http://gedcomx.org/Given', label: 'First Names'},
         {type: 'http://gedcomx.org/Surname', label: 'Last Name'},

@@ -1,4 +1,5 @@
 <div>
-  <div fs-find-add-person-form ng-hide="showResults"></div>
-  <div fs-search-results ng-show="showResults" results="results" context="context" start="start"></div>
+  <div fs-find-add-person-form gender="{{gender}}" ng-hide="showResults"></div>
+  <div fs-search-results ng-show="showResults" results="results" context="context"
+       count="count" start="start" page-size="pageSize"></div>
 </div>

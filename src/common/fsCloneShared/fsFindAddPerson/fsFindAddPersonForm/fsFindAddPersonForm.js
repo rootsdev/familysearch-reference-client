@@ -1,30 +1,39 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFindAddPersonForm', function(_) {
+    .directive('fsFindAddPersonForm', function(_, fsApi) {
       return {
         templateUrl: 'fsCloneShared/fsFindAddPerson/fsFindAddPersonForm/fsFindAddPersonForm.tpl.html',
         scope: {
+          gender: '@'
         },
         link: function(scope) {
-          console.log('fsFindAddPersonForm');
           scope.tabs = { addPersonActive: false, findPersonActive: true, findPersonByIdActive: false };
+          var findPersonActive = false;
+          var addPersonActive = false;
+
           scope.genderOptions = [
-            {label: 'Any', value: ''},
-            {label: 'Male', value: 'male'},
-            {label: 'Female', value: 'female'},
-            {label: 'Unknown', value: 'unknown'}
+            {label: 'Any', value: '', gedcomx: ''},
+            {label: 'Male', value: 'male', gedcomx: 'http://gedcomx.org/Male'},
+            {label: 'Female', value: 'female', gedcomx: 'http://gedcomx.org/Female'},
+            {label: 'Unknown', value: 'unknown', gedcomx: 'http://gedcomx.org/Unknown'}
           ];
+          if (scope.gender) {
+            scope.genderOptions = _.filter(scope.genderOptions, {value: scope.gender});
+            scope.requiredGender = _.find(scope.genderOptions, {value: scope.gender}).gedcomx;
+          }
+
           scope.eventOptions = [
             {label: '-- Select --', value: ''},
-            {label: 'Birth', value: 'birth'},
-            {label: 'Christening', value: 'christening'},
-            {label: 'Marriage', value: 'marriage'},
-            {label: 'Death', value: 'death'},
-            {label: 'Burial', value: 'burial'}
+            {label: 'Birth', value: 'birth', gedcomx: 'http://gedcomx.org/Birth'},
+            {label: 'Christening', value: 'christening', gedcomx: 'http://gedcomx.org/Christening'},
+            {label: 'Marriage', value: 'marriage', gedcomx: 'http://gedcomx.org/Marriage'},
+            {label: 'Death', value: 'death', gedcomx: 'http://gedcomx.org/Death'},
+            {label: 'Burial', value: 'burial', gedcomx: 'http://gedcomx.org/Burial'}
           ];
+
           var exactMatchFields = [
-            'lastName',
+            'surname',
             'givenName',
             'fatherSurname',
             'fatherGivenName',
@@ -36,16 +45,70 @@
           ];
 
           function initForm() {
+            console.log('initForm');
             scope.form = {
-              gender: '',
+              gender: scope.gender || '',
               event: ''
             };
+            scope.person = (new fsApi.Person())
+              .$addName(new fsApi.Name({type: 'http://gedcomx.org/BirthName', preferred: true}))
+              .$addFact(new fsApi.Fact({type: 'http://gedcomx.org/Birth'}))
+              .$addFact(new fsApi.Fact({type: 'http://gedcomx.org/Death'}))
+              .$setGender(scope.requiredGender || '');
           }
 
           initForm();
 
-          scope.find = function() {
-            console.log('find');
+          scope.selectAddPerson = function() {
+            console.log('selectAddPerson', scope.tabs);
+            if (findPersonActive) {
+              // update person from form
+              scope.person.$getPreferredName()
+                .$setGivenName(scope.form.givenName)
+                .$setSurname(scope.form.surname);
+              scope.person.$setGender(_.find(scope.genderOptions, {value: scope.form.gender }) || '');
+              var eventOption = _.find(scope.eventOptions, {value: scope.form.event });
+              if ((eventOption.value === 'birth' || eventOption.value === 'death') &&
+                (scope.form.rangeFrom || scope.form.place)) {
+                var fact = scope.person.$getFact(eventOption.gedcomx);
+                fact.$setDate(scope.form.rangeFrom);
+                fact.$setPlace(scope.form.place);
+                if (eventOption.value === 'death') {
+                  fact._living = false;
+                }
+              }
+              console.log('selectAddPerson', scope.person, scope.form);
+              console.log('selectAddPerson name', scope.person.$getPreferredName().$getGivenName(), scope.form.givenName);
+            }
+            addPersonActive = true;
+            findPersonActive = false;
+          };
+
+          scope.selectFindPerson = function() {
+            console.log('selectFindPerson', scope.tabs);
+            if (addPersonActive) {
+              // update form from person
+              scope.$broadcast('save'); // tell the name, gender, and fact components to save the form onto the person
+              scope.form.givenName = scope.person.$getGivenName();
+              scope.form.surname = scope.person.$getSurname();
+              var gender = _.find(scope.genderOptions, { gedcomx: scope.person.gender.type });
+              scope.form.gender = !!gender ? gender.value : '';
+              var factFound = false;
+              scope.eventOptions.forEach(function(eventOption) {
+                var fact = scope.person.$getFact(eventOption.gedcomx);
+                if (!!fact && !factFound && (fact.$getDate() || fact.$getPlace())) {
+                  factFound = true;
+                  scope.form.event = eventOption.value;
+                  scope.form.rangeFrom = fact.$getDate();
+                  scope.form.rangeTo = fact.$getDate();
+                  scope.form.place = fact.$getPlace();
+                }
+              });
+              console.log('selectFindPerson', scope.form, scope.person);
+              console.log('selectFindPerson name', scope.form.givenName, scope.person.$getPreferredName().$getGivenName());
+            }
+            findPersonActive = true;
+            addPersonActive = false;
           };
 
           scope.toggleAdvancedSearch = function() {
@@ -71,9 +134,16 @@
             }
           };
 
+          scope.getAddPersonGenderOptions = function() {
+            return _.filter(scope.genderOptions, function(opt) { return !!opt.value; });
+          };
+
           scope.clear = function() {
             initForm();
           };
+          scope.$on('clear', function() {
+            scope.clear();
+          });
 
           scope.cancel = function() {
             console.log('cancel');
@@ -85,11 +155,17 @@
             var query = _.omit(scope.form, [
               'id',
               'event',
+              'gender',
               'rangeFrom',
               'rangeTo',
               'place'].concat(_.map(exactMatchFields, function(field) {
                 return field+'MatchExactly';
               })));
+            // set gender
+            if (scope.form.gender && scope.form.gender !== 'unknown') {
+              query.gender = scope.form.gender;
+            }
+            // set event date and place
             if (scope.form.event) {
               var eventType = scope.form.event;
               if (eventType === 'christening') {
@@ -105,18 +181,39 @@
                 query[eventType+'Place'] = scope.form.place;
               }
             }
+            // set approximate match
             exactMatchFields.forEach(function(field) {
-              if (query[field] && !scope.form[field+'MatchExactly']) {
+              if (query[field] && (!scope.isAdvancedSearch || !scope.form[field+'MatchExactly'])) {
                 query[field] = query[field] + '~';
               }
             });
+            // emit query
             scope.$emit('search', query);
           };
 
-          scope.findById = function() {
-            console.log('findById');
+          scope.findPersonById = function() {
             scope.$emit('search', {id: scope.form.id });
           };
+
+          scope.add = function() {
+            console.log('add');
+            scope.$broadcast('save'); // tell the name, gender, and fact components to save the form onto the person
+            scope.$emit('match', scope.person);
+          };
+
+          // catch save events bubbling up from name, gender, and fact components and ignore them
+          // after they have finished saving we'll emit match in the add function
+          scope.$on('save', function(event) {
+            if (event.stopPropagation) {
+              event.stopPropagation();
+            }
+          });
+
+          // catch death marked living and set living flag on death fact
+          scope.$on('delete', function(event, fact) {
+            event.stopPropagation();
+            fact._living = true;
+          });
 
         }
       };
