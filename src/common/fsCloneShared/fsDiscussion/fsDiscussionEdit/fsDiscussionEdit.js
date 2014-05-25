@@ -17,7 +17,7 @@
               title: scope.disc.discussion ? scope.disc.discussion.title : '',
               details: scope.disc.discussion ? scope.disc.discussion.details : ''
             };
-          });
+          }, true);
 
           // save the form to the note
           scope.$on('save', function(event, disc) {

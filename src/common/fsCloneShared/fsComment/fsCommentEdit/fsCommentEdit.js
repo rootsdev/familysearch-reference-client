@@ -15,7 +15,7 @@
             scope.form = {
               text: scope.comment.text
             };
-          });
+          }, true);
 
           // save the form to the comment
           scope.$on('save', function (event, comment) {

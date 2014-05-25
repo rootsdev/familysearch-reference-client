@@ -20,7 +20,7 @@
               subject: scope.note ? scope.note.subject : '',
               text: scope.note ? scope.note.text : ''
             };
-          });
+          }, true);
 
           // save the form to the note
           scope.$on('save', function(event, note) {
