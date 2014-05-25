@@ -129,13 +129,7 @@
           scope.nameTypes.push({label: 'Other', value: ''});
           scope.primaryLang = fsNameUtils.getPrimaryLang(scope.name.nameForms);
 
-          // name data may change in fsFindAddPersonForm
-          console.log('fsNameEdit init');
-          scope.$watch(function() {
-            console.log('fsNameEdit watch', scope.name, scope.name.nameForms);
-            return scope.name;
-          }, function() {
-            console.log('fsNameEdit watch changed', scope.name);
+          function initForm() {
             var template = fsNameUtils.getTemplate(scope.primaryLang);
             scope.form = {
               nameType: scope.name.type || '',
@@ -143,6 +137,15 @@
               nameForms: updateNameForms(copyNameForms(scope.name.nameForms), template)
             };
             scope.columns = getColumns(scope.form.nameForms, scope.primaryLang);
+          }
+
+          initForm();
+
+          // name data may change in fsFindAddPersonForm
+          scope.$watch(function() {
+            return scope.name;
+          }, function() {
+            initForm();
           }, true);
 
           scope.showLangLabel = function() {
@@ -164,12 +167,10 @@
           };
 
           scope.setTemplate = function(template) {
-            console.log('fsNameEdit template', template);
             scope.form.template = template;
             scope.primaryLang = scope.form.template.langs[0];
             scope.form.nameForms = updateNameForms(scope.form.nameForms, scope.form.template);
             scope.columns = getColumns(scope.form.nameForms, scope.primaryLang);
-            console.log('fsNameEdit nameForms', scope.form.nameForms);
           };
 
           // save the nameForms to the name
@@ -177,7 +178,6 @@
             if (event.stopPropagation) {
               event.stopPropagation();
             }
-            console.log('fsNameEdit save');
             // remove empty form.nameForms
             scope.form.nameForms = _.filter(scope.form.nameForms, function(nameForm) {
               return _.any(nameForm.parts, function(part) { return !!part.value; });

@@ -23,13 +23,19 @@
             scope.genderOptions = _.filter(scope.genderOptions, {value: scope.requiredGender});
           }
 
+          function initForm() {
+            scope.form = {
+              type: scope.gender.type
+            };
+          }
+
+          initForm();
+
           // populate the form from the gender
           scope.$watch(function() {
             return scope.gender;
           }, function() {
-            scope.form = {
-              type: scope.gender.type
-            };
+            initForm();
           }, true);
 
           // save the form to the gender

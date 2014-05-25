@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFamilyMembers', function (fsApi, $state) {
+    .directive('fsFamilyMembers', function ($state, fsApi, fsUtils) {
       return {
         templateUrl: 'fsCloneShared/fsFamilyMembers/fsFamilyMembers.tpl.html',
         scope: {
@@ -58,13 +58,21 @@
           };
 
           scope.addChild = function() {
-            console.log('addChild');
-            $state.go('find-add', { husbandId: 'foo', returnToId: 'bar' });
+            $state.go('find-add', fsUtils.removeEmptyProperties({
+              fatherId: !!scope.family.husband ? scope.family.husband.id : null,
+              motherId: !!scope.family.wife ? scope.family.wife.id : null,
+              returnToId: scope.focusId
+            }));
           };
 
           scope.$on('addSpouse', function(event) {
             event.stopPropagation();
-            console.log('addSpouse');
+            $state.go('find-add', fsUtils.removeEmptyProperties({
+              husbandId: !!scope.family.husband ? scope.family.husband.id : null,
+              wifeId: !!scope.family.wife ? scope.family.wife.id : null,
+              childIds: _.pluck(scope.children, 'id').join(','),
+              returnToId: scope.focusId
+            }));
           });
 
         }

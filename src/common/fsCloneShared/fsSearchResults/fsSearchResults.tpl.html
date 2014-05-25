@@ -25,13 +25,13 @@
       <tr>
         <th class="personHeader">Person</th>
 
-        <th class="eventsHeader">Events</th>
+        <th class="eventsHeader" style="width: 30%">Events</th>
 
         <th class="parentsHeader">Parents</th>
 
         <th class="spouseHeader">Spouse</th>
 
-        <th class="actionColumn"></th>
+        <th class="actionColumn" style="width: 8%"></th>
       </tr>
       </thead>
 
@@ -46,7 +46,7 @@
           <div class="noResultsAdd">
             <span ng-hide="count > 0">There is no match</span>
             <span ng-show="count > 0">None of these is a match</span>
-            <input ng-clock="$emit('add')" class="addperson" type="submit" value="Add">
+            <input ng-click="$emit('add')" class="addperson" type="submit" value="Add">
             <span ng-show="busy" style="padding-left: 10px"><i class="fa fa-spinner fa-spin"></i></span>
           </div>
         </td>

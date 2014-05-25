@@ -7,7 +7,7 @@
               <a href="" ng-hide="hasHiddenChildren(spouseFamilies)" ng-click="hideChildren(spouseFamilies, true)" class="hideChildren"><i class="fa fa-eye-slash">&nbsp;</i>Hide All</a>
               <a href="" ng-show="hasHiddenChildren(spouseFamilies)" ng-click="hideChildren(spouseFamilies, false)" class="hideChildren"><i class="fa fa-eye">&nbsp;</i>Show All</a>
               &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="" class="btn btn-link non-form addSpouse">
+              <a href="" ng-click="addSpouse()" class="btn btn-link non-form addSpouse">
                 <i class="fa fa-plus-square">&nbsp;</i>Add Spouse
               </a>
             </div>
@@ -15,8 +15,8 @@
               <div fs-family-members family="family" focus-id="person.id"
                   show-preferred="{{showPreferred(family, spouseFamilies) ? 'true' : 'false'}}" preferred="preferredCouple"></div>
             </div>
-            <a href="" class="btn btn-link non-form addChild unknownFather">
-              <i class="fa fa-plus-square">&nbsp;</i>Add Child with an Unknown Father
+            <a href="" ng-click="addChild()" class="btn btn-link non-form addChild unknownFather">
+              <i class="fa fa-plus-square">&nbsp;</i>Add Child with an Unknown {{person._isMale() ? 'Mother' : 'Father'}}
             </a>
           </div>
           <div class="col-sm-6 parentsAndChildren immediateFamily">
@@ -25,7 +25,7 @@
               <a href="" ng-hide="hasHiddenChildren(parentFamilies)" ng-click="hideChildren(parentFamilies, true)" class="hideChildren"><i class="fa fa-eye-slash">&nbsp;</i>Hide All</a>
               <a href="" ng-show="hasHiddenChildren(parentFamilies)" ng-click="hideChildren(parentFamilies, false)" class="hideChildren"><i class="fa fa-eye">&nbsp;</i>Show All</a>
               &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="" class="btn btn-link non-form addSpouse">
+              <a href="" ng-click="addParent()" class="btn btn-link non-form addSpouse">
                 <i class="fa fa-plus-square">&nbsp;</i>Add Parent
               </a>
             </div>

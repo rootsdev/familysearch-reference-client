@@ -38,7 +38,7 @@
         }
 
         $window.FamilySearch.Person.prototype._isMale = function () {
-          return this.$getDisplayGender() === 'Male';
+          return this.gender.type === 'http://gedcomx.org/Male';
         };
 
         return $window.FamilySearch;

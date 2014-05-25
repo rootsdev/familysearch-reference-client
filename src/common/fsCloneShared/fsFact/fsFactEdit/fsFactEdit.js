@@ -13,6 +13,22 @@
         },
         link: function(scope) {
 
+          function initForm() {
+            scope.form = {
+              living: scope.fact._living === true ? 'true' : (scope.fact._living === false ? 'false' : ''),
+              value: scope.fact.value,
+              date: scope.fact.$getDate(),
+              stdDate: scope.fact.$getNormalizedDate(),
+              formalDate: scope.fact.$getFormalDate(),
+              place: scope.fact.$getPlace(),
+              stdPlace: scope.fact.$getNormalizedPlace()
+            };
+            oldDate = scope.form.date;
+            oldPlace = scope.form.place;
+          }
+
+          initForm();
+
           if (_.contains(fsVitalFactTypes, scope.fact.type)) {
             scope.hasValue = false;
             scope.hasDatePlace = true;
@@ -36,17 +52,7 @@
           scope.$watch(function() {
             return scope.fact;
           }, function() {
-            scope.form = {
-              living: scope.fact._living === true ? 'true' : (scope.fact._living === false ? 'false' : ''),
-              value: scope.fact.value,
-              date: scope.fact.$getDate(),
-              stdDate: scope.fact.$getNormalizedDate(),
-              formalDate: scope.fact.$getFormalDate(),
-              place: scope.fact.$getPlace(),
-              stdPlace: scope.fact.$getNormalizedPlace()
-            };
-            oldDate = scope.form.date;
-            oldPlace = scope.form.place;
+            initForm();
           }, true);
 
           scope.isDeath = function(fact) {

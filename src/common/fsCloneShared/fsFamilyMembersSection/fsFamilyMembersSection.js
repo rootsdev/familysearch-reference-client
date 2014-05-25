@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFamilyMembersSection', function (_, $rootScope, fsApi) {
+    .directive('fsFamilyMembersSection', function (_, $rootScope, $state, fsApi, fsUtils) {
 
       function getSpouseFamilies(pwr, self) {
         var families = _.map(pwr.getSpouseRelationships(), function(couple) {
@@ -96,6 +96,32 @@
               $rootScope.$emit('saved', relationshipId, isSet);
             });
           });
+
+          // add new spouse
+          scope.addSpouse = function() {
+            $state.go('find-add', fsUtils.removeEmptyProperties({
+              husbandId: scope.person._isMale() ? scope.person.id : null,
+              wifeId: !scope.person._isMale() ? scope.person.id : null,
+              returnToId: scope.person.id
+            }));
+          };
+
+          // add child with unknown parent
+          scope.addChild = function() {
+            $state.go('find-add', fsUtils.removeEmptyProperties({
+              fatherId: scope.person._isMale() ? scope.person.id : null,
+              motherId: !scope.person._isMale() ? scope.person.id : null,
+              returnToId: scope.person.id
+            }));
+          };
+
+          // add parent to child
+          scope.addParent = function() {
+            $state.go('find-add', fsUtils.removeEmptyProperties({
+              childIds: scope.person.id,
+              returnToId: scope.person.id
+            }));
+          };
 
         }
       };

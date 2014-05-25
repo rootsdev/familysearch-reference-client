@@ -1,17 +1,14 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFindAddPersonForm', function(_, fsApi) {
+    .directive('fsFindAddPersonForm', function(_, $q, $timeout, fsApi) {
       return {
         templateUrl: 'fsCloneShared/fsFindAddPerson/fsFindAddPersonForm/fsFindAddPersonForm.tpl.html',
         scope: {
-          gender: '@'
+          gender: '@',
+          defaultTab: '@'
         },
         link: function(scope) {
-          scope.tabs = { addPersonActive: false, findPersonActive: true, findPersonByIdActive: false };
-          var findPersonActive = false;
-          var addPersonActive = false;
-
           scope.genderOptions = [
             {label: 'Any', value: '', gedcomx: ''},
             {label: 'Male', value: 'male', gedcomx: 'http://gedcomx.org/Male'},
@@ -45,7 +42,6 @@
           ];
 
           function initForm() {
-            console.log('initForm');
             scope.form = {
               gender: scope.gender || '',
               event: ''
@@ -55,57 +51,93 @@
               .$addFact(new fsApi.Fact({type: 'http://gedcomx.org/Birth'}))
               .$addFact(new fsApi.Fact({type: 'http://gedcomx.org/Death'}))
               .$setGender(scope.requiredGender || '');
+            scope.missingRequiredFields = false;
           }
 
           initForm();
 
+          // manage tabs
+          scope.tabs = { addPersonActive: false, findPersonActive: false, findPersonByIdActive: false };
+          var findPersonActive = false;
+          var addPersonActive = false;
+
+          function setActiveTab(defaultTab) {
+            scope.tabs.addPersonActive = (defaultTab === 'add');
+            scope.tabs.findPersonActive = (defaultTab === 'find');
+            scope.tabs.findPersonByIdActive = (defaultTab === 'findById');
+          }
+
+          setActiveTab(scope.defaultTab);
+
+          scope.$watch(function() {
+            return scope.defaultTab;
+          }, function() {
+            setActiveTab(scope.defaultTab);
+          });
+
+          // when saving components, wait for them to respond before continuing
+          var saveDeferred;
+          var componentsSaved;
+
+          function saveComponents() {
+            componentsSaved = 0;
+            saveDeferred = new $q.defer();
+            scope.$broadcast('save');
+            return saveDeferred.promise;
+          }
+
+          function componentSaved() {
+            if (++componentsSaved === 4) {
+              saveDeferred.resolve();
+            }
+          }
+
+          // update person from form
           scope.selectAddPerson = function() {
-            console.log('selectAddPerson', scope.tabs);
             if (findPersonActive) {
-              // update person from form
               scope.person.$getPreferredName()
                 .$setGivenName(scope.form.givenName)
                 .$setSurname(scope.form.surname);
-              scope.person.$setGender(_.find(scope.genderOptions, {value: scope.form.gender }) || '');
+              scope.person.$setGender(_.find(scope.genderOptions, {value: scope.form.gender }).gedcomx || '');
               var eventOption = _.find(scope.eventOptions, {value: scope.form.event });
               if ((eventOption.value === 'birth' || eventOption.value === 'death') &&
                 (scope.form.rangeFrom || scope.form.place)) {
                 var fact = scope.person.$getFact(eventOption.gedcomx);
-                fact.$setDate(scope.form.rangeFrom);
-                fact.$setPlace(scope.form.place);
+                fact
+                  .$setDate(scope.form.rangeFrom)
+                  .$setFormalDate('')
+                  .$setNormalizedDate('')
+                  .$setPlace(scope.form.place)
+                  .$setNormalizedPlace('');
                 if (eventOption.value === 'death') {
                   fact._living = false;
                 }
               }
-              console.log('selectAddPerson', scope.person, scope.form);
-              console.log('selectAddPerson name', scope.person.$getPreferredName().$getGivenName(), scope.form.givenName);
             }
             addPersonActive = true;
             findPersonActive = false;
           };
 
+          // update form from person
           scope.selectFindPerson = function() {
-            console.log('selectFindPerson', scope.tabs);
             if (addPersonActive) {
-              // update form from person
-              scope.$broadcast('save'); // tell the name, gender, and fact components to save the form onto the person
-              scope.form.givenName = scope.person.$getGivenName();
-              scope.form.surname = scope.person.$getSurname();
-              var gender = _.find(scope.genderOptions, { gedcomx: scope.person.gender.type });
-              scope.form.gender = !!gender ? gender.value : '';
-              var factFound = false;
-              scope.eventOptions.forEach(function(eventOption) {
-                var fact = scope.person.$getFact(eventOption.gedcomx);
-                if (!!fact && !factFound && (fact.$getDate() || fact.$getPlace())) {
-                  factFound = true;
-                  scope.form.event = eventOption.value;
-                  scope.form.rangeFrom = fact.$getDate();
-                  scope.form.rangeTo = fact.$getDate();
-                  scope.form.place = fact.$getPlace();
-                }
+              saveComponents().then(function() { // tell the name, gender, and fact components to save the form onto the person
+                scope.form.givenName = scope.person.$getGivenName();
+                scope.form.surname = scope.person.$getSurname();
+                var gender = _.find(scope.genderOptions, { gedcomx: scope.person.gender.type });
+                scope.form.gender = !!gender ? gender.value : '';
+                var factFound = false;
+                scope.eventOptions.forEach(function(eventOption) {
+                  var fact = scope.person.$getFact(eventOption.gedcomx);
+                  if (!!fact && !factFound && (!!fact.$getDate() || !!fact.$getPlace())) {
+                    factFound = true;
+                    scope.form.event = eventOption.value;
+                    scope.form.rangeFrom = fact.$getDate();
+                    scope.form.rangeTo = fact.$getDate();
+                    scope.form.place = fact.$getPlace();
+                  }
+                });
               });
-              console.log('selectFindPerson', scope.form, scope.person);
-              console.log('selectFindPerson name', scope.form.givenName, scope.person.$getPreferredName().$getGivenName());
             }
             findPersonActive = true;
             addPersonActive = false;
@@ -146,12 +178,10 @@
           });
 
           scope.cancel = function() {
-            console.log('cancel');
             scope.$emit('cancel');
           };
 
           scope.find = function() {
-            console.log('find');
             var query = _.omit(scope.form, [
               'id',
               'event',
@@ -196,9 +226,17 @@
           };
 
           scope.add = function() {
-            console.log('add');
-            scope.$broadcast('save'); // tell the name, gender, and fact components to save the form onto the person
-            scope.$emit('match', scope.person);
+            scope.missingRequiredFields = false;
+            saveComponents().then(function() { // tell the name, gender, and fact components to save the form onto the person
+              if (!scope.person.$getPreferredName().$getFullText() ||
+                  !scope.person.gender.type ||
+                  _.isUndefined(scope.person.$getDeath()._living)) {
+                scope.missingRequiredFields = true;
+              }
+              else {
+                scope.$emit('add', scope.person);
+              }
+            });
           };
 
           // catch save events bubbling up from name, gender, and fact components and ignore them
@@ -206,6 +244,7 @@
           scope.$on('save', function(event) {
             if (event.stopPropagation) {
               event.stopPropagation();
+              componentSaved();
             }
           });
 
@@ -213,6 +252,7 @@
           scope.$on('delete', function(event, fact) {
             event.stopPropagation();
             fact._living = true;
+            componentSaved();
           });
 
         }
