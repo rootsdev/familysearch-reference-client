@@ -12,7 +12,7 @@
 
     <!--Alternate husbands-->
     <div ng-show="family.hasAlternateHusbands()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" enabled="true"
-         class="all-husbands-wrapper" style="z-index: 100">
+         class="all-husbands-wrapper">
 
         <div class="pull-left text-right sans-serif all-family-label">
             <p style="padding-top:8px">All Husbands</p>
@@ -31,7 +31,7 @@
 
     <!--Alternate wives-->
     <div ng-show="family.hasAlternateWives()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" enabled="true"
-         class="all-wives-wrapper" style="z-index: 100">
+         class="all-wives-wrapper">
 
         <div class="pull-left text-right sans-serif all-family-label">
             <p style="padding-top:8px">All Wives</p>
@@ -71,8 +71,7 @@
         </div>
         <div>
             <div class="pull-left">
-                <div class="pull-left couple-icon couple-icon-female fs-icon-female" style="margin-right:8px">
-                    &nbsp;</div>
+                <div class="pull-left fs-icon-female couple-icon couple-icon-female" style="margin-right:8px">&nbsp;</div>
             </div>
             <div class="pull-left">
                 <a ng-show="!family.hasWife()" href="" class="name-line">Wife's Name</a>
@@ -113,7 +112,7 @@
 
 
     <!--Alternate parents of the husband-->
-    <div ng-show="family.hasAlternatePaternalParents()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" class="all-husbands-wrapper" >
+    <div ng-show="family.hasAlternatePaternalParents()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" class="all-husbands-wrapper wrapper-closed" >
 
         <div class="pull-left husband-parents-arrow-closed">
             <span class="fs-icon-arrow-right"></span>
@@ -135,7 +134,7 @@
     </div>
 
     <!--Alternate parents of the wife-->
-    <div ng-show="family.hasAlternateMaternalParents()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" class="all-husbands-wrapper" >
+    <div ng-show="family.hasAlternateMaternalParents()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" class="all-wives-wrapper wrapper-closed" >
 
         <div class="pull-left husband-parents-arrow-closed">
             <span class="fs-icon-arrow-right"></span>
