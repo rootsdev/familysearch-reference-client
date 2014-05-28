@@ -30,6 +30,7 @@
       var personID = coerce2PersonId(person);
 
       return fsApi.getPersonWithRelationships(personID, {persons: true}).then(function(response) {
+        console.log('relationships are nukk');
         personDescription.relationships = response;
         personDescription.person = response.getPrimaryPerson();
 
@@ -157,6 +158,17 @@
         return this.cachedFamilyOfHusbandsParents;
       },
 
+      switchPaternalParents: function(newParents) {
+        var that = this;
+        var fatherId = newParents.father ? newParents.father.id : null;
+        var motherId = newParents.mother ? newParents.mother.id : null;
+        var newFamily = FamilyConstructor.prototype.build(fatherId,motherId);
+        this.cachedFamilyOfHusbandsParents = null;
+        newFamily.initializationPromise.then(function(){
+          that.cachedFamilyOfHusbandsParents = newFamily;
+        });
+      },
+
       parentFamilyOfWife: function() {
         if ( this.cachedFamilyOfWifesParents ) {
           return this.cachedFamilyOfWifesParents;
@@ -261,6 +273,7 @@
         }
         return this.hasWife() && this.wifeDescription.relationships.getChildRelationshipsOf(null).length>0;
       },
+
 
       husbandDescription: null,
       wifeDescription: null

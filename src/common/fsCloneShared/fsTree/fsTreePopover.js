@@ -9,7 +9,7 @@
           popoverArrow: '@',
           popoverHover: '@',
           popoverContent: '@',
-          debug: '@'
+          dismissOnContentClick: '@'
         },
 
         link: function($scope, element) {
@@ -29,9 +29,11 @@
 
 
           var ignoreThisMouseClick = false;
-          popoverContentElement.click(function(){
-            ignoreThisMouseClick = true;
-          });
+          if ( !$scope.dismissOnContentClick ) {
+            popoverContentElement.click(function(){
+              ignoreThisMouseClick = true;
+            });
+          }
 
 
           function showOrHide() {

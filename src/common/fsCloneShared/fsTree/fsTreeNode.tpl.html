@@ -110,7 +110,7 @@
 
 
     <!--Alternate parents of the husband-->
-    <div ng-show="family.hasAlternatePaternalParents()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" class="all-husbands-wrapper wrapper-closed" >
+    <div ng-show="family.hasAlternatePaternalParents()" family="family" fs-tree-popover dismiss-on-content-click="true" popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" class="all-husbands-wrapper wrapper-closed" >
 
         <div class="pull-left husband-parents-arrow-closed">
             <span class="fs-icon-arrow-right"></span>
@@ -121,9 +121,8 @@
         <div class="pull-left sans-serif all-family-list-wrapper">
             <div class="all-family-list" style="margin:0 0 0 5px">
                 <span ng-repeat="parents in family.alternatePaternalParents()" >
-                    <a fs-person-popover person="parents.father">{{parents.father.$getPreferredName().$getFullText()}}</a><br>
-                    <a fs-person-popover person="parents.mother">{{parents.mother.$getPreferredName().$getFullText()}}</a><br>
-                    <span>-----</span>
+                    <a ng-click="family.switchPaternalParents(parents)" person="parents.father">{{parents.father.$getPreferredName().$getFullText()}}</a><br>
+                    <a ng-click="family.switchPaternalParents(parents)" person="parents.mother">{{parents.mother.$getPreferredName().$getFullText()}}</a><br>
                 </span>
             </div>
         </div>
