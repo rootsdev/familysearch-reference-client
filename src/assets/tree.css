@@ -13,7 +13,7 @@
 .all-family-label {background: #ecebea; width:280px; padding-right:5px} /*matches family list wrapper width*/
 .all-family-list-wrapper {width:280px; padding-right:5px; background: #ffffff; border:solid 1px #cccccc;}
 .all-family-list {height:100px; overflow:auto; background: #ffffff;}
-.all-wives-wrapper {position:absolute; top:43px; width:300px;}
+.all-wives-wrapper {position:absolute; top:43px; width:300px; z-index:999}
 .all-wives-arrow-closed {background:#787068; color:#ffffff;width:20px; height:37px; padding-top:8px; text-align: center; border-bottom-left-radius: 7px; -moz-border-bottom-left-radius: 7px; -webkit-border-bottom-left-radius: 7px;}
 .all-wives-arrow-open {background:#59534d; color:#ffffff;width:20px; height:37px; padding-top:8px; text-align: center}
 .couple-card {

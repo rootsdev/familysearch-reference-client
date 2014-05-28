@@ -11,8 +11,7 @@
 
 
     <!--Alternate husbands-->
-    <div ng-show="family.hasAlternateHusbands()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" enabled="true"
-         class="all-husbands-wrapper">
+    <div  ng-show="family.hasAlternateHusbands()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" class="all-husbands-wrapper">
 
         <div class="pull-left text-right sans-serif all-family-label">
             <p style="padding-top:8px">All Husbands</p>
@@ -22,7 +21,7 @@
         </div>
         <div class="pull-left text-right sans-serif all-family-label">
             <div class="all-family-list fs-tree-popover-content">
-                <span ng-repeat="person in family.alternateHusbands()" ><a fs-person-popover person="person">{{person.$getPreferredName().$getFullText()}}</a><br></span>
+                <span  ng-repeat="person in family.alternateHusbands()" ><a fs-person-popover person="person">{{person.$getPreferredName().$getFullText()}}</a><br></span>
             </div>
         </div>
 
@@ -30,13 +29,12 @@
     </div>
 
     <!--Alternate wives-->
-    <div ng-show="family.hasAlternateWives()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" enabled="true"
-         class="all-wives-wrapper">
+    <div ng-show="family.hasAlternateWives()" family="family" debug="true"  fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" class="all-wives-wrapper">
 
         <div class="pull-left text-right sans-serif all-family-label">
             <p style="padding-top:8px">All Wives</p>
         </div>
-        <div class="pull-right all-husbands-arrow-closed">
+        <div class="pull-right  all-wives-arrow-closed">
             <span class="fs-icon-arrow-left"></span>
         </div>
         <div class="pull-left text-right sans-serif all-family-label">

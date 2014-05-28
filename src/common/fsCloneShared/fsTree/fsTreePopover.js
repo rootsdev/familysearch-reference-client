@@ -8,11 +8,11 @@
           family: '=',
           popoverArrow: '@',
           popoverHover: '@',
-          popoverContent: '@'
+          popoverContent: '@',
+          debug: '@'
         },
 
         link: function($scope, element) {
-
           var popoverArrowElements = element.children($scope.popoverArrow);
           var popoverContentElement = element.children($scope.popoverContent);
 
@@ -27,12 +27,23 @@
           var mouseOverElement = false;
           var popoverArrowClicked = 0;
 
+
+          var ignoreThisMouseClick = false;
+          popoverContentElement.click(function(){
+            ignoreThisMouseClick = true;
+          });
+
+
           function showOrHide() {
             if ( popoverArrowClicked ) {
+              $scope.arrowOpen = true;
               popoverContentElement.show();
             } else {
+              $scope.arrowOpen = false;
               popoverContentElement.hide();
             }
+
+
 
             if ( mouseOverHoverPoint || mouseOverElement || popoverArrowClicked ) {
               popoverArrowElements.show();
@@ -45,11 +56,17 @@
 
           element.on('mouseenter',function(){
             mouseOverElement = true;
+            if ($scope.debug) {
+              console.log(mouseOverHoverPoint, mouseOverElement, popoverArrowClicked );
+            }
             showOrHide();
           });
 
           element.on('mouseleave',function(){
             mouseOverElement = false;
+            if ($scope.debug) {
+              console.log(mouseOverHoverPoint, mouseOverElement, popoverArrowClicked );
+            }
             showOrHide();
           });
 
@@ -75,6 +92,10 @@
 
 
           $document.on('click', function(){
+            if ( ignoreThisMouseClick ) {
+              ignoreThisMouseClick = false;
+              return;
+            }
             if ( popoverArrowClicked===1 ) {
               popoverArrowClicked=2;
             } else {
