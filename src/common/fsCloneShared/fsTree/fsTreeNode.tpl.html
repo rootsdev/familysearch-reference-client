@@ -131,7 +131,7 @@
     </div>
 
     <!--Alternate parents of the wife-->
-    <div ng-show="family.hasAlternateMaternalParents()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" class="all-wives-wrapper wrapper-closed" >
+    <div ng-show="family.hasAlternateMaternalParents()" family="family" fs-tree-popover popover-arrow="div:not(:nth-child(3))" popover-hover=".tree-hover-point" popover-content="div:nth-child(3)" class="all-wives-wrapper wrapper-closed">
 
         <div class="pull-left husband-parents-arrow-closed">
             <span class="fs-icon-arrow-right"></span>
@@ -187,26 +187,46 @@
     </div>
 
     <!--All wife's parents open-->
-    <div class="all-wives-wrapper" style="display:none">
+    <div class="all-wives-wrapper" style="">
         <div class="pull-left wife-parents-arrow-open">
             <span class="fs-icon-arrow-right"></span>
         </div>
         <div class="pull-left sans-serif all-family-list-wrapper">
             <p style="padding:8px 0 0 5px">All Parents</p>
 
-            <div class="all-family-list" style="margin:0 0 0 5px">
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
-                List<br>
+            <div class="all-family-list">
+                <ul class="list-group">
+                    <li class="list-group-item all-family-list-selected">
+                        <div class="list-div">
+                            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">
+                            <a href="">Husband</a>
+                        </div>
+                        <div class="list-div">
+                            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>
+                            <a href="">Wife</a>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="list-div">
+                            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">
+                            <a href="">Husband</a>
+                        </div>
+                        <div class="list-div">
+                            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>
+                            <a href="">Wife</a>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="list-div">
+                            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">
+                            <a href="">Husband</a>
+                        </div>
+                        <div class="list-div">
+                            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>
+                            <a href="">Wife</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="clearfix">&nbsp;</div>
