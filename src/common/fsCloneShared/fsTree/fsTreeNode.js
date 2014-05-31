@@ -8,9 +8,10 @@
           family: '=',
           expandable: '@'
         },
-        controller: function($scope) {
+        link: function($scope) {
           $scope.expandable = false;
           $scope.islive = !!$scope.family;
+
 
 
 

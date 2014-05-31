@@ -4,107 +4,65 @@
     .directive('fsTreePopover', function($document) {
 
       return {
-        scope: {
-          family: '=',
-          popoverArrow: '@',
-          popoverHover: '@',
-          popoverContent: '@',
-          dismissOnContentClick: '@'
-        },
-
-        link: function($scope, element) {
-          var popoverArrowElements = element.children($scope.popoverArrow);
-          var popoverContentElement = element.children($scope.popoverContent);
-
-          var parent = element;
-          var popoverHoverElement = parent.find($scope.popoverHover);
-          while( !popoverHoverElement.length && parent.length ) {
-            parent = parent.parent();
-            popoverHoverElement = parent.find($scope.popoverHover);
-          }
-
-          var mouseOverHoverPoint = false;
-          var mouseOverElement = false;
-          var popoverArrowClicked = 0;
+        scope:true,
+        link: function($scope,element) {
 
 
-          var ignoreThisMouseClick = false;
-          if ( !$scope.dismissOnContentClick ) {
-            popoverContentElement.click(function(){
-              ignoreThisMouseClick = true;
-            });
-          }
+          var hoverControlsSelector = element.attr('show-on-hover');
+          var hoverControls = element.find(hoverControlsSelector);
+
+          hoverControls.hide();
+          $scope.hoverVisible = false;
+          $scope.clickState = '';
+
+          $scope.dismissHoverControls = function() {
+            if ( $scope.hoverVisible ) {
+              hoverControls.hide();
+              $scope.hoverVisible = false;
+              $scope.clickState = '';
+              $scope.$digest();
+            }
+          };
+
+          $scope.showHoverControls = function() {
+            if ( !$scope.hoverVisible ) {
+              $scope.hoverVisible = true;
+              $scope.toggleClickState('');
+              hoverControls.show();
+              $scope.$digest();
+            }
+          };
 
 
-          function showOrHide() {
-            if ( popoverArrowClicked ) {
-              $scope.arrowOpen = true;
-              popoverContentElement.show();
+          $scope.toggleClickState = function(s) {
+            if ($scope.clickState===s) {
+              $scope.clickState='';
             } else {
-              $scope.arrowOpen = false;
-              popoverContentElement.hide();
+              $scope.clickState=s;
             }
+          };
 
+          $scope.getClickState = function() {
+            return $scope.clickState;
+          };
 
-
-            if ( mouseOverHoverPoint || mouseOverElement || popoverArrowClicked ) {
-              popoverArrowElements.show();
-            } else {
-              popoverArrowElements.hide();
-            }
-          }
-          showOrHide();
-
-
-          element.on('mouseenter',function(){
-            mouseOverElement = true;
-            if ($scope.debug) {
-              console.log(mouseOverHoverPoint, mouseOverElement, popoverArrowClicked );
-            }
-            showOrHide();
+          element.mouseenter(function(){
+            $scope.showHoverControls();
           });
 
-          element.on('mouseleave',function(){
-            mouseOverElement = false;
-            if ($scope.debug) {
-              console.log(mouseOverHoverPoint, mouseOverElement, popoverArrowClicked );
-            }
-            showOrHide();
-          });
-
-
-          popoverHoverElement.on('mouseenter',function(){
-            mouseOverHoverPoint = true;
-            showOrHide();
-
-          });
-          popoverHoverElement.on('mouseleave',function(){
-            mouseOverHoverPoint = false;
-            showOrHide();
-          });
-
-          popoverArrowElements.on('click',function(){
-            if ( !popoverArrowClicked ) {
-              popoverArrowClicked = popoverArrowClicked +1;
-            } else {
-              popoverArrowClicked = 0;
-              mouseOverElement = false;
+          element.mouseleave(function(){
+            if ( $scope.getClickState()==='' ) {
+              $scope.dismissHoverControls();
             }
           });
 
+          $document.click(function(event){
+            if ( angular.element(event.target).closest(element).length === 0 ) {
+              $scope.dismissHoverControls();
+            }
 
-          $document.on('click', function(){
-            if ( ignoreThisMouseClick ) {
-              ignoreThisMouseClick = false;
-              return;
-            }
-            if ( popoverArrowClicked===1 ) {
-              popoverArrowClicked=2;
-            } else {
-              popoverArrowClicked=0;
-            }
-            showOrHide();
           });
+
         }
       };
     });
