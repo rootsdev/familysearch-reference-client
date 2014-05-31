@@ -20,7 +20,6 @@
               hoverControls.fadeOut(125);
               $scope.hoverVisible = false;
               $scope.clickState = '';
-              $scope.$digest();
             }
           };
 

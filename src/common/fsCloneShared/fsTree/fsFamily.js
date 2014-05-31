@@ -98,7 +98,8 @@
       }
     };
 
-    function setPersonAndSpouse(that,person,spouse) {
+    function setPersonAndSpouse(that,person,spouse,referenceId) {
+      console.log('reference',referenceId);
       if ( !person ) {
         var tmp = person;  // important to preserve null vs undefined.
         person = spouse;
@@ -113,7 +114,9 @@
           that.wifeDescription = that.personDescription;
         }
       }
-
+      if ( referenceId ) {
+        that.referenceId = referenceId;
+      }
       that.personDescription = new PersonDescription(person);
       var result = that.personDescription.initializationPromise;
 
@@ -133,13 +136,17 @@
       return result;
     }
 
+    function referenceIdOf(description) {
+      return (description && description.person && description.person.id) ? description.person.id : undefined;
+    }
+
     function FamilyConstructor() {
     }
 
     FamilyConstructor.prototype = {
-      build: function(person,spouse) {
+      build: function(person,spouse,referenceId) {
         var result = new FamilyConstructor();
-        result.initializationPromise = setPersonAndSpouse(result,person,spouse);
+        result.initializationPromise = setPersonAndSpouse(result,person,spouse,referenceId);
         return result;
       },
 
@@ -150,11 +157,14 @@
         var that = this;
         this.cachedFamilyOfHusbandsParents = new FamilyConstructor();
         this.cachedFamilyOfHusbandsParents.initializationPromise = this.initializationPromise.then(function(){
+            that.cachedFamilyOfHusbandsParents.referenceId = referenceIdOf(that.husbandDescription);
+            console.log('debug',that.referenceId);
+
             if ( that.husbandDescription && that.husbandDescription.defaultParents ) {
               var parents = that.husbandDescription.defaultParents;
               var fatherId = parents.father ? parents.father.resourceId : null;
               var motherId = parents.mother ? parents.mother.resourceId : null;
-              return setPersonAndSpouse(that.cachedFamilyOfHusbandsParents, fatherId, motherId);
+              return setPersonAndSpouse(that.cachedFamilyOfHusbandsParents, fatherId, motherId, referenceIdOf(that.husbandDescription));
             }
         });
         return this.cachedFamilyOfHusbandsParents;
@@ -164,7 +174,7 @@
         var that = this;
         var fatherId = newParents.father ? newParents.father.id : null;
         var motherId = newParents.mother ? newParents.mother.id : null;
-        var newFamily = FamilyConstructor.prototype.build(fatherId,motherId);
+        var newFamily = FamilyConstructor.prototype.build(fatherId,motherId,referenceIdOf(that.husbandDescription));
         this.cachedFamilyOfHusbandsParents = null;
         newFamily.initializationPromise.then(function(){
           that.cachedFamilyOfHusbandsParents = newFamily;
@@ -175,7 +185,7 @@
         var that = this;
         var fatherId = newParents.father ? newParents.father.id : null;
         var motherId = newParents.mother ? newParents.mother.id : null;
-        var newFamily = FamilyConstructor.prototype.build(fatherId,motherId);
+        var newFamily = FamilyConstructor.prototype.build(fatherId,motherId,referenceIdOf(that.wifeDescription));
         this.cachedFamilyOfWifesParents = null;
         newFamily.initializationPromise.then(function(){
           that.cachedFamilyOfWifesParents = newFamily;
@@ -189,11 +199,13 @@
         var that = this;
         this.cachedFamilyOfWifesParents = new FamilyConstructor();
         this.cachedFamilyOfWifesParents.initializationPromise = this.initializationPromise.then(function(){
+          that.cachedFamilyOfWifesParents.referenceId = referenceIdOf(that.wifeDescription);
+
           if ( that.wifeDescription && that.wifeDescription.defaultParents ) {
             var parents = that.wifeDescription.defaultParents;
             var fatherId = parents.father ? parents.father.resourceId : null;
             var motherId = parents.mother ? parents.mother.resourceId : null;
-            return setPersonAndSpouse(that.cachedFamilyOfWifesParents, fatherId, motherId);
+            return setPersonAndSpouse(that.cachedFamilyOfWifesParents, fatherId, motherId,that.wifeDescription.person.id);
           }
         });
         return this.cachedFamilyOfWifesParents;
