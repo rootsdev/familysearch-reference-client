@@ -17,7 +17,7 @@
 
           $scope.dismissHoverControls = function() {
             if ( $scope.hoverVisible ) {
-              hoverControls.hide();
+              hoverControls.fadeOut(125);
               $scope.hoverVisible = false;
               $scope.clickState = '';
               $scope.$digest();

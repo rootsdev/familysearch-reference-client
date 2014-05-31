@@ -82,9 +82,13 @@
 .kid-list-label {margin:4px 10px}
 .kid-list-wrapper {position:relative;background:#ffffff;width:290px;border:solid 1px #CDCBC8;margin-left:5px;padding-left:8px;z-index:900}
 .husband-parents-arrow-closed {background:#787068; color:#ffffff;width:20px; height:37px; padding-top:8px; text-align: center; border-top-right-radius: 7px; -moz-border-top-right-radius: 7px; -webkit-border-top-right-radius: 7px;}
+.husband-parents-arrow-closed:hover {background:#59534d; color:#ffffff;width:20px; height:37px; padding-top:8px; text-align: center; border-top-right-radius: 7px; -moz-border-top-right-radius: 7px; -webkit-border-top-right-radius: 7px;}
 .husband-parents-arrow-open {background:#59534d; color:#ffffff;width:20px; height:37px; padding-top:8px; text-align: center}
+
 .wife-parents-arrow-closed {background:#787068; color:#ffffff;width:20px; height:37px; padding-top:8px; text-align: center; border-bottom-right-radius: 7px; -moz-border-bottom-right-radius: 7px; -webkit-border-bottom-right-radius: 7px;}
+.wife-parents-arrow-closed:hover {background:#59534d; color:#ffffff;width:20px; height:37px; padding-top:8px; text-align: center; border-bottom-right-radius: 7px; -moz-border-bottom-right-radius: 7px; -webkit-border-bottom-right-radius: 7px;}
 .wife-parents-arrow-open {background:#59534d; color:#ffffff;width:20px; height:37px; padding-top:8px; text-align: center}
+
 .child-list-item {margin:-100px 0 135px 0; position:relative}
 .child-connector-top {border-top:solid 1px #787068;border-right:solid 1px #787068; position:absolute; top: 41px; right:280px; width:20px; height:85px; z-index:1}
 .child-connector-middle {border-right:solid 1px #787068; position:absolute; top:-5px; right:280px; width:20px; height:125px; z-index:1}

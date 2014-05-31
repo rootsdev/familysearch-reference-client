@@ -112,20 +112,20 @@
 
 
     <!--Alternate parents of the husband-->
-    <div ng-show="family.hasAlternatePaternalParents()"  class="all-husbands-wrapper wrapper-closed" >
+    <div ng-show="family.hasAlternatePaternalParents()"  class="all-husbands-wrapper" ng-class="{'wrapper-open':getClickState()!=='','wrapper-closed':getClickState()===''}" style="z-index: 10000">
 
-        <div ng-click="toggleClickState('altPatParents')" click-target="altPatParents" class="pull-left husband-parents-arrow-open" style="z-index: 10000">
-            <a class="fs-icon-arrow-right" ></a>
+        <div ng-click="toggleClickState('altPatParents')" click-target="altPatParents" class="pull-left" ng-class="{'husband-parents-arrow-closed':getClickState()!=='altPatParents','husband-parents-arrow-open':getClickState()==='altPatParents'}" >
+            <span class="fs-icon-arrow-right" ></span>
         </div>
 
-        <div class="pull-left sans-serif all-family-list-wrapper">
+        <div class="pull-left sans-serif all-family-list-wrapper" >
             <p style="padding:8px 0 0 5px">All Parents</p>
 
             <div class="all-family-list" ng-show="getClickState()==='altPatParents'">
 
                 <ul class="list-group">
 
-                    <li ng-click="family.switchPaternalParents(parents)" ng-repeat="parents in family.alternatePaternalParents()" class="list-group-item" ng-class="{'all-family-list-selected':$first}">
+                    <li ng-click="family.switchPaternalParents(parents); dismissHoverControls()" ng-repeat="parents in family.alternatePaternalParents()" class="list-group-item" ng-class="{'all-family-list-selected':$first}">
                         <div class="list-div">
                             <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">
                             <a href="">{{parents.father.$getPreferredName().$getFullText()}}</a>
@@ -143,18 +143,18 @@
 
 
     <!--Alternate parents of the wife-->
-    <div class="all-wives-wrapper" style="" ng-show="family.hasAlternateMaternalParents()" >
-        <div click-target="altMatParents" class="pull-left wife-parents-arrow-open">
+    <div class="all-wives-wrapper" style="" ng-show="family.hasAlternateMaternalParents()"  ng-class="{'wrapper-open':getClickState()!=='','wrapper-closed':getClickState()===''}" style="z-index: 9999">
+        <div ng-click="toggleClickState('altMatParents')" class="pull-left" ng-class="{'wife-parents-arrow-closed':getClickState()!=='altMatParents','wife-parents-arrow-open':getClickState()==='altMatParents'}" style="z-index: 10000">
             <span class="fs-icon-arrow-right"></span>
         </div>
-        <p style="padding:8px 0 0 5px">All Parents</p>
         <div class="pull-left sans-serif all-family-list-wrapper">
+            <p style="padding:8px 0 0 5px">All Parents</p>
 
-            <div  class="all-family-list" ng-show="false">
+            <div  class="all-family-list" ng-show="getClickState()==='altMatParents'">
 
                 <ul class="list-group">
 
-                    <li ng-click="family.switchMaternalParents(parents)" ng-repeat="parents in family.alternateMaternalParents()" class="list-group-item" ng-class="{'all-family-list-selected':$first}">
+                    <li ng-click="family.switchMaternalParents(parents); dismissHoverControls()" ng-repeat="parents in family.alternateMaternalParents()" class="list-group-item" ng-class="{'all-family-list-selected':$first}">
                         <div class="list-div">
                             <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">
                             <a href="" ng-show="parents.father">{{parents.father.$getPreferredName().$getFullText()}}</a>
