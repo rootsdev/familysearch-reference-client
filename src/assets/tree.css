@@ -59,7 +59,7 @@
 .dot-guy {font-size:70%; margin-top:2px}
 .pedigree-pid {font-size:14px; margin-left:10px;clear:right;}
 .kid-list-arrow {
-    background:#787068;
+    background:#59534d;
     padding:5px;
     color:#ffffff;
     border-radius:  0 0 7px 7px;
@@ -71,6 +71,16 @@
 }
 .kid-list-arrow-closed {
     background:#787068;
+    padding:5px;
+    color:#ffffff;
+    border-radius:  0 0 7px 7px;
+    -moz-border-radius: 0 0 7px 7px;
+    -webkit-border-radius: 0 0 7px 7px;
+    z-index: 99999;
+    margin:0 0 0 14px;
+}
+.kid-list-arrow-closed:hover {
+    background:#59534d;
     padding:5px;
     color:#ffffff;
     border-radius:  0 0 7px 7px;

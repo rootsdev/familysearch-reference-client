@@ -93,14 +93,20 @@
     <div class="joint-kids-wrapper">
         <!--list of kids collapsed-->
         <div class="pull-left" ng-show="family.hasChildren()" >
-            <div class="pull-left kid-list-arrow-closed">
+
+            <div ng-click="toggleClickState('kids')" class="pull-left kid-list-arrow-closed" ng-class="{'kid-list-arrow-closed':getClickState()!=='kids','kid-list-arrow':getClickState()==='kids'}" >
                 <div class="fs-icon-arrow-down"></div>
             </div>
-            <div class="pull-left sans-serif kid-list-label">
-                Children
-            </div>
-            <div class="all-family-list">
-                <span ng-repeat="person in family.children()" ><a fs-person-popover person="person">{{person.$getPreferredName().$getFullText()}}</a><br></span>
+            <div class="pull-left sans-serif kid-list-label">Children</div>
+
+            <div class="all-family-list" ng-show="getClickState()==='kids'">
+                <ul class="list-group">
+                    <li ng-repeat="person in family.children()"  class="list-group-item" >
+                        <img ng-show="person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">
+                        <img ng-show="!person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>
+                        <a fs-person-popover person="person">{{person.$getPreferredName().$getFullText()}}</a>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="clearboth">&nbsp;</div>
@@ -114,7 +120,7 @@
     <!--Alternate parents of the husband-->
     <div ng-show="family.hasAlternatePaternalParents()"  class="all-husbands-wrapper" ng-class="{'wrapper-open':getClickState()!=='','wrapper-closed':getClickState()===''}" style="z-index: 10000">
 
-        <div ng-click="toggleClickState('altPatParents')" click-target="altPatParents" class="pull-left" ng-class="{'husband-parents-arrow-closed':getClickState()!=='altPatParents','husband-parents-arrow-open':getClickState()==='altPatParents'}" >
+        <div ng-click="toggleClickState('altPatParents')" class="pull-left" ng-class="{'husband-parents-arrow-closed':getClickState()!=='altPatParents','husband-parents-arrow-open':getClickState()==='altPatParents'}" >
             <span class="fs-icon-arrow-right" ></span>
         </div>
 
@@ -144,7 +150,7 @@
 
     <!--Alternate parents of the wife-->
     <div class="all-wives-wrapper" style="" ng-show="family.hasAlternateMaternalParents()"  ng-class="{'wrapper-open':getClickState()!=='','wrapper-closed':getClickState()===''}" style="z-index: 9999">
-        <div ng-click="toggleClickState('altMatParents')" class="pull-left" ng-class="{'wife-parents-arrow-closed':getClickState()!=='altMatParents','wife-parents-arrow-open':getClickState()==='altMatParents'}" style="z-index: 10000">
+        <div ng-click="toggleClickState('altMatParents')" class="pull-left" ng-class="{'wife-parents-arrow-closed':getClickState()!=='altMatParents','wife-parents-arrow-open':getClickState()==='altMatParents'}" style="z-index: 10050">
             <span class="fs-icon-arrow-right"></span>
         </div>
         <div class="pull-left sans-serif all-family-list-wrapper">
