@@ -99,7 +99,6 @@
     };
 
     function setPersonAndSpouse(that,person,spouse,referenceId) {
-      console.log('reference',referenceId);
       if ( !person ) {
         var tmp = person;  // important to preserve null vs undefined.
         person = spouse;
@@ -158,7 +157,6 @@
         this.cachedFamilyOfHusbandsParents = new FamilyConstructor();
         this.cachedFamilyOfHusbandsParents.initializationPromise = this.initializationPromise.then(function(){
             that.cachedFamilyOfHusbandsParents.referenceId = referenceIdOf(that.husbandDescription);
-            console.log('debug',that.referenceId);
 
             if ( that.husbandDescription && that.husbandDescription.defaultParents ) {
               var parents = that.husbandDescription.defaultParents;

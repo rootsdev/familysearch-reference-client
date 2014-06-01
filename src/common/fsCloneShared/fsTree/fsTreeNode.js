@@ -57,7 +57,6 @@
           }
 
           $scope.navigateToFindAdd = function() {
-            console.log('reference is', $scope.family.referenceId);
             $state.go('find-add', createFindAddContext());
           };
 
