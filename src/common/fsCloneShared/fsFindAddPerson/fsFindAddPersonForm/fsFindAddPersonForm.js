@@ -101,10 +101,10 @@
               scope.person.$setGender(_.find(scope.genderOptions, {value: scope.form.gender }).gedcomx || '');
               var eventOption = _.find(scope.eventOptions, {value: scope.form.event });
               if ((eventOption.value === 'birth' || eventOption.value === 'death') &&
-                (scope.form.rangeFrom || scope.form.place)) {
+                (scope.form.date || scope.form.place)) {
                 var fact = scope.person.$getFact(eventOption.gedcomx);
                 fact
-                  .$setDate(scope.form.rangeFrom)
+                  .$setDate(scope.form.date)
                   .$setFormalDate('')
                   .$setNormalizedDate('')
                   .$setPlace(scope.form.place)
@@ -132,8 +132,7 @@
                   if (!!fact && !factFound && (!!fact.$getDate() || !!fact.$getPlace())) {
                     factFound = true;
                     scope.form.event = eventOption.value;
-                    scope.form.rangeFrom = fact.$getDate();
-                    scope.form.rangeTo = fact.$getDate();
+                    scope.form.date = fact.$getDate();
                     scope.form.place = fact.$getPlace();
                   }
                 });
@@ -186,8 +185,7 @@
               'id',
               'event',
               'gender',
-              'rangeFrom',
-              'rangeTo',
+              'date',
               'place'].concat(_.map(exactMatchFields, function(field) {
                 return field+'MatchExactly';
               })));
@@ -204,8 +202,8 @@
               else if (eventType === 'burial') {
                 eventType = 'death';
               }
-              if (scope.form.rangeFrom) {
-                query[eventType+'Date'] = scope.form.rangeFrom;
+              if (scope.form.date) {
+                query[eventType+'Date'] = scope.form.date;
               }
               if (scope.form.place) {
                 query[eventType+'Place'] = scope.form.place;

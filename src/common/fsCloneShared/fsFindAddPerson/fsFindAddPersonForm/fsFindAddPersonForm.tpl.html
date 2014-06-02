@@ -71,25 +71,16 @@
           </div>
         </div>
         <div class="col-md-2 text-center yearRange">
-          <label for="rangeFrom" class="text-center">Year (Range)</label>
-          <div class="row">
-            <div class="col-xs-6">
-              <div class="input-group">
-                <input type="text" class="form-control" id="rangeFrom" ng-model="form.rangeFrom" ng-disabled="!form.event" placeholder="From">
-              </div>
-            </div>
-            <div class="col-xs-6">
-              <div class="input-group">
-                <input type="text" class="form-control" id="rangeTo" ng-model="form.rangeTo" ng-disabled="!form.event" placeholder="To">
-              </div>
-            </div>
+          <label for="eventDate" class="text-center">Year</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="eventDate" ng-model="form.date" ng-disabled="!form.event" placeholder="Year of this event">
           </div>
         </div>
         <div class="col-md-8">
           <div class="form-group">
             <label for="eventPlace">Place</label>
             <div class="input-group">
-              <input type="text" class="form-control" id="eventPlace" ng-model="form.place" ng-disabled="!form.event" placeholder="Place this event occurred">
+              <input type="text" class="form-control" id="eventPlace" ng-model="form.place" ng-disabled="!form.event" placeholder="Place of this event">
               <span ng-show="isAdvancedSearch" class="input-group-addon">
                 <input type="checkbox" ng-change="updateMatchAllExactly()" ng-model="form.placeMatchExactly">
               </span>
