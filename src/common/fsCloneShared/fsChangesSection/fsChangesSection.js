@@ -5,20 +5,40 @@
       return {
         templateUrl: 'fsCloneShared/fsChangesSection/fsChangesSection.tpl.html',
         scope: {
-          person: '='
+          person: '=', // pass in person or couple+husband+wife
+          couple: '=',
+          husband: '=',
+          wife: '='
         },
         link: function(scope) {
+          scope.isLiving = function() {
+            return !!scope.person && scope.person.living;
+          };
+
           function init() {
             //noinspection JSUnresolvedVariable
-            if (!scope.person.living) {
-              fsApi.getPersonChanges(scope.person.id, {count: 3}).then(function(response) {
+            if (!scope.isLiving()) {
+              var promise;
+              var params = {count: 3};
+              if (!!scope.person) {
+                promise = fsApi.getPersonChanges(scope.person.id, params);
+              }
+              else if (!!scope.couple) {
+                promise = fsApi.getCoupleChanges(scope.couple.id, params);
+              }
+              promise.then(function(response) {
                 scope.changes = response.getChanges();
               });
             }
           }
 
           scope.showChangesModal = function() {
-            fsChangeHistoryModal.open({person: scope.person});
+            fsChangeHistoryModal.open({
+              person: scope.person,
+              couple: scope.couple,
+              husband: scope.husband,
+              wife: scope.wife
+            });
           };
 
           var unbindSaved = $rootScope.$on('saved', function() {

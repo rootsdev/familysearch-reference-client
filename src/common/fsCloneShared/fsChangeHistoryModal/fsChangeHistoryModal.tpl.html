@@ -1,5 +1,6 @@
 <div class="changeHistory">
-  <div class="profileHeaderContainer" fs-person-profile person="person"></div>
+  <div ng-show="!!person" class="profileHeaderContainer" fs-person-profile person="person"></div>
+  <div ng-show="!!couple" class="profileHeaderContainer" fs-couple-profile husband="husband" wife="wife"></div>
   <div style="position: absolute; top: 8px; right: 8px" ng-show="busy"><i class="fa fa-spinner fa-spin"></i></div>
   <div class="mainContent" style="height: 600px; overflow-y: auto">
     <div infinite-scroll="getMoreChanges()" infinite-scroll-disabled="busy" infinite-scroll-distance="1" infinite-scroll-parent>
