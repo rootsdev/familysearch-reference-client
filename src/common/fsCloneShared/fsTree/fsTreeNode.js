@@ -6,7 +6,8 @@
         templateUrl: 'fsCloneShared/fsTree/fsTreeNode.tpl.html',
         scope: {
           family: '=',
-          expandable: '@'
+          expandable: '@',
+          brackets: '@'
         },
         link: function($scope) {
           $scope.expandable = false;

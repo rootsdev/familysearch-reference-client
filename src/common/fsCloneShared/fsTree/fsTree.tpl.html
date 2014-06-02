@@ -30,66 +30,27 @@
             </div>
         </div>
 
-
         <!--root couple-->
-        <div id="root-couple" style="position:absolute; top:350px; left:350px;">
-            <div fs-tree-node expandable="false" family="family"/>
-        </div>
-        <div style="height: 5px; width:360px; border-top:solid 1px #787068; position:absolute; top:395px; left:620px; z-index: 1">
-            &nbsp;
-        </div>
-        <div style="height: 408px; width:35px; border:solid 1px #787068; border-right:none; position:absolute; top:198px; left:980px; z-index: 1">
-            &nbsp;
-        </div>
+
+        <div id="root-couple" fs-tree-node brackets="right" family="family" style="position:absolute; top:350px; left:350px;" />
 
         <!--husband's parents-->
-        <div id="h-parents" style="position:absolute; top:155px; left:715px;">
-            <div>
-                <div fs-tree-node  expandable="false" family="family.parentFamilyOfHusband()" />
-            </div>
-        </div>
+        <div id="h-parents" fs-tree-node brackets="under" family="family.parentFamilyOfHusband()" style="position:absolute; top:155px; left:715px;" />
 
         <!--wife's parents-->
-        <div id="w-parents" style="position:absolute; top:560px; left:715px;">
-            <div>
-                <div fs-tree-node  expandable="false" family="family.parentFamilyOfWife()" />
-
-            </div>
-        </div>
+        <div id="w-parents" fs-tree-node brackets="under" family="family.parentFamilyOfWife()" style="position:absolute; top:560px; left:715px;"/>
 
         <!--husband's paternal grandparents-->
-        <div id="grandparents1" style="position:absolute; top:35px; left:900px;">
-            <div>
-                <div fs-tree-node  expandable="false" family="family.parentFamilyOfHusband().parentFamilyOfHusband()" />
-            </div>
-        </div>
-        <div style="height: 248px; width:35px; border:solid 1px #787068; border-right:none; position:absolute; top:78px; left:1165px; z-index: 1">
-            &nbsp;
-        </div>
+        <div id="grandparents1" fs-tree-node  expandable="false" family="family.parentFamilyOfHusband().parentFamilyOfHusband()" style="position:absolute; top:35px; left:900px;"/>
 
         <!--husband's maternal grandparents-->
-        <div id="grandparents2" style="position:absolute; top:280px; left:900px;">
-            <div>
-                <div fs-tree-node  expandable="false" family="family.parentFamilyOfHusband().parentFamilyOfWife()"  />
-            </div>
-        </div>
+        <div id="grandparents2" fs-tree-node  expandable="false" family="family.parentFamilyOfHusband().parentFamilyOfWife()"  style="position:absolute; top:280px; left:900px;"/>
 
         <!--wife's paternal grandparents-->
-        <div id="grandparents3" style="position:absolute; top:440px; left:900px;">
-            <div>
-                <div fs-tree-node  expandable="false" family="family.parentFamilyOfWife().parentFamilyOfHusband()"  />
-            </div>
-        </div>
-        <div style="height: 248px; width:35px; border:solid 1px #787068; border-right:none; position:absolute; top:480px; left:1165px; z-index: 1">
-            &nbsp;
-        </div>
+        <div id="grandparents3" fs-tree-node  expandable="false" family="family.parentFamilyOfWife().parentFamilyOfHusband()"  style="position:absolute; top:440px; left:900px;" />
 
         <!--wife's maternal grandparents-->
-        <div id="grandparents4" style="position:absolute; top:680px; left:900px;">
-            <div>
-                <div fs-tree-node  expandable="false"family="family.parentFamilyOfWife().parentFamilyOfWife()"  />
-            </div>
-        </div>
+        <div id="grandparents4" fs-tree-node  expandable="false"family="family.parentFamilyOfWife().parentFamilyOfWife()" style="position:absolute; top:680px; left:900px;" />
 
     </div>
 </panzoom>
