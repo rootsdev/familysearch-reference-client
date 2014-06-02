@@ -65,6 +65,12 @@
             }));
           };
 
+          scope.editCouple = function() {
+            $state.go('couple', {
+              coupleId: scope.couple.id
+            });
+          };
+
           scope.$on('addSpouse', function(event) {
             event.stopPropagation();
             $state.go('find-add', fsUtils.removeEmptyProperties({

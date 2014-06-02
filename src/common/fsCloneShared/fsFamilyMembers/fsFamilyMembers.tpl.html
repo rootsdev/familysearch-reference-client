@@ -24,7 +24,7 @@
         <input type="checkbox" ng-model="isPreferred.value" ng-change="changePreferred()">
         PREFERRED
       </div>
-      <a ng-show="!!couple" href="" class="editCouple">EDIT COUPLE</a>
+      <a ng-show="!!couple" href="" ng-click="editCouple()" class="editCouple">EDIT COUPLE</a>
     </div>
   </div>
   <div class="childrenHolder">

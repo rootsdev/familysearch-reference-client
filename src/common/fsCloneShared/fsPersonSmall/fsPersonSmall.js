@@ -7,7 +7,9 @@
         scope: {
           person: '=',
           editParents: '@',
-          isFocus: '@'
+          isFocus: '@',
+          popoverPlacement: '@',
+          hidePid: '@'
         }
       };
     });
