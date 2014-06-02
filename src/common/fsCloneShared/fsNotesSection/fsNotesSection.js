@@ -6,12 +6,20 @@
         templateUrl: 'fsCloneShared/fsNotesSection/fsNotesSection.tpl.html',
         scope: {
           state: '=',
-          person: '='
+          person: '=', // pass in person or couple
+          couple: '='
         },
         link: function(scope) {
           // read
           scope.noteRefs = [];
-          fsApi.getPersonNoteRefs(scope.person.id).then(function(response) {
+          var promise;
+          if (!!scope.person) {
+            promise = fsApi.getPersonNoteRefs(scope.person.id);
+          }
+          else if (!!scope.couple) {
+            promise = fsApi.getCoupleNoteRefs(scope.couple.id);
+          }
+          promise.then(function(response) {
             scope.noteRefs = response.getNoteRefs();
             _.forEach(scope.noteRefs, function(noteRef) {
               fsUtils.mixinStateFunctions(scope, noteRef);
@@ -24,7 +32,12 @@
             // if not already adding
             if (!fsUtils.findById(scope.noteRefs, null)) {
               var noteRef = new fsApi.NoteRef();
-              noteRef.$personId = scope.person.id;
+              if (!!scope.person) {
+                noteRef.$personId = scope.person.id;
+              }
+              else if (!!scope.couple) {
+                noteRef.$coupleId = scope.couple.id;
+              }
               fsUtils.mixinStateFunctions(scope, noteRef);
               noteRef._edit();
               scope.noteRefs.unshift(noteRef);
