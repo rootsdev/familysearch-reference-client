@@ -13,6 +13,7 @@
         templateUrl: 'fsCloneShared/fsTree/fsRecursiveTree.tpl.html',
 
         controller: function($scope) {
+          $scope.expanded = '';
           $scope.isExpanded = function(s) {
             return s===$scope.expanded;
           };
@@ -24,6 +25,9 @@
               $scope.expanded = s;
             }
           };
+
+          $scope.expandOptions = ['husbandPaternalGrandparents','husbandMaternalGrandparents','wifePaternalGrandparents','wifeMaternalGrandparents'];
+
         },
         compile: function(element){
           // Break the recursion loop by removing the contents

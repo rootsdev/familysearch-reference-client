@@ -88,7 +88,7 @@
                     <div class="pull-left fs-icon-female couple-icon couple-icon-female" style="margin-right:8px">&nbsp;</div>
                 </div>
                 <div class="pull-left" ng-show="family.hasHusband() || family.hasWife() || family.referenceId">
-                    <a ng-show="!family.hasWife()" href="" class="name-line">Add Wife</a>
+                    <a ng-click="navigateToFindAdd()" ng-show="!family.hasWife()" href="" class="name-line">Add Wife</a>
                     <a fs-person-popover person="family.wifeDescription.person" ng-show="family.hasWife()" href="" class="name-line">{{family.wifeDescription.displayName()}}</a>
                     <br>
 
@@ -191,12 +191,6 @@
         </div>
     </div>
 
-    <div ng-show="brackets==='right'" style="height: 5px; width:360px; border-top:solid 1px #787068; position:absolute; top:42px; left:270px; z-index: 1">
-        &nbsp;
-    </div>
-    <div ng-show="brackets==='right'" style="height: 408px; width:35px; border:solid 1px #787068; border-right:none; position:absolute; top:-153px; left:630px; z-index: 1">
-        &nbsp;
-    </div>
     <div ng-show="brackets==='under'" style="height: 248px; width:35px; border:solid 1px #787068; border-right:none; position:absolute; top:-77px; left:450px; z-index: 1">
         &nbsp;
     </div>
