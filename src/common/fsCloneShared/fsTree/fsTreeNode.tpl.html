@@ -13,7 +13,7 @@
 
 
         <!--Alternate husbands-->
-        <div  ng-show="family.hasAlternateHusbands()" class="all-husbands-wrapper">
+        <div  ng-show="family.hasAlternateHusbands()" class="all-husbands-wrapper" ng-class="{'wrapper-open':getClickState()==='husbands', 'wrapper-closed':getClickState()!=='husbands'}">
 
             <div class="pull-left text-right sans-serif all-family-label">
                 <p style="padding-top:8px">All Husbands</p>
@@ -39,7 +39,7 @@
         </div>
 
         <!--Alternate wives-->
-        <div ng-show="family.hasAlternateWives()" class="all-wives-wrapper wrapper-closed">
+        <div ng-show="family.hasAlternateWives()" class="all-wives-wrapper wrapper-closed" ng-class="{'wrapper-open':getClickState()==='wives', 'wrapper-closed':getClickState()!=='wives'}">
 
             <div class="pull-left text-right sans-serif all-family-label">
                 <p style="padding-top:8px">All Wives</p>
@@ -132,7 +132,7 @@
 
 
         <!--Alternate parents of the husband-->
-        <div ng-show="family.hasAlternatePaternalParents()"  class="all-husbands-wrapper" ng-class="{'wrapper-open':getClickState()!=='','wrapper-open':getClickState()===''}">
+        <div ng-show="family.hasAlternatePaternalParents()"  class="all-husbands-wrapper" ng-class="{'wrapper-open':getClickState()==='altPatParents', 'wrapper-closed':getClickState()!=='altPatParents'}">
 
             <div ng-click="toggleClickState('altPatParents')" class="pull-left" ng-class="{'husband-parents-arrow-closed':getClickState()!=='altPatParents','husband-parents-arrow-open':getClickState()==='altPatParents'}" >
                 <span class="fs-icon-arrow-right" ></span>
@@ -163,7 +163,7 @@
 
 
         <!--Alternate parents of the wife-->
-        <div class="all-wives-wrapper" style="" ng-show="family.hasAlternateMaternalParents()"  ng-class="{'wrapper-open':getClickState()!=='','wrapper-closed':getClickState()===''}">
+        <div class="all-wives-wrapper" style="" ng-show="family.hasAlternateMaternalParents()"  ng-class="{'wrapper-open':getClickState()==='altMatParents', 'wrapper-closed':getClickState()!=='altMatParents'}">
             <div ng-click="toggleClickState('altMatParents')" class="pull-left" ng-class="{'wife-parents-arrow-closed':getClickState()!=='altMatParents','wife-parents-arrow-open':getClickState()==='altMatParents'}">
                 <span class="fs-icon-arrow-right"></span>
             </div>
