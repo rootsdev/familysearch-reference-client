@@ -319,6 +319,9 @@
         }
         return this.hasWife() && this.wifeDescription.relationships.getChildRelationshipsOf(null).length>0;
       },
+      isUseless: function() {
+        return !this.hasHusband() && !this.hasWife() && !this.referenceId;
+      },
 
 
       husbandDescription: null,

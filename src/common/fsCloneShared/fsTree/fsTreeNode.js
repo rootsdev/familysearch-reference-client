@@ -61,14 +61,6 @@
             $state.go('find-add', createFindAddContext());
           };
 
-          $scope.isUselessNode = function() {
-            if ( !$scope.family ) {
-              return true;
-            }
-            return !$scope.family.hasHusband() && !$scope.family.hasWife() && !$scope.family.referenceId;
-          };
-
-
 
 
         }

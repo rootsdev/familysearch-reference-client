@@ -1,45 +1,5 @@
 <div class="tree-wrapper">
 
-    <div class="sans-serif next-gen-anc extend1">
-        <div class="pull-left">
-            <span class="fs-icon-arrow-right next-gen-anc-arrow"></span>
-        </div>
-        <div class="pull-left" style="display:none">
-            Expand Tree
-        </div>
-        <div class="clearboth">&nbsp;</div>
-    </div>
-
-    <div class="sans-serif next-gen-anc extend2">
-        <div class="pull-left">
-            <span class="fs-icon-arrow-right next-gen-anc-arrow"></span>
-        </div>
-        <div class="pull-left" style="display:none">
-            Expand Tree
-        </div>
-        <div class="clearboth">&nbsp;</div>
-    </div>
-
-    <div class="sans-serif next-gen-anc extend3">
-        <div class="pull-left">
-            <span class="fs-icon-arrow-right next-gen-anc-arrow"></span>
-        </div>
-        <div class="pull-left" style="display:none">
-            Expand Tree
-        </div>
-        <div class="clearboth">&nbsp;</div>
-    </div>
-
-    <div class="sans-serif next-gen-anc extend4">
-        <div class="pull-left">
-            <span class="fs-icon-arrow-right next-gen-anc-arrow"></span>
-        </div>
-        <div class="pull-left" style="display:none">
-            Expand Tree
-        </div>
-        <div class="clearboth">&nbsp;</div>
-    </div>
-
     <!--kids-->
     <div ng-if="showKids" id="kids" style="position:absolute; top:320px; left: 0;">
         <div id="kid1" class="child-list-item">
@@ -90,29 +50,55 @@
 
     <!--husband's paternal grandparents-->
     <div ng-show="showParents" id="grandparents1" fs-tree-node  expandable="{arg:'husbandPaternalGrandparents',func:expand}" family="family.parentFamilyOfHusband().parentFamilyOfHusband()" style="position:absolute; top:35px; left:900px;"/>
-    <!--<select ng-model="expanded" style="position:absolute; top:300px; left:700px;">-->
-        <!--<option value="">None</option>-->
-        <!--<option value="husbandPaternalGrandparents">Husband's paternal grandparents</option>-->
-        <!--<option value="husbandMaternalGrandparents">Husband's maternal grandparents</option>-->
-        <!--<option value="wifePaternalGrandparents">Wife's paternal grandparents</option>-->
-        <!--<option value="wifeMaternalGrandparents">Wife's maternal grandparents</option>-->
-    <!--</select>-->
-
     <div fs-recursive-tree ng-if="isExpanded('husbandPaternalGrandparents')" family="family.parentFamilyOfHusband().parentFamilyOfHusband()" show-kids="false" show-root-couple="false" show-parents="true" style="position:absolute; top:-314px; left:670px;"/>
-
+    <div ng-if="showParents && !family.parentFamilyOfHusband().parentFamilyOfHusband().isUseless()" ng-click="expand('husbandPaternalGrandparents')" class="sans-serif next-gen-anc extend1">
+        <div class="pull-left">
+            <span class="next-gen-anc-arrow" ng-class="{'fs-icon-arrow-left':isExpanded('husbandPaternalGrandparents'),'fs-icon-arrow-right':!isExpanded('husbandPaternalGrandparents') }"></span>
+        </div>
+        <div class="pull-left" style="display:none">
+            Expand Tree
+        </div>
+        <div class="clearboth">&nbsp;</div>
+    </div>
 
     <!--husband's maternal grandparents-->
     <div ng-show="showParents" id="grandparents2" fs-tree-node expandable="{arg:'husbandMaternalGrandparents',func:expand}"  family="family.parentFamilyOfHusband().parentFamilyOfWife()"  style="position:absolute; top:280px; left:900px;"/>
     <div fs-recursive-tree ng-if="isExpanded('husbandMaternalGrandparents')" family="family.parentFamilyOfHusband().parentFamilyOfWife()" show-kids="false" show-root-couple="false" show-parents="true" style="position:absolute; top:-67px; left:670px;"/>
+    <div ng-if="showParents && !family.parentFamilyOfHusband().parentFamilyOfWife().isUseless()" ng-click="expand('husbandMaternalGrandparents')" class="sans-serif next-gen-anc extend2">
+        <div class="pull-left">
+            <span class="next-gen-anc-arrow" ng-class="{'fs-icon-arrow-left':isExpanded('husbandMaternalGrandparents'),'fs-icon-arrow-right':!isExpanded('husbandMaternalGrandparents') }"></span>
+        </div>
+        <div class="pull-left" style="display:none">
+            Expand Tree
+        </div>
+        <div class="clearboth">&nbsp;</div>
+    </div>
 
     <!--wife's paternal grandparents-->
     <div ng-show="showParents" id="grandparents3" fs-tree-node  expandable="{arg:'wifePaternalGrandparents',func:expand}"  family="family.parentFamilyOfWife().parentFamilyOfHusband()"  style="position:absolute; top:440px; left:900px;" />
     <div fs-recursive-tree ng-if="isExpanded('wifePaternalGrandparents')" family="family.parentFamilyOfWife().parentFamilyOfHusband()" show-kids="false" show-root-couple="false" show-parents="true" style="position:absolute; top:91px; left:670px;"/>
+    <div ng-if="showParents && !family.parentFamilyOfWife().parentFamilyOfHusband().isUseless()" ng-click="expand('wifePaternalGrandparents')" class="sans-serif next-gen-anc extend3">
+        <div class="pull-left">
+            <span class="next-gen-anc-arrow" ng-class="{'fs-icon-arrow-left':isExpanded('wifePaternalGrandparents'),'fs-icon-arrow-right':!isExpanded('wifePaternalGrandparents') }"></span>
+        </div>
+        <div class="pull-left" style="display:none">
+            Expand Tree
+        </div>
+        <div class="clearboth">&nbsp;</div>
+    </div>
 
     <!--wife's maternal grandparents-->
     <div ng-show="showParents" id="grandparents4" fs-tree-node  expandable="{arg:'wifeMaternalGrandparents',func:expand}" family="family.parentFamilyOfWife().parentFamilyOfWife()" style="position:absolute; top:680px; left:900px;" />
     <div fs-recursive-tree ng-if="isExpanded('wifeMaternalGrandparents')" family="family.parentFamilyOfWife().parentFamilyOfWife()" show-kids="false" show-root-couple="false" show-parents="true" style="position:absolute; top:337px; left:670px;"/>
-
+    <div ng-if="showParents && !family.parentFamilyOfWife().parentFamilyOfWife().isUseless()" ng-click="expand('wifeMaternalGrandparents')" class="sans-serif next-gen-anc extend4">
+        <div class="pull-left">
+            <span class="next-gen-anc-arrow" ng-class="{'fs-icon-arrow-left':isExpanded('wifeMaternalGrandparents'),'fs-icon-arrow-right':!isExpanded('wifeMaternalGrandparents') }"></span>
+        </div>
+        <div class="pull-left" style="display:none">
+            Expand Tree
+        </div>
+        <div class="clearboth">&nbsp;</div>
+    </div>
 
 
     <!--&lt;!&ndash;husband's paternal grandparents&ndash;&gt;-->
