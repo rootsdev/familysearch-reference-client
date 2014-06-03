@@ -28,7 +28,7 @@
              * Compiles and re-adds the contents
              */
             post: function(scope, element){
-              var doRecursion = scope.$eval(doRecursionExpression);
+              var doRecursion = true || scope.$eval(doRecursionExpression);
               if ( doRecursion ) {
                 // Compile the contents
                 if(!compiledContents){

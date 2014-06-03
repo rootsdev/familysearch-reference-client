@@ -1,7 +1,7 @@
 <div class="tree-wrapper">
 
     <!--kids-->
-    <div ng-show="!!showKids" id="kids" style="position:absolute; top:320px; left: 0;">
+    <div ng-if="showKids" id="kids" style="position:absolute; top:320px; left: 0;">
         <div id="kid1" class="child-list-item">
             <div class="pull-left child-connector-top">&nbsp;</div>
             <div fs-tree-node expandable="true" />
@@ -39,6 +39,12 @@
 
     <!--husband's paternal grandparents-->
     <div ng-show="!!showParents" id="grandparents1" fs-tree-node  expandable="false" family="family.parentFamilyOfHusband().parentFamilyOfHusband()" style="position:absolute; top:35px; left:900px;"/>
+    <button ng-click="expand('paternalGrandparents')" type="button"  style="position:absolute; top:5px; left:900px;">click me {{didit}}</button>
+
+    <div fs-recursive-tree ng-if="isExpanded('paternalGrandparents')" family="family" show-kids="false" show-root-couple="true" show-parents="false" style="position:absolute; top:-160px; left:1500px;"/>
+
+
+
 
     <!--husband's maternal grandparents-->
     <div ng-show="!!showParents" id="grandparents2" fs-tree-node  expandable="false" family="family.parentFamilyOfHusband().parentFamilyOfWife()"  style="position:absolute; top:280px; left:900px;"/>
@@ -53,8 +59,5 @@
 
     <!--&lt;!&ndash;husband's paternal grandparents&ndash;&gt;-->
     <!--<div ng-show="!!showParents" id="grandparents1" fs-tree-node  expandable="false" family="family.parentFamilyOfHusband().parentFamilyOfHusband()" style="position:absolute; top:-160px; left:1265px;"/>-->
-
-
-    <div fs-recursive-tree recurse="1===3" family="family" show-kids="false" show-root-couple="true" show-parents="false" style="position:absolute; top:-160px; left:1500px;" />
 </div>
 

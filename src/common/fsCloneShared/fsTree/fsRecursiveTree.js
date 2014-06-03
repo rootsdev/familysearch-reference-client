@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsRecursiveTree', function (RecursionHelper) {
+    .directive('fsRecursiveTree', function ($compile) {
       return {
         restrict: 'A',
         scope: {
@@ -11,16 +11,42 @@
           showParents: '@'
         },
         templateUrl: 'fsCloneShared/fsTree/fsRecursiveTree.tpl.html',
-        compile: function(element) {
-          var doRecursion = element.attr('recurse');
 
-          return RecursionHelper.compile(element, function (scope, iElement, iAttrs, controller, transcludeFn) {
-            // Define your normal link function here.
-            // Alternative: instead of passing a function,
-            // you can also pass an object with
-            // a 'pre'- and 'post'-link function.
-            console.log(transcludeFn);
-          },  doRecursion);
+        controller: function($scope) {
+          $scope.isExpanded = function(s) {
+            return s===$scope.expanded;
+          };
+
+          $scope.expand = function(s) {
+            if ( $scope.expanded === s) {
+              $scope.expanded = '';
+            } else {
+              $scope.expanded = s;
+            }
+          };
+        },
+        compile: function(element){
+          // Break the recursion loop by removing the contents
+          var contents = element.contents().remove();
+          var compiledContents;
+
+          return {
+            pre: null,
+            post: function(scope, element){
+              // Compile the contents
+              if(!compiledContents){
+                compiledContents = $compile(contents);
+              }
+
+              // Re-add the compiled contents to the element
+              compiledContents(scope, function(clone){
+                element.append(clone);
+              });
+
+              // normal "link" functionality would go here.
+
+            }
+          };
         }
       };
     });
