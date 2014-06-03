@@ -11,6 +11,7 @@
         scope: {
           item: '=',
           editable: '@',
+          changeable: '@',
           deletable: '@'
         }
       };

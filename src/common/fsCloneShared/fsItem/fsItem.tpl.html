@@ -3,6 +3,9 @@
     <a ng-show="editable === 'true'" href="" class="btn btn-xs btn-link editDetail non-form" ng-click="item._edit()">
       <i class="fa fa-edit">&nbsp;</i><span ng-hide="item._exists()">Add</span><span ng-show="item._exists()">Edit</span>
     </a>
+    <a ng-show="changeable === 'true'" href="" class="btn btn-xs btn-link editDetail non-form" ng-click="$emit('change', item)">
+      <i class="fa fa-edit">&nbsp;</i><span ng-hide="item._exists()">Add</span><span ng-show="item._exists()">Change</span>
+    </a>
     <a ng-show="deletable === 'true' && item._exists()" href="" class="deleteDetail btn btn-link btn-xs non-form"
        ng-click="$emit('delete', item)">
       <i class="fa fa-trash-o">&nbsp;</i>Delete
