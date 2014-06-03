@@ -1,0 +1,54 @@
+<div class="tree-wrapper">
+
+    <!--kids-->
+    <div ng-show="!!showKids" id="kids" style="position:absolute; top:320px; left: 0;">
+        <div id="kid1" class="child-list-item">
+            <div class="pull-left child-connector-top">&nbsp;</div>
+            <div fs-tree-node expandable="true" />
+            <div class="clearboth">&nbsp;</div>
+        </div>
+
+        <div class="clearboth">&nbsp;</div>
+
+        <div id="kid2" class="child-list-item">
+            <div class="child-connector-middle-bar">&nbsp;</div>
+            <div class="child-connector-middle">&nbsp;</div>
+            <div fs-tree-node expandable="true" />
+            <div class="clearboth">&nbsp;</div>
+        </div>
+
+        <div class="clearboth">&nbsp;</div>
+
+        <div id="kid3" class="child-list-item">
+            <div>
+                <div class="pull-left child-connector-bottom">&nbsp;</div>
+                <div fs-tree-node expandable="true" />
+                <div class="clearboth">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+
+    <!--root couple-->
+    <div ng-show="!!showRootCouple" id="root-couple" fs-tree-node brackets="right" family="family" style="position:absolute; top:350px; left:350px;" />
+
+    <!--husband's parents-->
+    <div  ng-show="!!showParents" id="h-parents" fs-tree-node brackets="under" family="family.parentFamilyOfHusband()" style="position:absolute; top:155px; left:715px;" />
+
+    <!--wife's parents-->
+    <div ng-show="!!showParents" id="w-parents" fs-tree-node brackets="under" family="family.parentFamilyOfWife()" style="position:absolute; top:560px; left:715px;"/>
+
+    <!--husband's paternal grandparents-->
+    <div ng-show="!!showParents" id="grandparents1" fs-tree-node  expandable="false" family="family.parentFamilyOfHusband().parentFamilyOfHusband()" style="position:absolute; top:35px; left:900px;"/>
+
+    <!--husband's maternal grandparents-->
+    <div ng-show="!!showParents" id="grandparents2" fs-tree-node  expandable="false" family="family.parentFamilyOfHusband().parentFamilyOfWife()"  style="position:absolute; top:280px; left:900px;"/>
+
+    <!--wife's paternal grandparents-->
+    <div ng-show="!!showParents" id="grandparents3" fs-tree-node  expandable="false" family="family.parentFamilyOfWife().parentFamilyOfHusband()"  style="position:absolute; top:440px; left:900px;" />
+
+    <!--wife's maternal grandparents-->
+    <div ng-show="!!showParents" id="grandparents4" fs-tree-node  expandable="false"family="family.parentFamilyOfWife().parentFamilyOfWife()" style="position:absolute; top:680px; left:900px;" />
+
+
+</div>
+
