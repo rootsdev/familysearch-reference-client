@@ -5,7 +5,8 @@
       return {
         templateUrl: 'fsCloneShared/fsSource/fsSource.tpl.html',
         scope: {
-          source: '='
+          source: '=',
+          hideTags: '@'
         }
       };
     });

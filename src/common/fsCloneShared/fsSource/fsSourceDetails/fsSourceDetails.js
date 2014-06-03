@@ -5,7 +5,8 @@
       return {
         templateUrl: 'fsCloneShared/fsSource/fsSourceDetails/fsSourceDetails.tpl.html',
         scope: {
-          source: '='
+          source: '=',
+          hideTags: '@'
         },
         link: function(scope) {
           scope.source._onOpen(function(source) {

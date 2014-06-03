@@ -6,16 +6,24 @@
         templateUrl: 'fsCloneShared/fsSourcesSection/fsSourcesSection.tpl.html',
         scope: {
           state: '=',
-          person: '=',
-          sources: '='
+          sources: '=',
+          person: '=', // pass in person or husband+wife
+          husband: '=',
+          wife: '='
         },
         link: function(scope) {
+
+          scope.isLiving = function() {
+            return !!scope.person && scope.person.living;
+          };
 
           // delete (detach)
           scope.$on('delete', function(event, sourceRef) {
             event.stopPropagation();
             fsDetachSourceConfirmationModal.open({
               person: scope.person,
+              husband: scope.husband,
+              wife: scope.wife,
               sourceRef: sourceRef
             }).then(function(changeMessage) {
               fsUtils.findById(scope.sources, sourceRef.id)._busy = true;

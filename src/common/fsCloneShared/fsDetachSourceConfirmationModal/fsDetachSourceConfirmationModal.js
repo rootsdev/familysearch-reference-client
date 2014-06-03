@@ -3,7 +3,7 @@
   angular.module('fsCloneShared')
     .factory('fsDetachSourceConfirmationModal', function fsDetachSourceConfirmationModal(_, $modal, fsAgentCache) {
       return {
-        open: function(opts) { // {person, sourceRef}
+        open: function(opts) { // {person | (husband, wife), sourceRef}
           return $modal.open({
             templateUrl: 'fsCloneShared/fsDetachSourceConfirmationModal/fsDetachSourceConfirmationModal.tpl.html',
             size: 'sm',

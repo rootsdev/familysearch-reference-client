@@ -1,16 +1,17 @@
-<div style="padding: 0 20px 20px 20px;">
-  <h2>Detach Source From</h2>
-  <ul>
+<div style="padding: 0 20px 20px 20px; width: 600px">
+  <h2>Detach Source From <span ng-show="!!husband && !!wife">Couple Relationship</span></h2>
+  <ul ng-show="!!person">
     <li>{{person.$getDisplayName()}}<br/>{{person.$getDisplayLifeSpan()}} &middot; {{person.id}}</li>
   </ul>
-  <h4>Tagged Events</h4>
+  <div fs-couple-profile ng-show="!!husband && !!wife" husband="husband" wife="wife"></div>
+  <h4 ng-show="sourceRef.$getTags().length > 0">Tagged Events</h4>
   <span ng-repeat="tag in sourceRef.$getTags()">
     {{tag | fsGedcomxLabel}}<span ng-hide="$last">,</span>
   </span>
   <h4>Reason This Source Was Attached</h4>
   <span>{{sourceRef.attribution.changeMessage}}</span>
   <h4>Attached</h4>
-  {{item.attribution.modified | date:'dd-MMM-yyyy'}} by {{agent.$getAccountName()}}
+  {{sourceRef.attribution.modified | date:'dd-MMM-yyyy'}} by {{agent.$getAccountName()}}
   <h4>Reason to Detach Source</h4>
   <textarea rows="4" ng-model="changeMessage" style="width: 100%" placeholder="Explain why you are detaching this source from this individual"></textarea>
   <div class="actionRow">
