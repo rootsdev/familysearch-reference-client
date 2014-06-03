@@ -5,9 +5,10 @@
       return {
         templateUrl: 'fsCloneShared/fsFact/fsFact.tpl.html',
         scope: {
-          person: '=',
+          person: '=', // needed only if showHistory === 'true'
           fact: '=',
-          sources: '='
+          sources: '=',
+          showHistory: '@'
         },
         link: function(scope) {
           scope.fact._onOpen(fsUtils.agentSetter(scope));

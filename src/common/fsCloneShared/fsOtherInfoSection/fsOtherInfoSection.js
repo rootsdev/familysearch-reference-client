@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsOtherInfoSection', function (_, $rootScope, $filter, fsUtils, fsApi,
+    .directive('fsOtherInfoSection', function (_, $rootScope, $filter, fsUtils, fsApi, fsConfirmationModal,
                                                fsVitalFactTypes, fsOtherFactTypes, fsNameTypes, fsAlsoKnownAsNameType) {
       return {
         templateUrl: 'fsCloneShared/fsOtherInfoSection/fsOtherInfoSection.tpl.html',
@@ -117,18 +117,25 @@
           });
 
           // delete
-          scope.$on('delete', function(event, item, changeMessage) {
+          scope.$on('delete', function(event, item) {
             event.stopPropagation();
-            item._busy = true;
-            if (item instanceof fsApi.Name) {
-              scope.person.$deleteName(item, changeMessage);
-            }
-            else {
-              scope.person.$deleteFact(item, changeMessage);
-            }
-            scope.person.$save(null, true).then(function() {
-              _.remove(scope.items, {id: item.id});
-              $rootScope.$emit('deleted', item);
+            fsConfirmationModal.open({
+              title: 'Delete '+ $filter('fsGedcomxLabel')(item.type),
+              subTitle: 'Reason for Deleting This Information',
+              showChangeMessage: true,
+              okLabel: 'Delete'
+            }).then(function(changeMessage) {
+              item._busy = true;
+              if (item instanceof fsApi.Name) {
+                scope.person.$deleteName(item, changeMessage);
+              }
+              else {
+                scope.person.$deleteFact(item, changeMessage);
+              }
+              scope.person.$save(null, true).then(function() {
+                _.remove(scope.items, {id: item.id});
+                $rootScope.$emit('deleted', item);
+              });
             });
           });
 

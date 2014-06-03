@@ -8,7 +8,8 @@
         'NationalId': 'National Identity',
         'Nationality': 'National Origin',
         'CasteName': 'Caste',
-        'ClanName': 'Clan'
+        'ClanName': 'Clan',
+        'CommonLawMarriage': 'Common Law'
       };
 
       return function (input) {

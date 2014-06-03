@@ -8,7 +8,8 @@
           person: '=',
           item: '=',
           agent: '=',
-          sources: '='
+          sources: '=',
+          showHistory: '@'
         }
       };
     });

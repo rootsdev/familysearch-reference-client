@@ -1,7 +1,8 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFactEdit', function(_, $filter, $q, fsApi, fsDeathFactType, fsVitalFactTypes, fsOtherFactTypes, fsUtils) {
+    .directive('fsFactEdit', function(_, $filter, $q, fsApi, fsDeathFactType, fsVitalFactTypes,
+                                      fsOtherFactTypes, fsCoupleFactTypes, fsUtils) {
       return {
         templateUrl: 'fsCloneShared/fsFact/fsFactEdit/fsFactEdit.tpl.html',
         scope: {
@@ -34,7 +35,7 @@
             scope.hasDatePlace = true;
           }
           else {
-            var factType = _.find(fsOtherFactTypes, {type: scope.fact.type});
+            var factType = _.find(fsOtherFactTypes.concat(fsCoupleFactTypes), {type: scope.fact.type});
             if (!!factType) {
               scope.hasValue = factType.hasValue;
               scope.hasDatePlace = factType.hasDatePlace;

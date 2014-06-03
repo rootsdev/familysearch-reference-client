@@ -1,10 +1,17 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsChangeUtils', function(_, fsNameTypes, fsVitalFactTypes, fsOtherFactTypes) {
+    .factory('fsChangeUtils', function(_, fsNameTypes, fsVitalFactTypes, fsOtherFactTypes, fsCoupleFactTypes) {
 
       function getType(change) {
-        return change.changeInfo[0].objectType;
+        var type = change.changeInfo[0].objectType;
+        if (type === 'http://gedcomx.org/Fact') {
+          var root = getContentRoot(change);
+          if (root.facts && root.facts[0]) {
+            type = root.facts[0].type;
+          }
+        }
+        return type;
       }
 
       function getModifiedObjectType(change) {
@@ -62,6 +69,7 @@
         var type = getType(change);
         return _.contains(fsVitalFactTypes, type) ||
           _.any(fsOtherFactTypes, { type: type}) ||
+          _.any(fsCoupleFactTypes, {type: type}) ||
           type === 'http://gedcomx.org/Fact'; // "other" fact
       }
 
@@ -94,12 +102,12 @@
       }
 
       function getAction(change) {
-        if (isChildAndParentsRelationship(change) || isCoupleRelationship(change) ||
+        if (isDeletion(change)) {
+          return isSourceReference(change) ? 'Detached' : 'Deleted';
+        }
+        else if (isChildAndParentsRelationship(change) || isCoupleRelationship(change) ||
           isChildAndParentsRelationshipModified(change) || isCoupleRelationshipModified(change)) {
           return ''; // TODO could be "Reference" with a navigation event to the child-and-parents or couple relationship
-        }
-        else if (isDeletion(change)) {
-          return isSourceReference(change) ? 'Detached' : 'Deleted';
         }
         else if (getType(change) === 'http://gedcomx.org/Person') { // covers person creation
           return '';

@@ -3,7 +3,7 @@
     <div class="panel-body otherInfoBody">
       <div ng-repeat="item in items">
         <div ng-if="isName(item)" fs-name person="person" name="item"></div>
-        <div ng-if="!isName(item)" fs-fact person="person" fact="item"></div>
+        <div ng-if="!isName(item)" fs-fact person="person" fact="item" show-history="true"></div>
       </div>
     </div>
   </div>
