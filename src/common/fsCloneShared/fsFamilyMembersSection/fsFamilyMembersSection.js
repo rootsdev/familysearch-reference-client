@@ -102,7 +102,7 @@
             $state.go('find-add', fsUtils.removeEmptyProperties({
               husbandId: scope.person._isMale() ? scope.person.id : null,
               wifeId: !scope.person._isMale() ? scope.person.id : null,
-              returnToId: scope.person.id
+              returnToPersonId: scope.person.id
             }));
           };
 
@@ -111,7 +111,7 @@
             $state.go('find-add', fsUtils.removeEmptyProperties({
               fatherId: scope.person._isMale() ? scope.person.id : null,
               motherId: !scope.person._isMale() ? scope.person.id : null,
-              returnToId: scope.person.id
+              returnToPersonId: scope.person.id
             }));
           };
 
@@ -119,7 +119,7 @@
           scope.addParent = function() {
             $state.go('find-add', fsUtils.removeEmptyProperties({
               childIds: scope.person.id,
-              returnToId: scope.person.id
+              returnToPersonId: scope.person.id
             }));
           };
 

@@ -8,8 +8,6 @@
           change: '='
         },
         link: function(scope) {
-          console.log('fsChangeHistoryModalEntry', scope.change, fsChangeUtils.getType(scope.change));
-
           scope.setAgent = function() {
             if (!scope.agent) {
               fsAgentCache.getAgent(scope.change.$getAgentUrl()).then(function(agent) {

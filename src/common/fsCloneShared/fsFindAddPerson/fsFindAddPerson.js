@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFindAddPerson', function(_, $state, $q, fsApi, fsUtils) {
+    .directive('fsFindAddPerson', function(_, $state, $q, fsApi, fsUtils, fsConfirmationModal) {
       return {
         templateUrl: 'fsCloneShared/fsFindAddPerson/fsFindAddPerson.tpl.html',
         scope: {
@@ -10,7 +10,9 @@
           fatherId: '@',
           motherId: '@',
           childIds: '@',
-          returnToId: '@'
+          coupleId: '@',
+          returnToPersonId: '@',
+          returnToCoupleId: '@'
         },
         link: function(scope) {
           scope.showResults = false;
@@ -70,7 +72,12 @@
 
           function leave() {
             scope.busy = false;
-            $state.go('person', { personId: scope.returnToId });
+            if (!!scope.returnToPersonId) {
+              $state.go('person', { personId: scope.returnToPersonId });
+            }
+            else if (!!scope.returnToCoupleId) {
+              $state.go('couple', { coupleId: scope.returnToCoupleId });
+            }
           }
 
           scope.$on('cancel', function(event) {
@@ -79,7 +86,24 @@
           });
 
           function addCoupleRelationship(person) {
-            if (!!scope.husbandId || !!scope.wifeId) {
+            if (!!scope.coupleId) {
+              // update existing couple relationship
+              return fsConfirmationModal.open({
+                title: 'Changing Spouse to ' + person.$getDisplayName(),
+                subTitle: 'Reason This Relationship Is Correct',
+                showChangeMessage: true,
+                okLabel: 'Change'
+              }).then(function(changeMessage) {
+                // update existing couple relationship
+                return fsApi.getCouple(scope.coupleId).then(function(response) {
+                  var couple = response.getRelationship();
+                  couple.$setHusband(scope.husbandId || person.id);
+                  couple.$setWife(scope.wifeId || person.id);
+                  return couple.$save(changeMessage);
+                });
+              });
+            }
+            else if (!!scope.husbandId || !!scope.wifeId) {
               // create couple relationship
               return (new fsApi.Couple({
                 husband: !!scope.husbandId ? scope.husbandId : person.id,
@@ -155,9 +179,7 @@
 
           scope.$on('select', function(event, person) {
             event.stopPropagation();
-            addRelationships(person).then(function() {
-              leave();
-            });
+            addRelationships(person).then(leave, leave);
           });
 
           function createPerson(person) {
@@ -178,9 +200,7 @@
             else {
               // TODO sometimes the system runs a match - when does this happen?
               createPerson(person).then(function() {
-                addRelationships(person).then(function() {
-                  leave();
-                });
+                scope.$emit('select', person);
               });
             }
           });

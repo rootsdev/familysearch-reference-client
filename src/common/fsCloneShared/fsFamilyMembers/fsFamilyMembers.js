@@ -61,7 +61,7 @@
             $state.go('find-add', fsUtils.removeEmptyProperties({
               fatherId: !!scope.family.husband ? scope.family.husband.id : null,
               motherId: !!scope.family.wife ? scope.family.wife.id : null,
-              returnToId: scope.focusId
+              returnToPersonId: scope.focusId
             }));
           };
 
@@ -77,7 +77,7 @@
               husbandId: !!scope.family.husband ? scope.family.husband.id : null,
               wifeId: !!scope.family.wife ? scope.family.wife.id : null,
               childIds: _.pluck(scope.children, 'id').join(','),
-              returnToId: scope.focusId
+              returnToPersonId: scope.focusId
             }));
           });
 

@@ -1,5 +1,5 @@
 <div fs-item item="person" changeable="true" editable="false" deletable="false">
-  <div fs-relationship-member-summary person="person" role="{{role}}"></div>
+  <div fs-relationship-member-summary person="person" role="{{role}}" ng-hide="person._isEditing()"></div>
   <div fs-relationship-member-details person="person" agent="agent" ng-show="person._isOpen()"></div>
-  <div fs-relationship-member-edit person="person" agent="agent" ng-show="person._isEditing()"></div>
+  <div fs-relationship-member-edit person="person" role="{{role}}" agent="agent" ng-show="person._isEditing()"></div>
 </div>

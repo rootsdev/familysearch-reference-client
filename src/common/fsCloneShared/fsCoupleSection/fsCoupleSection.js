@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsCoupleSection', function (_, $rootScope, fsUtils) {
+    .directive('fsCoupleSection', function (_, $rootScope, $state, fsUtils) {
       return {
         templateUrl: 'fsCloneShared/fsCoupleSection/fsCoupleSection.tpl.html',
         scope: {
@@ -23,16 +23,30 @@
           };
 
           // save
-          scope.$on('save', function(event, item, changeMessage) {
+          scope.$on('save', function(event, item) {
             event.stopPropagation();
             item._busy = true;
-            if (!item.id) {
-              scope.couple.$addFact(item);
-            }
-            item.$setChangeMessage(changeMessage);
-            scope.couple.$save(null, true).then(function() {
+//            scope.couple.$save(null, true).then(function() {
               item._open();
+              item._busy = false;
               $rootScope.$emit('saved', item);
+//            });
+          });
+
+          // cancel save
+          scope.$on('cancel', function(event, item) {
+            event.stopPropagation();
+            item._open();
+          });
+
+          // change
+          scope.$on('change', function(event, member) {
+            event.stopPropagation();
+            $state.go('find-add', {
+              husbandId: member === scope.husband ? null : scope.husband.id,
+              wifeId: member === scope.wife ? null : scope.wife.id,
+              coupleId: scope.couple.id,
+              returnToCoupleId: scope.couple.id
             });
           });
 

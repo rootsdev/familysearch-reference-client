@@ -22,7 +22,7 @@
               husbandId: null,
               fatherId: null,
               childIds: null,
-              returnToId: null
+              returnToPersonId: null
             };
 
             if ( family.hasWife() ) {
@@ -41,15 +41,15 @@
               }
             }
             if ( family.referenceId ) {
-              invocationContext.returnToId = family.referenceId;
+              invocationContext.returnToPersonId = family.referenceId;
             }
             else
             if ( family.hasHusband() ) {
-              invocationContext.returnToId = family.husbandDescription.person.id;
+              invocationContext.returnToPersonId = family.husbandDescription.person.id;
             }
             else
             if ( family.hasWife() ) {
-              invocationContext.returnToId = family.wifeDescription.person.id;
+              invocationContext.returnToPersonId = family.wifeDescription.person.id;
             }
             if ( invocationContext.childIds ) {
               invocationContext.childIds = invocationContext.childIds.join(',');

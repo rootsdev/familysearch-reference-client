@@ -6,7 +6,7 @@
         templateUrl: 'fsCloneShared/fsRelationshipMember/fsRelationshipMemberDetails/fsRelationshipMemberDetails.tpl.html',
         scope: {
           person: '=',
-          role: '@'
+          agent: '='
         }
       };
     });

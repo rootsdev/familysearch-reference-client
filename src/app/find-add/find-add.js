@@ -3,7 +3,7 @@
   angular.module('fsClone')
     .config(function ($stateProvider) {
       $stateProvider.state('find-add', {
-        url: '/find-add?husbandId&wifeId&fatherId&motherId&childIds&returnToId',
+        url: '/find-add?husbandId&wifeId&fatherId&motherId&childIds&coupleId&returnToPersonId&returnToCoupleId',
         controller: 'FindAddController',
         templateUrl: 'find-add/find-add.tpl.html',
         data: { pageTitle: 'Find/Add Person' }
@@ -15,6 +15,8 @@
       $scope.fatherId = $stateParams.fatherId;
       $scope.motherId = $stateParams.motherId;
       $scope.childIds = $stateParams.childIds;
-      $scope.returnToId = $stateParams.returnToId;
+      $scope.coupleId = $stateParams.coupleId;
+      $scope.returnToPersonId = $stateParams.returnToPersonId;
+      $scope.returnToCoupleId = $stateParams.returnToCoupleId;
     });
 })();
