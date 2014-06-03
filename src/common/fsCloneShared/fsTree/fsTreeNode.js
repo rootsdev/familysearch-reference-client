@@ -6,11 +6,11 @@
         templateUrl: 'fsCloneShared/fsTree/fsTreeNode.tpl.html',
         scope: {
           family: '=',
-          expandable: '@',
+          expandable: '=',
           brackets: '@'
         },
         link: function($scope) {
-          $scope.expandable = false;
+          console.log($scope.expandable);
           $scope.islive = !!$scope.family;
 
           function createFindAddContext() {
@@ -59,6 +59,13 @@
 
           $scope.navigateToFindAdd = function() {
             $state.go('find-add', createFindAddContext());
+          };
+
+          $scope.isUselessNode = function() {
+            if ( !$scope.family ) {
+              return true;
+            }
+            return !$scope.family.hasHusband() && !$scope.family.hasWife() && !$scope.family.referenceId;
           };
 
 
