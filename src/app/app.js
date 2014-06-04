@@ -24,6 +24,8 @@
     .run(function () {
     })
 
-    .controller('AppController', function () {
+    .controller('AppController', function ($scope) {
+      $scope.environment = 'Sandbox';
+      //$scope.environment = 'Beta';
     });
 })();
