@@ -5,8 +5,14 @@
       return {
         templateUrl: 'fsCloneShared/fsFindAddPerson/fsFindAddPerson.tpl.html',
         scope: {
-          // passing in a parentsId and a husbandId|wifeId will create a couple relationship and update the child-and-parents relationship
-
+          // pass in a coupleId and a husbandId|wifeId to update the couple relationship with find/add person
+          // pass in a husbandId|wifeId to create a couple relationship with husbandId|wifeId and find/add person
+          // pass in a parentsId and a husbandId|wifeId to create a couple relationship with husbandId|wifeId and find/add person
+          //   and update the child-and-parents relationship with find/add person as one of the parents
+          // pass in a fatherId|motherId to create a child-and-parents relationship with find/add person as child
+          // pass in a comma-separated list of childIds to create child-and-parents relationships with find/add person as only parent
+          // pass in a comma-separated list of childIds and a husbandId|wifeId to create child-and-parents relationships
+          //   with husbandId|wifeId and find/add person as parents as well as a couple relationship
           husbandId: '@',
           wifeId: '@',
           fatherId: '@',
@@ -14,6 +20,7 @@
           childIds: '@',
           coupleId: '@',
           parentsId: '@',
+          // pass in one of the following "returnTo" parameters to redirect to a person, couple, or parents view
           returnToPersonId: '@',
           returnToCoupleId: '@',
           returnToParentsId: '@'
