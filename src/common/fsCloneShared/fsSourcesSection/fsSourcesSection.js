@@ -1,15 +1,18 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsSourcesSection', function ($rootScope, fsDetachSourceConfirmationModal, fsCurrentUser, fsUtils) {
+    .directive('fsSourcesSection', function ($rootScope, fsCurrentUser, fsUtils, fsApi, fsCreateSourceModal,
+                                             fsDetachSourceConfirmationModal, fsAttachSourceConfirmationModal) {
       return {
         templateUrl: 'fsCloneShared/fsSourcesSection/fsSourcesSection.tpl.html',
         scope: {
           state: '=',
           sources: '=',
-          person: '=', // pass in person or husband+wife or child+father+mother
+          person: '=', // pass in person or couple+husband+wife or parents+child+father+mother
+          couple: '=',
           husband: '=',
           wife: '=',
+          parents: '=',
           child: '=',
           father: '=',
           mother: '='
@@ -19,6 +22,58 @@
           scope.isLiving = function() {
             return !!scope.person && scope.person.living;
           };
+
+          // add
+          scope.$on('add', function(event) {
+            event.stopPropagation();
+            fsCreateSourceModal.open().then(function(form) {
+              fsAttachSourceConfirmationModal.open({
+                person: scope.person,
+                husband: scope.husband,
+                wife: scope.wife,
+                child: scope.child,
+                father: scope.father,
+                mother: scope.mother
+              }).then(function(response) { // {changeMessage, addToSourceBox}
+                // create source
+                var sourceDescription = new fsApi.SourceDescription(fsUtils.removeEmptyProperties({
+                  about: form.url,
+                  citation: form.citation,
+                  title: form.title,
+                  text: form.notes
+                }));
+                scope.busy = true;
+                sourceDescription.$save(null, true).then(function() {
+                  // create source ref
+                  var sourceRef = new fsApi.SourceRef({
+                    $personId: scope.person ? scope.person.id : '',
+                    $coupleId: scope.couple ? scope.couple.id : '',
+                    $childAndParentsId: scope.parents ? scope.parents.id : '',
+                    sourceDescription: sourceDescription.id
+                  });
+                  sourceRef.$save(response.changeMessage).then(function (sourceRefId) {
+                    // add source to sources
+                    sourceRef.id = sourceRefId;
+                    // we can't refresh sourceRefs unfortunately, so attempt to approximate new attribution
+                    fsUtils.approximateAttribution(sourceRef);
+                    var source = {
+                      ref: sourceRef,
+                      description: sourceDescription,
+                      id: sourceRef.id
+                    };
+                    fsUtils.mixinStateFunctions(scope, source);
+                    scope.sources.push(source);
+                    scope.busy = false;
+                    console.log('fsSourcesSection', scope.sources);
+                  });
+                  if (response.addToSourceBox) {
+                    // TODO addToSourceBox
+                    console.log('fsSourcesSection addToSourceBox');
+                  }
+                });
+              });
+            });
+          });
 
           // delete (detach)
           scope.$on('delete', function(event, sourceRef) {

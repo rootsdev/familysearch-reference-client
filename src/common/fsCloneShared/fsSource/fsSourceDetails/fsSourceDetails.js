@@ -11,9 +11,10 @@
         link: function(scope) {
           scope.source._onOpen(function(source) {
             if (source.ref.attribution && !scope.agent) {
-              return fsAgentCache.getAgent(source.ref.attribution.$getAgentUrl()).then(function(agent) {
-                scope.agent = agent;
-              });
+              return fsAgentCache.getAgent(source.ref.attribution.$getAgentUrl() || source.ref.attribution.$getAgentId())
+                .then(function(agent) {
+                  scope.agent = agent;
+                });
             }
             return null;
           });

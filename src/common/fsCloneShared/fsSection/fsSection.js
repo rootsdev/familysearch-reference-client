@@ -13,6 +13,7 @@
           state: '=',
           detailsOpenable: '@',
           items: '=', // collection of objects with _state property
+          busy: '@',
           addable: '@',
           addLabel: '@',
           addMenu: '=',

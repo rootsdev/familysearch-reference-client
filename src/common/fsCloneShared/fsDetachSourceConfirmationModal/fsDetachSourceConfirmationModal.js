@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsDetachSourceConfirmationModal', function fsDetachSourceConfirmationModal(_, $modal, fsAgentCache) {
+    .factory('fsDetachSourceConfirmationModal', function(_, $modal, fsAgentCache) {
       return {
         open: function(opts) { // {person | (husband, wife) | (child, father, mother), sourceRef}
           return $modal.open({

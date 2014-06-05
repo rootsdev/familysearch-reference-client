@@ -1,33 +1,31 @@
 <div class="sourceDialog attachSource" id="sourceAttachDialog" tabindex="-1" role="dialog" aria-labelledby="sourceAttachDialogLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
-    <h2>Detach Source From
+    <h4 class="modal-title" id="sourceAttachDialogLabel">Attach Source to
       <span ng-show="!!husband && !!wife">Couple Relationship</span>
       <span ng-show="!!child">Parent-Child Relationship</span>
-    </h2>
+      <span ng-show="!!person">{{person.$getDisplayName()}}</span>
+    </h4>
     <div fs-couple-profile ng-show="!!husband && !!wife" husband="husband" wife="wife"></div>
     <div fs-parents-profile ng-show="!!child" child="child" father="father" mother="mother"></div>
     <div fs-person-smaller ng-show="!!person" person="person"></div>
   </div>
   <div class="modal-body">
-    <h4 ng-show="sourceRef.$getTags().length > 0">Tagged Events</h4>
-    <span ng-repeat="tag in sourceRef.$getTags()">
-      {{tag | fsGedcomxLabel}}<span ng-hide="$last">,</span>
-    </span>
-    <h4>Reason This Source Was Attached</h4>
-    <span>{{sourceRef.attribution.changeMessage}}</span>
-    <h4>Attached</h4>
-    {{sourceRef.attribution.modified | date:'dd-MMM-yyyy'}} by {{agent.$getAccountName()}}
     <form role="form">
       <div class="form-group">
-        <label for="justification">Reason to Detach Source</label>
+        <label for="justification">Reason to Attach Source</label>
         <textarea rows="4" class="form-control" id="justification" ng-model="changeMessage"
-                  placeholder="Explain why you are detaching this source."></textarea>
+                  placeholder="Explain why you attached this source."></textarea>
       </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="addToSourcebox" ng-model="addToSourceBox"> Add to My Source Box
+        </label>
+      </div>
+
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary saveButton" type="submit" ng-click="ok(changeMessage)">Detach</button>
-    <button class="btn btn-link cancelButton" type="submit" ng-click="cancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" ng-click="ok(changeMessage, addToSourceBox)">Attach</button>
   </div>
 </div>

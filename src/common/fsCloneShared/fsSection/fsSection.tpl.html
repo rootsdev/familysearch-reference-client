@@ -10,7 +10,10 @@
         <span ng-show="hasOpenDetails()" ng-click="openDetails(false)"><i class="fa fa-eye-slash">&nbsp;</i>Hide Details</span>
       </a>
     </div>
-    <h4 class="panel-title">{{sectionTitle}}</h4>
+    <h4 class="panel-title">
+      {{sectionTitle}}
+      <span ng-show="busy === 'true'"><i class="fa fa-spinner fa-spin"></i></span>
+    </h4>
   </div>
   <div ng-show="state.value === 'open'">
     <div class="row" ng-show="addable === 'true' || attachable === 'true'">

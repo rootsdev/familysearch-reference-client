@@ -13,15 +13,15 @@
     </span>
   </div>
 
-  <div class="detailsItem" style="display:block;">
+  <div class="detailsItem" ng-show="!!source.description.about" style="display:block;">
     <span class="eventLabel">url</span><br>
-    <a href="{{source.description.about}}" target="_blank" class="openEventDetails">{{source.description.about}}</a>
+    <a ng-href="{{source.description.about}}" target="_blank" class="openEventDetails">{{source.description.about}}</a>
   </div>
-  <div class="detailsItem" style="display:block;">
+  <div class="detailsItem" ng-show="!!source.description.$getCitation()" style="display:block;">
     <span class="eventLabel">citation</span><br>
     {{source.description.$getCitation()}}
   </div>
-  <div class="detailsItem" style="display:block;">
+  <div class="detailsItem" ng-show="!!source.description.$getText()" style="display:block;">
     <span class="eventLabel">notes</span><br>
     {{source.description.$getText()}}
   </div>
