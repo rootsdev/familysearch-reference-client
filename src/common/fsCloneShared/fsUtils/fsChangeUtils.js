@@ -1,7 +1,8 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsChangeUtils', function(_, fsNameTypes, fsVitalFactTypes, fsOtherFactTypes, fsCoupleFactTypes) {
+    .factory('fsChangeUtils', function(_, fsNameTypes,
+                                       fsVitalFactTypes, fsOtherFactTypes, fsCoupleFactTypes, fsParentFactTypes) {
 
       function getType(change) {
         var type = change.changeInfo[0].objectType;
@@ -67,9 +68,10 @@
 
       function isFact(change) {
         var type = getType(change);
-        return _.contains(fsVitalFactTypes, type) ||
-          _.any(fsOtherFactTypes, { type: type}) ||
+        return _.any(fsVitalFactTypes, {type: type}) ||
+          _.any(fsOtherFactTypes, {type: type}) ||
           _.any(fsCoupleFactTypes, {type: type}) ||
+          _.any(fsParentFactTypes, {type: type}) ||
           type === 'http://gedcomx.org/Fact'; // "other" fact
       }
 

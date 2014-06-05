@@ -8,7 +8,8 @@
         scope: {
           item: '=',
           label: '@',
-          addable: '@'
+          addable: '@',
+          linkLabel: '@'
         }
       };
     });

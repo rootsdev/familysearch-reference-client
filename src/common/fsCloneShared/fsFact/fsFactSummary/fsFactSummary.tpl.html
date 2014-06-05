@@ -1,4 +1,4 @@
-<div fs-item-summary label="{{fact.type | fsGedcomxLabel}}" item="fact" addable="true">
+<div fs-item-summary label="{{fact.type | fsGedcomxLabel}}" item="fact" addable="true" link-label="{{isLinkLabel(fact) ? 'true' : 'false'}}">
   <div class="eventTitle" ng-show="fact.type | fsCustomFactTitle">{{fact.type | fsCustomFactTitle}}</div>
   <div class="eventDescription" ng-show="!!getValue(fact)">{{getValue(fact)}}</div>
   <div class="eventDate" ng-show="!!fact.$getDate()">{{fact.$getDate()}}</div>

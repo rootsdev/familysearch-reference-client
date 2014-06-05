@@ -71,21 +71,15 @@
             scope.items = _.reject(scope.person.$getNames(), function(name) {
               return scope.person.$getPreferredName() && name.id === scope.person.$getPreferredName().id;
             }).concat(_.reject(scope.person.$getFacts(), function(fact) {
-              return _.contains(fsVitalFactTypes, fact.type) || fact.type === 'http://familysearch.org/v1/LifeSketch';
+              return _.any(fsVitalFactTypes, {type: fact.type}) || fact.type === 'http://familysearch.org/v1/LifeSketch';
             })).sort(factTypeComparer);
 
             _.forEach(scope.items, function(item) {
               fsUtils.mixinStateFunctions(scope, item);
             });
 
-            if (!!oldItems) {
-              // copy old item state
-              _.forEach(scope.items, function(item) {
-                var oldItem = _.find(oldItems, {id: item.id});
-                if (!!oldItem) {
-                  fsUtils.copyItemState(oldItem, item);
-                }
-              });
+            if (!!oldItems) { // copy old item state
+              fsUtils.copyItemStates(oldItems, scope.items);
             }
           }
 

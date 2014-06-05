@@ -87,10 +87,15 @@
           });
         },
 
-        copyItemState: function(fromItem, toItem) {
-          toItem._state = fromItem._state;
-          toItem._onOpenCallbacks = fromItem._onOpenCallbacks;
-          toItem._onEditCallbacks = fromItem._onEditCallbacks;
+        copyItemStates: function(fromItems, toItems) {
+          _.forEach(toItems, function(item) {
+            var fromItem = _.find(fromItems, {id: item.id});
+            if (!!fromItem) {
+              item._state = fromItem._state;
+              item._onOpenCallbacks = fromItem._onOpenCallbacks;
+              item._onEditCallbacks = fromItem._onEditCallbacks;
+            }
+          });
         },
 
         agentSetter: function(scope) {

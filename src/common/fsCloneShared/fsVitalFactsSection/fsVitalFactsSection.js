@@ -11,17 +11,16 @@
           sources: '='
         },
         link: function(scope) {
-          scope.vitalFactTypes = fsVitalFactTypes;
-
           // read
           function init() {
             var oldVitals = scope.vitals;
+
             scope.vitals = [
               scope.person.$getPreferredName() || new fsApi.Name({type: 'http://gedcomx.org/BirthName', preferred: true}),
               scope.person.gender || {}
             ];
-            fsVitalFactTypes.forEach(function(type) {
-              scope.vitals.push(scope.person.$getFact(type) || new fsApi.Fact({type: type}));
+            fsVitalFactTypes.forEach(function(factType) {
+              scope.vitals.push(scope.person.$getFact(factType.type) || new fsApi.Fact({type: factType.type}));
             });
             _.forEach(scope.vitals, function(vital) {
               fsUtils.mixinStateFunctions(scope, vital);
@@ -35,11 +34,9 @@
                 return oldExists.call(this) || this._living;
               };
             })();
-            // copy old item state
-            if (!!oldVitals) {
-              for (var i = 0; i < oldVitals.length; i++) {
-                fsUtils.copyItemState(oldVitals[i], scope.vitals[i]);
-              }
+
+            if (!!oldVitals) { // copy old item state
+              fsUtils.copyItemStates(oldVitals, scope.vitals);
             }
           }
 

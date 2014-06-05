@@ -24,14 +24,8 @@
               fsUtils.mixinStateFunctions(scope, item);
             });
 
-            if (!!oldItems) {
-              // copy old item state
-              _.forEach(scope.items, function(item) {
-                var oldItem = _.find(oldItems, {id: item.id});
-                if (!!oldItem) {
-                  fsUtils.copyItemState(oldItem, item);
-                }
-              });
+            if (!!oldItems) { // copy old item state
+              fsUtils.copyItemStates(oldItems, scope.items);
             }
           }
 

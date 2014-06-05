@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFactSummary', function(fsDeathFactType) {
+    .directive('fsFactSummary', function(fsDeathFactType, fsParentFactTypes) {
       return {
         templateUrl: 'fsCloneShared/fsFact/fsFactSummary/fsFactSummary.tpl.html',
         scope: {
@@ -21,6 +21,10 @@
             else {
               return fact.value;
             }
+          };
+
+          scope.isLinkLabel = function(fact) {
+            return _.any(fsParentFactTypes, {type: fact.type});
           };
 
         }

@@ -9,7 +9,12 @@
         'Nationality': 'National Origin',
         'CasteName': 'Caste',
         'ClanName': 'Clan',
-        'CommonLawMarriage': 'Common Law'
+        'CommonLawMarriage': 'Common Law',
+        'AdoptiveParent': 'Adopted',
+        'BiologicalParent': 'Biological',
+        'GuardianParent': 'Guardianship',
+        'FosterParent': 'Foster',
+        'StepParent': 'Step'
       };
 
       return function (input) {

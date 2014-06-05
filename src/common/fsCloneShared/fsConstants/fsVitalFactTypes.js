@@ -2,9 +2,9 @@
   'use strict';
   angular.module('fsCloneShared')
     .constant('fsVitalFactTypes', [
-      'http://gedcomx.org/Birth',
-      'http://gedcomx.org/Christening',
-      'http://gedcomx.org/Death',
-      'http://gedcomx.org/Burial'
+      {type: 'http://gedcomx.org/Birth', hasDate: true, hasPlace: true},
+      {type: 'http://gedcomx.org/Christening', hasDate: true, hasPlace: true},
+      {type: 'http://gedcomx.org/Death', hasDate: true, hasPlace: true},
+      {type: 'http://gedcomx.org/Burial', hasDate: true, hasPlace: true}
     ]);
 })();

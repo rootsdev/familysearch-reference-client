@@ -3,28 +3,31 @@
     <input type="radio" ng-model="form.living" value="true">&nbsp;Living
     &nbsp;&nbsp;&nbsp;<input type="radio" ng-model="form.living" value="false">&nbsp;Deceased
   </div>
-  <div ng-show="isCustom" class="form-group">
-    <label>Title of {{fact.type | fsGedcomxLabel}}</label>
-    <input class="form-control" placeholder="Title of {{fact.type | fsGedcomxLabel}}" type="text" ng-model="form.title">
+  <div ng-show="isCustomFactType(form.type)" class="form-group">
+    <label>Title of {{form.type | fsGedcomxLabel}}</label>
+    <input class="form-control" placeholder="Title of {{form.type | fsGedcomxLabel}}" type="text" ng-model="form.title">
   </div>
-  <div ng-show="hasValue" class="form-group">
-    <label>Description of {{fact.type | fsGedcomxLabel}}</label>
-    <input class="form-control" placeholder="Description of {{fact.type | fsGedcomxLabel}}" type="text" ng-model="form.value">
+  <div ng-show="hasValue(form.type)" class="form-group">
+    <label>Description of {{form.type | fsGedcomxLabel}}</label>
+    <input class="form-control" placeholder="Description of {{form.type | fsGedcomxLabel}}" type="text" ng-model="form.value">
   </div>
-  <div ng-show="hasDatePlace" class="form-group">
-    <label>Date of {{fact.type | fsGedcomxLabel}}</label>
-    <input class="form-control" placeholder="Date of {{fact.type | fsGedcomxLabel}}" type="text" ng-model="form.date"
-           ng-disabled="isDeath(fact) && form.living !== 'false'" ng-blur="setStdDate()" typeahead-min-length="4" typeahead-wait-ms="400"
+  <div ng-show="isParentFactType(form.type)" class="form-group">
+    <select ng-model="form.type" ng-options="factType.type as (factType.type | fsGedcomxLabel) for factType in parentFactTypes"></select>
+  </div>
+  <div ng-show="hasDate(form.type)" class="form-group">
+    <label>Date<span ng-hide="isParentFactType(form.type)"> of {{form.type | fsGedcomxLabel}}</span></label>
+    <input class="form-control" placeholder="Date of {{form.type | fsGedcomxLabel}}" type="text" ng-model="form.date"
+           ng-disabled="isDeathFactType(form.type) && form.living !== 'false'" ng-blur="setStdDate()" typeahead-min-length="4" typeahead-wait-ms="400"
            typeahead="date for date in getStdDates($viewValue)">
     <div>
       <span ng-show="!!form.stdDate && form.living !== 'true'">Standard: {{form.stdDate}}</span>
       &nbsp;
     </div>
   </div>
-  <div ng-show="hasDatePlace" class="form-group">
-    <label>Place of {{fact.type | fsGedcomxLabel}}</label>
-    <input class="form-control" placeholder="Place of {{fact.type | fsGedcomxLabel}}" type="text" ng-model="form.place"
-           ng-disabled="isDeath(fact) && form.living !== 'false'" ng-blur="setStdPlace()" typeahead-min-length="2" typeahead-wait-ms="400"
+  <div ng-show="hasPlace(form.type)" class="form-group">
+    <label>Place of {{form.type | fsGedcomxLabel}}</label>
+    <input class="form-control" placeholder="Place of {{form.type | fsGedcomxLabel}}" type="text" ng-model="form.place"
+           ng-disabled="isDeathFactType(form.type) && form.living !== 'false'" ng-blur="setStdPlace()" typeahead-min-length="2" typeahead-wait-ms="400"
            typeahead="place for place in getStdPlaces($viewValue)">
     <div>
       <span ng-show="!!form.stdPlace && form.living !== 'true'">Standard: {{form.stdPlace}}</span>

@@ -2,7 +2,7 @@
   'use strict';
   angular.module('fsCloneShared')
     .directive('fsFactEdit', function(_, $filter, $q, fsApi, fsDeathFactType, fsVitalFactTypes,
-                                      fsOtherFactTypes, fsCoupleFactTypes, fsUtils) {
+                                      fsOtherFactTypes, fsCoupleFactTypes, fsParentFactTypes, fsUtils) {
       return {
         templateUrl: 'fsCloneShared/fsFact/fsFactEdit/fsFactEdit.tpl.html',
         scope: {
@@ -13,10 +13,18 @@
           hideReason: '@'
         },
         link: function(scope) {
+          var oldDate, oldPlace;
+          var allFactTypes = fsVitalFactTypes
+            .concat(fsOtherFactTypes)
+            .concat(fsCoupleFactTypes)
+            .concat(fsParentFactTypes);
+          scope.parentFactTypes = fsParentFactTypes;
 
           function initForm() {
             scope.form = {
               living: scope.fact._living === true ? 'true' : (scope.fact._living === false ? 'false' : ''),
+              type: scope.fact.type,
+              title: $filter('fsCustomFactTitle')(scope.fact.type),
               value: scope.fact.value,
               date: scope.fact.$getDate(),
               stdDate: scope.fact.$getNormalizedDate(),
@@ -30,35 +38,43 @@
 
           initForm();
 
-          if (_.contains(fsVitalFactTypes, scope.fact.type)) {
-            scope.hasValue = false;
-            scope.hasDatePlace = true;
-          }
-          else {
-            var factType = _.find(fsOtherFactTypes.concat(fsCoupleFactTypes), {type: scope.fact.type});
-            if (!!factType) {
-              scope.hasValue = factType.hasValue;
-              scope.hasDatePlace = factType.hasDatePlace;
-            }
-            else {
-              scope.isCustom = true;
-              scope.form.title = $filter('fsCustomFactTitle')(scope.fact.type);
-              scope.hasValue = true;
-              scope.hasDatePlace = true;
-            }
+          function getFactType(type) {
+            return _.find(allFactTypes, { type: type });
           }
 
+          scope.isCustomFactType = function(type) {
+            return !getFactType(type);
+          };
+
+          scope.isParentFactType = function(type) {
+            return _.any(fsParentFactTypes, { type: type });
+          };
+
+          scope.hasValue = function(type) {
+            var factType = getFactType(type);
+            return factType ? factType.hasValue : true;
+          };
+
+          scope.hasDate = function(type) {
+            var factType = getFactType(type);
+            return factType ? factType.hasDate : true;
+          };
+
+          scope.hasPlace = function(type) {
+            var factType = getFactType(type);
+            return factType ? factType.hasPlace : true;
+          };
+
+          scope.isDeathFactType = function(type) {
+            return type === fsDeathFactType;
+          };
+
           // fact data may change in fsFindAddPersonForm
-          var oldDate, oldPlace;
           scope.$watch(function() {
             return scope.fact;
           }, function() {
             initForm();
           }, true);
-
-          scope.isDeath = function(fact) {
-            return fact.type === fsDeathFactType;
-          };
 
           scope.getStdDates = function(val) {
             return fsApi.getDate(val).then(function(response) {
@@ -118,7 +134,7 @@
             if (event.stopPropagation) {
               event.stopPropagation();
             }
-            if (scope.isDeath(scope.fact) && scope.form.living === 'true') {
+            if (scope.isDeathFactType(scope.form.type) && scope.form.living === 'true') {
               if (!scope.fact._living) {
                 scope.$parent.$emit('delete', scope.fact, scope.form.reason);
               }
@@ -131,10 +147,13 @@
                   .$setFormalDate(scope.form.formalDate)
                   .$setPlace(scope.form.place)
                   .$setNormalizedPlace(scope.form.stdPlace);
-                if (scope.isCustom) {
+                if (scope.isCustomFactType(scope.form.type)) {
                   scope.fact.type = fsUtils.encodeCustomFactType(scope.form.title);
                 }
-                if (scope.isDeath(scope.fact) && scope.form.living === 'false') {
+                if (scope.isParentFactType(scope.form.type)) {
+                  scope.fact.type = scope.form.type;
+                }
+                if (scope.isDeathFactType(scope.form.type) && scope.form.living === 'false') {
                   scope.fact._living = false;
                 }
                 if (scope.form.value) {
