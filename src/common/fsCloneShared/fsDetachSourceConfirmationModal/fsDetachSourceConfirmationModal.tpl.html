@@ -1,9 +1,13 @@
 <div style="padding: 0 20px 20px 20px; width: 600px">
-  <h2>Detach Source From <span ng-show="!!husband && !!wife">Couple Relationship</span></h2>
+  <h2>Detach Source From
+    <span ng-show="!!husband && !!wife">Couple Relationship</span>
+    <span ng-show="!!child">Parent-Child Relationship</span>
+  </h2>
+  <div fs-couple-profile ng-show="!!husband && !!wife" husband="husband" wife="wife"></div>
+  <div fs-parents-profile ng-show="!!child" child="child" father="father" mother="mother"></div>
   <ul ng-show="!!person">
     <li>{{person.$getDisplayName()}}<br/>{{person.$getDisplayLifeSpan()}} &middot; {{person.id}}</li>
   </ul>
-  <div fs-couple-profile ng-show="!!husband && !!wife" husband="husband" wife="wife"></div>
   <h4 ng-show="sourceRef.$getTags().length > 0">Tagged Events</h4>
   <span ng-repeat="tag in sourceRef.$getTags()">
     {{tag | fsGedcomxLabel}}<span ng-hide="$last">,</span>

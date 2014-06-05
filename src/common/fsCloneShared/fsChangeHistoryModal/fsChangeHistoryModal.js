@@ -3,7 +3,7 @@
   angular.module('fsCloneShared')
     .factory('fsChangeHistoryModal', function(_, $modal, fsApi, fsChangeUtils) {
       return {
-        open: function(opts) { // { (person | couple, husband, wife), item}
+        open: function(opts) { // { person | (couple, husband, wife) | (parents, child, father, mother), item}
           return $modal.open({
             templateUrl: 'fsCloneShared/fsChangeHistoryModal/fsChangeHistoryModal.tpl.html',
             size: 'lg',
@@ -14,6 +14,10 @@
               $scope.couple = opts.couple;
               $scope.husband = opts.husband;
               $scope.wife = opts.wife;
+              $scope.parents = opts.parents;
+              $scope.child = opts.child;
+              $scope.father = opts.father;
+              $scope.mother = opts.mother;
               $scope.busy = false;
               $scope.changes = [];
               var fromChangeId = '';
@@ -34,6 +38,9 @@
                   }
                   else if (!!$scope.couple) {
                     promise = fsApi.getCoupleChanges($scope.couple.id, requestOpts);
+                  }
+                  else if (!!$scope.parents) {
+                    promise = fsApi.getChildAndParentsChanges($scope.parents.id, requestOpts);
                   }
                   promise.then(function(response) {
                     $scope.busy = false;

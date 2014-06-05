@@ -1,0 +1,10 @@
+<div>
+  <div fs-section section-title="Parents" state="state" details-openable="true" items="members" addable="false">
+    <div class="panel-body otherInfoBody">
+      <div ng-repeat="member in members">
+        <div fs-relationship-member person="member" role="{{getRole($index)}}"
+            changeable="{{$index !== 2 ? 'true' : 'false'}}" deletable="{{$index !== 2 ? 'true' : 'false'}}"></div>
+      </div>
+    </div>
+  </div>
+</div>

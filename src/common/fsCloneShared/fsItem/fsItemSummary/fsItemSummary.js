@@ -7,7 +7,8 @@
         templateUrl: 'fsCloneShared/fsItem/fsItemSummary/fsItemSummary.tpl.html',
         scope: {
           item: '=',
-          label: '@'
+          label: '@',
+          addable: '@'
         }
       };
     });

@@ -5,13 +5,16 @@
       return {
         templateUrl: 'fsCloneShared/fsFamilyMembers/fsFamilyMembers.tpl.html',
         scope: {
-          family: '=', // {husband, wife, relationshipId, children (optional), couple (optional)}
+          family: '=', // {husband, wife, relationshipId, children ({person, parentsId} - optional), couple (optional)}
           focusId: '=',
           showPreferred: '@',
           preferred: '=' // {relationshipId}
         },
         link: function(scope) {
-          if (scope.family.children == null || (scope.family.couple == null && !!scope.family.husband && !!scope.family.wife)) {
+          // if we haven't passed in the children or we haven't passed in a couple
+          // then read them
+          if (scope.family.children == null ||
+              (scope.family.couple == null && !!scope.family.husband && !!scope.family.wife)) {
             var primaryId, spouseId;
             if (scope.family.husband && scope.family.wife) {
               primaryId = scope.family.husband.id;
@@ -29,7 +32,8 @@
               if (spouseId) {
                 scope.couple = response.getSpouseRelationship(spouseId);
               }
-              scope.children = response.getChildrenOf(spouseId);
+              scope.children = fsUtils.getChildrenWithParentsId(response.getChildrenOf(spouseId),
+                                                                response.getChildRelationshipsOf(spouseId));
             });
           }
           else {
@@ -76,7 +80,7 @@
             $state.go('find-add', fsUtils.removeEmptyProperties({
               husbandId: !!scope.family.husband ? scope.family.husband.id : null,
               wifeId: !!scope.family.wife ? scope.family.wife.id : null,
-              childIds: _.pluck(scope.children, 'id').join(','),
+              childIds: _.map(scope.children, function(child) { return child.person.id; }).join(','),
               returnToPersonId: scope.focusId
             }));
           });

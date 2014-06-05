@@ -168,8 +168,17 @@
 
         removeEmptyProperties: function(obj) {
           return _.omit(obj, function(value) { return _.isEmpty(value) && value !== 0; });
+        },
+
+        getChildrenWithParentsId: function(children, childRelationships) {
+          return _.map(children, function(child) {
+            return {
+              person: child,
+              parentsId: _.find(childRelationships, function(rel) { return rel.$getChildId() === child.id; }).id
+            };
+          });
         }
 
-      };
+    };
     });
 })();

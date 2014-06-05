@@ -5,10 +5,14 @@
       return {
         templateUrl: 'fsCloneShared/fsChangesSection/fsChangesSection.tpl.html',
         scope: {
-          person: '=', // pass in person or couple+husband+wife
+          person: '=', // pass in person or couple+husband+wife or parents+child+father+mother
           couple: '=',
           husband: '=',
-          wife: '='
+          wife: '=',
+          parents: '=',
+          child: '=',
+          father: '=',
+          mother: '='
         },
         link: function(scope) {
           scope.isLiving = function() {
@@ -26,6 +30,9 @@
               else if (!!scope.couple) {
                 promise = fsApi.getCoupleChanges(scope.couple.id, params);
               }
+              else if (!!scope.parents) {
+                promise = fsApi.getChildAndParentsChanges(scope.parents.id, params);
+              }
               promise.then(function(response) {
                 scope.changes = response.getChanges();
               });
@@ -37,7 +44,11 @@
               person: scope.person,
               couple: scope.couple,
               husband: scope.husband,
-              wife: scope.wife
+              wife: scope.wife,
+              parents: scope.parents,
+              child: scope.child,
+              father: scope.father,
+              mother: scope.mother
             });
           };
 

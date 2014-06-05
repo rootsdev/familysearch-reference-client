@@ -5,19 +5,20 @@
 
       function getSpouseFamilies(pwr, self) {
         var families = _.map(pwr.getSpouseRelationships(), function(couple) {
+          var spouseId = couple.$getHusbandId() === self.id ? couple.$getWifeId() : couple.$getHusbandId();
           return {
             husband: pwr.getPerson(couple.$getHusbandId()),
             wife: pwr.getPerson(couple.$getWifeId()),
             relationshipId: couple.id,
             couple: couple,
-            children: pwr.getChildrenOf(couple.$getHusbandId() === self.id ? couple.$getWifeId() : couple.$getHusbandId())
+            children: fsUtils.getChildrenWithParentsId(pwr.getChildrenOf(spouseId), pwr.getChildRelationshipsOf(spouseId))
           };
         });
         if (pwr.getChildIdsOf(null).length) {
           families.push({
             husband: self._isMale() ? self : null,
             wife: self._isMale() ? null : self,
-            children: pwr.getChildrenOf(null)
+            children: fsUtils.getChildrenWithParentsId(pwr.getChildrenOf(null), pwr.getChildRelationshipsOf(null))
           });
         }
         return families;

@@ -5,14 +5,18 @@
       return {
         templateUrl: 'fsCloneShared/fsFindAddPerson/fsFindAddPerson.tpl.html',
         scope: {
+          // passing in a parentsId and a husbandId|wifeId will create a couple relationship and update the child-and-parents relationship
+
           husbandId: '@',
           wifeId: '@',
           fatherId: '@',
           motherId: '@',
           childIds: '@',
           coupleId: '@',
+          parentsId: '@',
           returnToPersonId: '@',
-          returnToCoupleId: '@'
+          returnToCoupleId: '@',
+          returnToParentsId: '@'
         },
         link: function(scope) {
           scope.showResults = false;
@@ -78,6 +82,9 @@
             else if (!!scope.returnToCoupleId) {
               $state.go('couple', { coupleId: scope.returnToCoupleId });
             }
+            else if (!!scope.returnToParentsId) {
+              $state.go('parents', { parentsId: scope.returnToParentsId });
+            }
           }
 
           scope.$on('cancel', function(event) {
@@ -96,19 +103,28 @@
               }).then(function(changeMessage) {
                 // update existing couple relationship
                 return fsApi.getCouple(scope.coupleId).then(function(response) {
-                  var couple = response.getRelationship();
-                  couple.$setHusband(scope.husbandId || person.id);
-                  couple.$setWife(scope.wifeId || person.id);
-                  return couple.$save(changeMessage);
+                  return response.getRelationship()
+                    .$setHusband(scope.husbandId || person.id)
+                    .$setWife(scope.wifeId || person.id)
+                    .$save(changeMessage);
                 });
               });
             }
             else if (!!scope.husbandId || !!scope.wifeId) {
-              // create couple relationship
-              return (new fsApi.Couple({
-                husband: !!scope.husbandId ? scope.husbandId : person.id,
-                wife: !!scope.wifeId ? scope.wifeId : person.id
-              })).$save();
+              // create couple relationship if one doesn't already exist
+              return fsApi.getSpouses(scope.husbandId || scope.wifeId).then(function(response) {
+                if (!_.any(response.getCoupleRelationships(), function(rel) {
+                  return person.id === (scope.husbandId ? rel.$getWifeId() : rel.$getHusbandId());
+                })) {
+                  return (new fsApi.Couple({
+                    husband: scope.husbandId || person.id,
+                    wife: scope.wifeId || person.id
+                  })).$save();
+                }
+                else {
+                  return $q.when(null);
+                }
+              });
             }
             else {
               return $q.when(null);
@@ -116,12 +132,29 @@
           }
 
           function addChildAndParentsRelationships(person) {
-            if (!!scope.childIds) {
+            var fatherId = !!scope.husbandId ? scope.husbandId :
+              (person.gender.type === 'http://gedcomx.org/Male' ? person.id : null);
+            var motherId = !!scope.wifeId ? scope.wifeId :
+              (person.gender.type === 'http://gedcomx.org/Female' ? person.id : null);
+
+            if (!!scope.parentsId) {
+              // update the existing child-and-parents relationship
+              return fsConfirmationModal.open({
+                title: 'Changing Relationship',
+                subTitle: 'Reason This Relationship Is Correct',
+                showChangeMessage: true,
+                okLabel: 'Change'
+              }).then(function(changeMessage) {
+                return fsApi.getChildAndParents(scope.parentsId).then(function(response) {
+                  return response.getRelationship()
+                    .$setFather(fatherId)
+                    .$setMother(motherId)
+                    .$save(changeMessage);
+                });
+              });
+            }
+            else if (!!scope.childIds) {
               // create child-and-parents relationships
-              var fatherId = !!scope.husbandId ? scope.husbandId :
-                (person.gender.type === 'http://gedcomx.org/Male' ? person.id :null);
-              var motherId = !!scope.wifeId ? scope.wifeId :
-                (person.gender.type === 'http://gedcomx.org/Female' ? person.id :null);
               // I got a "deadlock detected" conflict doing this, so let's be slow and do them one at a time :-(
               // TODO check to see if we can do this in parallel someday
 //              return $q.all(_.map(scope.childIds.split(','), function(childId) {
@@ -179,7 +212,7 @@
 
           scope.$on('select', function(event, person) {
             event.stopPropagation();
-            addRelationships(person).then(leave, leave);
+            addRelationships(person).then(leave, leave); // leave even if user cancelled confirmation modal
           });
 
           function createPerson(person) {

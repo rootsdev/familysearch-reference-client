@@ -7,9 +7,12 @@
         scope: {
           state: '=',
           sources: '=',
-          person: '=', // pass in person or husband+wife
+          person: '=', // pass in person or husband+wife or child+father+mother
           husband: '=',
-          wife: '='
+          wife: '=',
+          child: '=',
+          father: '=',
+          mother: '='
         },
         link: function(scope) {
 
@@ -24,6 +27,9 @@
               person: scope.person,
               husband: scope.husband,
               wife: scope.wife,
+              child: scope.child,
+              father: scope.father,
+              mother: scope.mother,
               sourceRef: sourceRef
             }).then(function(changeMessage) {
               fsUtils.findById(scope.sources, sourceRef.id)._busy = true;

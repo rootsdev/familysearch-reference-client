@@ -6,7 +6,9 @@
         templateUrl: 'fsCloneShared/fsRelationshipMember/fsRelationshipMember.tpl.html',
         scope: {
           person: '=',
-          role: '@'
+          role: '@',
+          changeable: '@',
+          deletable: '@'
         },
         link: function(scope) {
           scope.person._onOpen(fsUtils.agentSetter(scope));

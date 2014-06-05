@@ -10,7 +10,7 @@
     </a>
     <a ng-show="deletable === 'true' && item._exists() && !item._isEditing()" href=""
        class="deleteDetail btn btn-link btn-xs non-form" ng-click="$emit('delete', item)">
-      <i class="fa fa-trash-o">&nbsp;</i>Delete
+      <i class="fa fa-trash-o">&nbsp;</i>{{deleteLabel || 'Delete'}}
     </a>
     <a href="" class="btn btn-xs btn-link detailsItem closeDetail" ng-click="item._close()">
       <i class="fa fa-times-circle">&nbsp;</i>Close

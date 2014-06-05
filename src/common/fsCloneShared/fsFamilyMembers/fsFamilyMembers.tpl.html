@@ -34,7 +34,7 @@
         <tbody>
         <tr ng-repeat="child in children">
           <td>
-            <div fs-person-small person="child" edit-parents="true" is-focus="{{isFocus(child)}}"></div>
+            <div fs-person-small person="child.person" edit-parents="true" parents-id="{{child.parentsId}}" is-focus="{{isFocus(child)}}"></div>
           </td>
         </tr>
         <tr class="actionRow">

@@ -12,7 +12,8 @@
           item: '=',
           editable: '@',
           changeable: '@',
-          deletable: '@'
+          deletable: '@',
+          deleteLabel: '@'
         }
       };
     });

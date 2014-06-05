@@ -6,8 +6,9 @@
         templateUrl: 'fsCloneShared/fsNotesSection/fsNotesSection.tpl.html',
         scope: {
           state: '=',
-          person: '=', // pass in person or couple
-          couple: '='
+          person: '=', // pass in person or couple or parents
+          couple: '=',
+          parents: '='
         },
         link: function(scope) {
           // read
@@ -18,6 +19,9 @@
           }
           else if (!!scope.couple) {
             promise = fsApi.getCoupleNoteRefs(scope.couple.id);
+          }
+          else if (!!scope.parents) {
+            promise = fsApi.getChildAndParentsNoteRefs(scope.parents.id);
           }
           promise.then(function(response) {
             scope.noteRefs = response.getNoteRefs();
@@ -37,6 +41,9 @@
               }
               else if (!!scope.couple) {
                 noteRef.$coupleId = scope.couple.id;
+              }
+              else if (!!scope.parents) {
+                noteRef.$childAndParentsId = scope.parents.id;
               }
               fsUtils.mixinStateFunctions(scope, noteRef);
               noteRef._edit();
