@@ -80,12 +80,14 @@
 
 </script>
 
+<!-- when the user clicks on this link, the run() function above will be called -->
 <a href="#" onclick="run()" style="font-weight: bold">Run</a>
 
-<!-- components must be nested inside controllers; one controller can surround multiple components -->
+<!-- components must be nested inside AngularJS controllers; one controller can surround multiple components -->
 <div ng-controller="SampleController">
-  <!-- here is the component; person is set by the "$scope.person = person" statement above -->
+  <!-- here is the fs-person-profile component; person is set by the "$scope.person = person" statement above -->
   <div fs-person-profile ng-show="ready" person="person"></div>
+  <!-- to see examples of more components, look at the code in src/app, which uses components from src/common/fsCloneShared -->
 </div>
 
 </body>
