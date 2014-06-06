@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Latest compiled and minified bootstrap CSS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <!-- fonts -->
+  <link href="../build/assets/museo/museo.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <!-- compiled CSS -->
+  <link rel="stylesheet" type="text/css" href="../build/assets/fsClone-0.0.1.css" />
+  <link href="../build/assets/tree.css" rel="stylesheet">
+  <!-- Latest compiled and minified jQuery -- before we load any of our own scripts, angular in particular -->
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!-- vendor files -->
+  <script type="text/javascript" src="../build/vendor/angular/angular.js"></script>
+  <script type="text/javascript" src="../build/vendor/angular-bootstrap-jbruni/ui-bootstrap-tpls.min.js"></script>
+  <script type="text/javascript" src="../build/vendor/angular-ui-router/release/angular-ui-router.js"></script>
+  <script type="text/javascript" src="../build/vendor/lodash/dist/lodash.compat.js"></script>
+  <script type="text/javascript" src="../build/vendor/familysearch-javascript-sdk/familysearch-javascript-sdk.js"></script>
+  <script type="text/javascript" src="../build/vendor/moment/moment.js"></script>
+  <script type="text/javascript" src="../build/vendor/angular-moment/angular-moment.js"></script>
+  <script type="text/javascript" src="../build/vendor/hamsterjs/hamster.js"></script>
+  <script type="text/javascript" src="../build/vendor/angular-mousewheel/mousewheel.js"></script>
+  <script type="text/javascript" src="../build/vendor/angular-pan-zoom/build/panzoom.0.1-snapshot.min.js"></script>
+  <script type="text/javascript" src="../build/vendor/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+  <script type="text/javascript" src="../build/vendor/angular-growl-v2/build/angular-growl.js"></script>
+  <!-- fsClone shared files -->
+  <script type="text/javascript" src="../build/dist/fsclone-all-0.0.1.js"></script>
+</head>
+<!-- top-level ng-app tag tells angularjs to initialize -->
+<body ng-app="MyApp">
+<script>
+
+  // this function is called when the user clicks "Run"
+  window.run = function() {
+    // prompt the user to sign in
+    FamilySearch.getAccessToken().then(function() {
+      // get the current user object
+      FamilySearch.getCurrentUser().then(function(response) {
+        // get the person for the current user
+        FamilySearch.getPerson(response.getUser().personId).then(function(response) {
+          // now that we have the data we want to display, call a function to display it
+          // the function will display the person in a "fs-person-profile" component
+          showPerson(response.getPerson());
+        })
+      });
+    });
+  };
+
+  // angular boilerplate
+  // TODO remove dependency on ui router
+  angular.module('MyApp', ['fsCloneShared', 'templates-common', 'ui.router.state', 'ui.router'])
+    // configure FamilySearch global object
+    .config(function (fsApiProvider) {
+      fsApiProvider
+        .setAppKey('WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK')
+        .setEnvironmentName('sandbox')
+        .setAuthCallback('http://localhost:9000/#!/auth');
+    })
+    // force FamilySearch (fsApi) to initialize
+    .run(function (fsApi) {
+    })
+    // use controllers to pass data into component(s) nested inside the controller
+    .controller('SampleController', function ($window, $scope, _) {
+      // expose showPerson function as a window global so it can be called from anywhere
+      $window.showPerson = function(person) {
+        // wrap the code to execute inside _.defer and $scope.$apply so you can call the function either
+        // from within a FamilySearch response handler or outside of a FamilySearch response handler
+        _.defer(function() {
+          $scope.$apply(function() {
+            // set $scope.person, which is the person object passed into the component below, to the person parameter
+            $scope.person = person;
+            // setting ready to true causes the component to be shown
+            $scope.ready = true;
+          });
+        });
+      };
+    });
+
+</script>
+
+<a href="#" onclick="run()" style="font-weight: bold">Run</a>
+
+<!-- components must be nested inside controllers; one controller can surround multiple components -->
+<div ng-controller="SampleController">
+  <!-- here is the component; person is set by the "$scope.person = person" statement above -->
+  <div fs-person-profile ng-show="ready" person="person"></div>
+</div>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   angular.module('fsCloneShared')
-    .provider('fsApi', function fsApiProvider() {
+    .provider('fsApi', function() {
       /* jshint camelcase:false */
       var app_key = '';
       var environment = '';
