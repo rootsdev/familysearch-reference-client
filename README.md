@@ -19,6 +19,13 @@ You may use these components even in non-AngularJS projects.
 * The project uses the [FamilySearch Javascript SDK](https://github.com/rootsdev/familysearch-javascript-sdk)
 and serves as an example of using the SDK to build a large-scale FamilySearch application.
 
+Demo
+====
+
+You can see a demo at [http://demo.werelate.org](http://demo.werelate.org).  
+The demo accesses the _beta_ FamilySearch site, which contains and old copy of production FamilySearch data.
+Sign in with your production FamilySearch account, not a sandbox account.
+
 Getting started
 ===============
 
