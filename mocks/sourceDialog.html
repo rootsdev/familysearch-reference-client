@@ -127,5 +127,269 @@
     </div>
 </div>
 
+
+    <!-- Button trigger modal -->
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sourceViewDialog">
+        View a Source
+    </button>
+
+    <!-- Create a Source -->
+    <div class="modal fade sourceDialog viewSource" id="sourceViewDialog" tabindex="-1" role="dialog" aria-labelledby="sourceViewDialogLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="sourceViewDialogLabel">Rita Carewe (1909 - 1955) - Find A Grave Memorial</h4>
+                </div>
+                <div class="modal-body">
+
+                <div class="row">
+                <div class="col-md-9">
+
+                    <div class="sourceViewWidgetContainer">
+                        <div class="panel panel-primary family-panel noBorder">
+                            <div class="panel-heading">
+                                <div class="options">
+                                    <a class="deleteSource" href="javascript:;"><i class="fa fa-trash-o">&nbsp;</i>Delete Source</a>
+                                    <a href="javascript:;" class="toggleDetails hidden-xs"><i class="fa fa-eye">&nbsp;</i>Show Details</a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="detailsWell">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="detailActions pull-right">
+                                                <a href="" class="btn btn-xs btn-link editDetail non-form"><i class="fa fa-edit">&nbsp;</i>Edit</a> <a href=""                                                                                                    class="deleteDetail btn btn-link btn-xs non-form"><i
+                                                    class="fa fa-trash-o">&nbsp;</i>Delete</a> <a href="" class="btn btn-xs btn-link detailsItem closeDetail"><i
+                                                    class="fa fa-times-circle">&nbsp;</i>Close</a>
+                                            </div>
+                                            <div class="non-form">
+                                                <span class="eventLabel">Source Title (Required)</span><br/>
+                                                <a href="#" class="openEventDetails">
+                                                    <span class="eventDate">Rita Carewe (1909 - 1955) - Find A Grave Memorial</span><br/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Source Title (Required)</label> <input class="form-control" name="sourceTitle" placeholder="Source Title (Required)" type="text" required="required">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Reason for My Change</label>
+                                        <textarea class="form-control" name="justification" placeholder="Explain why you changed this source's title."></textarea>
+                                    </div>
+
+                                    <div class="detailsItem editingItem detailModified">
+                                        Modified<span class="detailsModifiedHistory">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="changeHistory">History</a></span><br>
+                                        <span class="modifiedDate">April 2, 2014</span> by <a href="http://" class="contributor">Dovy</a>
+                                    </div>
+                                    <div class="actionRow">
+                                        <button class="btn btn-primary saveButton" type="submit">Save</button>
+                                        <button class="btn btn-link cancelButton" type="submit">Cancel</button>
+                                    </div>
+                                </div>
+
+
+                                <div class="detailsWell">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="detailActions pull-right">
+                                                <a href="" class="btn btn-xs btn-link editDetail non-form"><i class="fa fa-edit">&nbsp;</i>Edit</a> <a href=""                                                                                                    class="deleteDetail btn btn-link btn-xs non-form"><i
+                                                    class="fa fa-trash-o">&nbsp;</i>Delete</a> <a href="" class="btn btn-xs btn-link detailsItem closeDetail"><i
+                                                    class="fa fa-times-circle">&nbsp;</i>Close</a>
+                                            </div>
+                                            <div class="non-form">
+                                                <span class="eventLabel">Web Page (Link to the Record)</span><a href="{{url}}" class="url"><small>Go to the web page</small></a><br/>
+                                                <a href="#" class="openEventDetails">
+                                                    <span class="eventDate">http://www.findagrave.com/cgi-bin/fg.cgi?page=gr&GRid=7901265</span><br/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Web Page (Link to the Record)</label> <input class="form-control" name="sourceURL" placeholder="Web Page (Link to the Record)" type="text">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Reason for My Change</label>
+                                        <textarea class="form-control" name="justification" placeholder="Explain why you changed this source's URL."></textarea>
+                                    </div>
+
+                                    <div class="detailsItem editingItem detailModified">
+                                        Modified<span class="detailsModifiedHistory">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="changeHistory">History</a></span><br>
+                                        <span class="modifiedDate">April 2, 2014</span> by <a href="http://" class="contributor">Dovy</a>
+                                    </div>
+                                    <div class="actionRow">
+                                        <button class="btn btn-primary saveButton" type="submit">Save</button>
+                                        <button class="btn btn-link cancelButton" type="submit">Cancel</button>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="detailsWell">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="detailActions pull-right">
+                                                <a href="" class="btn btn-xs btn-link editDetail non-form"><i class="fa fa-edit">&nbsp;</i>Edit</a> <a href=""                                                                                                    class="deleteDetail btn btn-link btn-xs non-form"><i
+                                                    class="fa fa-trash-o">&nbsp;</i>Delete</a> <a href="" class="btn btn-xs btn-link detailsItem closeDetail"><i
+                                                    class="fa fa-times-circle">&nbsp;</i>Close</a>
+                                            </div>
+                                            <div class="non-form">
+                                                <span class="eventLabel">Where the Record Is Found (Citation)</span><br/>
+                                                <a href="#" class="openEventDetails">
+                                                    <span class="eventDate">"Rita Carewe (1909 - 1955) - Find A Grave Memorial." Rita Carewe (1909 - 1955) - Find A Grave Memorial. N.p., n.d. Web. 07 Feb. 2014.</span><br/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Where the Record Is Found (Citation)</label> <textarea class="form-control" name="sourceCitation" placeholder="Where the Record Is Found (Citation)"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Reason for My Change</label>
+                                        <textarea class="form-control" name="justification" placeholder="Explain why you changed this source's citation."></textarea>
+                                    </div>
+
+                                    <div class="detailsItem editingItem detailModified">
+                                        Modified<span class="detailsModifiedHistory">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="changeHistory">History</a></span><br>
+                                        <span class="modifiedDate">April 2, 2014</span> by <a href="http://" class="contributor">Dovy</a>
+                                    </div>
+                                    <div class="actionRow">
+                                        <button class="btn btn-primary saveButton" type="submit">Save</button>
+                                        <button class="btn btn-link cancelButton" type="submit">Cancel</button>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="detailsWell">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="detailActions pull-right">
+                                                <a href="" class="btn btn-xs btn-link editDetail non-form"><i class="fa fa-edit">&nbsp;</i>Edit</a> <a href=""                                                                                                    class="deleteDetail btn btn-link btn-xs non-form"><i
+                                                    class="fa fa-trash-o">&nbsp;</i>Delete</a> <a href="" class="btn btn-xs btn-link detailsItem closeDetail"><i
+                                                    class="fa fa-times-circle">&nbsp;</i>Close</a>
+                                            </div>
+                                            <div class="non-form">
+                                                <span class="eventLabel">Notes</span><br/>
+                                                <a href="#" class="openEventDetails">
+                                                    <span class="eventDate">Actress. Daughter of actor/director Edwin Carewe and wife of actor Leroy Mason, Rita appeared in 7 films. (bio by: TLS)</span><br/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Notes</label> <textarea class="form-control" name="sourceNotes" placeholder="Notes"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Reason for My Change</label>
+                                        <textarea class="form-control" name="justification" placeholder="Explain why you changed this source's notes."></textarea>
+                                    </div>
+
+                                    <div class="detailsItem editingItem detailModified">
+                                        Modified<span class="detailsModifiedHistory">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="changeHistory">History</a></span><br>
+                                        <span class="modifiedDate">April 2, 2014</span> by <a href="http://" class="contributor">Dovy</a>
+                                    </div>
+                                    <div class="actionRow">
+                                        <button class="btn btn-primary saveButton" type="submit">Save</button>
+                                        <button class="btn btn-link cancelButton" type="submit">Cancel</button>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <!-- Discussion Delete Modal -->
+                    <div class="modal fade" id="deleteSource" tabindex="-1" role="dialog" aria-labelledby="deleteSourceLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="deleteSourceLabel">Delete Source</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure that you want to delete this source and all of its comments?
+                                </div>
+                                <div class="modal-footer" style="text-align: left;">
+                                    <button type="button" class="btn btn-primary">Yes</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="col-md-3 sidebar">
+
+                    <div class="panel panel-info changes-panel">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Latest Changes</h4>
+                        </div>
+                        <div class="panel-body change-objects">
+                            <h5>Life Sketch Added
+                                <small>
+                                    <abbr class="timeago" title="2014-04-02T21:13:23.516Z">7 days ago</abbr> by
+                                    <a class="contributorCard" data-cid="https://familysearch.org/platform/users/agents/MMNV-HVH.json?access_token=USYS2B6C12FBA12DA6C78E42DF1C22C06AF8_idses-prod03.a.fsglobal.net" data-pid="6H69-6G2" data-placement="bottom" href="#">Dovy</a>
+                                </small>
+                            </h5>
+                            <h5>Person Source Reference Added
+                                <small>
+                                    <abbr class="timeago" title="2014-02-07T23:24:03.336Z">2 months ago</abbr> by
+                                    <a class="contributorCard" data-cid="https://familysearch.org/platform/users/agents/MMNV-HVH.json?access_token=USYS2B6C12FBA12DA6C78E42DF1C22C06AF8_idses-prod03.a.fsglobal.net" data-pid="6SSK-5YM" data-placement="bottom" href="#">Dovy</a>
+                                </small>
+                            </h5>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-info changes-panel">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Attached To</h4>
+                        </div>
+                        <div class="panel-body change-objects">
+                            <div class="person-info-container">
+                                <i class="fs-gender-icon fs-icon-small-male pull-left">&nbsp;</i>
+                        <span class="person-info">
+                             <span class="name"><a class="male personCard name" data-original-title="" data-pid="277H-SWR" href="#" title="">Pranas Paukstys</a></span>
+                             <span class="lifespan">1919 - 1971</span> - <span class="pid">277H-SWR</span>
+                        </span>
+                            </div>
+                            <div class="person-info-container">
+                                <i class="fs-gender-icon fs-icon-small-female icon-rounded pull-left">&nbsp;</i>
+                        <span class="person-info">
+                             <span class="name"><a class="male personCard name" data-original-title="" data-pid="277H-SWR" href="#" title="">Kazimeras Paukstys</a></span>
+                             <span class="lifespan">1919 - 1971</span> - <span class="pid">277H-FEW</span>
+                        </span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
 </body>
 </html>
