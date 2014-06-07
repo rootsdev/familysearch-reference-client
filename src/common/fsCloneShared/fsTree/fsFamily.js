@@ -255,15 +255,22 @@
         if ( this.cachedChildFamilies ) {
           return this.cachedChildFamilies;
         }
-        if ( !this.hasChildren() ) {
+        if ( !this.hasChildren() || this.childFamiliesInProgress ) {
           return [];
         }
+
+
+        var that = this;
         var result = _.map(this.children(),function(child){
           return FamilyConstructor.prototype.build(child);
         });
-        this.cachedChildFamilies = result;
-        return result;
-
+        if ( !this.childFamiliesInProgress ) {
+          this.childFamiliesInProgress = true;
+          $q.all(_.map(result,function(it){ return it.initializationPromise;})).then(function(){
+            that.cachedChildFamilies = result;
+          });
+        }
+        return [];
       },
 
       alternatePaternalParents: function() {
