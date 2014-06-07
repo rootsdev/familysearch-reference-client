@@ -251,6 +251,21 @@
 
       },
 
+      childFamilies: function() {
+        if ( this.cachedChildFamilies ) {
+          return this.cachedChildFamilies;
+        }
+        if ( !this.hasChildren() ) {
+          return [];
+        }
+        var result = _.map(this.children(),function(child){
+          return FamilyConstructor.prototype.build(child);
+        });
+        this.cachedChildFamilies = result;
+        return result;
+
+      },
+
       alternatePaternalParents: function() {
         if (!_.isUndefined(this.cachedAlternatePaternalParents) ) {
           return this.cachedAlternatePaternalParents;

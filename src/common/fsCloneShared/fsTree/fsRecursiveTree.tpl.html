@@ -1,34 +1,16 @@
-<div class="tree-wrapper">
+<div class="tree-wrapper" >
 
     <!--kids-->
-    <div ng-if="showKids" id="kids" style="position:absolute; top:320px; left: 0;">
-        <div id="kid1" class="child-list-item">
-            <div class="pull-left child-connector-top">&nbsp;</div>
-            <div fs-tree-node />
+    <div ng-if="showKids && family.hasChildren()" id="kids" style="position:absolute; left: 0;" ng-style="childPlacement()">
+        <div ng-repeat="childFamily in family.childFamilies()" class="child-list-item">
+            <div ng-class="{'child-connector-top':$first, 'child-connector-bottom':$last, 'child-connector-middle':(!$first && !$last)}" />
+            <div ng-if="!$first && !$last" class="child-connector-middle-bar">&nbsp;</div>
+            <div fs-tree-node family="childFamily"/>
             <div class="clearboth">&nbsp;</div>
-        </div>
-
-        <div class="clearboth">&nbsp;</div>
-
-        <div id="kid2" class="child-list-item">
-            <div class="child-connector-middle-bar">&nbsp;</div>
-            <div class="child-connector-middle">&nbsp;</div>
-            <div fs-tree-node />
-            <div class="clearboth">&nbsp;</div>
-        </div>
-
-        <div class="clearboth">&nbsp;</div>
-
-        <div id="kid3" class="child-list-item">
-            <div>
-                <div class="pull-left child-connector-bottom">&nbsp;</div>
-                <div fs-tree-node />
-                <div class="clearboth">&nbsp;</div>
-            </div>
         </div>
 
     </div>
-    <div ng-if="showKids" style="height: 5px; width:60px; border-top:solid 1px #787068; position:absolute; top:392px; left:620px; z-index: 1">
+    <div ng-if="showKids && family.hasChildren()" style="height: 5px; width:60px; border-top:solid 1px #787068; position:absolute; top:392px; left:620px; z-index: 1">
         &nbsp;
     </div>
 
@@ -101,7 +83,7 @@
     </div>
 
 
-    <!--&lt;!&ndash;husband's paternal grandparents&ndash;&gt;-->
+    <!--<!--husband's paternal grandparents-->-->
     <!--<div ng-show="!!showParents" id="grandparents1" fs-tree-node  expandable="false" family="family.parentFamilyOfHusband().parentFamilyOfHusband()" style="position:absolute; top:-160px; left:1265px;"/>-->
 </div>
 
