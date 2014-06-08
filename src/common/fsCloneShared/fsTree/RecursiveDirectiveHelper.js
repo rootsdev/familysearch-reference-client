@@ -74,8 +74,10 @@
             // Alternative: instead of passing a function,
             // you can also pass an object with
             // a 'pre'- and 'post'-link function.
-            console.log('scope ', scope.family);
-            console.log(transcludeFn);
+            if (false) {
+              console.log(transcludeFn);
+
+            }
 
           });
         }

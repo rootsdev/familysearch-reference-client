@@ -100,7 +100,8 @@ module.exports = function(grunt) {
                 'vendor/angular-growl-v2/build/angular-growl.js'
             ],
             css: [
-                'vendor/angular-growl-v2/build/angular-growl.min.css'
+                'vendor/angular-growl-v2/build/angular-growl.min.css',
+                'vendor/angular-pan-zoom/build/panzoomwidget.css'
             ],
             assets: [
             ]

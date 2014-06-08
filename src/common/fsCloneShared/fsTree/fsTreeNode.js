@@ -10,7 +10,6 @@
           brackets: '@'
         },
         link: function($scope) {
-          console.log($scope.expandable);
           $scope.islive = !!$scope.family;
 
           function createFindAddContext() {
