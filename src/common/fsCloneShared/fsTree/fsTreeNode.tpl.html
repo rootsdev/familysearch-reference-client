@@ -18,8 +18,14 @@
             <div class="pull-left text-right sans-serif all-family-label">
                 <p style="padding-top:8px">All Husbands</p>
             </div>
-            <div ng-click="toggleClickState('husbands')" class="pull-right" ng-class="{'all-husbands-arrow-closed':getClickState()!=='husbands','all-husbands-arrow-open':getClickState()==='husbands'}" >
-                <span class="fs-icon-arrow-left"></span>
+            <div class="pull-right">
+                <div ng-click="toggleClickState('husbands')" class="pull-right" ng-class="{'all-husbands-arrow-closed':getClickState()!=='husbands','all-husbands-arrow-open':getClickState()==='husbands'}" >
+                    <span class="fs-icon-arrow-left"></span>
+                </div>
+                <div class="clearfloat">&nbsp;</div>
+                <div ng-click="toggleClickState('wives')" class="pull-right" style="margin-top:2px" ng-class="{'all-wives-arrow-closed':getClickState()!=='wives','all-wives-arrow-open':getClickState()==='wives'}" >
+                    <span class="fs-icon-arrow-left"></span>
+                </div>
             </div>
 
 
@@ -104,15 +110,15 @@
         <div class="clearboth">&nbsp;</div>
 
         <!-- list of kids hover controls -->
-        <div class="joint-kids-wrapper">
+        <div class="kid-list-wrapper joint-kids-wrapper">
             <!--list of kids collapsed-->
             <div class="pull-left" ng-show="family.hasChildren()" >
 
                 <div ng-click="toggleClickState('kids')" class="pull-left" ng-class="{'kid-list-arrow-closed':getClickState()!=='kids','kid-list-arrow':getClickState()==='kids'}" >
                     <div class="fs-icon-arrow-down"></div>
                 </div>
-                <div class="pull-left sans-serif kid-list-label">Children</div>
-
+                <div class="pull-left sans-serif">Children</div>
+                <div class="clearboth">&nbsp;</div>
                 <div class="all-family-list" ng-show="getClickState()==='kids'">
                     <ul class="list-group">
                         <li ng-repeat="person in family.children()"  class="list-group-item" >
@@ -130,15 +136,20 @@
 
     <div class="pull-left all-family-wrapper">
 
-
         <!--Alternate parents of the husband-->
-        <div ng-show="family.hasAlternatePaternalParents()"  class="all-husbands-wrapper" ng-class="{'wrapper-open':getClickState()==='altPatParents', 'wrapper-closed':getClickState()!=='altPatParents'}">
+        <div ng-show="family.hasAlternatePaternalParents()"  class="all-husbands-wrapper wrapper-closed" ng-class="{'wrapper-open':getClickState()==='altPatParents', 'wrapper-closed':getClickState()!=='altPatParents'}">
 
-            <div ng-click="toggleClickState('altPatParents')" class="pull-left" ng-class="{'husband-parents-arrow-closed':getClickState()!=='altPatParents','husband-parents-arrow-open':getClickState()==='altPatParents'}" >
-                <span class="fs-icon-arrow-right" ></span>
+            <div class="pull-left">
+                <div ng-click="toggleClickState('altPatParents')"  ng-class="{'husband-parents-arrow-closed':getClickState()!=='altPatParents','husband-parents-arrow-open':getClickState()==='altPatParents'}" >
+                    <span class="fs-icon-arrow-right" ></span>
+                </div>
+                <div class="clearboth">&nbsp;</div>
+                <div ng-click="toggleClickState('altMatParents')" class="pull-left" style="margin-top:2px" ng-class="{'wife-parents-arrow-closed':getClickState()!=='altMatParents','wife-parents-arrow-open':getClickState()==='altMatParents'}">
+                    <span class="fs-icon-arrow-right"></span>
+                </div>
             </div>
 
-            <div class="pull-left sans-serif all-family-list-wrapper" >
+            <div class="pull-left sans-serif all-family-label" >
                 <p style="padding:8px 0 0 5px">All Parents</p>
 
                 <div class="all-family-list" ng-show="getClickState()==='altPatParents'">
@@ -167,7 +178,7 @@
             <div ng-click="toggleClickState('altMatParents')" class="pull-left" ng-class="{'wife-parents-arrow-closed':getClickState()!=='altMatParents','wife-parents-arrow-open':getClickState()==='altMatParents'}">
                 <span class="fs-icon-arrow-right"></span>
             </div>
-            <div class="pull-left sans-serif all-family-list-wrapper">
+            <div class="pull-left sans-serif all-family-label">
                 <p style="padding:8px 0 0 5px">All Parents</p>
 
                 <div  class="all-family-list" ng-show="getClickState()==='altMatParents'">
