@@ -9,9 +9,9 @@
 
       <ul class="person-info">
         <li class="person-name">
-          <span fs-person-popover popover-placement="right" person="result.$getPrimaryPerson()">
-            <a href="" >{{result.$getPrimaryPerson().$getDisplayName()}}</a>
-          </span>
+          <a href="" fs-person-popover popover-placement="right" person="result.$getPrimaryPerson()">
+            <span>{{result.$getPrimaryPerson().$getDisplayName()}}</span>
+          </a>
         </li>
         <li class="person-id">{{result.$getPrimaryPerson().id}}</li>
       </ul>

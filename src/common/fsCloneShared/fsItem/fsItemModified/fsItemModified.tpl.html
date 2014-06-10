@@ -7,8 +7,8 @@
   <span class="modifiedDate">{{item.attribution.modified | date:'dd-MMM-yyyy'}}</span>
   <span ng-show="!!agent">
     by
-    <span fs-agent-popover agent="agent">
-      <a href="" class="contributor">{{agent.$getAccountName()}}</a>
-    </span>
+    <a href="" fs-agent-popover agent="agent">
+      <span class="contributor">{{agent.$getAccountName()}}</span>
+    </a>
   </span>
 </div>

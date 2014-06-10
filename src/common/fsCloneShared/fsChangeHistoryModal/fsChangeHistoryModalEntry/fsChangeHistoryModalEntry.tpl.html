@@ -3,9 +3,9 @@
   <div class="changeDate"><abbr class="timeago">{{change.updated | date:'dd-MMM-yyyy'}}</abbr></div>
   <div class="changeContributor">
     by
-        <span fs-agent-popover agent="agent" ng-click="setAgent()">
-            <a href="" class="contributorCard">{{change.$getAgentName()}}</a>
-        </span>
+        <a href="" fs-agent-popover agent="agent" ng-click="setAgent()">
+            <span class="contributorCard">{{change.$getAgentName()}}</span>
+        </a>
   </div>
 </td>
 <td class="changeDetails">
@@ -37,9 +37,9 @@
 
   <div ng-if="isChildAndParentsRelationship(change) || isCoupleRelationship(change)">
     <h5>{{getType(change) | fsGedcomxLabel}}</h5>
-    <div ng-show="!!relatedPerson" fs-person-popover person="relatedPerson">
-      <a ng-href="">{{relatedPerson.display.name}}</a>
-    </div>
+    <a href="" ng-show="!!relatedPerson" fs-person-popover person="relatedPerson">
+      <span>{{relatedPerson.display.name}}</span>
+    </a>
     <div>{{relatedPerson.display.lifespan}}</div>
   </div>
 
