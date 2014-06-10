@@ -110,14 +110,14 @@
         <div class="clearboth">&nbsp;</div>
 
         <!-- list of kids hover controls -->
-        <div class="kid-list-wrapper joint-kids-wrapper">
+        <div class="kid-list-wrapper joint-kids-wrapper" ng-class="{'label-open':getClickState()==='kids', 'label-closed':getClickState()!=='kids'}">
             <!--list of kids collapsed-->
             <div class="pull-left" ng-show="family.hasChildren()" >
 
                 <div ng-click="toggleClickState('kids')" class="pull-left" ng-class="{'kid-list-arrow-closed':getClickState()!=='kids','kid-list-arrow':getClickState()==='kids'}" >
                     <div class="fs-icon-arrow-down"></div>
                 </div>
-                <div class="pull-left sans-serif" ng-class="{'label-open':getClickState()==='kids', 'label-closed':getClickState()!=='kids'}">Children</div>
+                <div class="pull-left sans-serif" >Children</div>
                 <div class="clearboth">&nbsp;</div>
                 <div class="all-family-list" ng-show="getClickState()==='kids'">
                     <ul class="list-group">
