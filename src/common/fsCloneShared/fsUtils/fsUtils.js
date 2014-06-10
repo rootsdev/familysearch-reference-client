@@ -182,6 +182,13 @@
               parentsId: _.find(childRelationships, function(rel) { return rel.$getChildId() === child.id; }).id
             };
           });
+        },
+
+        makeUrl: function(url) {
+          if (url && !url.match(/^https?:\/\//)) {
+            return 'http://' + url;
+          }
+          return url;
         }
 
     };

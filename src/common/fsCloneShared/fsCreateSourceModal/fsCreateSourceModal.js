@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsCreateSourceModal', function(_, $modal) {
+    .factory('fsCreateSourceModal', function(_, $modal, fsUtils) {
       return {
         open: function() {
           return $modal.open({
@@ -18,9 +18,7 @@
               $scope.save = function() {
                 $scope.submitted = true;
                 // this mimics FS behavior
-                if ($scope.form.url && !$scope.form.url.match(/^https?:\/\//)) {
-                  $scope.form.url = 'http://' + $scope.form.url;
-                }
+                $scope.form.url = fsUtils.makeUrl($scope.form.url);
                 if ($scope.form.title) {
                   $scope.$close($scope.form);
                 }

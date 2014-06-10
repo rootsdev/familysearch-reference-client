@@ -1,0 +1,39 @@
+<div class="sourceDialog viewSource" id="sourceViewDialog" tabindex="-1" role="dialog" aria-labelledby="sourceViewDialogLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" ng-click="cancel()" class="close" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="sourceViewDialogLabel">{{description.$getTitle()}}</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-8">
+        <div fs-source-description description="description"></div>
+      </div>
+      <div class="col-md-4 sidebar">
+
+        <!-- FS doesn't provide change history for sources at this time
+        <div class="panel panel-info changes-panel">
+          <div class="panel-heading">
+            <h4 class="panel-title">Latest Changes</h4>
+          </div>
+          <div class="panel-body change-objects">
+            <h5>Life Sketch Added
+              <small>
+                <abbr class="timeago" title="2014-04-02T21:13:23.516Z">7 days ago</abbr> by
+                <a class="contributorCard" data-cid="https://familysearch.org/platform/users/agents/MMNV-HVH.json?access_token=USYS2B6C12FBA12DA6C78E42DF1C22C06AF8_idses-prod03.a.fsglobal.net" data-pid="6H69-6G2" data-placement="bottom" href="#">Dovy</a>
+              </small>
+            </h5>
+            <h5>Person Source Reference Added
+              <small>
+                <abbr class="timeago" title="2014-02-07T23:24:03.336Z">2 months ago</abbr> by
+                <a class="contributorCard" data-cid="https://familysearch.org/platform/users/agents/MMNV-HVH.json?access_token=USYS2B6C12FBA12DA6C78E42DF1C22C06AF8_idses-prod03.a.fsglobal.net" data-pid="6SSK-5YM" data-placement="bottom" href="#">Dovy</a>
+              </small>
+            </h5>
+          </div>
+        </div>
+        -->
+
+        <div fs-source-attachments description="description" max="3"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -23,7 +23,7 @@ Demo
 ====
 
 You can see a demo at [http://demo.werelate.org](http://demo.werelate.org).  
-The demo accesses the _beta_ FamilySearch site, which contains and old copy of production FamilySearch data.
+The demo accesses the _beta_ FamilySearch site, which contains an old copy of production FamilySearch data.
 Sign in with your production FamilySearch account, not a sandbox account.
 
 Getting started
