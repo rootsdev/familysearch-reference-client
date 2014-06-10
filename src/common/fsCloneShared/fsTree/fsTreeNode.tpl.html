@@ -13,7 +13,7 @@
 
 
         <!--Alternate husbands-->
-        <div  ng-show="family.hasAlternateHusbands()" class="all-husbands-wrapper" ng-class="{'wrapper-open':getClickState()==='husbands', 'wrapper-closed':getClickState()!=='husbands'}">
+        <div  ng-show="family.hasAlternateHusbands()" class="all-husbands-wrapper" >
 
             <div class="pull-left text-right sans-serif all-family-label" ng-class="{'label-open':getClickState()==='husbands', 'label-closed':getClickState()!=='husbands'}">
                 <p style="padding-top:8px">All Husbands</p>
@@ -29,7 +29,7 @@
             </div>
 
 
-            <div class="pull-left text-right sans-serif all-family-label wrapper-open" ng-show="getClickState()==='husbands'">
+            <div class="pull-left text-right sans-serif all-family-label" ng-show="getClickState()==='husbands'">
                 <div class="all-family-list">
                     <ul class="list-group">
                         <li ng-repeat="person in family.alternateHusbands()"  class="list-group-item" ng-class="{'all-family-list-selected':$first}">
@@ -45,7 +45,7 @@
         </div>
 
         <!--Alternate wives-->
-        <div ng-show="family.hasAlternateWives()" class="all-wives-wrapper wrapper-closed" ng-class="{'wrapper-open':getClickState()==='wives', 'wrapper-closed':getClickState()!=='wives'}">
+        <div ng-show="family.hasAlternateWives()" class="all-wives-wrapper wrapper-closed" >
 
             <div class="pull-left text-right sans-serif all-family-label"  ng-class="{'label-open':getClickState()==='wives', 'label-closed':getClickState()!=='wives'}">
                 <p style="padding-top:8px">All Wives</p>
@@ -137,16 +137,13 @@
     <div class="pull-left all-family-wrapper">
 
         <!--Alternate parents of the husband-->
-        <div ng-show="family.hasAlternatePaternalParents()"  class="all-husbands-wrapper wrapper-closed" ng-class="{'wrapper-open':getClickState()==='altPatParents', 'wrapper-closed':getClickState()!=='altPatParents'}">
+        <div ng-show="family.hasAlternatePaternalParents()"  class="all-husbands-wrapper" >
 
             <div class="pull-left">
                 <div ng-click="toggleClickState('altPatParents')"  ng-class="{'husband-parents-arrow-closed':getClickState()!=='altPatParents','husband-parents-arrow-open':getClickState()==='altPatParents'}" >
                     <span class="fs-icon-arrow-right" ></span>
                 </div>
                 <div class="clearboth">&nbsp;</div>
-                <div ng-click="toggleClickState('altMatParents')" class="pull-left" style="margin-top:2px" ng-class="{'wife-parents-arrow-closed':getClickState()!=='altMatParents','wife-parents-arrow-open':getClickState()==='altMatParents'}">
-                    <span class="fs-icon-arrow-right"></span>
-                </div>
             </div>
 
             <div class="pull-left sans-serif all-family-label" >
@@ -174,7 +171,7 @@
 
 
         <!--Alternate parents of the wife-->
-        <div class="all-wives-wrapper" style="" ng-show="family.hasAlternateMaternalParents()"  ng-class="{'wrapper-open':getClickState()==='altMatParents', 'wrapper-closed':getClickState()!=='altMatParents'}">
+        <div class="all-wives-wrapper" style="" ng-show="family.hasAlternateMaternalParents()"  >
             <div ng-click="toggleClickState('altMatParents')" class="pull-left" ng-class="{'wife-parents-arrow-closed':getClickState()!=='altMatParents','wife-parents-arrow-open':getClickState()==='altMatParents'}">
                 <span class="fs-icon-arrow-right"></span>
             </div>
