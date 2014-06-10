@@ -2,10 +2,10 @@
     <div style="position: absolute; top:20px; left: 20px; z-index: 10000">
         <div id="panner">
             <div class="text-center pan-center">o</div>
-            <div class="pan-up"><span class="fs-icon-arrow-up"></span></div>
-            <div class="pan-left" ><span class="fs-icon-arrow-left"></span></div>
-            <div class="pan-right"><span class="fs-icon-arrow-right"></span></div>
-            <div class="pan-down"><span class="fs-icon-arrow-down"></span></div>
+            <div class="pan-up" ng-click="move($event,0,-50)"><span class="fs-icon-arrow-up"></span></div>
+            <div class="pan-left" ng-click="move($event,-50,0)"><span class="fs-icon-arrow-left"></span></div>
+            <div class="pan-right" ng-click="move($event,50,0)"><span class="fs-icon-arrow-right"></span></div>
+            <div class="pan-down" ng-click="move($event,0,50)"><span class="fs-icon-arrow-down"></span></div>
         </div>
 
         <div id="zoomer">
