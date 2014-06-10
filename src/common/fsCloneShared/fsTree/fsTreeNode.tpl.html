@@ -45,10 +45,10 @@
         </div>
 
         <!--Alternate wives-->
-        <div ng-show="family.hasAlternateWives()" class="all-wives-wrapper wrapper-closed" >
+        <div ng-show="family.hasAlternateWives()" class="all-wives-wrapper" >
 
             <div class="pull-left text-right sans-serif all-family-label"  ng-class="{'label-open':getClickState()==='wives', 'label-closed':getClickState()!=='wives'}">
-                <p style="padding-top:8px">All Wives</p>
+                <p style="padding-top:8px;">All Wives</p>
             </div>
             <div ng-click="toggleClickState('wives')" class="pull-right" ng-class="{'all-wives-arrow-closed':getClickState()!=='wives','all-wives-arrow-open':getClickState()==='wives'}" >
                 <span class="fs-icon-arrow-left"></span>
@@ -147,7 +147,7 @@
             </div>
 
             <div class="pull-left sans-serif all-family-label" >
-                <p style="padding:8px 0 0 5px" ng-class="{'label-open':getClickState()==='altPatParents', 'label-closed':getClickState()!=='altPatParents'}">All Parents</p>
+                <p style="padding:8px 0 0 5px; margin:0" ng-class="{'label-open':getClickState()==='altPatParents', 'label-closed':getClickState()!=='altPatParents'}">All Parents</p>
 
                 <div class="all-family-list" ng-show="getClickState()==='altPatParents'">
 
@@ -176,7 +176,7 @@
                 <span class="fs-icon-arrow-right"></span>
             </div>
             <div class="pull-left sans-serif all-family-label">
-                <p style="padding:8px 0 0 5px" ng-class="{'label-open':getClickState()==='altMatParents', 'label-closed':getClickState()!=='altMatParents'}">All Parents</p>
+                <p style="padding:8px 0 0 5px; margin:0" ng-class="{'label-open':getClickState()==='altMatParents', 'label-closed':getClickState()!=='altMatParents'}">All Parents</p>
 
                 <div  class="all-family-list" ng-show="getClickState()==='altMatParents'">
 
