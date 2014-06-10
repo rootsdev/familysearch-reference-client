@@ -1,6 +1,29 @@
-<panzoom config="config" model="model" style="height: 1000px">
-    <!--<panzoomwidget  config="config" model="model" style="position:absolute; top:0; left:0; z-index: 100000" />-->
-    <div fs-recursive-tree recurse="1===0+1" family="family" show-kids="true" show-root-couple="true" show-parents="true"/>
-</panzoom>
+<div style="position:relative">
+    <div style="position: absolute; top:20px; left: 20px; z-index: 10000">
+        <div id="panner">
+            <div class="text-center pan-center">o</div>
+            <div class="pan-up"><span class="fs-icon-arrow-up"></span></div>
+            <div class="pan-left" ><span class="fs-icon-arrow-left"></span></div>
+            <div class="pan-right"><span class="fs-icon-arrow-right"></span></div>
+            <div class="pan-down"><span class="fs-icon-arrow-down"></span></div>
+        </div>
+
+        <div id="zoomer">
+            <div ng-click="model.zoomIn()" class="pull-left" style="margin-right:15px">+</div>
+            <div ng-click="model.zoomOut()" class="pull-left">&ndash;</div>
+            <div class="clearfix" style="height:0">&nbsp;</div>
+        </div>
+        <div id="printer-guy">
+            <img width="20" height="18" title="" alt="" src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABkAAD/4QMraHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjkxRkQ1OUJBREM3NjExRTM5RTRCREU2MDI4NDU0MDczIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjkxRkQ1OUJCREM3NjExRTM5RTRCREU2MDI4NDU0MDczIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OTFGRDU5QjhEQzc2MTFFMzlFNEJERTYwMjg0NTQwNzMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OTFGRDU5QjlEQzc2MTFFMzlFNEJERTYwMjg0NTQwNzMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/7gAOQWRvYmUAZMAAAAAB/9sAhAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAgICAgICAgICAgIDAwMDAwMDAwMDAQEBAQEBAQIBAQICAgECAgMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwP/wAARCAASABQDAREAAhEBAxEB/8QAYwAAAwEAAAAAAAAAAAAAAAAAAAgJCgEBAAAAAAAAAAAAAAAAAAAAABAAAAUCBQMEAwEAAAAAAAAAAgMFBgcBBBMUFRYIABcYERIjCSEiJRkRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/ANH/ADV+0hDiibpC4tWTwX+PbgYNsz1i4ngiNUmc7ZVuV1ttt17LsIvvVRsAswXiO6yxjVzlAzBHYmEhtq1OAaAFNbH2+hjVVLc65yvXuUdiWGifWJLzii2+PZKgapHE2oFwUoJrxeZyOFu0HW6GSJNuQXZYBFegBCCYALF+bzO8PPL7R0/a+v7Yym7QbZz/AHy7Da9vfQcTYm4P6epaVmdH+XJ43wdAo3I+AIfivmO9uRrulCN2uuck4KdTesbed3UzGDHaE74yWuMaGlUb7tcqA5QkLawz029MqVp97cVCWf7KBKEYIsFolJjwtN0e1hC+nXietrktyjBrKQKwdNUZSnISYUqyk3iHCqJKClxhHaiWCzRBmDNGA26BUsIqGACClRdBS3/Phh+BngVvt17My2HvrJpO5c33b7w5jI4emYW4fgwvT1yn49/v/foKB9AdAdB//9k=" />
+            <span class="fs-icon-printer" style="display:none"></span>
+        </div>
+    </div>
+
+    <panzoom config="config" model="model" style="height: 1000px; position:absolute; top:0; left:0">
+        <!--<panzoomwidget  config="config" model="model" style="position:absolute; top:0; left:0; z-index: 100000" />-->
+        <div fs-recursive-tree recurse="1===0+1" family="family" show-kids="true" show-root-couple="true" show-parents="true"/>
+    </panzoom>
+
+</div>
 
 

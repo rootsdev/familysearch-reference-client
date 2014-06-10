@@ -51,9 +51,6 @@
 
           $scope.showExpandAncestor = function(f) {
             var result =  $scope.showParents && !f.isUseless();
-            if ( result ) {
-              console.log($scope.showParents,f, f.isUseless());
-            }
             return result;
           };
 

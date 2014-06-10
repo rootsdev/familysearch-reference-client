@@ -8,8 +8,33 @@
           person: '=',
           spouse: '='
         },
-        controller: function($scope, fsApi, Family) {
+        controller: function($scope, $element, fsApi, Family) {
             $scope.family = Family.prototype.build($scope.person, $scope.spouse);
+            var contentElement = $element.find('.pan-zoom-contents');
+            $scope.moveLeft = function(event) {
+//              var position = movableDiv.position();
+//              movableDiv.css('left', movableDiv.position().left - 50 );
+              event.preventDefault();
+              console.log($scope.model.pan.x,$scope.model.pan.x-50);
+
+              $scope.model.pan.x = $scope.model.pan.x - 50;
+
+              var getCssScale = function(zoomLevel) {
+                return Math.pow($scope.config.scalePerZoomLevel, zoomLevel - $scope.config.neutralZoomLevel);
+              };
+
+              var scaleString = 'scale(' + getCssScale($scope.model.zoomLevel) + ')';
+
+              contentElement.css('transform-origin', '0 0');
+              contentElement.css('ms-transform-origin', '0 0');
+              contentElement.css('webkit-transform-origin', '0 0');
+              contentElement.css('transform', scaleString);
+              contentElement.css('ms-transform', scaleString);
+              contentElement.css('webkit-transform', scaleString);
+              contentElement.css('left', $scope.model.pan.x);
+              contentElement.css('top', $scope.model.pan.y);
+              console.log(contentElement.css('left'));
+            };
 
           /*
             Configuration options available for the panZoom control
