@@ -8,7 +8,7 @@
     "hamsterjs": "1.0.4",
     "angular-mousewheel": "1.0.4",
     "angular-ui-router": "~0.2.7",
-    "angular-pan-zoom": "git://github.com/lmonson/angular-pan-zoom.git#9b706d5442ceb6df29843e5f0c964de8b7bd70cb",
+    "angular-pan-zoom": "git://github.com/mvindahl/angular-pan-zoom.git#ce7e626ee2a67d945cdd0e8d6165c27478521d76",
     "lodash": "~2.4.1",
     "es5-shim": "~3.0.2",
     "familysearch-javascript-sdk": "~0.9.10",
