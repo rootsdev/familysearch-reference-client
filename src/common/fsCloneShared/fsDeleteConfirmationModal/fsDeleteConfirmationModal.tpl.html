@@ -1,0 +1,9 @@
+<div style="padding: 0 20px 20px 20px;">
+  <h2 ng-show="!!person">Delete Person</h2>
+  <h2 ng-hide="!!person">Delete Relationship</h2>
+  <textarea rows="4" ng-model="changeMessage" style="width: 100%"></textarea>
+  <div class="actionRow">
+    <button class="btn btn-primary saveButton" type="submit" ng-click="ok(changeMessage)">Delete</button>
+    <button class="btn btn-link cancelButton" type="submit" ng-click="cancel()">Cancel</button>
+  </div>
+</div>

@@ -7,6 +7,7 @@
             <i class="icon-rounded hidden-xs" ng-class="{'fs-icon-male': person._isMale(), 'fs-icon-female': !person._isMale()}">&nbsp;</i>
           </div>
           <div class="col-lg-10 col-md-10">
+            <div class="pull-right"><span ng-show="person._busy"><i class="fa fa-spinner fa-spin"></i></span></div>
             <h1>{{person.$getDisplayName()}}</h1>
             <span class="lifeSpan">{{person.$getDisplayBirthDate()}} - {{person.$getDisplayDeathDate()}}</span>
             <span class="pid">{{person.id}}</span>

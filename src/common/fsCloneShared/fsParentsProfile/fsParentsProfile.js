@@ -5,6 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsParentsProfile/fsParentsProfile.tpl.html',
         scope: {
+          parents: '=',
           child: '=',
           father: '=',
           mother: '='

@@ -33,7 +33,7 @@
         }
       });
     })
-    .controller('ParentsController', function ($scope, parents, sources, fsUtils) {
+    .controller('ParentsController', function ($scope, $state, $rootScope, parents, sources, fsUtils) {
       var sections = [
         'parents',
         'sources',
@@ -53,6 +53,16 @@
       $scope.sources = sources;
       sources.forEach(function(source) {
         fsUtils.mixinStateFunctions($scope, source);
+      });
+
+      $scope.$on('delete', function(event, parents, changeMessage) {
+        event.stopPropagation();
+        parents._busy = true;
+        parents.$delete(changeMessage).then(function() {
+          parents._busy = false;
+          // should we display deleted person here like FS does instead of returning home?
+          $state.go('person', { personId: $rootScope.user.personId });
+        });
       });
 
     });

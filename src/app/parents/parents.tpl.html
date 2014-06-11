@@ -4,7 +4,7 @@
   <span ng-show="!!father">| <a ng-href="/#/person/{{father.id}}">{{father.$getDisplayName()}}</a></span>
   <span ng-show="!!mother">| <a ng-href="/#/person/{{mother.id}}">{{mother.$getDisplayName()}}</a></span>
 </div>
-<div fs-parents-profile child="child" father="father" mother="mother"></div>
+<div fs-parents-profile parents="parents" child="child" father="father" mother="mother"></div>
 <div class="mainContent">
   <div class="row">
     <div class="col-md-9">
@@ -13,6 +13,7 @@
       <div fs-notes-section parents="parents" state="states['notes']"></div>
     </div>
     <div class="col-md-3 sidebar">
+      <div fs-tools-section parents="parents" child="child" father="father" mother="mother"></div>
       <div fs-changes-section parents="parents" child="child" father="father" mother="mother"></div>
     </div>
   </div>

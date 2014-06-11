@@ -9,12 +9,12 @@
         data: { pageTitle: 'Home' }
       });
     })
-    .controller('HomeController', function ($scope, $state, fsApi) {
+    .controller('HomeController', function ($scope, $state, $rootScope, fsApi) {
       $scope.signIn = function() {
         fsApi.getAccessToken().then(function() {
           fsApi.getCurrentUser().then(function(response) {
-            var user = response.getUser();
-            $state.go('person', { personId: user.personId });
+            $rootScope.user = response.getUser();
+            $state.go('person', { personId: $rootScope.user.personId });
           });
         });
       };

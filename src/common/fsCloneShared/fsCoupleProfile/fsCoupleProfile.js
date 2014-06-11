@@ -5,6 +5,7 @@
       return {
         templateUrl: 'fsCloneShared/fsCoupleProfile/fsCoupleProfile.tpl.html',
         scope: {
+          couple: '=',
           husband: '=',
           wife: '='
         }
