@@ -1,9 +1,9 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsSourceAttachments', function($q, fsApi) {
+    .directive('fsSourceAttachmentsSection', function($q, fsApi) {
       return {
-        templateUrl: 'fsCloneShared/fsSourceAttachments/fsSourceAttachments.tpl.html',
+        templateUrl: 'fsCloneShared/fsSourceAttachmentsSection/fsSourceAttachmentsSection.tpl.html',
         scope: {
           description: '=',
           max: '@'
