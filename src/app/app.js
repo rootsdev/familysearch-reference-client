@@ -28,4 +28,7 @@
       $scope.environment = 'Sandbox';
       //$scope.environment = 'Beta';
     });
+
+    // don't forget to edit index.html to add {Track:js} script on demo
+
 })();
