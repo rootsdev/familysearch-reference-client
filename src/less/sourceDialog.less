@@ -37,18 +37,18 @@
   }
   .name {
     font-size: 1.2em;
-    display:block;
+    display: block;
   }
 
   &.viewSource {
     .person-info {
       font-size: 11px;
-      display:block;
+      display: block;
       margin-bottom: 5px;
     }
     .name {
       font-size: 12px;
-      display:block;
+      display: block;
     }
 
     .noBorder {
@@ -77,6 +77,30 @@
       margin-left: 0 !important;
       margin-right: 0 !important;
       //padding-left: 0 !important;
+    }
+  }
+  &.attachToSource {
+    th {
+      &.attached {
+        width: 150px;
+      }
+      &.details {
+        width: 150px;
+      }
+      &.justification {
+      }
+      &.action {
+        width: 100px;
+      }
+    }
+    td {
+      span {
+        color: #777;
+      }
+      &.action {
+        text-align: center;
+        width: 100px;
+      }
     }
   }
 }
