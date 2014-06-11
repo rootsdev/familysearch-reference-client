@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsPersonPopover', function (fsApi, $state) {
+    .directive('fsPersonPopover', function (fsApi) {
       return {
         transclude: true,
         templateUrl: 'fsCloneShared/fsPersonPopover/fsPersonPopover.tpl.html',
@@ -27,11 +27,11 @@
           };
 
           scope.navigateTo = function() {
-              $state.go('person', { personId: scope.person.id });
+            scope.$emit('navigate', 'person', { personId: scope.person.id });
           };
 
           scope.navigateToTree = function() {
-              $state.go('tree', { personId: scope.person.id });
+            scope.$emit('navigate', 'tree', { personId: scope.person.id });
           };
 
         }

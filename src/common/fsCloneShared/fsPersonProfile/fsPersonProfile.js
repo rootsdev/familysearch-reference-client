@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsPersonProfile', function ($state) {
+    .directive('fsPersonProfile', function () {
       return {
         templateUrl: 'fsCloneShared/fsPersonProfile/fsPersonProfile.tpl.html',
         scope: {
@@ -11,7 +11,7 @@
           console.log(scope.person);
 
           scope.navigateToTree = function() {
-              $state.go('tree', { personId: scope.person.id });
+            scope.$emit('navigate', 'tree', { personId: scope.person.id });
           };
         }
       };

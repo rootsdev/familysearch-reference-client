@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFamilyMembersSection', function (_, $rootScope, $state, fsApi, fsUtils) {
+    .directive('fsFamilyMembersSection', function (_, $rootScope, fsApi, fsUtils) {
 
       function getSpouseFamilies(pwr, self) {
         var families = _.map(pwr.getSpouseRelationships(), function(couple) {
@@ -100,7 +100,7 @@
 
           // add new spouse
           scope.addSpouse = function() {
-            $state.go('find-add', fsUtils.removeEmptyProperties({
+            scope.$emit('navigate', 'find-add', fsUtils.removeEmptyProperties({
               husbandId: scope.person._isMale() ? scope.person.id : null,
               wifeId: !scope.person._isMale() ? scope.person.id : null,
               returnToPersonId: scope.person.id
@@ -109,7 +109,7 @@
 
           // add child with unknown parent
           scope.addChild = function() {
-            $state.go('find-add', fsUtils.removeEmptyProperties({
+            scope.$emit('navigate', 'find-add', fsUtils.removeEmptyProperties({
               fatherId: scope.person._isMale() ? scope.person.id : null,
               motherId: !scope.person._isMale() ? scope.person.id : null,
               returnToPersonId: scope.person.id
@@ -118,7 +118,7 @@
 
           // add parent to child
           scope.addParent = function() {
-            $state.go('find-add', fsUtils.removeEmptyProperties({
+            scope.$emit('navigate', 'find-add', fsUtils.removeEmptyProperties({
               childIds: scope.person.id,
               returnToPersonId: scope.person.id
             }));

@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsCoupleSection', function (_, $rootScope, $state, fsUtils) {
+    .directive('fsCoupleSection', function (_, $rootScope, fsUtils) {
       return {
         templateUrl: 'fsCloneShared/fsCoupleSection/fsCoupleSection.tpl.html',
         scope: {
@@ -42,7 +42,7 @@
           // change
           scope.$on('change', function(event, member) {
             event.stopPropagation();
-            $state.go('find-add', {
+            scope.$emit('navigate', 'find-add', {
               husbandId: member === scope.husband ? null : scope.husband.id,
               wifeId: member === scope.wife ? null : scope.wife.id,
               coupleId: scope.couple.id,

@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsTreeNode', function($state) {
+    .directive('fsTreeNode', function() {
       return {
         templateUrl: 'fsCloneShared/fsTree/fsTreeNode.tpl.html',
         scope: {
@@ -57,7 +57,7 @@
           }
 
           $scope.navigateToFindAdd = function() {
-            $state.go('find-add', createFindAddContext());
+            $scope.$emit('navigate', 'find-add', createFindAddContext());
           };
 
 

@@ -24,9 +24,15 @@
     .run(function () {
     })
 
-    .controller('AppController', function ($scope) {
+    .controller('AppController', function ($scope, $rootScope, $state) {
       $scope.environment = 'Sandbox';
       //$scope.environment = 'Beta';
+
+      // handle navigation events from fsCloneShared components
+      $rootScope.$on('navigate', function(event, route, params) {
+        event.stopPropagation();
+        $state.go(route, params);
+      });
     });
 
     // don't forget to edit index.html to add {Track:js} script on demo

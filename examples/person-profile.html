@@ -49,8 +49,7 @@
   };
 
   // angular boilerplate
-  // TODO remove dependency on ui router
-  angular.module('MyApp', ['fsCloneShared', 'templates-common', 'ui.router.state', 'ui.router'])
+  angular.module('MyApp', ['fsCloneShared', 'templates-common'])
     // configure FamilySearch global object
     .config(function (fsApiProvider) {
       fsApiProvider
