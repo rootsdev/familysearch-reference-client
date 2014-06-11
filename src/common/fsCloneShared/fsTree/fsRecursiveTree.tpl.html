@@ -13,7 +13,7 @@
                 <div class="clearboth">&nbsp;</div>
             </div>
 
-            <div ng-class="{'child-connector-top':$first, 'child-connector-bottom':(!$first && $last), 'child-connector-middle':(!$first && !$last)}" />
+            <div ng-class="{'child-connector-top':($first && !$last), 'child-connector-solo':($first && $last), 'child-connector-bottom':(!$first && $last), 'child-connector-middle':(!$first && !$last)}" />
 
             <div ng-if="!$first && !$last" class="child-connector-middle-bar">&nbsp;</div>
 

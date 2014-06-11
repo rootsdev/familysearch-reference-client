@@ -103,6 +103,7 @@
 .wife-parents-arrow-open {background:#59534d; color:#ffffff;width:20px; height:37px; padding-top:8px; text-align: center}
 .child-list-item {margin:-100px 0 135px 0; position:relative}
 .child-connector-top {border-top:solid 1px #787068;border-right:solid 1px #787068; position:absolute; top: 41px; right:280px; width:20px; height:85px; z-index:1}
+.child-connector-solo {border-top:solid 1px #787068;border-right:solid 1px #787068; position:absolute; top: 41px; right:280px; width:20px; height:72px; z-index:1}
 .child-connector-middle {border-right:solid 1px #787068; position:absolute; top:-5px; right:280px; width:20px; height:128px; z-index:1}
 .child-connector-middle-bar {height: 5px; width:20px; border-top:solid 1px #787068; position:absolute; top:48px; left:600px; z-index: 1}
 .child-connector-bottom {border-bottom:solid 1px #787068;border-right:solid 1px #787068; position:absolute; top: -10px; right:280px; width:20px; height:65px; z-index:1}
