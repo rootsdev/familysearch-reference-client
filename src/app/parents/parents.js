@@ -62,6 +62,7 @@
           parents._busy = false;
           // should we display deleted person here like FS does instead of returning home?
           $state.go('person', { personId: $rootScope.user.personId });
+          $rootScope.$emit('alert', {level: 'success', text: 'Child-and-parents relationship deleted'});
         });
       });
 

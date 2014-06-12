@@ -5,12 +5,17 @@
       growlProvider.globalTimeToLive(15000);
     })
 
-    .directive('fsGrowl', function($rootScope, growl) {
+    .directive('fsGrowl', function(_, $rootScope, growl) {
       return {
         templateUrl: 'fsCloneShared/fsGrowl/fsGrowl.tpl.html',
         link: function(scope) {
 
           var unbind = $rootScope.$on('alert', function(event, message) {
+            if (_.isString(message)) {
+              message = {
+                text: message
+              };
+            }
             if (message.level === 'warning') {
               growl.warning(message.text);
             }
