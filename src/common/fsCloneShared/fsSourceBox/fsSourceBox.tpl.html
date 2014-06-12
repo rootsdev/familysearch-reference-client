@@ -15,7 +15,7 @@
     <div class="col-md-9">
       <div class="row">
         <div class="col-md-11">
-          <input type="checkbox" ng-model="form.allSelected" ng-change="setAllSelected()"/>
+          <input type="checkbox" ng-model="allSelected" ng-change="setAllSelected()"/>
           <button>Create Source</button>
           <button>Move</button>
         </div>
@@ -53,7 +53,7 @@
           <span ng-show="isAttached(description)">attached</span>
         </div>
       </div>
-      <div pagination page="form.currentPage" total-items="count" items-per-page="pageSize" on-select-page="pageChanged(page)"></div>
+      <div pagination page="currentPage" total-items="count" items-per-page="pageSize" on-select-page="pageChanged(page)"></div>
     </div>
   </div>
 </div>

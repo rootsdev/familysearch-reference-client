@@ -14,12 +14,10 @@
           var sourceRefs, selectedFolder;
           scope.pageSize = 25;
           scope.count = 0;
+          scope.currentPage = 1;
           scope.allFolderSelected = false;
+          scope.allSelected = false;
           scope.ready = false;
-          scope.form = {
-            allSelected: false,
-            currentPage: 1
-          };
 
           if (!!scope.personId) {
             fsApi.getPerson(scope.personId).then(function(response) {
@@ -58,7 +56,7 @@
             return promise.then(function(response) {
               scope.descriptions = response.getSourceDescriptions();
               scope.count = folder === 'all' ? scope.allDescriptionsCount : folder.size;
-              scope.form.currentPage = page;
+              scope.currentPage = page;
               scope.busy = false;
             });
           }
@@ -94,14 +92,14 @@
           readFolders();
 
           scope.setAllSelected = function() {
-            console.log('setAllSelected', scope.form.allSelected);
+            console.log('setAllSelected', scope.allSelected);
             scope.descriptions.forEach(function(description) {
-              description._selected = scope.form.allSelected;
+              description._selected = scope.allSelected;
             });
           };
 
           scope.updateAllSelected = function() {
-            scope.form.allSelected = _.all(scope.descriptions, function(description) {
+            scope.allSelected = _.all(scope.descriptions, function(description) {
               return description._isSelected;
             });
           };
