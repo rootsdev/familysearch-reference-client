@@ -196,7 +196,7 @@
             var promises = [];
 
             function getAgent(sourceRef) {
-              return getAgents ? sourceRef.attribution.$getAgent() : $q.when(null);
+              return getAgents ? fsAgentCache.getAgent(sourceRef.attribution.$getAgentUrl()) : $q.when(null);
             }
 
             response.getPersonSourceRefs().forEach(function(sourceRef) {
@@ -208,7 +208,7 @@
                   return {
                     sourceRef: sourceRef,
                     person: responses[0].getPerson(),
-                    agent: getAgents ? responses[1].getAgent() : null
+                    agent: responses[1]
                   };
                 }));
               }
@@ -226,7 +226,7 @@
                     couple: couple,
                     husband: responses[0].getPerson(couple.$getHusbandId()),
                     wife: responses[0].getPerson(couple.$getWifeId()),
-                    agent: getAgents ? responses[1].getAgent() : null
+                    agent: responses[1]
                   };
                 }));
               }
@@ -245,7 +245,7 @@
                     child: responses[0].getPerson(parents.$getChildId()),
                     father: parents.$getFatherId() ? responses[0].getPerson(parents.$getFatherId()) : null,
                     mother: parents.$getMotherId() ? responses[0].getPerson(parents.$getMotherId()) : null,
-                    agent: getAgents ? responses[1].getAgent() : null
+                    agent: responses[1]
                   };
                 }));
               }
