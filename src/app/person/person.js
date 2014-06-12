@@ -27,7 +27,7 @@
         }
       });
     })
-    .controller('PersonController', function ($scope, $state, $rootScope, person, sources, fsUtils) {
+    .controller('PersonController', function ($scope, $state, $rootScope, person, sources, fsUtils, fsUserCache) {
       var sections = [
         'lifeSketch',
         'vitalFacts',
@@ -56,8 +56,10 @@
         person.$delete(changeMessage).then(function() {
           person._busy = false;
           // should we display deleted person here like FS does instead of returning home?
-          $state.go('person', { personId: $rootScope.user.personId });
-          $rootScope.$emit('alert', {level: 'success', text: person.$getDisplayName()+' deleted'});
+          fsUserCache.getUser().then(function(user) {
+            $state.go('person', { personId: user.personId });
+            $rootScope.$emit('alert', {level: 'success', text: person.$getDisplayName()+' deleted'});
+          });
         });
       });
 

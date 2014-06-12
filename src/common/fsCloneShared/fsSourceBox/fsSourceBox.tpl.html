@@ -1,0 +1,59 @@
+<div>
+  <div class="row">
+    Go to:
+    <a href="" ng-click="leave()">
+      <span ng-show="!!personId">{{person.$getDisplayName()}}</span>
+      <span ng-show="!!coupleId">Couple Relationship</span>
+      <span ng-show="!!parentsId">Parent-Child Relationship</span>
+    </a>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      My Source Box
+      <span ng-show="busy" style="padding-left: 10px"><i class="fa fa-spinner fa-spin"></i></span>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-11">
+          <input type="checkbox" ng-model="form.allSelected" ng-change="setAllSelected()"/>
+          <button>Create Source</button>
+          <button>Move</button>
+        </div>
+        <div class="col-md-1">Attach</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div ng-class="{selected: homeFolder._selected}" ng-click="selectFolder(homeFolder)">
+        Home
+        <span>({{homeFolder.size}})</span>
+      </div>
+      <div ng-class="{selected: allFolderSelected}" ng-click="selectFolder('all')">
+        All
+        <span>({{allDescriptionsCount}})</span>
+      </div>
+      <div>My Folders</div>
+      <div>
+        <button>New Folder</button>
+      </div>
+      <div ng-class="{selected: folder._selected}" ng-click="selectFolder(folder)" ng-repeat="folder in folders" ng-show="ready">
+        {{folder.title}}
+        <span>({{folder.size}})</span>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row" ng-repeat="description in descriptions" ng-show="ready">
+        <div class="col-md-11">
+          <input type="checkbox" ng-model="description._selected" ng-click="updateAllSelected()"/>
+          {{description.$getTitle()}}
+        </div>
+        <div class="col-md-1">
+          <a href="" ng-hide="isAttached(description)">Attach</a>
+          <span ng-show="isAttached(description)">attached</span>
+        </div>
+      </div>
+      <div pagination page="form.currentPage" total-items="count" items-per-page="pageSize" on-select-page="pageChanged(page)"></div>
+    </div>
+  </div>
+</div>

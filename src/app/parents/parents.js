@@ -33,7 +33,7 @@
         }
       });
     })
-    .controller('ParentsController', function ($scope, $state, $rootScope, parents, sources, fsUtils) {
+    .controller('ParentsController', function ($scope, $state, $rootScope, parents, sources, fsUtils, fsUserCache) {
       var sections = [
         'parents',
         'sources',
@@ -61,8 +61,10 @@
         parents.$delete(changeMessage).then(function() {
           parents._busy = false;
           // should we display deleted person here like FS does instead of returning home?
-          $state.go('person', { personId: $rootScope.user.personId });
-          $rootScope.$emit('alert', {level: 'success', text: 'Child-and-parents relationship deleted'});
+          fsUserCache.getUser().then(function(user) {
+            $state.go('person', { personId: user.personId });
+            $rootScope.$emit('alert', {level: 'success', text: 'Child-and-parents relationship deleted'});
+          });
         });
       });
 

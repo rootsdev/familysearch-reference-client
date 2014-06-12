@@ -32,7 +32,7 @@
         }
       });
     })
-    .controller('CoupleController', function ($scope, $state, $rootScope, couple, sources, fsUtils) {
+    .controller('CoupleController', function ($scope, $state, $rootScope, couple, sources, fsUtils, fsUserCache) {
       var sections = [
         'couple',
         'coupleEvents',
@@ -60,8 +60,10 @@
         couple.$delete(changeMessage).then(function() {
           couple._busy = false;
           // should we display deleted person here like FS does instead of returning home?
-          $state.go('person', { personId: $rootScope.user.personId });
-          $rootScope.$emit('alert', {level: 'success', text: 'Couple relationship deleted'});
+          fsUserCache.getUser().then(function(user) {
+            $state.go('person', { personId: user.personId });
+            $rootScope.$emit('alert', {level: 'success', text: 'Couple relationship deleted'});
+          });
         });
       });
 

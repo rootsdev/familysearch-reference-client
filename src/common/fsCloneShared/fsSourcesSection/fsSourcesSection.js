@@ -144,6 +144,16 @@
             });
           });
 
+          // attach from source box
+          scope.$on('attach', function(event) {
+            event.stopPropagation();
+            scope.$emit('navigate', 'source-box', fsUtils.removeEmptyProperties({
+              personId: scope.person ? scope.person.id : null,
+              coupleId: scope.couple ? scope.couple.id : null,
+              parentsId: scope.parents ? scope.parents.id : null
+            }));
+          });
+
           // save (tags or justification)
           scope.$on('save', function(event, sourceRef) {
             event.stopPropagation();
