@@ -189,8 +189,72 @@
             return 'http://' + url;
           }
           return url;
+        },
+
+        getSourceRefs: function(description, getAgents, max) {
+          return description.$getSourceRefsQuery().then(function(response) {
+            var promises = [];
+
+            function getAgent(sourceRef) {
+              return getAgents ? sourceRef.attribution.$getAgent() : $q.when(null);
+            }
+
+            response.getPersonSourceRefs().forEach(function(sourceRef) {
+              if (max <= 0 || promises.length < max) {
+                promises.push($q.all([
+                  fsApi.getPerson(sourceRef.$personId),
+                  getAgent(sourceRef)
+                ]).then(function(responses) {
+                  return {
+                    sourceRef: sourceRef,
+                    person: responses[0].getPerson(),
+                    agent: getAgents ? responses[1].getAgent() : null
+                  };
+                }));
+              }
+            });
+
+            response.getCoupleSourceRefs().forEach(function(sourceRef) {
+              if (max <= 0 || promises.length < max) {
+                promises.push($q.all([
+                  fsApi.getCouple(sourceRef.$coupleId, {persons: true}),
+                  getAgent(sourceRef)
+                ]).then(function(responses) {
+                  var couple = responses[0].getRelationship();
+                  return {
+                    sourceRef: sourceRef,
+                    couple: couple,
+                    husband: responses[0].getPerson(couple.$getHusbandId()),
+                    wife: responses[0].getPerson(couple.$getWifeId()),
+                    agent: getAgents ? responses[1].getAgent() : null
+                  };
+                }));
+              }
+            });
+
+            response.getChildAndParentsSourceRefs().forEach(function(sourceRef) {
+              if (max <= 0 || promises.length < max) {
+                promises.push($q.all([
+                  fsApi.getChildAndParents(sourceRef.$childAndParentsId, {persons: true}),
+                  getAgent(sourceRef)
+                ]).then(function(responses) {
+                  var parents = responses[0].getRelationship();
+                  return {
+                    sourceRef: sourceRef,
+                    parents: parents,
+                    child: responses[0].getPerson(parents.$getChildId()),
+                    father: parents.$getFatherId() ? responses[0].getPerson(parents.$getFatherId()) : null,
+                    mother: parents.$getMotherId() ? responses[0].getPerson(parents.$getMotherId()) : null,
+                    agent: getAgents ? responses[1].getAgent() : null
+                  };
+                }));
+              }
+            });
+
+            return $q.all(promises);
+          });
         }
 
-    };
+      };
     });
 })();

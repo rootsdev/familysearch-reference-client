@@ -3,7 +3,8 @@
   angular.module('fsCloneShared')
     .directive('fsSourcesSection', function ($rootScope, fsCurrentUser, fsUtils, fsApi,
                                              fsSourceDescriptionModal, fsCreateSourceModal, fsConfirmationModal,
-                                             fsDetachSourceConfirmationModal, fsAttachSourceConfirmationModal) {
+                                             fsDetachSourceConfirmationModal, fsAttachSourceConfirmationModal,
+                                             fsSourceAttachmentsModal) {
       return {
         templateUrl: 'fsCloneShared/fsSourcesSection/fsSourcesSection.tpl.html',
         scope: {
@@ -24,6 +25,19 @@
             return !!scope.person && scope.person.living;
           };
 
+          function detachSource(context) {
+            fsDetachSourceConfirmationModal.open(context).then(function(changeMessage) {
+              var source = fsUtils.findById(scope.sources, context.sourceRef.id);
+              if (!!source) {
+                source._busy = true;
+              }
+              context.sourceRef.$delete(changeMessage).then(function() {
+                _.remove(scope.sources, {id: context.sourceRef.id});
+                $rootScope.$emit('deleted', context.sourceRef);
+              });
+            });
+          }
+
           function showSourceDescriptionModal(description, isEditing) {
             fsSourceDescriptionModal.open(description, isEditing).then(function(action) {
               if (action === 'delete') {
@@ -43,8 +57,11 @@
                 });
               }
               else if (action === 'showAttachments') {
-                // TODO pop up show attachments modal
-                console.log('show attachments');
+                fsSourceAttachmentsModal.open(description).then(function(sourceRefToDetach) {
+                  if (!!sourceRefToDetach) {
+                    detachSource(sourceRefToDetach);
+                  }
+                });
               }
             });
           }
@@ -116,7 +133,7 @@
           // delete (detach)
           scope.$on('delete', function(event, sourceRef) {
             event.stopPropagation();
-            fsDetachSourceConfirmationModal.open({
+            detachSource({
               person: scope.person,
               husband: scope.husband,
               wife: scope.wife,
@@ -124,12 +141,6 @@
               father: scope.father,
               mother: scope.mother,
               sourceRef: sourceRef
-            }).then(function(changeMessage) {
-              fsUtils.findById(scope.sources, sourceRef.id)._busy = true;
-              sourceRef.$delete(changeMessage).then(function() {
-                _.remove(scope.sources, {id: sourceRef.id});
-                $rootScope.$emit('deleted', sourceRef);
-              });
             });
           });
 

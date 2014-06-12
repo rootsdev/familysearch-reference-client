@@ -3,39 +3,39 @@
     <h4 class="panel-title">Attached To</h4>
   </div>
   <div class="panel-body change-objects">
-    <div class="person-info-container" ng-repeat="sourceRef in personSourceRefs">
-      <div style="font-weight: bold">Person</div>
-      <div fs-person-smallest person="sourceRef.person"></div>
+    <div class="person-info-container" ng-repeat="sourceRef in sourceRefs">
+      <div ng-if="!!sourceRef.person">
+        <div style="font-weight: bold">Person</div>
+        <div fs-person-smallest person="sourceRef.person"></div>
+      </div>
+      <div ng-if="!!sourceRef.couple">
+        <div style="font-weight: bold">Couple Relationship</div>
+        <div>
+          <div>Husband</div>
+          <div fs-person-smallest person="sourceRef.husband"></div>
+        </div>
+        <div>
+          <div>Wife</div>
+          <div fs-person-smallest person="sourceRef.wife"></div>
+        </div>
+      </div>
+      <div ng-if="!!sourceRef.parents">
+        <div style="font-weight: bold">Parent-Child Relationship</div>
+        <div ng-show="!!sourceRef.father">
+          <div>Father</div>
+          <div fs-person-smallest person="sourceRef.father"></div>
+        </div>
+        <div ng-show="!!sourceRef.mother">
+          <div>Mother</div>
+          <div fs-person-smallest person="sourceRef.mother"></div>
+        </div>
+        <div>
+          <div>Child</div>
+          <div fs-person-smallest person="sourceRef.child"></div>
+        </div>
+      </div>
     </div>
 
-    <div class="person-info-container" ng-repeat="sourceRef in coupleSourceRefs">
-      <div style="font-weight: bold">Couple Relationship</div>
-      <div>
-        <div>Husband</div>
-        <div fs-person-smallest person="sourceRef.husband"></div>
-      </div>
-      <div>
-        <div>Wife</div>
-        <div fs-person-smallest person="sourceRef.wife"></div>
-      </div>
-    </div>
-
-    <div class="person-info-container" ng-repeat="sourceRef in parentsSourceRefs">
-      <div style="font-weight: bold">Parent-Child Relationship</div>
-      <div ng-show="!!sourceRef.father">
-        <div>Father</div>
-        <div fs-person-smallest person="sourceRef.father"></div>
-      </div>
-      <div ng-show="!!sourceRef.mother">
-        <div>Mother</div>
-        <div fs-person-smallest person="sourceRef.mother"></div>
-      </div>
-      <div>
-        <div>Child</div>
-        <div fs-person-smallest person="sourceRef.child"></div>
-      </div>
-    </div>
-
-    <a href="" ng-click="$emit('showAttachments', description)">Show all</a>
+    <a href="" ng-show="sourceRefs.length > 0" ng-click="$emit('showAttachments', description)">Show all</a>
   </div>
 </div>

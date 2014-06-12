@@ -1,0 +1,74 @@
+<div class="sourceDialog attachToSource" id="sourceAttachToDialog" tabindex="-1" role="dialog" aria-labelledby="sourceAttachToDialogLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button ng-click="cancel()" type="button" class="close" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="sourceAttachToDialogLabel">{{description.$getTitle()}}</h4>
+    <h5>{{description.about}}</h5>
+  </div>
+  <div class="modal-body">
+    <table class="table table-hover">
+      <thead>
+      <th class="attached">Attached to</th>
+      <th class="details">Details</th>
+      <th class="justification"></th>
+      <th class="action"></th>
+      </thead>
+      <tbody>
+      <tr ng-repeat="sourceRef in sourceRefs">
+        <td class="attached">
+          <span ng-if="!!sourceRef.person">Person</span>
+          <span ng-if="!!sourceRef.couple">Couple Relationship</span>
+          <span ng-if="!!sourceRef.parents">Parent-Child Relationship</span>
+          <br>{{sourceRef.sourceRef.attribution.modified | date:'dd-MMM-yyyy'}}
+          <br>by {{sourceRef.agent.$getAccountName()}}
+        </td>
+        <td class="details">
+          <div ng-if="!!sourceRef.person">
+            <span>person</span>
+            <br>{{sourceRef.person.$getDisplayName()}}
+            <br>{{sourceRef.person.id}}
+          </div>
+          <div ng-if="!!sourceRef.couple">
+            <div>
+              <span>husband</span>
+              <br>{{sourceRef.husband.$getDisplayName()}}
+              <br>{{sourceRef.husband.id}}
+            </div>
+            <div>
+              <span>wife</span>
+              <br>{{sourceRef.wife.$getDisplayName()}}
+              <br>{{sourceRef.wife.id}}
+            </div>
+          </div>
+          <div ng-if="!!sourceRef.parents">
+            <div ng-if="!!sourceRef.father">
+              <span>father</span>
+              <br>{{sourceRef.father.$getDisplayName()}}
+              <br>{{sourceRef.father.id}}
+            </div>
+            <div ng-if="!!sourceRef.mother">
+              <span>mother</span>
+              <br>{{sourceRef.mother.$getDisplayName()}}
+              <br>{{sourceRef.mother.id}}
+            </div>
+            <div>
+              <span>child</span>
+              <br>{{sourceRef.child.$getDisplayName()}}
+              <br>{{sourceRef.child.id}}
+            </div>
+          </div>
+        </td>
+        <td class="justification">
+          <span>Reason This Source Is Attached</span>
+          <br>{{sourceRef.sourceRef.attribution.changeMessage}}
+        </td>
+        <td class="action">
+          <button type="button" ng-click="detach(sourceRef)" class="btn btn-warning">Detach</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" ng-click="cancel()" class="btn">Cancel</button>
+  </div>
+</div>
