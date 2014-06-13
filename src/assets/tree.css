@@ -161,6 +161,8 @@
 .sourcebox-right {border-left:solid 1px #cdcdcd;padding-left:15px; padding-top:8px}
 
 .folder-item {padding:5px 1px 5px 10px;}
+.folder-item:hover {background:#edece8; cursor: pointer}
+
 .folder-selected {background:#edece8}
 .folderImage {vertical-align: text-bottom; margin-right:10px}
 .folderTitle {font-weight: normal;color: #4d4d4a;cursor: pointer;}
@@ -175,6 +177,10 @@
 }
 
 .section-divider {border-bottom:solid 1px #cdcdcd; width:100%;}
+
+.source-entry-row {margin-bottom:8px;}
+.source-entry {margin-left:8px; padding:4px; width:100%}
+.source-entry-open {border:solid 1px #cdcdcd;-moz-box-shadow: 0 0 .9em 0 #99938D; -webkit-box-shadow: 0 0 2px 0 #99938D; box-shadow: 0 0 4px 0 #99938D;}
 
 /*not sure if we use button images elsewhere */
 .iconButtonImage {
