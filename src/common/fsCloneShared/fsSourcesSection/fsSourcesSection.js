@@ -1,10 +1,8 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsSourcesSection', function ($rootScope, fsCurrentUser, fsUtils, fsApi,
-                                             fsSourceDescriptionModal, fsCreateSourceModal, fsConfirmationModal,
-                                             fsDetachSourceConfirmationModal, fsAttachSourceConfirmationModal,
-                                             fsSourceAttachmentsModal) {
+    .directive('fsSourcesSection', function ($rootScope, fsUtils, fsSourceUtils, fsApi,
+                                             fsCreateSourceModal, fsAttachSourceConfirmationModal) {
       return {
         templateUrl: 'fsCloneShared/fsSourcesSection/fsSourcesSection.tpl.html',
         scope: {
@@ -25,67 +23,16 @@
             return !!scope.person && scope.person.living;
           };
 
-          function detachSource(context, sources) {
-            fsDetachSourceConfirmationModal.open(context).then(function(changeMessage) {
-              if (!!sources) {
-                var source = fsUtils.findById(sources, context.sourceRef.id);
-                if (!!source) {
-                  source._busy = true;
-                }
-              }
-              context.sourceRef.$delete(changeMessage).then(function() {
-                if (!!sources) {
-                  _.remove(sources, {id: context.sourceRef.id});
-                }
-                $rootScope.$emit('deleted', context.sourceRef);
-              });
-            });
-          }
-
-          function showSourceAttachmentsModal(description, sources) {
-            fsSourceAttachmentsModal.open(description).then(function(sourceRefToDetach) {
-              if (!!sourceRefToDetach) {
-                detachSource(sourceRefToDetach, sources);
-              }
-            });
-          }
-
-          function showSourceDescriptionModal(description, isEditing, sources) {
-            fsSourceDescriptionModal.open(description, isEditing).then(function(action) {
-              if (action === 'delete') {
-                fsConfirmationModal.open({
-                  title: 'Delete Source',
-                  subTitle: 'Are you sure that you want to delete this source? ' +
-                    'Not only will it be detached from all of the individuals that use it, but it will also be deleted from the system.',
-                  okLabel: 'Yes'
-                }).then(function() {
-                  // delete source
-                  description.$delete().then(function() {
-                    if (!!sources) {
-                      _.remove(sources, function(source) {
-                        return source.description.id === description.id;
-                      });
-                    }
-                    $rootScope.$emit('deleted', description);
-                  });
-                });
-              }
-              else if (action === 'showAttachments') {
-                showSourceAttachmentsModal(description, sources);
-              }
-            });
-          }
-
           // view
           scope.$on('view', function(event, description) {
             event.stopPropagation();
-            showSourceDescriptionModal(description, false, scope.sources);
+            fsSourceUtils.showSourceDescriptionModal(description, false, scope.sources);
           });
 
           // edit
           scope.$on('edit', function(event, description) {
             event.stopPropagation();
-            showSourceDescriptionModal(description, true, scope.sources);
+            fsSourceUtils.showSourceDescriptionModal(description, true, scope.sources);
           });
 
           // add
@@ -139,7 +86,7 @@
           // delete (detach)
           scope.$on('delete', function(event, sourceRef) {
             event.stopPropagation();
-            detachSource({
+            fsSourceUtils.detachSource({
               person: scope.person,
               husband: scope.husband,
               wife: scope.wife,

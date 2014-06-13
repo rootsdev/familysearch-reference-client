@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsSourceAttachmentsModal', function($modal, $rootScope, fsSourceUtils) {
+    .factory('fsSourceAttachmentsModal', function($modal, $rootScope, fsUtils) {
       return {
         open: function(description) {
           return $modal.open({
@@ -9,7 +9,7 @@
             size: 'lg',
             controller: function($scope) {
               $scope.description = description;
-              fsSourceUtils.getSourceRefs(description, true, 0).then(function(response) {
+              fsUtils.getSourceRefs(description, true, 0).then(function(response) {
                 console.log('fsSourceAttachmentsModal', response);
                 $scope.sourceRefs = response;
               });

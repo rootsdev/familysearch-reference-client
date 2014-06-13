@@ -81,7 +81,7 @@
             <span>({{folder.size}})</span>
           </span>
         </div>
-        <div class="pull-right folderHandle">
+        <div class="pull-right folderHandle" ng-show="folder._selected">
           <span class="dropdown">
             <span class="dropdown-toggle"><i class="fa fa-chevron-down">&nbsp;</i></span>
               <ul class="dropdown-menu">
@@ -100,43 +100,43 @@
           <div class="pull-left">
             <input type="checkbox" ng-model="description._selected" ng-click="updateAllSelected()"/>
           </div>
-          <div class="pull-left source-entry source-entry-open">
-              <span class="">
-                <a href="" ng-click="toggleOpen(description)">{{description.$getTitle()}}</a>
-                <span ng-show="description._open">
-                  <span class="pull-right">
-                    <a href="" class="btn btn-xs btn-link detailsItem closeDetail" ng-click="toggleOpen(description)">
-                      <i class="fa fa-times-circle">&nbsp;</i>Close
-                    </a>
-                  </span>
-                  <span>
-                    <br/>
-                    <a href="">Attach</a>
-                    | <a href="">View</a>
-                    | <a href="">Copy</a>
-                    | <a href="">Remove</a>
-                    | <a href="">Attached To</a> <span class="badge">{{description._sourceRefsCount}}</span>
-                  </span>
-                  <span ng-show="!!description.about">
-                    <br/>
-                    url
-                    <br/>
-                    <a ng-href="{{description.about}}">{{description.about}}</a>
-                  </span>
-                  <span ng-show="!!description.$getCitation()">
-                    <br/>
-                    Citation
-                    <br/>
-                    {{description.$getCitation()}}
-                  </span>
-                  <span ng-show="!!description.$getText()">
-                    <br/>
-                    Notes
-                    <br/>
-                    {{description.$getText()}}
-                  </span>
+          <div class="source-entry" ng-class="{'source-entry-open': description._open}">
+            <span class="">
+              <a href="" ng-click="toggleOpen(description)">{{description.$getTitle()}}</a>
+              <span ng-show="description._open">
+                <span class="pull-right">
+                  <a href="" class="btn btn-xs btn-link detailsItem closeDetail" ng-click="toggleOpen(description)">
+                    <i class="fa fa-times-circle">&nbsp;</i>Close
+                  </a>
+                </span>
+                <span>
+                  <br/>
+                  <a href="">Attach</a>
+                  | <a href="">View</a>
+                  | <a href="">Copy</a>
+                  | <a href="">Remove</a>
+                  | <a href="">Attached To</a> <span class="badge">{{description._sourceRefsCount}}</span>
+                </span>
+                <span ng-show="!!description.about">
+                  <br/>
+                  url
+                  <br/>
+                  <a ng-href="{{description.about}}">{{description.about}}</a>
+                </span>
+                <span ng-show="!!description.$getCitation()">
+                  <br/>
+                  Citation
+                  <br/>
+                  {{description.$getCitation()}}
+                </span>
+                <span ng-show="!!description.$getText()">
+                  <br/>
+                  Notes
+                  <br/>
+                  {{description.$getText()}}
                 </span>
               </span>
+            </span>
           </div>
           <div class="clearboth">&nbsp;</div>
         </div>
