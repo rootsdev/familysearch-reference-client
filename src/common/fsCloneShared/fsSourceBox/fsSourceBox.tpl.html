@@ -1,25 +1,32 @@
-<div>
-  <div class="row">
-    Go to:
-    <a href="" ng-click="leave()">
-      <span ng-show="!!personId">{{person.$getDisplayName()}}</span>
-      <span ng-show="!!coupleId">Couple Relationship</span>
-      <span ng-show="!!parentsId">Parent-Child Relationship</span>
-    </a>
+<div style="margin:-20px">
+  <div class="row subheader">
+    <div class="goToHeading">
+      Go to:
+      <a href="" ng-click="leave()">
+        <span ng-show="!!personId">{{person.$getDisplayName()}}</span>
+        <span ng-show="!!coupleId">Couple Relationship</span>
+        <span ng-show="!!parentsId">Parent-Child Relationship</span>
+      </a>
+    </div>
   </div>
-  <div class="row">
-    <div class="col-md-3">
+  <div class="row sourcebox-heading">
+    <div class="col-md-3 sourcebox-title">
       My Source Box
       <span ng-show="busy" style="padding-left: 10px"><i class="fa fa-spinner fa-spin"></i></span>
     </div>
     <div class="col-md-9">
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9" style="margin-left:-25px">
           <input type="checkbox" ng-model="allSelected" ng-change="setAllSelected()"/>
-          <button>Create Source</button>
+          <button class="btn btn-primary" style="margin:0 8px 0 20px">
+            <img class="iconButtonImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAOElEQVR42mNgoBb4//+/ABC//08+eI9sEEUA2VW0N4gUNSPFIBKSDZ0MGo21AcwipBpEeTFCLQAALS1ymIkE1igAAAAASUVORK5CYII=">
+            Create Source
+          </button>
           <div class="btn-group" dropdown>
-            <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
+            <button class="btn btn-primary dropdown-toggle" ng-disabled="disabled" style="margin:0 8px">
+              <img class="iconButtonImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAATCAYAAAB7u5a2AAAAv0lEQVR42t2U3RGEIAyEU4IlWAIlWIolWAKdUIKlWAol5ILHODkOyDL65M7wQsjHXzZEhpjZc12e7oo7ejlc1jkZey0JhavpxHEaHIEkFM6Z50id+JAx33mWlJ855w108vzEm+cNvvHGFQOPKdQO1IJP6nqW0roJhrc+uqJ4VcYIXG3Qk+v9E1mGkNDaAK+W8Qhxm4S3ArwhribUyqqCAtoyzDovkhZgzU+ddx062OT+HIqU3Khi2bz2h8BXV/wAMY2QWyGWc4IAAAAASUVORK5CYII=">
               Move <span class="caret"></span>
+              <img class="iconButtonImageLeft" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAHCAYAAADebrddAAAAR0lEQVR42mP4////+//EgfcMQKKfSMX9DCAAZKwnoHA9AwwAOQJAfB6HQpC4AAMywKEBUyGahvtQhfdxKkTSoADEDSAaXQ4A76bQrv8ELCIAAAAASUVORK5CYII=" width="11" height="7">
             </button>
             <ul class="dropdown-menu" role="menu">
               <li ng-click="moveTo(homeFolder)">
@@ -39,39 +46,56 @@
         <div class="col-md-2">
           <span ng-show="allFolderSelected">Location</span>
         </div>
-        <div class="col-md-1">Attach</div>
+        <div class="col-md-1" style="margin:5px 0 0 10px">
+            Attach
+        </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-3">
-      <div ng-class="{selected: homeFolder._selected}" ng-click="selectFolder(homeFolder)">
-        Home
+  <div class="row sourcebox-content">
+    <div class="col-md-3 sourcebox-left">
+      <div class="folder-item" ng-class="{'folder-selected': homeFolder._selected}" ng-click="selectFolder(homeFolder)">
+        <img class="folderImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAQCAYAAAD0xERiAAAAhElEQVR42mNgIAIYGBgoMFAKgIYIGBsbzTc2NvwPokF8CgwyPA8xCI7PQ8XfQ/nvifIWFoPgBiLz8RpkampggGQzQUw1g3AaZmRkkECKITAM0kcVgzAMpNQgnC4kxxCcEUBzw0xMjBpAciCaYsNIkaepYe9JNAx33oQmk/dEGvYePTkAACO5D9xpu70SAAAAAElFTkSuQmCC">
+        <span class="folderTitle">Home</span>
         <span>({{homeFolder.size}})</span>
       </div>
-      <div ng-class="{selected: allFolderSelected}" ng-click="selectFolder('all')">
-        All
+      <div class="folder-item" ng-class="{'folder-selected': allFolderSelected}" ng-click="selectFolder('all')">
+        <img class="folderImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAYAAAAmL5yKAAAAWUlEQVR42mNgAAIDAwMFY2PD/UD8n0i8H6QHpJfBxMSoASjwngTNMPzeyMiogIEMjSiYcgOoAii2neoGwKMICUCjmk4uGJoGkJWU4QYYGRkkkGjIe5AekF4AxdAdGCfCuXcAAAAASUVORK5CYII=">
+        <span class="folderTitle">All</span>
         <span>({{allDescriptionsCount}})</span>
       </div>
-      <div>My Folders</div>
-      <div>
-        <button ng-click="createFolder()">New Folder</button>
+      <div class="section-divider">&nbsp;</div>
+
+      <div style="margin:15px 0 10px 10px">
+        <div>My Folders</div>
+        <div style="margin:10px 0">
+          <button class="btn btn-primary" ng-click="createFolder()">
+            <img class="iconButtonImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAOElEQVR42mNgoBb4//+/ABC//08+eI9sEEUA2VW0N4gUNSPFIBKSDZ0MGo21AcwipBpEeTFCLQAALS1ymIkE1igAAAAASUVORK5CYII=">
+            New Folder
+          </button>
+        </div>
       </div>
-      <div ng-class="{selected: folder._selected}" ng-repeat="folder in folders | orderBy:getFolderTitle" ng-show="ready">
-        <span ng-click="selectFolder(folder)">
-          {{folder.title}}
-          <span>({{folder.size}})</span>
-        </span>
-        <span class="dropdown">
-          <span class="dropdown-toggle"><i class="fa fa-chevron-down">&nbsp;</i></span>
-          <ul class="dropdown-menu">
-            <li ng-click="renameFolder(folder)"><a href="">Rename Folder</a></li>
-            <li ng-click="removeFolder(folder)"><a href="">Remove Folder</a></li>
-          </ul>
-        </span>
+      <div class="folder-item" ng-class="{'folder-selected': folder._selected}" ng-repeat="folder in folders | orderBy:getFolderTitle" ng-show="ready">
+		<div class="pull-left">
+          <span ng-click="selectFolder(folder)">
+            {{folder.title}}
+            <span>({{folder.size}})</span>
+          </span>
+        </div>
+        <div class="pull-right folderHandle">
+          <span class="dropdown">
+            <span class="dropdown-toggle"><i class="fa fa-chevron-down">&nbsp;</i></span>
+              <ul class="dropdown-menu">
+                <li ng-click="renameFolder(folder)"><a href="">Rename Folder</a></li>
+                <li ng-click="removeFolder(folder)"><a href="">Remove Folder</a></li>
+              </ul>
+            </span>
+          </span>
+        </div>
+        <div class="clearboth">&nbsp;</div>
       </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 sourcebox-right">
       <div class="row" ng-repeat="description in descriptions | orderBy:getDescriptionModified:true" ng-show="ready">
         <div class="col-md-9">
           <input type="checkbox" ng-model="description._selected" ng-click="updateAllSelected()"/>
@@ -122,7 +146,7 @@
           <span ng-show="isAttached(description)">attached</span>
         </div>
       </div>
-      <div pagination page="currentPage" total-items="count" items-per-page="pageSize" on-select-page="pageChanged(page)"></div>
+      <div pagination page="currentPage" total-items="count" items-per-page="pageSize" on-select-page="pageChanged(page)" style="margin-left:-5px"></div>
     </div>
   </div>
 </div>
