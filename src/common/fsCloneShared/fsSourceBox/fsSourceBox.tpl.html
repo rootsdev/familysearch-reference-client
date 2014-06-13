@@ -14,10 +14,30 @@
     </div>
     <div class="col-md-9">
       <div class="row">
-        <div class="col-md-11">
+        <div class="col-md-9">
           <input type="checkbox" ng-model="allSelected" ng-change="setAllSelected()"/>
           <button>Create Source</button>
-          <button>Move</button>
+          <div class="btn-group" dropdown>
+            <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
+              Move <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li ng-click="moveTo(homeFolder)">
+                <a href="">Home</a>
+              </li>
+              <li class="divider"></li>
+              <li ng-click="moveTo(folder)" ng-repeat="folder in folders">
+                <a href="">{{folder.title}}</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="">Remove from source box</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <span ng-show="allFolderSelected">Location</span>
         </div>
         <div class="col-md-1">Attach</div>
       </div>
@@ -37,16 +57,30 @@
       <div>
         <button>New Folder</button>
       </div>
-      <div ng-class="{selected: folder._selected}" ng-click="selectFolder(folder)" ng-repeat="folder in folders" ng-show="ready">
-        {{folder.title}}
-        <span>({{folder.size}})</span>
+      <div ng-class="{selected: folder._selected}" ng-repeat="folder in folders | orderBy:getFolderTitle" ng-show="ready">
+        <span ng-click="selectFolder(folder)">
+          {{folder.title}}
+          <span>({{folder.size}})</span>
+        </span>
+        <span class="dropdown">
+          <span class="dropdown-toggle"><i class="fa fa-chevron-down">&nbsp;</i></span>
+          <ul class="dropdown-menu">
+            <li><a href="">Rename Folder</a></li>
+            <li><a href="">Remove Folder</a></li>
+          </ul>
+        </span>
       </div>
     </div>
     <div class="col-md-9">
-      <div class="row" ng-repeat="description in descriptions" ng-show="ready">
-        <div class="col-md-11">
+      <div class="row" ng-repeat="description in descriptions | orderBy:getDescriptionModified" ng-show="ready">
+        <div class="col-md-9">
           <input type="checkbox" ng-model="description._selected" ng-click="updateAllSelected()"/>
           {{description.$getTitle()}}
+        </div>
+        <div class="col-md-2">
+          <span ng-show="allFolderSelected">
+            {{getDescriptionFolderTitle(description)}}
+          </span>
         </div>
         <div class="col-md-1">
           <a href="" ng-hide="isAttached(description)">Attach</a>

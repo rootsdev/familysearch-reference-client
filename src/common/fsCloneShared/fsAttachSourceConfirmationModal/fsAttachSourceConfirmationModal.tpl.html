@@ -17,15 +17,17 @@
         <textarea rows="4" class="form-control" id="justification" ng-model="changeMessage"
                   placeholder="Explain why you attached this source."></textarea>
       </div>
+      <!-- always added automatically
       <div class="checkbox">
         <label>
           <input type="checkbox" id="addToSourcebox" ng-model="addToSourceBox"> Add to My Source Box
         </label>
       </div>
+      -->
 
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" ng-click="ok(changeMessage, addToSourceBox)">Attach</button>
+    <button type="button" class="btn btn-primary" ng-click="ok(changeMessage)">Attach</button>
   </div>
 </div>

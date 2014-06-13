@@ -10,9 +10,8 @@
             controller: function($scope) {
               _.extend($scope, opts);
 
-              $scope.ok = function(changeMessage, addToSourceBox) {
-                console.log('fsAttachSourceConfirmationModal', addToSourceBox);
-                $scope.$close({changeMessage: changeMessage, addToSourceBox: addToSourceBox});
+              $scope.ok = function(changeMessage) {
+                $scope.$close(changeMessage);
               };
 
               $scope.cancel = function() {

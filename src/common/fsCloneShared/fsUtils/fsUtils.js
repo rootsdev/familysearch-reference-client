@@ -191,6 +191,11 @@
           return url;
         },
 
+        removeQueryFromUrl: function(url) {
+          var pos = url.indexOf('?');
+          return pos >= 0 ? url.substr(0, pos) : url;
+        },
+
         getSourceRefs: function(description, getAgents, max) {
           return description.$getSourceRefsQuery().then(function(response) {
             var promises = [];

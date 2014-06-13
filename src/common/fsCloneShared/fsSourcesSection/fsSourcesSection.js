@@ -89,7 +89,7 @@
                 child: scope.child,
                 father: scope.father,
                 mother: scope.mother
-              }).then(function(response) { // {changeMessage, addToSourceBox}
+              }).then(function(changeMessage) {
                 // create source
                 var sourceDescription = new fsApi.SourceDescription(fsUtils.removeEmptyProperties({
                   about: form.url,
@@ -106,7 +106,7 @@
                     $childAndParentsId: scope.parents ? scope.parents.id : '',
                     sourceDescription: sourceDescription.id
                   });
-                  sourceRef.$save(response.changeMessage).then(function (sourceRefId) {
+                  sourceRef.$save(changeMessage).then(function (sourceRefId) {
                     // add source to sources
                     sourceRef.id = sourceRefId;
                     // we can't refresh sourceRefs unfortunately, so attempt to approximate new attribution
@@ -121,10 +121,6 @@
                     scope.busy = false;
                     console.log('fsSourcesSection', scope.sources);
                   });
-                  if (response.addToSourceBox) {
-                    // TODO addToSourceBox
-                    console.log('fsSourcesSection addToSourceBox');
-                  }
                 });
               });
             });

@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsSourceBox', function($rootScope, fsApi, fsUserCache) {
+    .directive('fsSourceBox', function($rootScope, fsApi, fsUserCache, fsUtils) {
       return {
         templateUrl: 'fsCloneShared/fsSourceBox/fsSourceBox.tpl.html',
         scope: {
@@ -108,6 +108,27 @@
             return _.any(sourceRefs, function(sourceRef) {
               return sourceRef.$sourceDescriptionId === description.id;
             });
+          };
+
+          scope.getDescriptionModified = function(description) {
+            return description.attribution.modified;
+          };
+
+          scope.getFolderTitle = function(folder) {
+            return folder.title;
+          };
+
+          scope.getDescriptionFolderTitle = function(description) {
+            if (!!description.componentOf) {
+              var url = fsUtils.removeQueryFromUrl(description.componentOf.description);
+              var folder = _.find(scope.folders.concat([scope.homeFolder]), function(folder) {
+                return fsUtils.removeQueryFromUrl(folder.links.self.href) === url;
+              });
+              if (folder) {
+                return folder === scope.homeFolder ? 'Home' : folder.title;
+              }
+            }
+            return '';
           };
 
           scope.pageChanged = function(page) {
