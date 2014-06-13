@@ -36,8 +36,8 @@
               <img class="iconButtonImageLeft" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAHCAYAAADebrddAAAAR0lEQVR42mP4////+//EgfcMQKKfSMX9DCAAZKwnoHA9AwwAOQJAfB6HQpC4AAMywKEBUyGahvtQhfdxKkTSoADEDSAaXQ4A76bQrv8ELCIAAAAASUVORK5CYII=" width="11" height="7">
           </button>
         </div>
-        <div class="col-md-1">
-            <!--I commented out this heading for now because I'm having a hard time getting it aligned correctly Attach-->
+        <div class="col-md-1" style="margin:5px 0 0 10px">
+            Attach
         </div>
       </div>
     </div>
@@ -65,24 +65,28 @@
                 New Folder
             </button>
           </div>
-          <div ng-class="{selected: folder._selected}" ng-click="selectFolder(folder)" ng-repeat="folder in folders" ng-show="ready">
-            {{folder.title}}
-            <span>({{folder.size}})</span>
+      </div>
+
+      <div class="folder-item folder-selected" ng-class="{selected: folder._selected}" ng-repeat="folder in folders | orderBy:getFolderTitle" ng-show="ready">
+          <div class="pull-left">
+              <span ng-click="selectFolder(folder)">
+              {{folder.title}}
+              <span>({{folder.size}})</span>
           </div>
+          <div class="pull-right folderHandle">
+              <span class="dropdown">
+                  <span class="dropdown-toggle"><i class="fa fa-chevron-down">&nbsp;</i></span>
+                      <ul class="dropdown-menu">
+                          <li><a href="">Rename Folder</a></li>
+                          <li><a href="">Remove Folder</a></li>
+                      </ul>
+                 </span>
+              </span>
+          </div>
+          <div class="clearboth">&nbsp;</div>
       </div>
-      <div ng-class="{selected: folder._selected}" ng-repeat="folder in folders | orderBy:getFolderTitle" ng-show="ready">
-        <span ng-click="selectFolder(folder)">
-          {{folder.title}}
-          <span>({{folder.size}})</span>
-        </span>
-        <span class="dropdown">
-          <span class="dropdown-toggle"><i class="fa fa-chevron-down">&nbsp;</i></span>
-          <ul class="dropdown-menu">
-            <li><a href="">Rename Folder</a></li>
-            <li><a href="">Remove Folder</a></li>
-          </ul>
-        </span>
-      </div>
+
+
     </div>
 
 

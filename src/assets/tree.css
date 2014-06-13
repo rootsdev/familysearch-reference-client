@@ -158,15 +158,20 @@
 
 .sourcebox-content {background: #ffffff;margin-right:0}
 .sourcebox-left {padding-top:10px; margin-right:-15px}
-.sourcebox-right {border-left:solid 1px #cdcdcd;padding-left:15px;}
+.sourcebox-right {border-left:solid 1px #cdcdcd;padding-left:15px; padding-top:8px}
 
-.folder-item {padding:5px 10px}
+.folder-item {padding:5px 1px 5px 10px;}
 .folder-selected {background:#edece8}
 .folderImage {vertical-align: text-bottom; margin-right:10px}
-.folderTitle {
-    font-weight: normal;
-    color: #4d4d4a;
+.folderTitle {font-weight: normal;color: #4d4d4a;cursor: pointer;}
+
+.folderHandle {
+    background-color: #b0aba5;
+    color:#ffffff;
     cursor: pointer;
+    text-align: center;
+    margin:-5px 0;
+    padding:5px;
 }
 
 .section-divider {border-bottom:solid 1px #cdcdcd; width:100%;}
