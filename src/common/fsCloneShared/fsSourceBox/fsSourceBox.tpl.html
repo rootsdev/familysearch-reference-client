@@ -55,7 +55,7 @@
       </div>
       <div>My Folders</div>
       <div>
-        <button>New Folder</button>
+        <button ng-click="createFolder()">New Folder</button>
       </div>
       <div ng-class="{selected: folder._selected}" ng-repeat="folder in folders | orderBy:getFolderTitle" ng-show="ready">
         <span ng-click="selectFolder(folder)">
@@ -65,17 +65,52 @@
         <span class="dropdown">
           <span class="dropdown-toggle"><i class="fa fa-chevron-down">&nbsp;</i></span>
           <ul class="dropdown-menu">
-            <li><a href="">Rename Folder</a></li>
-            <li><a href="">Remove Folder</a></li>
+            <li ng-click="renameFolder(folder)"><a href="">Rename Folder</a></li>
+            <li ng-click="removeFolder(folder)"><a href="">Remove Folder</a></li>
           </ul>
         </span>
       </div>
     </div>
     <div class="col-md-9">
-      <div class="row" ng-repeat="description in descriptions | orderBy:getDescriptionModified" ng-show="ready">
+      <div class="row" ng-repeat="description in descriptions | orderBy:getDescriptionModified:true" ng-show="ready">
         <div class="col-md-9">
           <input type="checkbox" ng-model="description._selected" ng-click="updateAllSelected()"/>
-          {{description.$getTitle()}}
+          <span>
+            <a href="" ng-click="toggleOpen(description)">{{description.$getTitle()}}</a>
+            <span ng-show="description._open">
+              <span class="pull-right">
+                <a href="" class="btn btn-xs btn-link detailsItem closeDetail" ng-click="toggleOpen(description)">
+                  <i class="fa fa-times-circle">&nbsp;</i>Close
+                </a>
+              </span>
+              <span>
+                <br/>
+                <a href="">Attach</a>
+                | <a href="">View</a>
+                | <a href="">Copy</a>
+                | <a href="">Remove</a>
+                | <a href="">Attached To</a><span class="badge">{{description._sourceRefsCount}}</span>
+              </span>
+              <span ng-show="!!description.about">
+                <br/>
+                url
+                <br/>
+                <a ng-href="{{description.about}}">{{description.about}}</a>
+              </span>
+              <span ng-show="!!description.$getCitation()">
+                <br/>
+                Citation
+                <br/>
+                {{description.$getCitation()}}
+              </span>
+              <span ng-show="!!description.$getText()">
+                <br/>
+                Notes
+                <br/>
+                {{description.$getText()}}
+              </span>
+            </span>
+          </span>
         </div>
         <div class="col-md-2">
           <span ng-show="allFolderSelected">

@@ -25,20 +25,32 @@
             return !!scope.person && scope.person.living;
           };
 
-          function detachSource(context) {
+          function detachSource(context, sources) {
             fsDetachSourceConfirmationModal.open(context).then(function(changeMessage) {
-              var source = fsUtils.findById(scope.sources, context.sourceRef.id);
-              if (!!source) {
-                source._busy = true;
+              if (!!sources) {
+                var source = fsUtils.findById(sources, context.sourceRef.id);
+                if (!!source) {
+                  source._busy = true;
+                }
               }
               context.sourceRef.$delete(changeMessage).then(function() {
-                _.remove(scope.sources, {id: context.sourceRef.id});
+                if (!!sources) {
+                  _.remove(sources, {id: context.sourceRef.id});
+                }
                 $rootScope.$emit('deleted', context.sourceRef);
               });
             });
           }
 
-          function showSourceDescriptionModal(description, isEditing) {
+          function showSourceAttachmentsModal(description, sources) {
+            fsSourceAttachmentsModal.open(description).then(function(sourceRefToDetach) {
+              if (!!sourceRefToDetach) {
+                detachSource(sourceRefToDetach, sources);
+              }
+            });
+          }
+
+          function showSourceDescriptionModal(description, isEditing, sources) {
             fsSourceDescriptionModal.open(description, isEditing).then(function(action) {
               if (action === 'delete') {
                 fsConfirmationModal.open({
@@ -49,19 +61,17 @@
                 }).then(function() {
                   // delete source
                   description.$delete().then(function() {
-                    _.remove(scope.sources, function(source) {
-                      return source.description.id === description.id;
-                    });
+                    if (!!sources) {
+                      _.remove(sources, function(source) {
+                        return source.description.id === description.id;
+                      });
+                    }
                     $rootScope.$emit('deleted', description);
                   });
                 });
               }
               else if (action === 'showAttachments') {
-                fsSourceAttachmentsModal.open(description).then(function(sourceRefToDetach) {
-                  if (!!sourceRefToDetach) {
-                    detachSource(sourceRefToDetach);
-                  }
-                });
+                showSourceAttachmentsModal(description, sources);
               }
             });
           }
@@ -69,13 +79,13 @@
           // view
           scope.$on('view', function(event, description) {
             event.stopPropagation();
-            showSourceDescriptionModal(description, false);
+            showSourceDescriptionModal(description, false, scope.sources);
           });
 
           // edit
           scope.$on('edit', function(event, description) {
             event.stopPropagation();
-            showSourceDescriptionModal(description, true);
+            showSourceDescriptionModal(description, true, scope.sources);
           });
 
           // add
@@ -137,7 +147,7 @@
               father: scope.father,
               mother: scope.mother,
               sourceRef: sourceRef
-            });
+            }, scope.sources);
           });
 
           // attach from source box
