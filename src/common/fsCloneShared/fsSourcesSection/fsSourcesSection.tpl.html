@@ -1,7 +1,7 @@
 <div class="sourcesWidgetContainer">
   <div fs-section section-title="Sources" state="state" details-openable="true" items="sources" busy="{{busy ? 'true' : 'false'}}"
-       addable="true" add-label="Create a New Source" add="add"
-       attachable="true" attach-label="Attach from Source Box" attach="attach">
+       addable="!isLiving()" add-label="Create a New Source"
+       attachable="!isLiving()" attach-label="Attach from Source Box">
     <div class="panel-body sourcesBody">
       <div ng-show="isLiving()">Sources are not available for living people.</div>
       <div ng-hide="isLiving()" ng-repeat="source in sources">
