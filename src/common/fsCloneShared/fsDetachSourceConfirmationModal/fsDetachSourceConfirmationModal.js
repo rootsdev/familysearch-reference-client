@@ -11,7 +11,7 @@
               _.extend($scope, opts);
 
               if (opts.sourceRef.attribution) {
-                fsAgentCache.getAgent(opts.sourceRef.attribution.$getAgentUrl()).then(function(agent) {
+                fsAgentCache.getAgent(opts.sourceRef.attribution.$getAgentUrl() || opts.sourceRef.attribution.$getAgentId()).then(function(agent) {
                   $scope.agent = agent;
                 });
               }

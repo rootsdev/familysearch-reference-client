@@ -1,8 +1,8 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsSourcesSection', function ($rootScope, fsUtils, fsSourceUtils, fsApi,
-                                             fsCreateSourceModal, fsAttachSourceConfirmationModal) {
+    .directive('fsSourcesSection', function ($rootScope, fsUtils, fsSourceUtils,
+                                             fsSourceDescriptionModal, fsSourceAttachmentsModal) {
       return {
         templateUrl: 'fsCloneShared/fsSourcesSection/fsSourcesSection.tpl.html',
         scope: {
@@ -23,70 +23,88 @@
             return !!scope.person && scope.person.living;
           };
 
+          function detachSource(context) {
+            var source = fsUtils.findById(scope.sources, context.sourceRef.id);
+            if (!!source) {
+              source._busy = true;
+            }
+            fsSourceUtils.detachSource(context).then(function() {
+              _.remove(scope.sources, {id: context.sourceRef.id});
+              $rootScope.$emit('deleted', context.sourceRef);
+            }, function() {
+              if (!!source) {
+                source._busy = false;
+              }
+            });
+          }
+
+          function showSourceDescriptionModal(description, isEditing) {
+            fsSourceDescriptionModal.open(description, isEditing).then(function(action) {
+              if (action === 'delete') {
+                fsSourceUtils.deleteSource(description).then(function() {
+                  _.remove(scope.sources, function(source) {
+                    return source.description.id === description.id;
+                  });
+                  $rootScope.$emit('deleted', description);
+                });
+              }
+              else if (action === 'showAttachments') {
+                fsSourceAttachmentsModal.open(description).then(function(sourceRefToDetach) {
+                  if (!!sourceRefToDetach) {
+                    fsSourceUtils.detachSource(sourceRefToDetach);
+                  }
+                });
+              }
+            });
+          }
+
           // view
           scope.$on('view', function(event, description) {
             event.stopPropagation();
-            fsSourceUtils.showSourceDescriptionModal(description, false, scope.sources);
+            showSourceDescriptionModal(description, false);
           });
 
           // edit
           scope.$on('edit', function(event, description) {
             event.stopPropagation();
-            fsSourceUtils.showSourceDescriptionModal(description, true, scope.sources);
+            showSourceDescriptionModal(description, true);
           });
 
           // add
           scope.$on('add', function(event) {
             event.stopPropagation();
-            fsCreateSourceModal.open().then(function(form) {
-              fsAttachSourceConfirmationModal.open({
+            scope.busy = true;
+            fsSourceUtils.createSource().then(function (description) {
+              fsSourceUtils.attachSource(description, {
                 person: scope.person,
+                couple: scope.couple,
                 husband: scope.husband,
                 wife: scope.wife,
+                parents: scope.parents,
                 child: scope.child,
                 father: scope.father,
                 mother: scope.mother
-              }).then(function(changeMessage) {
-                // create source
-                var sourceDescription = new fsApi.SourceDescription(fsUtils.removeEmptyProperties({
-                  about: form.url,
-                  citation: form.citation,
-                  title: form.title,
-                  text: form.notes
-                }));
-                scope.busy = true;
-                sourceDescription.$save(null, true).then(function() {
-                  // create source ref
-                  var sourceRef = new fsApi.SourceRef({
-                    $personId: scope.person ? scope.person.id : '',
-                    $coupleId: scope.couple ? scope.couple.id : '',
-                    $childAndParentsId: scope.parents ? scope.parents.id : '',
-                    sourceDescription: sourceDescription.id
-                  });
-                  sourceRef.$save(changeMessage).then(function (sourceRefId) {
-                    // add source to sources
-                    sourceRef.id = sourceRefId;
-                    // we can't refresh sourceRefs unfortunately, so attempt to approximate new attribution
-                    fsUtils.approximateAttribution(sourceRef);
-                    var source = {
-                      ref: sourceRef,
-                      description: sourceDescription,
-                      id: sourceRef.id
-                    };
-                    fsUtils.mixinStateFunctions(scope, source);
-                    scope.sources.push(source);
-                    scope.busy = false;
-                    console.log('fsSourcesSection', scope.sources);
-                  });
-                });
+              }).then(function (sourceRef) {
+                var source = {
+                  ref: sourceRef,
+                  description: description,
+                  id: sourceRef.id
+                };
+                fsUtils.mixinStateFunctions(scope, source);
+                scope.sources.push(source);
+                scope.busy = false;
+              }, function () {
+                scope.busy = false;
               });
+            }, function () {
+              scope.busy = false;
             });
           });
 
           // delete (detach)
           scope.$on('delete', function(event, sourceRef) {
             event.stopPropagation();
-            fsSourceUtils.detachSource({
+            detachSource({
               person: scope.person,
               husband: scope.husband,
               wife: scope.wife,
@@ -94,7 +112,7 @@
               father: scope.father,
               mother: scope.mother,
               sourceRef: sourceRef
-            }, scope.sources);
+            });
           });
 
           // attach from source box
