@@ -81,9 +81,9 @@
                        class="name-line">{{family.husbandDescription.displayName()}}</a>
                     <br>
 
-                    <div class="pedigree-lifeSpan pull-left">lifespan</div>
+                    <div class="pedigree-lifeSpan pull-left">{{lifespanText(family.husbandDescription.person)}}</div>
                     <div class="pull-left dot-guy">•</div>
-                    <div class="pull-left pedigree-pid">ID#</div>
+                    <div class="pull-left pedigree-pid">{{family.husbandDescription.person.id}}</div>
                     <div class="clearboth">&nbsp;</div>
                 </div>
 
@@ -100,7 +100,7 @@
 
                     <div class="pedigree-lifeSpan pull-left">lifespan</div>
                     <div class="pull-left dot-guy">•</div>
-                    <div class="pull-left pedigree-pid">ID#</div>
+                    <div class="pull-left pedigree-pid">{{family.wifeDescription.person.id}}</div>
                     <div class="clearboth">&nbsp;</div>
                 </div>
                 <div class="clearboth">&nbsp;</div>
