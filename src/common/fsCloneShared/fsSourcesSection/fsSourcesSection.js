@@ -49,9 +49,9 @@
                 });
               }
               else if (action === 'showAttachments') {
-                fsSourceAttachmentsModal.open(description).then(function(sourceRefToDetach) {
-                  if (!!sourceRefToDetach) {
-                    fsSourceUtils.detachSource(sourceRefToDetach);
+                fsSourceAttachmentsModal.open(description).then(function(sourceRefContextToDetach) {
+                  if (!!sourceRefContextToDetach) {
+                    detachSource(sourceRefContextToDetach);
                   }
                 });
               }
@@ -74,8 +74,9 @@
           scope.$on('add', function(event) {
             event.stopPropagation();
             scope.busy = true;
-            fsSourceUtils.createSource().then(function (description) {
-              fsSourceUtils.attachSource(description, {
+            fsSourceUtils.createSource().then(function (response) {
+              $rootScope.$emit('saved', response.description);
+              fsSourceUtils.attachSource(response.description, {
                 person: scope.person,
                 couple: scope.couple,
                 husband: scope.husband,
@@ -87,11 +88,12 @@
               }).then(function (sourceRef) {
                 var source = {
                   ref: sourceRef,
-                  description: description,
+                  description: response.description,
                   id: sourceRef.id
                 };
                 fsUtils.mixinStateFunctions(scope, source);
                 scope.sources.push(source);
+                $rootScope.$emit('saved', sourceRef);
                 scope.busy = false;
               }, function () {
                 scope.busy = false;

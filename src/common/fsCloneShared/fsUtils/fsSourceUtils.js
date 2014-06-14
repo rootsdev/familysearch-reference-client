@@ -29,8 +29,11 @@
           });
         },
 
-        createSource: function(form) {
-          return fsCreateSourceModal.open(form).then(function(form) {
+        createSource: function(saveAndAttach, descriptionToCopy) {
+          return fsCreateSourceModal.open({
+            description: descriptionToCopy,
+            saveAndAttach: saveAndAttach
+          }).then(function(form) {
             var sourceDescription = new fsApi.SourceDescription(fsUtils.removeEmptyProperties({
               about: form.url,
               citation: form.citation,
@@ -38,7 +41,10 @@
               text: form.notes
             }));
             return sourceDescription.$save(null, true).then(function() {
-              return sourceDescription;
+              return {
+                description: sourceDescription,
+                attach: form.attach
+              };
             });
           });
         },

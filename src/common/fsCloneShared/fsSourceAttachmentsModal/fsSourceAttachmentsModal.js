@@ -9,17 +9,16 @@
             size: 'lg',
             controller: function($scope) {
               $scope.description = description;
-              fsUtils.getSourceRefs(description, true, 0).then(function(response) {
-                console.log('fsSourceAttachmentsModal', response);
-                $scope.sourceRefs = response;
+              fsUtils.getSourceRefContexts(description, true, 0).then(function(response) {
+                $scope.sourceRefContexts = response;
               });
 
               $scope.cancel = function() {
                 $scope.$dismiss();
               };
 
-              $scope.detach = function(sourceRef) {
-                $scope.$close(sourceRef);
+              $scope.detach = function(sourceRefContext) {
+                $scope.$close(sourceRefContext);
               };
 
             }

@@ -9,8 +9,8 @@
           max: '@'
         },
         link: function(scope) {
-          fsUtils.getSourceRefs(scope.description, false, scope.max || 0).then(function(response) {
-            scope.sourceRefs = response;
+          fsUtils.getSourceRefContexts(scope.description, false, scope.max || 0).then(function(response) {
+            scope.sourceRefContexts = response;
           });
 
         }

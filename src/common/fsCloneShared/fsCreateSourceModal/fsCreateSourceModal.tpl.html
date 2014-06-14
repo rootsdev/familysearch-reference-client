@@ -37,6 +37,8 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-    <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    <button type="button" ng-show="saveAndAttach" class="btn btn-link" ng-click="save(true)">Save and Attach</button>
+    <button type="button" ng-show="saveAndAttach" class="btn btn-primary" ng-click="save(false)">Save</button>
+    <button type="button" ng-hide="saveAndAttach" class="btn btn-primary" ng-click="save(true)">Save</button>
   </div>
 </div>

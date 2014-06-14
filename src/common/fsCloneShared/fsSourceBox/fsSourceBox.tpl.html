@@ -18,26 +18,26 @@
       <div class="row">
         <div class="col-md-9" style="margin-left:-25px">
           <input type="checkbox" ng-model="allSelected" ng-change="setAllSelected()"/>
-          <button class="btn btn-primary" style="margin:0 8px 0 20px">
+          <button class="btn btn-primary" ng-click="createSource()" style="margin:0 8px 0 20px">
             <i class="fa fa-plus-square" style="margin-right:8px"></i>
             Create Source
           </button>
           <div class="btn-group" dropdown>
-            <button class="btn btn-primary dropdown-toggle" ng-disabled="disabled" style="margin:0 8px">
+            <button class="btn btn-primary dropdown-toggle" ng-disabled="!isAnySourceSelected()" style="margin:0 8px">
               <i class="fa fa-share-square" style="margin-right:8px"></i>
               Move <span class="caret" style="margin-left:5px"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li ng-click="moveTo(homeFolder)">
+              <li ng-hide="homeFolder._selected" ng-click="moveSources(homeFolder)">
                 <a href="">Home</a>
               </li>
-              <li class="divider"></li>
-              <li ng-click="moveTo(folder)" ng-repeat="folder in folders">
+              <li ng-hide="homeFolder._selected" class="divider"></li>
+              <li ng-click="moveSources(folder)" ng-repeat="folder in folders | filter:unselectedFolder">
                 <a href="">{{folder.title}}</a>
               </li>
               <li class="divider"></li>
               <li>
-                <a href="">Remove from source box</a>
+                <a href="" ng-click="removeSources()">Remove from source box</a>
               </li>
             </ul>
           </div>
@@ -111,11 +111,12 @@
                 </span>
                 <br/>
                 <span class="source-content">
-                  <a href="">Attach</a>
-                  <span class="actionBar">|</span> <a href="">View</a>
-                  <span class="actionBar">|</span> <a href="">Copy</a>
-                  <span class="actionBar">|</span> <a href="">Remove</a>
-                  <span class="actionBar">|</span> <a href="">Attached To</a> &nbsp;<span class="badge">{{description._sourceRefsCount}}</span>
+                  <a href="" ng-click="attachSource(description)">Attach</a>
+                  <span class="actionBar">|</span> <a href="" ng-click="viewSource(description)">View</a>
+                  <span class="actionBar">|</span> <a href="" ng-click="copySource(description)">Copy</a>
+                  <span class="actionBar">|</span> <a href="" ng-click="removeSource(description)">Remove</a>
+                  <span class="actionBar">|</span> <a href="" ng-click="showSourceAttachments(description)">Attached To</a>
+                  &nbsp;<span class="badge">{{description._sourceRefsCount}}</span>
                 </span>
                 <span ng-show="!!description.about">
                   <p class="headinglabel">url</p>
@@ -140,7 +141,7 @@
           </span>
         </div>
         <div class="col-md-1">
-          <a href="" ng-hide="isAttached(description)">Attach</a>
+          <a href="" ng-hide="isAttached(description)" ng-click="attachSource(description)">Attach</a>
           <span ng-show="isAttached(description)">attached</span>
         </div>
       </div>

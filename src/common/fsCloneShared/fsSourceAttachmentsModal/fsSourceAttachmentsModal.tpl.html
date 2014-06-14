@@ -13,56 +13,56 @@
       <th class="action"></th>
       </thead>
       <tbody>
-      <tr ng-repeat="sourceRef in sourceRefs">
+      <tr ng-repeat="sourceRefContext in sourceRefContexts">
         <td class="attached">
-          <span ng-if="!!sourceRef.person">Person</span>
-          <span ng-if="!!sourceRef.couple">Couple Relationship</span>
-          <span ng-if="!!sourceRef.parents">Parent-Child Relationship</span>
-          <br>{{sourceRef.sourceRef.attribution.modified | date:'dd-MMM-yyyy'}}
-          <br>by {{sourceRef.agent.$getAccountName()}}
+          <span ng-if="!!sourceRefContext.person">Person</span>
+          <span ng-if="!!sourceRefContext.couple">Couple Relationship</span>
+          <span ng-if="!!sourceRefContext.parents">Parent-Child Relationship</span>
+          <br>{{sourceRefContext.sourceRef.attribution.modified | date:'dd-MMM-yyyy'}}
+          <br>by {{sourceRefContext.agent.$getAccountName()}}
         </td>
         <td class="details">
-          <div ng-if="!!sourceRef.person">
+          <div ng-if="!!sourceRefContext.person">
             <span>person</span>
-            <br>{{sourceRef.person.$getDisplayName()}}
-            <br>{{sourceRef.person.id}}
+            <br>{{sourceRefContext.person.$getDisplayName()}}
+            <br>{{sourceRefContext.person.id}}
           </div>
-          <div ng-if="!!sourceRef.couple">
+          <div ng-if="!!sourceRefContext.couple">
             <div>
               <span>husband</span>
-              <br>{{sourceRef.husband.$getDisplayName()}}
-              <br>{{sourceRef.husband.id}}
+              <br>{{sourceRefContext.husband.$getDisplayName()}}
+              <br>{{sourceRefContext.husband.id}}
             </div>
             <div>
               <span>wife</span>
-              <br>{{sourceRef.wife.$getDisplayName()}}
-              <br>{{sourceRef.wife.id}}
+              <br>{{sourceRefContext.wife.$getDisplayName()}}
+              <br>{{sourceRefContext.wife.id}}
             </div>
           </div>
-          <div ng-if="!!sourceRef.parents">
-            <div ng-if="!!sourceRef.father">
+          <div ng-if="!!sourceRefContext.parents">
+            <div ng-if="!!sourceRefContext.father">
               <span>father</span>
-              <br>{{sourceRef.father.$getDisplayName()}}
-              <br>{{sourceRef.father.id}}
+              <br>{{sourceRefContext.father.$getDisplayName()}}
+              <br>{{sourceRefContext.father.id}}
             </div>
-            <div ng-if="!!sourceRef.mother">
+            <div ng-if="!!sourceRefContext.mother">
               <span>mother</span>
-              <br>{{sourceRef.mother.$getDisplayName()}}
-              <br>{{sourceRef.mother.id}}
+              <br>{{sourceRefContext.mother.$getDisplayName()}}
+              <br>{{sourceRefContext.mother.id}}
             </div>
             <div>
               <span>child</span>
-              <br>{{sourceRef.child.$getDisplayName()}}
-              <br>{{sourceRef.child.id}}
+              <br>{{sourceRefContext.child.$getDisplayName()}}
+              <br>{{sourceRefContext.child.id}}
             </div>
           </div>
         </td>
         <td class="justification">
           <span>Reason This Source Is Attached</span>
-          <br>{{sourceRef.sourceRef.attribution.changeMessage}}
+          <br>{{sourceRefContext.sourceRef.attribution.changeMessage}}
         </td>
         <td class="action">
-          <button type="button" ng-click="detach(sourceRef)" class="btn btn-warning">Detach</button>
+          <button type="button" ng-click="detach(sourceRefContext)" class="btn btn-warning">Detach</button>
         </td>
       </tr>
       </tbody>

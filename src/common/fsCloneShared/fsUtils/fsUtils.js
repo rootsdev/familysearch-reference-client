@@ -196,7 +196,7 @@
           return pos >= 0 ? url.substr(0, pos) : url;
         },
 
-        getSourceRefs: function(description, getAgents, max) {
+        getSourceRefContexts: function(description, getAgents, max) {
           return description.$getSourceRefsQuery().then(function(response) {
             var promises = [];
 
