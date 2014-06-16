@@ -9,6 +9,7 @@
           spouse: '='
         },
         controller: function($scope, $element, fsApi, Family) {
+
             $scope.family = Family.prototype.build($scope.person, $scope.spouse);
 //            var contentElement = $element.find('.pan-zoom-contents');
 
@@ -38,7 +39,10 @@
             $scope.config = {
               friction:100,
               zoomStepDuration: 0.5,
-              haltSpeed: 10
+              haltSpeed: 10,
+              zoomOnDoubleClick: false,
+              zoomOnMouseWheel: false,
+              panOnClickDrag: true
 
             };
             $scope.model = {};
