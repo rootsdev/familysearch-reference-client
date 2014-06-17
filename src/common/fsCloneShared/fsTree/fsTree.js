@@ -10,8 +10,10 @@
         },
         controller: function($scope, $element, fsApi, Family) {
 
-            $scope.family = Family.prototype.build($scope.person, $scope.spouse);
-//            var contentElement = $element.find('.pan-zoom-contents');
+          $scope.family = Family.prototype.build($scope.person, $scope.spouse);
+//          $scope.family = Family.prototype.build();
+
+
 
             $scope.move = function(event,x,y) {
               $scope.model.pan({x:x,y:y});

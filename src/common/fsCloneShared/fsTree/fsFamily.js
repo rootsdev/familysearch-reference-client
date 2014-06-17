@@ -33,38 +33,52 @@
         personDescription.relationships = response;
         personDescription.person = response.getPrimaryPerson();
 
-        var spousePromise = fsApi.getPreferredSpouse(personID).then(function(response) {
-          if ( response!=null ) {
-            var couple =  _.find(personDescription.relationships.getSpouseRelationships(), function(it){
-              return it.id===response;
-            });
-            if (couple) {
-              personDescription.defaultSpouse = personDescription.relationships.getPerson(couple.$getSpouseId(personID));
-              return;
+        var nestedPromises = [];
+
+        var spouses =  personDescription.relationships.getSpouses();
+        if (spouses && spouses.length===1 ) {
+          personDescription.defaultSpouse =  spouses[0];
+        } else {
+          var spousePromise = fsApi.getPreferredSpouse(personID).then(function(response) {
+            if ( response!=null ) {
+              var couple =  _.find(personDescription.relationships.getSpouseRelationships(), function(it){
+                return it.id===response;
+              });
+              if (couple) {
+                personDescription.defaultSpouse = personDescription.relationships.getPerson(couple.$getSpouseId(personID));
+                return;
+              }
             }
-          }
 
-          if ( personDescription.relationships.getSpouses() && personDescription.relationships.getSpouses().length ) {
-            personDescription.defaultSpouse =  personDescription.relationships.getSpouses()[0];
-          }
-        });
-
-        var parentsPromise = fsApi.getPreferredParents(personID).then(function(response){
-          if ( response!=null ) {
-            var parents = _.find(personDescription.relationships.getParentRelationships(),function(it){
-              return it.id===response;
-            });
-            if ( parents ) {
-              personDescription.defaultParents = parents;
-              return;
+            if (spouses && spouses.length  ) {
+              personDescription.defaultSpouse =  spouses[0];
             }
-          }
-          if ( personDescription.relationships.getParentRelationships() && personDescription.relationships.getParentRelationships().length) {
-            personDescription.defaultParents = personDescription.relationships.getParentRelationships()[0];
-          }
-        });
+          });
+          nestedPromises.push(spousePromise);
+        }
 
-        return $q.all([spousePromise,parentsPromise]);
+
+        var parentRelationships = personDescription.relationships.getParentRelationships();
+        if ( parentRelationships && parentRelationships.length===1 ) {
+          personDescription.defaultParents = parentRelationships[0];
+        } else {
+          var parentsPromise = fsApi.getPreferredParents(personID).then(function(response){
+            if ( response!=null ) {
+              var parents = _.find(personDescription.relationships.getParentRelationships(),function(it){
+                return it.id===response;
+              });
+              if ( parents ) {
+                personDescription.defaultParents = parents;
+                return;
+              }
+            }
+            if ( parentRelationships && parentRelationships.length ) {
+              personDescription.defaultParents = parentRelationships[0];
+            }
+          });
+          nestedPromises.push(parentsPromise);
+        }
+        return $q.all(nestedPromises);
       });
     }
 
