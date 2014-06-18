@@ -9,10 +9,8 @@
           spouse: '='
         },
         controller: function($scope, $element, fsApi, Family) {
-
-          $scope.family = Family.prototype.build($scope.person, $scope.spouse);
-//          $scope.family = Family.prototype.build();
-
+//          $scope.family = Family.prototype.build($scope.person, $scope.spouse);
+            $scope.family = new Family($scope.person);
 
 
             $scope.move = function(event,x,y) {

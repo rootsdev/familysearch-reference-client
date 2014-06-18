@@ -77,13 +77,13 @@
                 </div>
                 <div class="pull-left " ng-show="!family.isUseless()">
                     <a ng-click="navigateToFindAdd()" ng-show="!family.hasHusband()" href="" class="name-line">Add Husband</a>
-                    <a fs-person-popover person="family.husbandDescription.person" ng-show="family.hasHusband()" href=""
-                       class="name-line">{{family.husbandDescription.displayName()}}</a>
+                    <a fs-person-popover person="family.getHusband()" ng-show="family.hasHusband()" href=""
+                       class="name-line">{{family.getHusbandName()}}</a>
                     <br>
 
-                    <div class="pedigree-lifeSpan pull-left">{{lifespanText(family.husbandDescription.person)}}</div>
+                    <div class="pedigree-lifeSpan pull-left">{{lifespanText(family.getHusband())}}</div>
                     <div class="pull-left dot-guy">•</div>
-                    <div class="pull-left pedigree-pid">{{family.husbandDescription.person.id}}</div>
+                    <div class="pull-left pedigree-pid">{{family.getHusband().id}}</div>
                     <div class="clearboth">&nbsp;</div>
                 </div>
 
@@ -93,16 +93,18 @@
                 <div class="pull-left">
                     <div class="pull-left fs-icon-female couple-icon couple-icon-female" style="margin-right:8px">&nbsp;</div>
                 </div>
-                <div class="pull-left" ng-show="!family.isUseless()">
+                <div class="pull-left " ng-show="!family.isUseless()">
                     <a ng-click="navigateToFindAdd()" ng-show="!family.hasWife()" href="" class="name-line">Add Wife</a>
-                    <a fs-person-popover person="family.wifeDescription.person" ng-show="family.hasWife()" href="" class="name-line">{{family.wifeDescription.displayName()}}</a>
+                    <a fs-person-popover person="family.getWife()" ng-show="family.hasWife()" href=""
+                       class="name-line">{{family.getWifeName()}}</a>
                     <br>
 
-                    <div class="pedigree-lifeSpan pull-left">lifespan</div>
+                    <div class="pedigree-lifeSpan pull-left">{{lifespanText(family.getWife())}}</div>
                     <div class="pull-left dot-guy">•</div>
-                    <div class="pull-left pedigree-pid">{{family.wifeDescription.person.id}}</div>
+                    <div class="pull-left pedigree-pid">{{family.getWife().id}}</div>
                     <div class="clearboth">&nbsp;</div>
                 </div>
+
                 <div class="clearboth">&nbsp;</div>
             </div>
         </div>

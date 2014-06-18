@@ -50,7 +50,7 @@
           };
 
           $scope.showExpandAncestor = function(f) {
-            var result =  $scope.showParents && !f.isUseless();
+            var result =  $scope.showParents && f && !f.isUseless();
             return result;
           };
 
