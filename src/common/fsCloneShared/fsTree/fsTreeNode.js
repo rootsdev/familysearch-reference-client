@@ -60,6 +60,13 @@
             $scope.$emit('navigate', 'find-add', createFindAddContext());
           };
 
+          $scope.initHoverData = function() {
+            if ( !$scope.didInitHoverData ) {
+              $scope.didInitHoverData = true;
+              $scope.family.initHoverData();
+            }
+          };
+
           $scope.lifespanText = function(person) {
             if ( person && person.id && person.$getDisplayLifeSpan ) {
               return person.$getDisplayLifeSpan();
