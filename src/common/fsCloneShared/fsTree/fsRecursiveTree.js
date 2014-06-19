@@ -13,11 +13,11 @@
         templateUrl: 'fsCloneShared/fsTree/fsRecursiveTree.tpl.html',
 
         controller: function($scope) {
-          $scope.childPlacement = function() {
-            if ( !$scope.family || !$scope.family.hasChildren() ) {
+          $scope.childFamiliesPlacement = function() {
+            if ( !$scope.family || !$scope.family.hasChildFamilies() ) {
               return {};
             }
-            var nearestEvenNumber = 2 * Math.round($scope.family.children().length/2);
+            var nearestEvenNumber = 2 * Math.round($scope.family.childFamilies().length/2);
             return {
               top: (500 - nearestEvenNumber*60)+'px'
             };
@@ -28,11 +28,14 @@
             return s===$scope.expanded;
           };
 
-          $scope.expand = function(s) {
+          $scope.expand = function(s, family) {
             if ( $scope.expanded === s) {
               $scope.expanded = '';
             } else {
               $scope.expanded = s;
+              if ( family ) {
+                family.initAncestry();
+              }
             }
           };
 
@@ -41,11 +44,14 @@
             return s===$scope.childExpanded;
           };
 
-          $scope.expandChild = function(s) {
+          $scope.expandChild = function(s, family) {
             if ( $scope.childExpanded===s ) {
               $scope.childExpanded = '';
             } else {
               $scope.childExpanded = s;
+              if ( family ) {
+                family.initDescendancy();
+              }
             }
           };
 

@@ -61,7 +61,7 @@
           };
 
           $scope.initHoverData = function() {
-            if ( !$scope.didInitHoverData ) {
+            if ( !$scope.didInitHoverData && $scope.family ) {
               $scope.didInitHoverData = true;
               $scope.family.initHoverData();
             }

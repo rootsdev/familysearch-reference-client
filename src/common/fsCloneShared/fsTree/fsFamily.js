@@ -111,43 +111,6 @@
       }
     };
 
-//    function setPersonAndSpouse(that,person,spouse,referenceId) {
-//      if ( !person ) {
-//        var tmp = person;  // important to preserve null vs undefined.
-//        person = spouse;
-//        spouse = tmp;
-//      }
-//      function initHusbandAndWife() {
-//        if ( that.personDescription && that.personDescription.person && that.personDescription.person._isMale() ) {
-//          that.husbandDescription = that.personDescription;
-//          that.wifeDescription = that.spouseDescription;
-//        } else {
-//          that.husbandDescription = that.spouseDescription;
-//          that.wifeDescription = that.personDescription;
-//        }
-//      }
-//      if ( referenceId ) {
-//        that.referenceId = referenceId;
-//      }
-//      that.personDescription = new PersonDescription(person);
-//      var result = that.personDescription.initializationPromise;
-//
-//      if ( !_.isUndefined(spouse) ) {
-//        that.spouseDescription = new PersonDescription(spouse);
-//        result = $q.all([that.personDescription.initializationPromise, that.spouseDescription.initializationPromise]).then(function(){
-//          initHusbandAndWife();
-//        });
-//      } else {
-//        result = that.personDescription.initializationPromise.then(function(){
-//          that.spouseDescription = new PersonDescription(that.personDescription.defaultSpouse);
-//          return that.spouseDescription.initializationPromise.then(function(){
-//            initHusbandAndWife();
-//          });
-//        });
-//      }
-//      return result;
-//    }
-
     function referenceIdOf(description) {
       return (description && description.person && description.person.id) ? description.person.id : undefined;
     }
@@ -155,7 +118,10 @@
     function FamilyConstructor(rootPerson) {
       if ( rootPerson ) {
         var personId = coerce2PersonId(rootPerson);
-        this.initPerson(personId).then(_.bind(this.initSpouse,this)).then(_.bind(this.initAncestry,this) );
+        this.initPerson(personId)
+          .then(_.bind(this.initSpouse,this))
+          .then(_.bind(this.initAncestry,this) )
+          .then(_.bind(this.initDescendancy,this));
 //        this.initializationPromise = setPersonAndSpouse(this,rootPerson);
       }
     }
@@ -178,7 +144,7 @@
         var spouses = theFamily.personWithRelationships.getSpouses();
         if (spouses && spouses.length === 1) {
           theFamily.spouse = spouses[0];
-          return spouses[0];
+          return $q.when(spouses[0]);
         }
 
         return fsApi.getPreferredSpouse(personId).then(function (response) {
@@ -200,8 +166,14 @@
 
       initAncestry: function() {
         var theFamily = this;
-        var personId = theFamily.personWithRelationships.getPrimaryPerson().id;
-        return fsApi.getAncestry(personId, {generations:3, spouse: theFamily.spouse?theFamily.spouse.id:null }).then(function(response){
+        if ( theFamily.ancestry ) {
+          return $q.when(theFamily.ancestry);
+        }
+        if ( !theFamily.getPerson() ) {
+          return $q.when(null);
+        }
+        var personId = theFamily.getPerson().id;
+        return fsApi.getAncestry(personId, {generations:4, spouse: theFamily.spouse?theFamily.spouse.id:null, personDetails:true}).then(function(response){
           theFamily.ancestry = response;
           theFamily.initParentFamilies();
           return theFamily.ancestry;
@@ -222,30 +194,100 @@
           return result;
         }
 
-        theFamily.cachedFamilyOfHusbandsParents = buildFamily(4,2);
-        theFamily.cachedFamilyOfWifesParents = buildFamily(6,3);
+        function buildParentFamilies(aFamily, ancestryNumber, recursionDepth) {
+          aFamily.cachedFamilyOfHusbandsParents = buildFamily(ancestryNumber*2,ancestryNumber);
+          aFamily.cachedFamilyOfWifesParents = buildFamily((ancestryNumber+1)*2,ancestryNumber+1);
 
-        theFamily.cachedFamilyOfHusbandsParents.cachedFamilyOfHusbandsParents = buildFamily(8,4);
-        theFamily.cachedFamilyOfHusbandsParents.cachedFamilyOfWifesParents = buildFamily(10,5);
+          if ( recursionDepth>0 ) {
+            buildParentFamilies(aFamily.cachedFamilyOfHusbandsParents, ancestryNumber*2, recursionDepth -1);
+            buildParentFamilies(aFamily.cachedFamilyOfWifesParents, (ancestryNumber+1)*2, recursionDepth -1);
 
-        theFamily.cachedFamilyOfWifesParents.cachedFamilyOfHusbandsParents = buildFamily(12,6);
-        theFamily.cachedFamilyOfWifesParents.cachedFamilyOfWifesParents = buildFamily(14,7);
+          }
+        }
+
+        buildParentFamilies(theFamily,2,2);
+      },
+
+      initDescendancy: function() {
+        var theFamily = this;
+        if ( theFamily.descendancy ) {
+          return $q.when(theFamily.descendancy);
+        }
+        var personId = theFamily.personWithRelationships.getPrimaryPerson().id;
+        return fsApi.getDescendancy(personId, {generations:2, spouse: theFamily.spouse?theFamily.spouse.id:null, personDetails:true }).then(function(response){
+          theFamily.descendancy = response;
+          theFamily.initChildFamilies();
+          return theFamily.descendancy;
+        });
+      },
+
+      initChildFamilies: function() {
+
+        var theFamily = this;
+
+//        function childrenOf(parentId) {
+//          var result = [];
+//          var childNumber = 1;
+//          while( theFamily.descendancy.exists(parentId+'.'+childNumber)) {
+//            result.push(theFamily.descendancy.getPerson(parentId+'.'+childNumber));
+//            childNumber = childNumber +1;
+//          }
+//          return result;
+//        }
+
+        function familiesOf(parentId ) {
+          var result = [];
+
+          var childNumber = 1;
+          while( theFamily.descendancy.exists(parentId+'.'+childNumber)) {
+            var childId = parentId+'.'+childNumber;
+            var aFamily = new FamilyConstructor();
+            var person = theFamily.descendancy.getPerson(childId);
+            var spouse = theFamily.descendancy.getPerson(childId+'-S');
+            aFamily.person = person;
+            aFamily.spouse = spouse;
+            aFamily.descendancyNumber = childId;
+            result.push(aFamily);
+            childNumber = childNumber +1;
+          }
+
+          return result;
+        }
+
+//        this.cachedChildren = childrenOf('1');
+        this.cachedChildFamilies = familiesOf('1');
+        _.forEach(this.cachedChildFamilies,function(childFamily){
+//          childFamily.cachedChildren = childrenOf(childFamily.descendancyNumber);
+          childFamily.cachedChildFamilies = familiesOf(childFamily.descendancyNumber);
+        });
       },
 
       initHoverData: function() {
         var theFamily = this;
+        var promises = [];
 
         if ( theFamily.getPerson() && !theFamily.personWithRelationships && !theFamily.didPersonAlternates ) {
-          fsApi.getPersonWithRelationships(theFamily.getPerson().id, {persons: true}).then(function(response) {
-            theFamily.personWithRelationships = response;
-          });
+          promises.push(
+            fsApi.getPersonWithRelationships(theFamily.getPerson().id, {persons: true}).then(function(response) {
+              theFamily.personWithRelationships = response;
+            })
+          );
         }
 
         if ( theFamily.getSpouse() && !theFamily.spouseWithRelationships && !theFamily.didSpouseAlternates ) {
-          fsApi.getPersonWithRelationships(theFamily.getSpouse().id, {persons: true}).then(function(response) {
+          promises.push(
+            fsApi.getPersonWithRelationships(theFamily.getSpouse().id, {persons: true}).then(function(response) {
             theFamily.spouseWithRelationships = response;
-          });
+            })
+          );
         }
+
+        $q.all(promises).then(function(){
+          if ( !theFamily.personWithRelationships ) {
+            return null;
+          }
+          theFamily.cachedChildren = theFamily.personWithRelationships.getChildrenOf( theFamily.spouse ? theFamily.spouse.id : null);
+        });
       },
 
       build: function(person,spouse,referenceId) {
@@ -419,7 +461,30 @@
       },
 
 
+      // ------------------------------------
+      // Children stuff
+      // ------------------------------------
+      hasChildren: function() {
+        return this.children().length > 0;
+      },
 
+      children: function() {
+        if ( this.cachedChildren ) {
+          return this.cachedChildren;
+        }
+        return [];
+      },
+
+      hasChildFamilies: function() {
+        return this.childFamilies().length > 0;
+      },
+
+      childFamilies: function() {
+        if ( this.cachedChildFamilies ) {
+          return this.cachedChildFamilies;
+        }
+        return [];
+      },
 
 
       switchPaternalParents: function(newParents) {
@@ -459,60 +524,13 @@
 
 
 
-      children: function() {
-        if ( true ) {
-          return [];
-        }
-        if ( !this.hasChildren() ) {
-          return [];
-        }
-        if ( this.hasWife() && this.hasHusband()) {
-          return this.husbandDescription.relationships.getChildrenOf(this.wifeDescription.person.id);
-        }
-        if ( this.hasHusband() ) {
-          return this.husbandDescription.relationships.getChildrenOf(null);
-        }
-        return this.wifeDescription.relationships.getChildrenOf(null);
-
-      },
-
-      childFamilies: function() {
-        if ( this.cachedChildFamilies ) {
-          return this.cachedChildFamilies;
-        }
-        if ( !this.hasChildren() || this.childFamiliesInProgress ) {
-          return [];
-        }
 
 
-        var that = this;
-        var result = _.map(this.children(),function(child){
-          return FamilyConstructor.prototype.build(child);
-        });
-        if ( !this.childFamiliesInProgress ) {
-          this.childFamiliesInProgress = true;
-          $q.all(_.map(result,function(it){ return it.initializationPromise;})).then(function(){
-            that.cachedChildFamilies = result;
-          });
-        }
-        return [];
-      },
 
 
-      hasChildren: function() {
-        if ( !this.personWithRelationships ) {
-          return false;
-        }
-
-        if ( !this.getSpouse() ) {
-          return this.personWithRelationships.getChildRelationshipsOf(null).length > 0;
-        }
-
-        return this.personWithRelationships.getChildRelationshipsOf(this.getSpouse().id).length>0;
-      },
 
       isUseless: function() {
-        return !this.hasHusband() && !this.hasWife() && !this.referenceId;
+        return !this.person && !this.personWithRelationships && !this.spouse && !this.spouseWithRelationships && !this.referenceId;
       },
 
 

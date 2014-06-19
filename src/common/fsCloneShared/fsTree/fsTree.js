@@ -8,7 +8,7 @@
           person: '=',
           spouse: '='
         },
-        controller: function($scope, $element, fsApi, Family) {
+        controller: function($scope, $element, Family) {
 //          $scope.family = Family.prototype.build($scope.person, $scope.spouse);
             $scope.family = new Family($scope.person);
 
