@@ -4,6 +4,7 @@
     .directive('fsFamilyMembersSection', function (_, $rootScope, fsApi, fsUtils) {
 
       function getSpouseFamilies(pwr, self) {
+        // first gather all of the couple relationships
         var families = _.map(pwr.getSpouseRelationships(), function(couple) {
           var spouseId = couple.$getHusbandId() === self.id ? couple.$getWifeId() : couple.$getHusbandId();
           return {
@@ -14,14 +15,33 @@
             children: fsUtils.getChildrenWithParentsId(pwr.getChildrenOf(spouseId), pwr.getChildRelationshipsOf(spouseId))
           };
         });
-        if (pwr.getChildIdsOf(null).length) {
-          families.push({
-            husband: self._isMale() ? self : null,
-            wife: self._isMale() ? null : self,
-            children: fsUtils.getChildrenWithParentsId(pwr.getChildrenOf(null), pwr.getChildRelationshipsOf(null))
-          });
-        }
-        return families;
+        // next add families with children but no couple relationship
+        return families.concat(
+          _(pwr.getChildRelationships())
+            .map(function(cap) {
+              return {
+                fatherId: cap.$getFatherId(),
+                motherId: cap.$getMotherId()
+              };
+            })
+            .reject(function(parentIds) {
+              return !(parentIds.fatherId === self.id || parentIds.motherId === self.id) || // just in case there are other children for some reason?
+                _.contains(families, function(family) {
+                  return family.husband.id === parentIds.fatherId && family.wife.id === parentIds.motherId;
+                });
+            })
+            .uniq(function(parentIds) {
+              return (parentIds.fatherId || '_') + ':' + (parentIds.motherId || '_');
+            })
+            .map(function(parentIds) {
+              var spouseId = (self.id === parentIds.fatherId ? parentIds.motherId : parentIds.fatherId) || null; // ensure undefined becomes null
+              return {
+                husband: parentIds.fatherId ? pwr.getPerson(parentIds.fatherId) : null,
+                wife: parentIds.motherId ? pwr.getPerson(parentIds.motherId) : null,
+                children: fsUtils.getChildrenWithParentsId(pwr.getChildrenOf(spouseId), pwr.getChildRelationshipsOf(spouseId))
+              };
+            })
+            .valueOf());
       }
 
       function getParentFamilies(pwr) {

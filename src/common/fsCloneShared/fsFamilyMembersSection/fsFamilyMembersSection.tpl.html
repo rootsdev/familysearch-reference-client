@@ -4,8 +4,10 @@
           <div class=" col-sm-6 spousesAndChildren immediateFamily">
             <h5>Spouses and Children</h5>
             <div class="familyActions">
-              <a href="" ng-hide="hasHiddenChildren(spouseFamilies)" ng-click="hideChildren(spouseFamilies, true)" class="hideChildren"><i class="fa fa-eye-slash">&nbsp;</i>Hide All</a>
-              <a href="" ng-show="hasHiddenChildren(spouseFamilies)" ng-click="hideChildren(spouseFamilies, false)" class="hideChildren"><i class="fa fa-eye">&nbsp;</i>Show All</a>
+              <span ng-show="spouseFamilies.length > 0">
+                <a href="" ng-hide="hasHiddenChildren(spouseFamilies)" ng-click="hideChildren(spouseFamilies, true)" class="hideChildren"><i class="fa fa-eye-slash">&nbsp;</i>Hide All</a>
+                <a href="" ng-show="hasHiddenChildren(spouseFamilies)" ng-click="hideChildren(spouseFamilies, false)" class="hideChildren"><i class="fa fa-eye">&nbsp;</i>Show All</a>
+              </span>
               &nbsp;&nbsp;|&nbsp;&nbsp;
               <a href="" ng-click="addSpouse()" class="btn btn-link non-form addSpouse">
                 <i class="fa fa-plus-square">&nbsp;</i>Add Spouse
@@ -22,8 +24,10 @@
           <div class="col-sm-6 parentsAndChildren immediateFamily">
             <h5>Parents and Siblings</h5>
             <div class="familyActions">
-              <a href="" ng-hide="hasHiddenChildren(parentFamilies)" ng-click="hideChildren(parentFamilies, true)" class="hideChildren"><i class="fa fa-eye-slash">&nbsp;</i>Hide All</a>
-              <a href="" ng-show="hasHiddenChildren(parentFamilies)" ng-click="hideChildren(parentFamilies, false)" class="hideChildren"><i class="fa fa-eye">&nbsp;</i>Show All</a>
+              <span ng-show="parentFamilies.length > 0">
+                <a href="" ng-hide="hasHiddenChildren(parentFamilies)" ng-click="hideChildren(parentFamilies, true)" class="hideChildren"><i class="fa fa-eye-slash">&nbsp;</i>Hide All</a>
+                <a href="" ng-show="hasHiddenChildren(parentFamilies)" ng-click="hideChildren(parentFamilies, false)" class="hideChildren"><i class="fa fa-eye">&nbsp;</i>Show All</a>
+              </span>
               &nbsp;&nbsp;|&nbsp;&nbsp;
               <a href="" ng-click="addParent()" class="btn btn-link non-form addSpouse">
                 <i class="fa fa-plus-square">&nbsp;</i>Add Parent
