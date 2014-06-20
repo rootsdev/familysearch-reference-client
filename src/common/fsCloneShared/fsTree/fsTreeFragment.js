@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsRecursiveTree', function ($compile) {
+    .directive('fsTreeFragment', function ($compile) {
       return {
         restrict: 'A',
         scope: {
@@ -10,7 +10,7 @@
           showRootCouple: '=',
           showParents: '='
         },
-        templateUrl: 'fsCloneShared/fsTree/fsRecursiveTree.tpl.html',
+        templateUrl: 'fsCloneShared/fsTree/fsTreeFragment.tpl.html',
 
         controller: function($scope) {
           $scope.childFamiliesPlacement = function() {

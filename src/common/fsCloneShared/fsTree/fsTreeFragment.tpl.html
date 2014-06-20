@@ -19,7 +19,7 @@
 
             <div fs-tree-node family="childFamily"/>
 
-            <div fs-recursive-tree ng-if="isChildExpanded($index)"  family="childFamily" show-kids="true" show-root-couple="false" show-parents="false" style="position:absolute; top:-350px; left:-230px;"/>
+            <div fs-tree-fragment ng-if="isChildExpanded($index)"  family="childFamily" show-kids="true" show-root-couple="false" show-parents="false" style="position:absolute; top:-350px; left:-230px;"/>
 
 
 
@@ -50,7 +50,7 @@
 
     <!--husband's paternal grandparents-->
     <div ng-show="showParents" id="grandparents1" fs-tree-node  expandable="{arg:'husbandPaternalGrandparents',func:expand}" family="family.parentFamilyOfHusband().parentFamilyOfHusband()" style="position:absolute; top:35px; left:900px;"/>
-    <div fs-recursive-tree ng-if="isExpanded('husbandPaternalGrandparents')" family="family.parentFamilyOfHusband().parentFamilyOfHusband()" show-kids="false" show-root-couple="false" show-parents="true" style="position:absolute; top:-314px; left:670px;"/>
+    <div fs-tree-fragment ng-if="isExpanded('husbandPaternalGrandparents')" family="family.parentFamilyOfHusband().parentFamilyOfHusband()" show-kids="false" show-root-couple="false" show-parents="true" style="position:absolute; top:-314px; left:670px;"/>
 
     <div ng-if="showExpandAncestor(family.parentFamilyOfHusband().parentFamilyOfHusband())" ng-click="expand('husbandPaternalGrandparents', family.parentFamilyOfHusband().parentFamilyOfHusband())" class="sans-serif next-gen-anc extend1">
         <div class="pull-left">
@@ -64,7 +64,7 @@
 
     <!--husband's maternal grandparents-->
     <div ng-show="showParents" id="grandparents2" fs-tree-node expandable="{arg:'husbandMaternalGrandparents',func:expand}"  family="family.parentFamilyOfHusband().parentFamilyOfWife()"  style="position:absolute; top:280px; left:900px;"/>
-    <div fs-recursive-tree ng-if="isExpanded('husbandMaternalGrandparents')" family="family.parentFamilyOfHusband().parentFamilyOfWife()" show-kids="false" show-root-couple="false" show-parents="true" style="position:absolute; top:-67px; left:670px;"/>
+    <div fs-tree-fragment ng-if="isExpanded('husbandMaternalGrandparents')" family="family.parentFamilyOfHusband().parentFamilyOfWife()" show-kids="false" show-root-couple="false" show-parents="true" style="position:absolute; top:-67px; left:670px;"/>
     <div ng-if="showExpandAncestor(family.parentFamilyOfHusband().parentFamilyOfWife())" ng-click="expand('husbandMaternalGrandparents',family.parentFamilyOfHusband().parentFamilyOfWife())" class="sans-serif next-gen-anc extend2">
         <div class="pull-left">
             <span class="next-gen-anc-arrow" ng-class="{'fs-icon-arrow-left':isExpanded('husbandMaternalGrandparents'),'fs-icon-arrow-right':!isExpanded('husbandMaternalGrandparents') }"></span>
@@ -77,7 +77,7 @@
 
     <!--wife's paternal grandparents-->
     <div ng-show="showParents" id="grandparents3" fs-tree-node  expandable="{arg:'wifePaternalGrandparents',func:expand}"  family="family.parentFamilyOfWife().parentFamilyOfHusband()"  style="position:absolute; top:440px; left:900px;" />
-    <div fs-recursive-tree ng-if="isExpanded('wifePaternalGrandparents')" family="family.parentFamilyOfWife().parentFamilyOfHusband()" show-kids="false" show-root-couple="false" show-parents="true" style="position:absolute; top:91px; left:670px;"/>
+    <div fs-tree-fragment ng-if="isExpanded('wifePaternalGrandparents')" family="family.parentFamilyOfWife().parentFamilyOfHusband()" show-kids="false" show-root-couple="false" show-parents="true" style="position:absolute; top:91px; left:670px;"/>
     <div ng-if="showExpandAncestor(family.parentFamilyOfWife().parentFamilyOfHusband())" ng-click="expand('wifePaternalGrandparents',family.parentFamilyOfWife().parentFamilyOfHusband())" class="sans-serif next-gen-anc extend3">
         <div class="pull-left">
             <span class="next-gen-anc-arrow" ng-class="{'fs-icon-arrow-left':isExpanded('wifePaternalGrandparents'),'fs-icon-arrow-right':!isExpanded('wifePaternalGrandparents') }"></span>
@@ -90,7 +90,7 @@
 
     <!--wife's maternal grandparents-->
     <div ng-show="showParents" id="grandparents4" fs-tree-node  expandable="{arg:'wifeMaternalGrandparents',func:expand}" family="family.parentFamilyOfWife().parentFamilyOfWife()" style="position:absolute; top:680px; left:900px;" />
-    <div fs-recursive-tree ng-if="isExpanded('wifeMaternalGrandparents')" family="family.parentFamilyOfWife().parentFamilyOfWife()" show-kids="false" show-root-couple="false" show-parents="true" style="position:absolute; top:337px; left:670px;"/>
+    <div fs-tree-fragment ng-if="isExpanded('wifeMaternalGrandparents')" family="family.parentFamilyOfWife().parentFamilyOfWife()" show-kids="false" show-root-couple="false" show-parents="true" style="position:absolute; top:337px; left:670px;"/>
     <div ng-if="showExpandAncestor(family.parentFamilyOfWife().parentFamilyOfWife())" ng-click="expand('wifeMaternalGrandparents',family.parentFamilyOfWife().parentFamilyOfWife())" class="sans-serif next-gen-anc extend4">
         <div class="pull-left">
             <span class="next-gen-anc-arrow" ng-class="{'fs-icon-arrow-left':isExpanded('wifeMaternalGrandparents'),'fs-icon-arrow-right':!isExpanded('wifeMaternalGrandparents') }"></span>

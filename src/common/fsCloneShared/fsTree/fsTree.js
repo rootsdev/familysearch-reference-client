@@ -9,16 +9,12 @@
           spouse: '='
         },
         controller: function($scope, $element, Family) {
-//          $scope.family = Family.prototype.build($scope.person, $scope.spouse);
             $scope.family = new Family($scope.person);
-
 
             $scope.move = function(event,x,y) {
               $scope.model.pan({x:x,y:y});
               event.preventDefault();
             };
-
-
 
           /*
             Configuration options available for the panZoom control
