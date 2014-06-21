@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsCommentDetails', function(fsCurrentUser, fsAgentCache) {
+    .directive('fsCommentDetails', function(fsCurrentUserCache, fsAgentCache) {
       return {
         templateUrl: 'fsCloneShared/fsComment/fsCommentDetails/fsCommentDetails.tpl.html',
         scope: {
@@ -17,7 +17,7 @@
 
           // set isAuthor
           scope.isAuthor = false;
-          fsCurrentUser.get().then(function(currentUser) {
+          fsCurrentUserCache.getUser().then(function(currentUser) {
             scope.isAuthor = scope.comment.$getAgentId() === currentUser.id || !scope.comment.$getAgentId(); // new comment
           });
 

@@ -1,13 +1,13 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsCurrentUser', function fsCurrentUser($q, fsApi) {
-      var currentUser;
+    .factory('fsCurrentUserCache', function($q, fsApi) {
+      var currentUser = null;
 
       // TODO when SDK emits a gotAccessToken event, we need to listen to that and refresh the current user
       return {
-        get: function(forceRefresh) {
-          if (currentUser && !forceRefresh) {
+        getUser: function() {
+          if (!!currentUser) {
             return $q.when(currentUser);
           }
           else {

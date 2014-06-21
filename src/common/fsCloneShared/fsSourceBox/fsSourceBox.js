@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsSourceBox', function($q, $rootScope, fsApi, fsUserCache, fsUtils, fsSourceUtils, fsFolderModal,
+    .directive('fsSourceBox', function($q, $rootScope, fsApi, fsCurrentUserCache, fsUtils, fsSourceUtils, fsFolderModal,
                                        fsConfirmationModal, fsSourceDescriptionModal, fsSourceAttachmentsModal) {
       return {
         templateUrl: 'fsCloneShared/fsSourceBox/fsSourceBox.tpl.html',
@@ -51,7 +51,7 @@
               count: scope.pageSize
             };
             if (folder === 'all') {
-              promise = fsUserCache.getUser().then(function(user) {
+              promise = fsCurrentUserCache.getUser().then(function(user) {
                 return fsApi.getCollectionSourceDescriptionsForUser(user.id, params);
               });
             }
@@ -83,7 +83,7 @@
 
           function init() {
             scope.busy = true;
-            fsUserCache.getUser().then(function(user) {
+            fsCurrentUserCache.getUser().then(function(user) {
               fsApi.getCollectionsForUser(user.id).then(function(response) {
                 scope.homeFolder = _.find(response.getCollections(), function(collection) { return !collection.title; });
                 scope.folders = _.reject(response.getCollections(), function(collection) { return !collection.title; });

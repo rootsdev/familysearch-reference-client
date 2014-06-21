@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .factory('fsUtils', function (_, $q, fsApi, fsCurrentUser, fsAgentCache) {
+    .factory('fsUtils', function (_, $q, fsApi, fsCurrentUserCache, fsAgentCache) {
 
       return {
         mixinStateFunctions: function(scope, item) {
@@ -140,7 +140,7 @@
 
         // sometimes we can't refresh something we just saved, so we have to approximate the updated attribution
         approximateAttribution: function(item) {
-          fsCurrentUser.get().then(function(currentUser) {
+          fsCurrentUserCache.getUser().then(function(currentUser) {
             item.attribution.contributor = { resourceId: currentUser.treeUserId };
             item.attribution.modified = Date.now();
           });
