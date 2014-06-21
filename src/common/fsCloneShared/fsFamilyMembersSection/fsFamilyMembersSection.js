@@ -25,7 +25,7 @@
             // reject father+mother combinations for which we already have families
             .reject(function(cap) {
               return !(cap.$getFatherId() === self.id || cap.$getMotherId() === self.id) || // just in case there are other children for some reason?
-                _.contains(families, function(family) {
+                _.any(families, function(family) {
                   return family.husband.id === cap.$getFatherId() && family.wife.id === cap.$getMotherId();
                 });
             })
