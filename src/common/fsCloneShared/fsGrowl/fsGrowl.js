@@ -2,7 +2,8 @@
   'use strict';
   angular.module('fsCloneShared')
     .config(function(growlProvider) {
-      growlProvider.globalTimeToLive(15000);
+      growlProvider.onlyUniqueMessages(false);
+      growlProvider.globalTimeToLive({success: 15000, error: null, warning: null, info: 15000});
     })
 
     .directive('fsGrowl', function(_, $rootScope, growl) {
@@ -11,6 +12,7 @@
         link: function(scope) {
 
           var unbind = $rootScope.$on('alert', function(event, message) {
+            console.log('fsGrowl', message);
             if (_.isString(message)) {
               message = {
                 text: message
