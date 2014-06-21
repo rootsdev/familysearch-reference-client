@@ -2,7 +2,7 @@
     <div class="pull-left all-family-wrapper">
 
         <div class="pull-right sans-serif next-gen-kids">
-            <div class="pull-left" style="display:none">
+            <div ng-show="false" class="pull-left hover-label" >
                 Expand Tree
             </div>
             <div class="pull-left">
@@ -13,12 +13,12 @@
 
 
         <!--Alternate husbands-->
-        <div  ng-show="family.hasAlternateHusbands()" class="all-husbands-wrapper" >
+        <div  ng-show="family.hasAlternateHusbands()" class="all-husbands-wrapper" style="cursor:hand">
 
             <div class="pull-left text-right sans-serif all-family-label" ng-class="{'label-open':getClickState()==='husbands', 'label-closed':getClickState()!=='husbands'}">
                 <p style="padding-top:8px">All Husbands</p>
             </div>
-            <div class="pull-right">
+            <div class="pull-right" >
                 <div ng-click="toggleClickState('husbands')" class="pull-right" ng-class="{'all-husbands-arrow-closed':getClickState()!=='husbands','all-husbands-arrow-open':getClickState()==='husbands'}" >
                     <span class="fs-icon-arrow-left"></span>
                 </div>
