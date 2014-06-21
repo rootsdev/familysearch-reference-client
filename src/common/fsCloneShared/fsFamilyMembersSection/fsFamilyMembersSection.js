@@ -18,26 +18,23 @@
         // next add families with children but no couple relationship
         return families.concat(
           _(pwr.getChildRelationships())
-            .map(function(cap) {
-              return {
-                fatherId: cap.$getFatherId(),
-                motherId: cap.$getMotherId()
-              };
+            // one per father+mother combination
+            .uniq(function(cap) {
+              return (cap.$getFatherId() || '_') + ':' + (cap.$getMotherId() || '_');
             })
-            .reject(function(parentIds) {
-              return !(parentIds.fatherId === self.id || parentIds.motherId === self.id) || // just in case there are other children for some reason?
+            // reject father+mother combinations for which we already have families
+            .reject(function(cap) {
+              return !(cap.$getFatherId() === self.id || cap.$getMotherId() === self.id) || // just in case there are other children for some reason?
                 _.contains(families, function(family) {
-                  return family.husband.id === parentIds.fatherId && family.wife.id === parentIds.motherId;
+                  return family.husband.id === cap.$getFatherId() && family.wife.id === cap.$getMotherId();
                 });
             })
-            .uniq(function(parentIds) {
-              return (parentIds.fatherId || '_') + ':' + (parentIds.motherId || '_');
-            })
-            .map(function(parentIds) {
-              var spouseId = (self.id === parentIds.fatherId ? parentIds.motherId : parentIds.fatherId) || null; // ensure undefined becomes null
+            // map to family structure
+            .map(function(cap) {
+              var spouseId = (self.id === cap.$getFatherId() ? cap.$getMotherId() : cap.$getFatherId()) || null; // ensure undefined becomes null
               return {
-                husband: parentIds.fatherId ? pwr.getPerson(parentIds.fatherId) : null,
-                wife: parentIds.motherId ? pwr.getPerson(parentIds.motherId) : null,
+                husband: cap.$getFatherId() ? pwr.getPerson(cap.$getFatherId()) : null,
+                wife: cap.$getMotherId() ? pwr.getPerson(cap.$getMotherId()) : null,
                 children: fsUtils.getChildrenWithParentsId(pwr.getChildrenOf(spouseId), pwr.getChildRelationshipsOf(spouseId))
               };
             })
