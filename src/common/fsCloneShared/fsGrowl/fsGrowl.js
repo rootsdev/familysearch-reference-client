@@ -12,7 +12,6 @@
         link: function(scope) {
 
           var unbind = $rootScope.$on('alert', function(event, message) {
-            console.log('fsGrowl', message);
             if (_.isString(message)) {
               message = {
                 text: message

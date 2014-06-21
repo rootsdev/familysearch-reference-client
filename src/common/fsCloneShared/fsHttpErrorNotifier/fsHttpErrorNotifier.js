@@ -13,7 +13,6 @@
             // TODO eventually remove the URL
             text: rejection.statusText + ' (' + rejection.status + ')<br>' + rejection.config.url
           });
-          console.log('fsHttpErrorNotifier', rejection);
           return $q.reject(rejection);
         }
       };
