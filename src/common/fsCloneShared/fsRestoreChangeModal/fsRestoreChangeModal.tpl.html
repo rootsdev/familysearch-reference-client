@@ -1,0 +1,35 @@
+<div class="changeHistory" tabindex="-1" role="dialog" aria-labelledby="restoreChangeDialogLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button ng-click="cancel()" type="button" class="close" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="retoreChangeDialogLabel">Restore Change</h4>
+  </div>
+  <div class="modal-body">
+    <div ng-show="!!person" class="profileHeaderContainer" fs-person-profile person="person"></div>
+    <div ng-show="!!couple" class="profileHeaderContainer" fs-couple-profile husband="husband" wife="wife"></div>
+    <div ng-show="!!parents" class="profileHeaderContainer" fs-parents-profile child="child" father="father" mother="mother"></div>
+    <div style="position: absolute; top: 8px; right: 8px" ng-show="busy"><i class="fa fa-spinner fa-spin"></i></div>
+    <div class="mainContent">
+      <div class="row">
+        <div class="col-md-6">
+          <div>Currently Displayed</div>
+          <div fs-change-details change="change"></div>
+          <div class="changeContributor">
+            Changed by <span class="contributorCard">{{change.$getAgentName()}}</span>
+          </div>
+          <div class="changeDate"><abbr class="timeago">{{change.updated | date:'dd-MMM-yyyy'}}</abbr></div>
+        </div>
+        <div class="col-md-6">
+          <div>Information to Restore</div>
+          <div fs-change-details change="change"></div>
+          <div class="changeContributor">
+            Changed by <span class="contributorCard">{{change.$getAgentName()}}</span>
+          </div>
+          <div class="changeDate"><abbr class="timeago">{{change.updated | date:'dd-MMM-yyyy'}}</abbr></div>
+
+          <button type="button" class="btn btn-primary" ng-click="restore()">Restore</button>
+          <button type="button" class="btn btn-link" ng-click="cancel()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

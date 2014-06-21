@@ -103,22 +103,6 @@
         return change.changeInfo[0].operation === 'http://familysearch.org/v1/Create';
       }
 
-      function getAction(change) {
-        if (isDeletion(change)) {
-          return isSourceReference(change) ? 'Detached' : 'Deleted';
-        }
-        else if (isChildAndParentsRelationship(change) || isCoupleRelationship(change) ||
-          isChildAndParentsRelationshipModified(change) || isCoupleRelationshipModified(change)) {
-          return ''; // TODO could be "Reference" with a navigation event to the child-and-parents or couple relationship
-        }
-        else if (getType(change) === 'http://gedcomx.org/Person') { // covers person creation
-          return '';
-        }
-        else {
-          return 'Current';
-        }
-      }
-
       function getChangedItemId(change) {
         var contentRoot = getContentRoot(change);
         if (isName(change)) {
@@ -172,7 +156,6 @@
         isLifeSketch: isLifeSketch,
         isDeletion: isDeletion,
         isCreation: isCreation,
-        getAction: getAction,
         getChangedItemId: getChangedItemId
       };
     });

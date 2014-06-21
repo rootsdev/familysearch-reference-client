@@ -9,69 +9,11 @@
   </div>
 </td>
 <td class="changeDetails">
-
-  <div ng-if="isName(change)">
-    <h5>{{getType(change) | fsGedcomxLabel}}</h5>
-    <div>{{contentRoot.names[0].nameForms[0].fullText}}</div>
-  </div>
-
-  <div ng-if="isFact(change) && !isChildAndParentsRelationshipModified(change)">
-    <h5>{{getType(change) | fsGedcomxLabel}}</h5>
-    <div ng-show="!!contentRoot.facts[0].value">{{contentRoot.facts[0].value}}</div>
-    <div ng-show="!!contentRoot.facts[0].date.original">{{contentRoot.facts[0].date.original}}</div>
-    <div ng-show="!!contentRoot.facts[0].place.original">{{contentRoot.facts[0].place.original}}</div>
-  </div>
-
-  <div ng-if="isFact(change) && isChildAndParentsRelationshipModified(change)">
-    <h5>Relationship Type</h5>
-    <div ng-show="!!contentRoot.fatherFacts">{{contentRoot.fatherFacts[0].type | fsGedcomxLabel}}</div>
-    <div ng-show="!!contentRoot.fatherFacts && !!contentroot.fatherFacts[0].date">{{contentRoot.fatherFacts[0].date.original}}</div>
-    <div ng-show="!!contentRoot.motherFacts">{{contentRoot.motherFacts[0].type | fsGedcomxLabel}}</div>
-    <div ng-show="!!contentRoot.motherFacts && !!contentroot.motherFacts[0].date">{{contentRoot.motherFacts[0].date.original}}</div>
-  </div>
-
-  <div ng-if="isGender(change)">
-    <h5>{{getType(change) | fsGedcomxLabel}}</h5>
-    <div>{{contentRoot.gender.type | fsGedcomxLabel}}</div>
-  </div>
-
-  <div ng-if="isChildAndParentsRelationship(change) || isCoupleRelationship(change)">
-    <h5>{{getType(change) | fsGedcomxLabel}}</h5>
-    <a href="" ng-show="!!relatedPerson" fs-person-popover person="relatedPerson">
-      <span>{{relatedPerson.display.name}}</span>
-    </a>
-    <div>{{relatedPerson.display.lifespan}}</div>
-  </div>
-
-  <div ng-if="isSourceReference(change)">
-    <h5>{{sourceTitle}}</h5>
-    <div ng-hide="isDeletion(change)">Tagged to:
-      <ul>
-        <li ng-repeat="tag in contentRoot.sources[0].tags">{{tag.resource | fsGedcomxLabel}}</li>
-      </ul>
-    </div>
-  </div>
-
-  <div ng-if="isDiscussionReference(change)">
-    <div>Title Unavailable</div>
-  </div>
-
-  <div ng-if="isNote(change)">
-    <div>{{contentRoot.notes[0].subject}}</div>
-    <div>{{contentRoot.notes[0].text}}</div>
-  </div>
-
-  <div ng-if="isLifeSketch(change)">
-    <h5>{{getType(change) | fsGedcomxLabel}}</h5>
-    <div>{{contentRoot.facts[0].value}}</div>
-  </div>
-
-  <div ng-show="!!change.$getChangeReason()">
-    <div class="changeReasonTitle"><small>Reason</small></div>
-    <div class="changeReason">{{change.$getChangeReason()}}</div>
-  </div>
+  <div fs-change-details change="change"></div>
 </td>
 <td class="changeActions">
   <div ng-hide="change._isRestorable">{{getAction(change)}}</div>
-  <div ng-show="change._isRestorable">Replaced</div>
+  <div ng-show="change._isRestorable">
+    <button class="btn btn-primary" ng-click="$emit('restore', change)">Restore</button>
+  </div>
 </td>

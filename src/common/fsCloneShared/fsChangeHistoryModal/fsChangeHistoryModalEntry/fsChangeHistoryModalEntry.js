@@ -16,53 +16,21 @@
             }
           };
 
-          // copy util functions into scope
-          _.extend(scope, fsChangeUtils);
-
-          scope.contentRoot = fsChangeUtils.getContentRoot(scope.change);
-
-          if (fsChangeUtils.isSourceReference(scope.change)) {
-            if (fsChangeUtils.isDeletion(scope.change)) {
-              scope.sourceTitle = 'Title Unavailable';
+          scope.getAction = function(change) {
+            if (fsChangeUtils.isDeletion(change)) {
+              return fsChangeUtils.isSourceReference(change) ? 'Detached' : 'Deleted';
+            }
+            else if (fsChangeUtils.isChildAndParentsRelationship(change) || fsChangeUtils.isCoupleRelationship(change) ||
+              fsChangeUtils.isChildAndParentsRelationshipModified(change) || fsChangeUtils.isCoupleRelationshipModified(change)) {
+              return ''; // TODO could be "Reference" with a navigation event to the child-and-parents or couple relationship
+            }
+            else if (fsChangeUtils.getType(change) === 'http://gedcomx.org/Person') { // covers person creation
+              return '';
             }
             else {
-              fsApi.getSourceDescription(scope.contentRoot.sources[0].description).then(function(response) {
-                scope.sourceTitle = response.getSourceDescription().$getTitle();
-              }, function() {
-                scope.sourcetitle = 'Title Unavailable';
-              });
+              return 'Current';
             }
-          }
-
-          if (fsChangeUtils.isChildAndParentsRelationship(scope.change) ||
-              fsChangeUtils.isCoupleRelationship(scope.change)) {
-            var type = fsChangeUtils.getType(scope.change);
-            var pid = null;
-            if (type === 'http://familysearch.org/v1/Father') {
-              pid = scope.contentRoot.father.resourceId;
-            }
-            else if (type === 'http://familysearch.org/v1/Mother') {
-              pid = scope.contentRoot.mother.resourceId;
-            }
-            else if (type === 'http://familysearch.org/v1/Child') {
-              pid = scope.contentRoot.child.resourceId;
-            }
-            else if (type === 'http://familysearch.org/v1/Man') {
-              pid = scope.contentRoot.person1.resourceId;
-            }
-            else if (type === 'http://familysearch.org/v1/Woman') {
-              pid = scope.contentRoot.person2.resourceId;
-            }
-            scope.relatedPerson = fsUtils.setConstructor(_.find(scope.change.content.gedcomx.persons, function(person) {
-              return person.id === pid;
-            }), fsApi.Person);
-            scope.relatedPerson.names = _.map(scope.relatedPerson.names, function(name) {
-              return fsUtils.setConstructor(name, fsApi.Name);
-            });
-            scope.relatedPerson.facts = _.map(scope.relatedPerson.facts, function(fact) {
-              return fsUtils.setConstructor(fact, fsApi.Fact);
-            });
-          }
+          };
 
         }
       };
