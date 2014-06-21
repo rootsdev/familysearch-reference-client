@@ -8,8 +8,6 @@
           person: '='
         },
         link: function(scope) {
-          console.log(scope.person);
-
           scope.navigateToTree = function() {
             scope.$emit('navigate', 'tree', { personId: scope.person.id });
           };
