@@ -19,6 +19,22 @@
       return thing.toString();
     }
 
+    function getExplicitAndImpliedSpouses(personWithRelationships) {
+      var explicitSpouses = personWithRelationships.getSpouses();
+      var personId = personWithRelationships.getPrimaryPerson().id;
+
+      var allSpouses = _(personWithRelationships.getChildRelationships())
+        .map(function(parentChildRelationship){
+          return personWithRelationships.getPerson(
+                    parentChildRelationship.$getFatherId()===personId ? parentChildRelationship.$getMotherId() : parentChildRelationship.$getFatherId()
+          );
+        })
+        .union(explicitSpouses)
+        .uniq('id')
+        .valueOf();
+      return allSpouses;
+    }
+
     function FamilyConstructor(rootPerson) {
       if ( rootPerson ) {
         var personId = coerce2PersonId(rootPerson);
@@ -44,7 +60,7 @@
       initSpouse: function() {
         var theFamily = this;
         var personId = theFamily.personWithRelationships.getPrimaryPerson().id;
-        var spouses = theFamily.personWithRelationships.getSpouses();
+        var spouses = getExplicitAndImpliedSpouses(theFamily.personWithRelationships);
         if (spouses && spouses.length === 1) {
           theFamily.spouse = spouses[0];
           return $q.when(spouses[0]);
