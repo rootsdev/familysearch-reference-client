@@ -3,7 +3,7 @@
        addable="{{isLiving() ? 'false' : 'true'}}" add-label="Create a New Source"
        attachable="{{isLiving() ? 'false' : 'true'}}" attach-label="Attach from Source Box">
     <div class="panel-body sourcesBody">
-      <div ng-show="isLiving()">Sources are not available for living people.</div>
+      <div ng-show="isLiving()" class="livingNotice">Sources are not available for living people.</div>
       <div ng-hide="isLiving()" ng-repeat="source in sources">
         <div fs-source source="source" hide-tags="{{!person ? 'true' : 'false'}}"></div>
       </div>

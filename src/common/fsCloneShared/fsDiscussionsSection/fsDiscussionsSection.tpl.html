@@ -2,7 +2,7 @@
   <div fs-section section-title="Discussions" state="state" details-openable="true" items="discs"
        addable="{{person.living ? 'false' : 'true'}}" add-label="Add a new Discussion">
     <div class="panel-body discussionsBody">
-      <div ng-show="person.living">Discussions are not available for living people.</div>
+      <div ng-show="person.living" class="livingNotice">Discussions are not available for living people.</div>
       <div ng-hide="person.living" ng-repeat="disc in discs">
         <div fs-discussion disc="disc"></div>
       </div>
