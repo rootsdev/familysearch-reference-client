@@ -100,8 +100,7 @@ module.exports = function(grunt) {
                 'vendor/angular-growl-v2/build/angular-growl.js'
             ],
             css: [
-                'vendor/angular-growl-v2/build/angular-growl.min.css',
-                'vendor/angular-pan-zoom/build/panzoomwidget.css'
+                'vendor/angular-growl-v2/build/angular-growl.min.css'
             ],
             assets: [
             ]
@@ -633,8 +632,8 @@ module.exports = function(grunt) {
 
     // The 'compile' task gets your app ready for deployment by concatenating and minifying your code.
     grunt.registerTask('compile', [
-      //'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'concat:dist_js', 'uglify', 'index:compile'
-      'recess:compile', 'copy:compile_assets', 'concat:compile_js', 'concat:dist_js', 'index:compile'
+      'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'concat:dist_js', 'uglify', 'index:compile'
+      //'recess:compile', 'copy:compile_assets', 'concat:compile_js', 'concat:dist_js', 'index:compile'
     ]);
 
     // A utility function to get all app JavaScript sources.
