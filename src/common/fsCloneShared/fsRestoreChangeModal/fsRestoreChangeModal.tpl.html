@@ -1,4 +1,4 @@
-<div class="changeHistory" tabindex="-1" role="dialog" aria-labelledby="restoreChangeDialogLabel" aria-hidden="true">
+    <div class="changeHistory" tabindex="-1" role="dialog" aria-labelledby="restoreChangeDialogLabel" aria-hidden="true">
   <div class="modal-header">
     <button ng-click="cancel()" type="button" class="close" aria-hidden="true">&times;</button>
     <h4 class="modal-title" id="retoreChangeDialogLabel">Restore Change</h4>
@@ -10,24 +10,25 @@
     <div style="position: absolute; top: 8px; right: 8px" ng-show="busy"><i class="fa fa-spinner fa-spin"></i></div>
     <div class="mainContent">
       <div class="row">
-        <div class="col-md-6">
-          <div>Currently Displayed</div>
+        <div class="col-md-6 current-info">
+          <div class="restore-heading">Currently Displayed</div>
           <div fs-change-details change="change"></div>
-          <div class="changeContributor">
+          <div class="changeContributor" style="margin-top:15px">
             Changed by <span class="contributorCard">{{change.$getAgentName()}}</span>
           </div>
           <div class="changeDate"><abbr class="timeago">{{change.updated | date:'dd-MMM-yyyy'}}</abbr></div>
         </div>
-        <div class="col-md-6">
-          <div>Information to Restore</div>
+        <div class="col-md-6 restore-info">
+          <div class="restore-heading">Information to Restore</div>
           <div fs-change-details change="change"></div>
-          <div class="changeContributor">
+          <div class="changeContributor" style="margin-top:15px">
             Changed by <span class="contributorCard">{{change.$getAgentName()}}</span>
           </div>
           <div class="changeDate"><abbr class="timeago">{{change.updated | date:'dd-MMM-yyyy'}}</abbr></div>
-
-          <button type="button" class="btn btn-primary" ng-click="restore()">Restore</button>
-          <button type="button" class="btn btn-link" ng-click="cancel()">Cancel</button>
+            <div style="margin-top:15px">
+              <button type="button" class="btn btn-primary" ng-click="restore()">Restore</button>
+              <button type="button" class="btn btn-link" ng-click="cancel()">Cancel</button>
+            </div>
         </div>
       </div>
     </div>
