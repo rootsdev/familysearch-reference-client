@@ -30,7 +30,8 @@
               stdDate: scope.fact.$getNormalizedDate(),
               formalDate: scope.fact.$getFormalDate(),
               place: scope.fact.$getPlace(),
-              stdPlace: scope.fact.$getNormalizedPlace()
+              stdPlace: scope.fact.$getNormalizedPlace(),
+              reason: !!scope.form ? scope.form.reason : ''
             };
             oldDate = scope.form.date;
             oldPlace = scope.form.place;
