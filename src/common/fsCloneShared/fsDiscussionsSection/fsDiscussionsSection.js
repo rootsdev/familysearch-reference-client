@@ -44,7 +44,7 @@
           });
 
           // delete
-          scope.$on('delete', function(event) { //, disc) {
+          scope.$on('delete', function(event, disc) {
             event.stopPropagation();
             fsConfirmationModal.open({
               title: 'Delete Discussion',
@@ -52,12 +52,11 @@
               okLabel: 'Yes'
             }).then(function() {
               // delete discussion ref and discussion
-              // TODO put this back when FS bug is fixed
-//              disc._busy = true;
-//              $q.all([disc.ref.$delete(), disc.discussion.$delete()]).then(function() {
-//                _.remove(scope.discs, {id: disc.id});
-//                $rootScope.$emit('deleted', disc);
-//              });
+              disc._busy = true;
+              $q.all([disc.ref.$delete(), disc.discussion.$delete()]).then(function() {
+                _.remove(scope.discs, {id: disc.id});
+                $rootScope.$emit('deleted', disc);
+              });
             });
           });
 
