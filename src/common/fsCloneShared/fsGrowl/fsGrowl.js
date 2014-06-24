@@ -2,7 +2,7 @@
   'use strict';
   angular.module('fsCloneShared')
     .config(function(growlProvider) {
-      growlProvider.onlyUniqueMessages(false);
+      growlProvider.onlyUniqueMessages(true);
       growlProvider.globalTimeToLive({success: 15000, error: null, warning: null, info: 15000});
     })
 
