@@ -8,13 +8,33 @@
           person: '=',
           spouse: '='
         },
-        controller: function($scope, $element, Family) {
-            $scope.family = new Family($scope.person);
+        controller: function($scope, $element, Family, $document, $window) {
 
-            $scope.move = function(event,x,y) {
-              $scope.model.pan({x:x,y:y});
-              event.preventDefault();
-            };
+          // BEGIN resize page divs for tree view.
+          $document.find('.navbar').css('margin-bottom', 0);
+          $document.find('body').css('padding-bottom', 0).css('overflow', 'hidden').css('height', '100%');
+          $document.find('.mainContent').css('padding', 0).parent().removeClass('container').css('overflow', 'hidden');
+
+          $scope.onResizeFunction = function() {
+            var height = $window.innerHeight - $document.find('navbar').height();
+            var div = $document.find('.mainContent').css('padding', 0).parent();
+            div.css('height', height).css('width', $window.innerWidth);
+          };
+
+          $scope.onResizeFunction(); // Call to the function when the page is first loaded
+
+          angular.element($window).bind('resize', function() {
+            $scope.onResizeFunction();
+            $scope.$apply();
+          });
+
+          $scope.family = new Family($scope.person);
+
+          $scope.move = function(event,x,y) {
+            $scope.model.pan({x:x,y:y});
+            event.preventDefault();
+          };
+          // END resize page divs for tree view.
 
           /*
             Configuration options available for the panZoom control
@@ -50,5 +70,38 @@
 
         }
       };
+    }).directive('resize', function ($window) {
+        return function (scope) {
+            var w = angular.element($window);
+            scope.getWindowDimensions = function () {
+                console.log(w.height());
+                console.log(w.width());
+                return {
+                    'h': w.height(),
+                    'w': w.width()
+                };
+            };
+            scope.$watch(scope.getWindowDimensions, function (newValue) {
+                scope.windowHeight = newValue.h;
+                scope.windowWidth = newValue.w;
+
+                scope.style = function () {
+                    return {
+                        'height': (newValue.h - 100) + 'px',
+                        'width': (newValue.w - 100) + 'px'
+                    };
+                };
+
+            }, true);
+
+            w.bind('resize', function () {
+                scope.$apply();
+            });
+        };
     });
+
+
+
+
+
 })();
