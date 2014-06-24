@@ -25,7 +25,8 @@
 
           function initForm() {
             scope.form = {
-              type: scope.gender.type
+              type: scope.gender.type,
+              reason: !!scope.form ? scope.form.reason : ''
             };
           }
 

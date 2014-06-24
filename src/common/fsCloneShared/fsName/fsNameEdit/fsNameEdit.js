@@ -134,7 +134,8 @@
             scope.form = {
               nameType: scope.name.type || '',
               template: template,
-              nameForms: updateNameForms(copyNameForms(scope.name.nameForms), template)
+              nameForms: updateNameForms(copyNameForms(scope.name.nameForms), template),
+              reason: !!scope.form ? scope.form.reason : ''
             };
             scope.columns = getColumns(scope.form.nameForms, scope.primaryLang);
           }
