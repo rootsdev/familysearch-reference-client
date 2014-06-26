@@ -35,6 +35,17 @@
 
           init();
 
+          scope.$watch(function () {
+            return {
+              parents: scope.parents,
+              child: scope.child,
+              father: scope.father,
+              mother: scope.mother
+            };
+          }, function () {
+            init();
+          }, true);
+
           scope.getRole = function(index) {
             return index === 0 ? 'Father' :
                    index === 1 ? 'Mother' : 'Child';
@@ -55,7 +66,12 @@
               var fact = new fsApi.Fact({type: 'http://gedcomx.org/BiologicalParent'});
               fsUtils.mixinStateFunctions(scope, fact);
               fact._edit();
-              facts.push(fact);
+              if (index === 0) {
+                scope.parents.$addFatherFact(fact);
+              }
+              else {
+                scope.parents.$addMotherFact(fact);
+              }
             }
           };
 
