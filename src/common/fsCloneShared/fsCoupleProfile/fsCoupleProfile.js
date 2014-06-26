@@ -7,7 +7,8 @@
         scope: {
           couple: '=',
           husband: '=',
-          wife: '='
+          wife: '=',
+          hidePopover: '@'
         }
       };
     });

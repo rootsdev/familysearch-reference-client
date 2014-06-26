@@ -10,9 +10,11 @@
           parentsId: '@',
           isFocus: '@',
           popoverPlacement: '@',
+          hidePopover: '@',
           hidePid: '@'
         },
         link: function(scope) {
+          console.log('fsPersonSmall', scope.hidePopover);
           scope.doEditParents = function() {
             scope.$emit('navigate', 'parents', {
               parentsId: scope.parentsId

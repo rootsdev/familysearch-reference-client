@@ -2,13 +2,16 @@
   <div class="nameWrapper">
     <i class="icon-rounded" ng-class="{'fs-icon-male': person._isMale(),
                                        'fs-icon-female': !person._isMale()}">&nbsp;</i>
-    <a href="" fs-person-popover person="person" popover-placement="{{popoverPlacement}}">
-      <!-- TODO set a style if isFocus -->
+    <a href="" ng-hide="hidePopover === 'true'"fs-person-popover person="person" popover-placement="{{popoverPlacement}}">
       <span class="personCard name"
          ng-style="{'font-weight': isFocus === 'true' ? 'bold' : 'normal', 'color': isFocus === 'true' ? '#333' : '#0051c4'}">
         {{person.$getDisplayName()}}
       </span>
     </a>
+    <span class="personCard name" ng-show="hidePopover === 'true'" style="color: #333"
+          ng-style="{'font-weight': isFocus === 'true' ? 'bold' : 'normal'}">
+      {{person.$getDisplayName()}}
+    </span>
   </div>
   <a href="" class="editParents pull-right" ng-show="editParents === 'true'" ng-click="doEditParents()">Edit Parents</a>
   <ul class="list-collapsed">

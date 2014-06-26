@@ -8,7 +8,8 @@
           parents: '=',
           child: '=',
           father: '=',
-          mother: '='
+          mother: '=',
+          hidePopover: '@'
         }
       };
     });
