@@ -35,7 +35,7 @@
                         <li ng-repeat="person in family.alternateHusbands()"  class="list-group-item" ng-class="{'all-family-list-selected':$first}">
                             <img ng-show="person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">
                             <img ng-show="!person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>
-                            <a fs-person-popover person="person">{{person.$getPreferredName().$getFullText()}}</a>
+                            <a fs-person-popover popover-placement="auto top" person="person">{{person.$getPreferredName().$getFullText()}}</a>
                         </li>
                     </ul>
                 </div>
@@ -59,7 +59,7 @@
                         <li ng-repeat="person in family.alternateWives()"  class="list-group-item" ng-class="{'all-family-list-selected':$first}">
                             <img ng-show="person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">
                             <img ng-show="!person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>
-                            <a fs-person-popover person="person">{{person.$getPreferredName().$getFullText()}}</a>
+                            <a fs-person-popover popover-placement="auto top" person="person">{{person.$getPreferredName().$getFullText()}}</a>
                         </li>
                     </ul>
                 </div>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="pull-left " ng-show="family && !family.isUseless()">
                     <a ng-click="navigateToFindAdd()" ng-show="!family.hasHusband()" href="" class="name-line">Add Husband</a>
-                    <a fs-person-popover person="family.getHusband()" ng-show="family.hasHusband()" href=""
+                    <a fs-person-popover popover-placement="auto top" person="family.getHusband()" ng-show="family.hasHusband()" href=""
                        class="name-line">{{family.getHusbandName()}}</a>
                     <br>
 
@@ -95,7 +95,7 @@
                 </div>
                 <div class="pull-left " ng-show="family && !family.isUseless()">
                     <a ng-click="navigateToFindAdd()" ng-show="!family.hasWife()" href="" class="name-line">Add Wife</a>
-                    <a fs-person-popover person="family.getWife()" ng-show="family.hasWife()" href=""
+                    <a fs-person-popover popover-placement="auto top" person="family.getWife()" ng-show="family.hasWife()" href=""
                        class="name-line" style="white-space: nowrap;display:inline">{{family.getWifeName()}}</a>
                     <br>
 
@@ -126,7 +126,7 @@
                         <li ng-repeat="person in family.children()"  class="list-group-item" >
                             <img ng-show="person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">
                             <img ng-show="!person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>
-                            <a fs-person-popover person="person" style="white-space: nowrap; ">{{person.$getPreferredName().$getFullText()}}</a>
+                            <a fs-person-popover popover-placement="auto top" person="person" style="white-space: nowrap; ">{{person.$getPreferredName().$getFullText()}}</a>
                         </li>
                     </ul>
                 </div>

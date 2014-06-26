@@ -270,6 +270,7 @@ module.exports = function(grunt) {
                         src: [ '<%= app_files.js %>' ],
                         cwd: '<%= build_dir %>',
                         dest: '<%= build_dir %>',
+//                        expand: true
                         expand: true
                     }
                 ]
@@ -282,7 +283,8 @@ module.exports = function(grunt) {
         uglify: {
             compile: {
                 options: {
-                    banner: '<%= meta.banner %>'
+                    banner: '<%= meta.banner %>',
+                    mangle: false
                 },
                 files: {
                     '<%= concat.compile_js.dest %>': '<%= concat.compile_js.dest %>'
@@ -632,7 +634,8 @@ module.exports = function(grunt) {
 
     // The 'compile' task gets your app ready for deployment by concatenating and minifying your code.
     grunt.registerTask('compile', [
-      'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'concat:dist_js', 'uglify', 'index:compile'
+//      'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'concat:dist_js', 'uglify', 'index:compile'
+      'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'concat:dist_js', 'index:compile'
       //'recess:compile', 'copy:compile_assets', 'concat:compile_js', 'concat:dist_js', 'index:compile'
     ]);
 
