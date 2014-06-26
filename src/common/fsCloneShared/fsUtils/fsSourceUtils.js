@@ -5,7 +5,6 @@
                                         fsAttachSourceConfirmationModal, fsDetachSourceConfirmationModal) {
       return {
         attachSource: function(description, context) {
-          console.log('attach source', description, context);
           return fsAttachSourceConfirmationModal.open(context).then(function(changeMessage) {
             var sourceRef = new fsApi.SourceRef({
               $personId: context.person ? context.person.id : '',
@@ -13,7 +12,6 @@
               $childAndParentsId: context.parents ? context.parents.id : '',
               sourceDescription: description.id
             });
-            console.log('attach source ref', sourceRef);
             return sourceRef.$save(changeMessage).then(function (sourceRefId) {
               sourceRef.id = sourceRefId;
               // we can't refresh sourceRefs unfortunately, so attempt to approximate new attribution

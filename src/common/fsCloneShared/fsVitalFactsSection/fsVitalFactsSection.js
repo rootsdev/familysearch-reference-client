@@ -85,7 +85,6 @@
               }
             }
             else if (item instanceof fsApi.Fact) {
-              console.log('fact saving', item);
               item.$setChangeMessage(changeMessage);
               if (!item.id) {
                 scope.person.$addFact(item);
@@ -94,7 +93,6 @@
             else if (item.type) { // gender
               scope.person.$setGender(item.type, changeMessage);
             }
-            console.log('saving person', scope.person);
             scope.person.$save(null, true).then(function() {
               item._open();
               $rootScope.$emit('saved', item);

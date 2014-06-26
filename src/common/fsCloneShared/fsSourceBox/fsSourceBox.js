@@ -109,7 +109,6 @@
           //
 
           scope.setAllSelected = function() {
-            console.log('setAllSelected', scope.allSelected);
             scope.descriptions.forEach(function(description) {
               description._selected = scope.allSelected;
             });
@@ -244,7 +243,6 @@
 
           scope.removeSources = function() {
             removeSources(_.filter(scope.descriptions, {_selected: true})).then(function() {
-              console.log('fsSourceBox init');
               init(); // too much trouble to manage counts incrementally, especially if the 'all' folder is selected
             });
           };
@@ -304,7 +302,6 @@
                 return attachContext;
               });
             }
-            console.log('fsSourceBox attach', promise, scope.personId);
             promise.then(function(attachContext) {
               fsSourceUtils.attachSource(description, attachContext).then(function(sourceRef) {
                 sourceRefs.push(sourceRef);

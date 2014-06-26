@@ -23,7 +23,6 @@
             scope.item._busy = true;
             // argh - FamilySearch makes is submit the requests serially
             fsUtils.allPromisesSerially(sourceRefs, function(sourceRef) {
-              console.log('save source ref', sourceRef);
               return sourceRef.$save().then(function() {
                 // we can't refresh sourceRefs after update so we have to approximate the attribution
                 fsUtils.approximateAttribution(sourceRef);

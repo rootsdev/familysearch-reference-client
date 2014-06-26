@@ -53,13 +53,11 @@
           };
 
           var unbindSaved = $rootScope.$on('saved', function() {
-            console.log('refresh changes');
             init();
           });
           scope.$on('$destroy', unbindSaved);
 
           var unbindDeleted = $rootScope.$on('deleted', function() {
-            console.log('refresh changes');
             init();
           });
           scope.$on('$destroy', unbindDeleted);

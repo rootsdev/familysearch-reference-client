@@ -43,12 +43,10 @@
               var source = fsUtils.findById(scope.sources, formSource.id);
               var tags = source.ref.$getTags();
               if (formSource.tagged && !_.contains(tags, tag)) {
-                console.log('adding tag', formSource.title);
                 source.ref.$addTag(tag);
                 changedSourceRefs.push(source.ref);
               }
               else if (!formSource.tagged && _.contains(tags, tag)) {
-                console.log('removing tag', formSource.title);
                 source.ref.$removeTag(tag);
                 changedSourceRefs.push(source.ref);
               }
