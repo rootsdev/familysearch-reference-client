@@ -12,23 +12,38 @@
         },
         link: function(scope) {
           // read
-          scope.noteRefs = [];
-          var promise;
-          if (!!scope.person) {
-            promise = fsApi.getPersonNoteRefs(scope.person.id);
-          }
-          else if (!!scope.couple) {
-            promise = fsApi.getCoupleNoteRefs(scope.couple.id);
-          }
-          else if (!!scope.parents) {
-            promise = fsApi.getChildAndParentsNoteRefs(scope.parents.id);
-          }
-          promise.then(function(response) {
-            scope.noteRefs = response.getNoteRefs();
-            _.forEach(scope.noteRefs, function(noteRef) {
-              fsUtils.mixinStateFunctions(scope, noteRef);
+          function init() {
+            var oldNoteRefs = scope.noteRefs;
+
+            scope.noteRefs = [];
+            var promise;
+            if (!!scope.person) {
+              promise = fsApi.getPersonNoteRefs(scope.person.id);
+            }
+            else if (!!scope.couple) {
+              promise = fsApi.getCoupleNoteRefs(scope.couple.id);
+            }
+            else if (!!scope.parents) {
+              promise = fsApi.getChildAndParentsNoteRefs(scope.parents.id);
+            }
+            promise.then(function(response) {
+              scope.noteRefs = response.getNoteRefs();
+              _.forEach(scope.noteRefs, function(noteRef) {
+                fsUtils.mixinStateFunctions(scope, noteRef);
+              });
+
+              if (!!oldNoteRefs) { // copy old item state
+                fsUtils.copyItemStates(oldNoteRefs, scope.noteRefs);
+              }
             });
+          }
+
+          init();
+
+          var unbindRestored = $rootScope.$on('restored', function() {
+            init(); // in case a note was restored (I could check the type of object restored, but I'm being lazy)
           });
+          scope.$on('$destroy', unbindRestored);
 
           // add
           scope.$on('add', function(event) {

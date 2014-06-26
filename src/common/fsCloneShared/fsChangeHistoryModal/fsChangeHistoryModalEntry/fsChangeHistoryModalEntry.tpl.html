@@ -13,7 +13,7 @@
 </td>
 <td class="changeActions">
   <div ng-hide="change._isRestorable">{{getAction(change)}}</div>
-  <div ng-show="change._isRestorable">
+  <div ng-show="change._isRestorable && canRestore(change)">
     <button class="btn btn-primary" ng-click="$emit('restore', change)">Restore</button>
   </div>
 </td>

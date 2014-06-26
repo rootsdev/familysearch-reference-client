@@ -33,7 +33,7 @@
         }
       });
     })
-    .controller('ParentsController', function ($scope, $state, $rootScope, parents, sources, fsUtils, fsCurrentUserCache) {
+    .controller('ParentsController', function ($scope, $state, $rootScope, parents, sources, fsApi, fsUtils, fsCurrentUserCache) {
       var sections = [
         'parents',
         'sources',
@@ -54,6 +54,27 @@
       sources.forEach(function(source) {
         fsUtils.mixinStateFunctions($scope, source);
       });
+
+      var unbindRestored = $rootScope.$on('restored', function() {
+        fsApi.getChildAndParents($scope.parents.id, {persons: true}).then(function (response) {
+          var parents = response.getRelationship();
+          fsUtils.refresh($scope.parents, parents);
+          fsUtils.refresh($scope.child, response.getPerson(parents.$getChildId()));
+          if (!!$scope.father && !!parents.$getFatherId()) {
+            fsUtils.refresh($scope.father, response.getPerson(parents.$getFatherId()));
+          }
+          else {
+            $scope.father = !!parents.$getFatherId() ? response.getPerson(parents.$getFatherId()) : null;
+          }
+          if (!!$scope.mother && !!parents.$getMotherId()) {
+            fsUtils.refresh($scope.mother, response.getPerson(parents.$getMotherId()));
+          }
+          else {
+            $scope.mother = !!parents.$getMotherId() ? response.getPerson(parents.$getMotherId()) : null;
+          }
+        });
+      });
+      $scope.$on('$destroy', unbindRestored);
 
       $scope.$on('delete', function(event, parents, changeMessage) {
         event.stopPropagation();

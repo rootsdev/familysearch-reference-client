@@ -22,7 +22,9 @@
             }
             else if (fsChangeUtils.isChildAndParentsRelationship(change) || fsChangeUtils.isCoupleRelationship(change) ||
               fsChangeUtils.isChildAndParentsRelationshipModified(change) || fsChangeUtils.isCoupleRelationshipModified(change)) {
-              return ''; // TODO could be "Reference" with a navigation event to the child-and-parents or couple relationship
+              // TODO could be "Reference" with a navigation event to the child-and-parents or couple relationship
+              // if we're showing person changes, or Current if we're showing relationship changes
+              return '';
             }
             else if (fsChangeUtils.getType(change) === 'http://gedcomx.org/Person') { // covers person creation
               return '';
@@ -32,6 +34,10 @@
             }
           };
 
+          scope.canRestore = function(change) {
+            return !fsChangeUtils.isGender(change) && // can't restore gender changes
+              !fsChangeUtils.isSourceReference(change); // can't restore source ref changes apparently
+          };
         }
       };
     });

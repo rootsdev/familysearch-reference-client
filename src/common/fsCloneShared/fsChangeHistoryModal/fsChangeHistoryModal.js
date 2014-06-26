@@ -23,6 +23,7 @@
                 var moreChanges = true;
                 var isFiltering = !!opts.item;
                 var changedItemIds = {};
+                var deletedItemIds = {};
 
                 function readChanges(count) {
                   if (moreChanges && !$scope.busy) {
@@ -50,11 +51,21 @@
                         var changedItemId = fsChangeUtils.getChangedItemId(change);
                         if (!isFiltering || opts.item.id === changedItemId) {
                           if (changedItemId) {
-                            if (changedItemIds[changedItemId]) {
-                              change._isRestorable = true;
+                            var key = changedItemId + (change.changeInfo[0].objectType || '');
+                            if (fsChangeUtils.isDeletion(change)) {
+                              change._isDeleted = true;
+                              deletedItemIds[key] = true;
+                            }
+                            else if (deletedItemIds[key]) {
+                              change._isDeleted = true;
+                            }
+                            if (changedItemIds[key]) {
+                              if (!fsChangeUtils.isDeletion(change)) {
+                                change._isRestorable = true;
+                              }
                             }
                             else {
-                              changedItemIds[changedItemId] = true;
+                              changedItemIds[key] = true;
                             }
                           }
                           $scope.changes.push(change);
@@ -83,7 +94,19 @@
               }
             }).result.then(function(change) {
                 if (!!change) {
-                  return fsRestoreChangeModal.open(change).then(function() {
+                  return fsRestoreChangeModal.open({
+                    change: change,
+                    person: opts.person,
+                    couple: opts.couple,
+                    husband: opts.husband,
+                    wife: opts.wife,
+                    parents: opts.parents,
+                    father: opts.father,
+                    mother: opts.mother,
+                    child: opts.child
+                  }).then(function() {
+                    return open();
+                  }, function() {
                     return open();
                   });
                 }

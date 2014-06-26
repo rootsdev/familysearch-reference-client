@@ -31,6 +31,12 @@
 
           init();
 
+          scope.$watch(function () {
+            return scope.couple;
+          }, function () {
+            init();
+          }, true);
+
           // add menu is couple fact types
           scope.addMenu = _.map(fsCoupleFactTypes, function(fact) {
             return {
@@ -80,7 +86,6 @@
             item.$setChangeMessage(changeMessage);
             scope.couple.$save(null, true).then(function() {
               item._open();
-              init(); // re-init items so we get the new item.id
               $rootScope.$emit('saved', item);
             });
           });

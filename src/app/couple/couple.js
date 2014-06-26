@@ -32,7 +32,7 @@
         }
       });
     })
-    .controller('CoupleController', function ($scope, $state, $rootScope, couple, sources, fsUtils, fsCurrentUserCache) {
+    .controller('CoupleController', function ($scope, $state, $rootScope, couple, sources, fsApi, fsUtils, fsCurrentUserCache) {
       var sections = [
         'couple',
         'coupleEvents',
@@ -53,6 +53,16 @@
       sources.forEach(function(source) {
         fsUtils.mixinStateFunctions($scope, source);
       });
+
+      var unbindRestored = $rootScope.$on('restored', function() {
+        fsApi.getCouple($scope.couple.id, {persons: true}).then(function (response) {
+          var couple = response.getRelationship();
+          fsUtils.refresh($scope.couple, couple);
+          fsUtils.refresh($scope.husband, response.getPerson(couple.$getHusbandId()));
+          fsUtils.refresh($scope.wife, response.getPerson(couple.$getWifeId()));
+        });
+      });
+      $scope.$on('$destroy', unbindRestored);
 
       $scope.$on('delete', function(event, couple, changeMessage) {
         event.stopPropagation();

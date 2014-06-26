@@ -11,7 +11,7 @@
     "angular-pan-zoom": "git://github.com/mvindahl/angular-pan-zoom.git#19d27da89ca672afea5043d7d5a907e8e7593ef9",
     "lodash": "~2.4.1",
     "es5-shim": "~3.0.2",
-    "familysearch-javascript-sdk": "~0.9.10",
+    "familysearch-javascript-sdk": "~0.9.12",
     "angular-moment": "~0.7.0",
     "ngInfiniteScroll": "~1.1.2",
     "angular-growl-v2": "~0.6.0"

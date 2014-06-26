@@ -85,6 +85,12 @@
 
           init();
 
+          scope.$watch(function () {
+            return scope.person;
+          }, function () {
+            init();
+          }, true);
+
           // add menu is Alternate Name + other fact types + custom
           scope.addMenu = _.map([{type: fsAlsoKnownAsNameType}].concat(fsOtherFactTypes).concat([{type: ''}]), function(other) {
             return {
@@ -148,7 +154,6 @@
             item.$setChangeMessage(changeMessage);
             scope.person.$save(null, true).then(function() {
               item._open();
-              init(); // re-init items so we get the new item.id
               $rootScope.$emit('saved', item);
             });
           });

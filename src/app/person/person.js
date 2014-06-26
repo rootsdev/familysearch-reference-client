@@ -27,7 +27,7 @@
         }
       });
     })
-    .controller('PersonController', function ($scope, $state, $rootScope, person, sources, fsUtils, fsCurrentUserCache) {
+    .controller('PersonController', function ($scope, $state, $rootScope, person, sources, fsApi, fsUtils, fsCurrentUserCache) {
       var sections = [
         'lifeSketch',
         'vitalFacts',
@@ -44,11 +44,19 @@
       });
 
       $scope.person = person;
+      console.log('person', person);
 
       $scope.sources = sources;
       sources.forEach(function(source) {
         fsUtils.mixinStateFunctions($scope, source);
       });
+
+      var unbindRestored = $rootScope.$on('restored', function() {
+        fsApi.getPerson($scope.person.id).then(function (response) {
+          fsUtils.refresh($scope.person, response.getPerson());
+        });
+      });
+      $scope.$on('$destroy', unbindRestored);
 
       $scope.$on('delete', function(event, person, changeMessage) {
         event.stopPropagation();

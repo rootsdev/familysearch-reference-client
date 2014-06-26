@@ -32,17 +32,17 @@
       }
 
       function getContentRoot(change) {
+        var obj;
         if (isChildAndParentsRelationshipModified(change)) {
-          return change.content.gedcomx['child-and-parents-relationships'][0];
+          obj = change.content.gedcomx['child-and-parents-relationships'];
         }
         else if (isPersonModified(change)) {
-          return change.content.gedcomx.persons[0];
+          obj = change.content.gedcomx.persons;
         }
         else if (isCoupleRelationshipModified(change)) {
-          return change.content.gedcomx.relationships[0];
+          obj = change.content.gedcomx.relationships;
         }
-        console.log('getContentRoot null', change);
-        return null;
+        return isDeletion(change) && obj.length > 1 ? obj[1] : obj[0];
       }
 
       function isChildAndParentsRelationship(change) {
@@ -128,8 +128,11 @@
         else if (isNote(change)) {
           return contentRoot.notes[0].id;
         }
-        else if (isCoupleRelationship(change) || isChildAndParentsRelationship(change)) {
-          return null; // no id available
+        else if (isCoupleRelationship(change)) {
+          return contentRoot.identifiers['http://gedcomx.org/Primary'][0];
+        }
+        else if (isChildAndParentsRelationship(change)) {
+          return contentRoot.identifiers['http://gedcomx.org/Primary'][0];
         }
         else if (!!contentRoot) {
           return contentRoot.id;

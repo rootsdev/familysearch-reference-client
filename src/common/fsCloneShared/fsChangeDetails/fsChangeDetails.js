@@ -26,6 +26,16 @@
             }
           }
 
+          if (fsChangeUtils.isDiscussionReference(scope.change) && !scope.change._isDeleted) {
+            var did = scope.contentRoot['discussion-references'][0].resource;
+            if (!!did) {
+              fsApi.getDiscussion(did).then(function(response) {
+                scope.discussionTitle = response.getDiscussion().title;
+                scope.discussionText = response.getDiscussion().details;
+              });
+            }
+          }
+
           if (fsChangeUtils.isChildAndParentsRelationship(scope.change) ||
               fsChangeUtils.isCoupleRelationship(scope.change)) {
             var type = fsChangeUtils.getType(scope.change);
@@ -48,12 +58,12 @@
             scope.relatedPerson = fsUtils.setConstructor(_.find(scope.change.content.gedcomx.persons, function(person) {
               return person.id === pid;
             }), fsApi.Person);
-            scope.relatedPerson.names = _.map(scope.relatedPerson.names, function(name) {
-              return fsUtils.setConstructor(name, fsApi.Name);
-            });
-            scope.relatedPerson.facts = _.map(scope.relatedPerson.facts, function(fact) {
-              return fsUtils.setConstructor(fact, fsApi.Fact);
-            });
+//            scope.relatedPerson.names = _.map(scope.relatedPerson.names, function(name) {
+//              return fsUtils.setConstructor(name, fsApi.Name);
+//            });
+//            scope.relatedPerson.facts = _.map(scope.relatedPerson.facts, function(fact) {
+//              return fsUtils.setConstructor(fact, fsApi.Fact);
+//            });
           }
 
         }

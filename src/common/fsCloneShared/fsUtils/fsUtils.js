@@ -196,6 +196,15 @@
           return pos >= 0 ? url.substr(0, pos) : url;
         },
 
+        refresh: function(target, source) {
+          for (var propName in target) {
+            if (target.hasOwnProperty(propName) && propName.charAt(0) !== '_') {
+              delete target[propName];
+            }
+          }
+          _.extend(target, source);
+        },
+
         getSourceRefContexts: function(description, getAgents, max) {
           return description.$getSourceRefsQuery().then(function(response) {
             var promises = [];
