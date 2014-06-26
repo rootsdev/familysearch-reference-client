@@ -27,6 +27,7 @@
                 value: _.contains(tags, tagType)
               };
             });
+            console.log('fsVitalTagsPopover', scope.form);
 
             setTimeout(function() { // popover expects to be triggered outside of angular
               el.triggerHandler('fsVitalTagsPopoverShow');
