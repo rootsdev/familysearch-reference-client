@@ -6,8 +6,8 @@
       <span ng-show="!!child">Parent-Child Relationship</span>
       <span ng-show="!!person">{{person.$getDisplayName()}}</span>
     </h4>
-    <div fs-couple-profile ng-show="!!husband && !!wife" husband="husband" wife="wife"></div>
-    <div fs-parents-profile ng-show="!!child" child="child" father="father" mother="mother"></div>
+    <div fs-couple-profile ng-show="!!husband && !!wife" husband="husband" wife="wife" hide-popover="true"></div>
+    <div fs-parents-profile ng-show="!!child" child="child" father="father" mother="mother" hide-popover="true"></div>
     <div fs-person-smaller ng-show="!!person" person="person"></div>
   </div>
   <div class="modal-body">
