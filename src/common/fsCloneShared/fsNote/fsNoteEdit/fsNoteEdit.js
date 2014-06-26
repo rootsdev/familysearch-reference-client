@@ -18,7 +18,8 @@
           }, function() {
             scope.form = {
               subject: scope.note ? scope.note.subject : '',
-              text: scope.note ? scope.note.text : ''
+              text: scope.note ? scope.note.text : '',
+              reason: scope.form ? scope.form.reason : ''
             };
           }, true);
 
