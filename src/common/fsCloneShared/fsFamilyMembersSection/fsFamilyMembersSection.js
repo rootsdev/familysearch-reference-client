@@ -85,6 +85,10 @@
             });
           };
 
+          scope.hasUnknownGender = function(person) {
+            return person.$getDisplayGender() !== 'Male' && person.$getDisplayGender() !== 'Female';
+          };
+
           scope.hasHiddenChildren = function(families) {
             return _.any(families, function(family) {
               return family._hideChildren;

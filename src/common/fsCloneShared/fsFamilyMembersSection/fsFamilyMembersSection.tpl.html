@@ -8,16 +8,21 @@
                 <a href="" ng-hide="hasHiddenChildren(spouseFamilies)" ng-click="hideChildren(spouseFamilies, true)" class="hideChildren"><i class="fa fa-eye-slash">&nbsp;</i>Hide All</a>
                 <a href="" ng-show="hasHiddenChildren(spouseFamilies)" ng-click="hideChildren(spouseFamilies, false)" class="hideChildren"><i class="fa fa-eye">&nbsp;</i>Show All</a>
               </span>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="" ng-click="addSpouse()" class="btn btn-link non-form addSpouse">
-                <i class="fa fa-plus-square">&nbsp;</i>Add Spouse
-              </a>
+              <span ng-hide="hasUnknownGender(person)">
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="" ng-click="addSpouse()" class="btn btn-link non-form addSpouse">
+                  <i class="fa fa-plus-square">&nbsp;</i>Add Spouse
+                </a>
+              </span>
+              <span ng-show="hasUnknownGender(person)">
+                Set gender to add spouse and children
+              </span>
             </div>
             <div ng-repeat="family in spouseFamilies">
               <div fs-family-members family="family" focus-id="person.id"
                   show-preferred="{{showPreferred(family, spouseFamilies) ? 'true' : 'false'}}" preferred="preferredCouple"></div>
             </div>
-            <a href="" ng-click="addChild()" class="btn btn-link non-form addChild unknownFather">
+            <a href="" ng-hide="hasUnknownGender(person)" ng-click="addChild()" class="btn btn-link non-form addChild unknownFather">
               <i class="fa fa-plus-square">&nbsp;</i>Add Child with an Unknown {{person._isMale() ? 'Mother' : 'Father'}}
             </a>
           </div>
