@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsSourcesSection', function ($rootScope, fsUtils, fsSourceUtils,
+    .directive('fsSourcesSection', function ($rootScope, fsUtils, fsSourceUtils, fsLocation,
                                              fsSourceDescriptionModal, fsSourceAttachmentsModal) {
       return {
         templateUrl: 'fsCloneShared/fsSourcesSection/fsSourcesSection.tpl.html',
@@ -120,7 +120,7 @@
           // attach from source box
           scope.$on('attach', function(event) {
             event.stopPropagation();
-            scope.$emit('navigate', 'source-box', fsUtils.removeEmptyProperties({
+            fsLocation.setSourceBoxLocation(fsUtils.removeEmptyProperties({
               personId: scope.person ? scope.person.id : null,
               coupleId: scope.couple ? scope.couple.id : null,
               parentsId: scope.parents ? scope.parents.id : null

@@ -10,7 +10,7 @@
               </span>
               <span ng-hide="hasUnknownGender(person)">
                 &nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="" ng-click="addSpouse()" class="btn btn-link non-form addSpouse">
+                <a ng-href="{{addSpouseHref}}" class="btn btn-link non-form addSpouse">
                   <i class="fa fa-plus-square">&nbsp;</i>Add Spouse
                 </a>
               </span>
@@ -22,7 +22,7 @@
               <div fs-family-members family="family" focus-id="person.id"
                   show-preferred="{{showPreferred(family, spouseFamilies) ? 'true' : 'false'}}" preferred="preferredCouple"></div>
             </div>
-            <a href="" ng-hide="hasUnknownGender(person)" ng-click="addChild()" class="btn btn-link non-form addChild unknownFather">
+            <a ng-href="{{addChildHref}}" ng-hide="hasUnknownGender(person)" class="btn btn-link non-form addChild unknownFather">
               <i class="fa fa-plus-square">&nbsp;</i>Add Child with an Unknown {{person._isMale() ? 'Mother' : 'Father'}}
             </a>
           </div>
@@ -34,7 +34,7 @@
                 <a href="" ng-show="hasHiddenChildren(parentFamilies)" ng-click="hideChildren(parentFamilies, false)" class="hideChildren"><i class="fa fa-eye">&nbsp;</i>Show All</a>
               </span>
               &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="" ng-click="addParent()" class="btn btn-link non-form addSpouse">
+              <a ng-href="{{addParentHref}}" class="btn btn-link non-form addSpouse">
                 <i class="fa fa-plus-square">&nbsp;</i>Add Parent
               </a>
             </div>

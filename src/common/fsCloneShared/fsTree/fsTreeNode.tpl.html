@@ -76,7 +76,7 @@
                     <div class="pull-left fs-icon-male couple-icon couple-icon-male" style="margin-right:8px">&nbsp;</div>
                 </div>
                 <div class="pull-left " ng-show="family && !family.isUseless()">
-                    <a ng-click="navigateToFindAdd()" ng-show="!family.hasHusband()" href="" class="name-line">Add Husband</a>
+                    <a ng-show="!family.hasHusband()" ng-href="{{findAddHref}}" class="name-line">Add Husband</a>
                     <a fs-person-popover popover-placement="auto top" person="family.getHusband()" ng-show="family.hasHusband()" href=""
                        class="name-line">{{family.getHusbandName()}}</a>
                     <br>
@@ -94,7 +94,7 @@
                     <div class="pull-left fs-icon-female couple-icon couple-icon-female" style="margin-right:8px">&nbsp;</div>
                 </div>
                 <div class="pull-left " ng-show="family && !family.isUseless()">
-                    <a ng-click="navigateToFindAdd()" ng-show="!family.hasWife()" href="" class="name-line">Add Wife</a>
+                    <a ng-show="!family.hasWife()" ng-href="{{findAddHref}}" class="name-line">Add Wife</a>
                     <a fs-person-popover popover-placement="auto top" person="family.getWife()" ng-show="family.hasWife()" href=""
                        class="name-line" style="white-space: nowrap;display:inline">{{family.getWifeName()}}</a>
                     <br>

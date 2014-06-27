@@ -21,18 +21,57 @@
         //.setAuthCallback('http://demo.werelate.org/#/auth');
     })
 
+    .config(function(fsLocationProvider) {
+      var prefix = '/#';
+      fsLocationProvider.configure({
+        getPersonLocation: function(personId) {
+          return {
+            prefix: prefix,
+            path: '/person/'+personId
+          };
+        },
+        getCoupleLocation: function(coupleId) {
+          return {
+            prefix: prefix,
+            path: '/couple/'+coupleId
+          };
+        },
+        getParentsLocation: function(parentsId) {
+          return {
+            prefix: prefix,
+            path: '/parents/' + parentsId
+          };
+        },
+        getTreeLocation: function(personId) {
+          return {
+            prefix: prefix,
+            path: '/tree/'+personId
+          };
+        },
+        getFindAddLocation: function(opts) {
+          return {
+            prefix: prefix,
+            path: '/find-add',
+            search: opts
+          };
+        },
+        getSourceBoxLocation: function(opts) {
+          return {
+            prefix: prefix,
+            path: '/source-box',
+            search: opts
+          };
+        }
+      });
+    })
+
     .run(function () {
     })
 
-    .controller('AppController', function ($scope, $rootScope, $state) {
+    .controller('AppController', function ($scope) {
       $scope.environment = 'Sandbox';
       //$scope.environment = 'Beta';
 
-      // handle navigation events from fsCloneShared components
-      $rootScope.$on('navigate', function(event, route, params) {
-        event.stopPropagation();
-        $state.go(route, params);
-      });
     });
 
     // don't forget to edit index.html to add {Track:js} script on demo

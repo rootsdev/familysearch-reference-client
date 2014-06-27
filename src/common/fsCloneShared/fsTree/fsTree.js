@@ -63,11 +63,6 @@
             };
             $scope.model = {};
 
-            $scope.navigateTo = function() {
-              $scope.$emit('navigate', 'person', { personId: $scope.person.id });
-            };
-
-
         }
       };
     }).directive('resize', function ($window) {

@@ -33,7 +33,7 @@
             timeout_function: $timeout,
             save_access_token: true,
             auto_expire: true,
-            auto_signin: true
+            auto_signin: false
           });
         }
 

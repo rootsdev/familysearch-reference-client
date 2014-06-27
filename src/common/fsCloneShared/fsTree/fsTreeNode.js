@@ -9,7 +9,7 @@
           expandable: '=',
           brackets: '@'
         },
-        link: function($scope) {
+        link: function($scope, fsLocation) {
           $scope.islive = !!$scope.family;
 
           function createFindAddContext() {
@@ -56,9 +56,7 @@
             return invocationContext;
           }
 
-          $scope.navigateToFindAdd = function() {
-            $scope.$emit('navigate', 'find-add', createFindAddContext());
-          };
+          $scope.findAddHref = fsLocation.getFindAddUrl(createFindAddContext());
 
           $scope.initHoverData = function() {
             if ( !$scope.didInitHoverData && $scope.family ) {

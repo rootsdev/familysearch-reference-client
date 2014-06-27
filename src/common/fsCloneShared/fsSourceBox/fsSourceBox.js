@@ -1,7 +1,8 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsSourceBox', function($q, $rootScope, fsApi, fsCurrentUserCache, fsUtils, fsSourceUtils, fsFolderModal,
+    .directive('fsSourceBox', function($q, $rootScope, fsApi, fsCurrentUserCache, fsUtils, fsSourceUtils,
+                                       fsLocation, fsFolderModal,
                                        fsConfirmationModal, fsSourceDescriptionModal, fsSourceAttachmentsModal) {
       return {
         templateUrl: 'fsCloneShared/fsSourceBox/fsSourceBox.tpl.html',
@@ -387,17 +388,15 @@
             getSourceDescriptions(scope.selectedFolder, page);
           };
 
-          scope.leave = function() {
-            if (!!scope.personId) {
-              scope.$emit('navigate', 'person', {personId: scope.personId});
-            }
-            else if (!!scope.coupleId) {
-              scope.$emit('navigate', 'couple', {coupleId: scope.coupleId});
-            }
-            else if (!!scope.parentsId) {
-              scope.$emit('navigate', 'parents', {parentsId: scope.parentsId});
-            }
-          };
+          if (!!scope.personId) {
+            scope.personHref = fsLocation.getPersonUrl(scope.personId);
+          }
+          else if (!!scope.coupleId) {
+            scope.coupleHref = fsLocation.getCoupleUrl(scope.coupleId);
+          }
+          else if (!!scope.parentsId) {
+            scope.parentsHref = fsLocation.getParentsUrl(scope.parentsId);
+          }
 
         }
       };

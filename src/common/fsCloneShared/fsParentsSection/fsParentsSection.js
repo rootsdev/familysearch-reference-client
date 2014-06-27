@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsParentsSection', function (_, $rootScope, fsApi, fsUtils, fsConfirmationModal) {
+    .directive('fsParentsSection', function (_, $rootScope, fsApi, fsLocation, fsUtils, fsConfirmationModal) {
       return {
         templateUrl: 'fsCloneShared/fsParentsSection/fsParentsSection.tpl.html',
         scope: {
@@ -117,12 +117,12 @@
           // change
           scope.$on('change', function(event, member) {
             event.stopPropagation();
-            scope.$emit('navigate', 'find-add', {
+            fsLocation.setFindAddLocation(fsUtils.removeEmptyProperties({
               husbandId: member === scope.members[0] || !scope.father ? null : scope.father.id,
               wifeId:    member === scope.members[1] || !scope.mother ? null : scope.mother.id,
               parentsId: scope.parents.id,
               returnToParentsId: scope.parents.id
-            });
+            }));
           });
 
           // delete

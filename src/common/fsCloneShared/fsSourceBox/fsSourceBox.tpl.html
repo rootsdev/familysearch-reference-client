@@ -2,11 +2,9 @@
   <div class="row subheader">
     <div class="goToHeading">
       Go to:
-      <a href="" ng-click="leave()">
-        <span ng-show="!!personId">{{person.$getDisplayName()}}</span>
-        <span ng-show="!!coupleId">Couple Relationship</span>
-        <span ng-show="!!parentsId">Parent-Child Relationship</span>
-      </a>
+      <a ng-href="{personHref}}" ng-show="!!personId">{{person.$getDisplayName()}}</a>
+      <a ng-href="{coupleHref}}" ng-show="!!coupleId">Couple Relationship</a>
+      <a ng-href="{parentsHref}}" ng-show="!!parentsId">Parent-Child Relationship</a>
     </div>
   </div>
   <div class="row sourcebox-heading">

@@ -13,7 +13,7 @@
       {{person.$getDisplayName()}}
     </span>
   </div>
-  <a href="" class="editParents pull-right" ng-show="editParents === 'true'" ng-click="doEditParents()">Edit Parents</a>
+  <a ng-href="{{parentsHref}}" class="editParents pull-right" ng-show="editParents === 'true'">Edit Parents</a>
   <ul class="list-collapsed">
     <li class="lifeSpan">{{person.$getDisplayLifeSpan()}}</li>
     <li class="separator" ng-hide="hidePid === 'true'">-</li>

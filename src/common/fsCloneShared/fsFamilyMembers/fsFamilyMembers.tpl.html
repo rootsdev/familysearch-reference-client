@@ -24,7 +24,7 @@
         <input type="checkbox" ng-model="isPreferred.value" ng-change="changePreferred()">
         PREFERRED
       </div>
-      <a ng-show="!!couple" href="" ng-click="editCouple()" class="editCouple">EDIT COUPLE</a>
+      <a ng-show="!!couple" ng-href="{{editCoupleHref}}" class="editCouple">EDIT COUPLE</a>
     </div>
   </div>
   <div class="childrenHolder">
@@ -39,7 +39,7 @@
         </tr>
         <tr class="actionRow">
           <td>
-            <a href="" ng-click="addChild()" class="btn btn-link non-form addChild">
+            <a ng-href="{{addChildHref}}" class="btn btn-link non-form addChild">
               <i class="fa fa-plus-square">&nbsp;</i>Add Child
             </a>
           </td>

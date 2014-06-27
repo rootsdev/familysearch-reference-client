@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsPersonPopover', function (fsApi, $window) {
+    .directive('fsPersonPopover', function (fsApi, $window, fsLocation) {
 
       return {
         transclude: true,
@@ -62,13 +62,9 @@
             scope.popoverPlacement = scope.placementAdjustor();
           };
 
-          scope.navigateTo = function() {
-            scope.$emit('navigate', 'person', { personId: scope.person.id });
-          };
+          scope.personHref = fsLocation.getPersonUrl(scope.person.id);
 
-          scope.navigateToTree = function() {
-            scope.$emit('navigate', 'tree', { personId: scope.person.id });
-          };
+          scope.treeHref = fsLocation.getTreeUrl(scope.person.id);
 
         }
       };

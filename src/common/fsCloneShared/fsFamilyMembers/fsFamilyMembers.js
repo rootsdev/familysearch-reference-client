@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFamilyMembers', function (fsApi, fsUtils) {
+    .directive('fsFamilyMembers', function (fsApi, fsUtils, fsLocation) {
       return {
         templateUrl: 'fsCloneShared/fsFamilyMembers/fsFamilyMembers.tpl.html',
         scope: {
@@ -31,6 +31,7 @@
             fsApi.getPersonWithRelationships(primaryId, {persons: true}).then(function(response) {
               if (spouseId) {
                 scope.couple = response.getSpouseRelationship(spouseId);
+                setEditCoupleHref(scope.couple);
               }
               scope.children = fsUtils.getChildrenWithParentsId(response.getChildrenOf(spouseId),
                                                                 response.getChildRelationshipsOf(spouseId));
@@ -38,7 +39,14 @@
           }
           else {
             scope.couple = scope.family.couple;
+            setEditCoupleHref(scope.couple);
             scope.children = scope.family.children;
+          }
+
+          function setEditCoupleHref(couple) {
+            if (!!couple) {
+              scope.editCoupleHref = fsLocation.getCoupleUrl(couple.id);
+            }
           }
 
           scope.toggleHideChildren = function() {
@@ -61,23 +69,15 @@
             scope.$emit('save', scope.family.relationshipId, scope.isPreferred.value);
           };
 
-          scope.addChild = function() {
-            scope.$emit('navigate', 'find-add', fsUtils.removeEmptyProperties({
-              fatherId: !!scope.family.husband ? scope.family.husband.id : null,
-              motherId: !!scope.family.wife ? scope.family.wife.id : null,
-              returnToPersonId: scope.focusId
-            }));
-          };
-
-          scope.editCouple = function() {
-            scope.$emit('navigate', 'couple', {
-              coupleId: scope.couple.id
-            });
-          };
+          scope.addChildHref = fsLocation.getFindAddUrl(fsUtils.removeEmptyProperties({
+            fatherId: !!scope.family.husband ? scope.family.husband.id : null,
+            motherId: !!scope.family.wife ? scope.family.wife.id : null,
+            returnToPersonId: scope.focusId
+          }));
 
           scope.$on('addSpouse', function(event) {
             event.stopPropagation();
-            scope.$emit('navigate', 'find-add', fsUtils.removeEmptyProperties({
+            fsLocation.setFindAddLocation(fsUtils.removeEmptyProperties({
               husbandId: !!scope.family.husband ? scope.family.husband.id : null,
               wifeId: !!scope.family.wife ? scope.family.wife.id : null,
               childIds: _.map(scope.children, function(child) { return child.person.id; }).join(','),

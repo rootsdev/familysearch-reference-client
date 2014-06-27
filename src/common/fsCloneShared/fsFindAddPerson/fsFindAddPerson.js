@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFindAddPerson', function(_, $q, fsApi, fsUtils, fsConfirmationModal) {
+    .directive('fsFindAddPerson', function(_, $q, fsApi, fsUtils, fsConfirmationModal, fsLocation) {
       return {
         templateUrl: 'fsCloneShared/fsFindAddPerson/fsFindAddPerson.tpl.html',
         scope: {
@@ -84,13 +84,13 @@
           function leave() {
             scope.busy = false;
             if (!!scope.returnToPersonId) {
-              scope.$emit('navigate', 'person', { personId: scope.returnToPersonId });
+              fsLocation.setPersonLocation(scope.returnToPersonId);
             }
             else if (!!scope.returnToCoupleId) {
-              scope.$emit('navigate', 'couple', { coupleId: scope.returnToCoupleId });
+              fsLocation.setCoupleLocation(scope.returnToCoupleId);
             }
             else if (!!scope.returnToParentsId) {
-              scope.$emit('navigate', 'parents', { parentsId: scope.returnToParentsId });
+              fsLocation.setParentsLocation(scope.returnToParentsId);
             }
           }
 

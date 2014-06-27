@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsPersonSmall', function () {
+    .directive('fsPersonSmall', function (fsLocation) {
       return {
         templateUrl: 'fsCloneShared/fsPersonSmall/fsPersonSmall.tpl.html',
         scope: {
@@ -14,11 +14,7 @@
           hidePid: '@'
         },
         link: function(scope) {
-          scope.doEditParents = function() {
-            scope.$emit('navigate', 'parents', {
-              parentsId: scope.parentsId
-            });
-          };
+          scope.parentsHref = fsLocation.getParentsUrl(scope.parentsId);
 
         }
       };

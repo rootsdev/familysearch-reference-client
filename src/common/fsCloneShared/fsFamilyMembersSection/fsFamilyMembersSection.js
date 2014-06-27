@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFamilyMembersSection', function (_, $rootScope, fsApi, fsUtils) {
+    .directive('fsFamilyMembersSection', function (_, $rootScope, fsApi, fsUtils, fsLocation) {
 
       function getSpouseFamilies(pwr, self) {
         // first gather all of the couple relationships
@@ -120,30 +120,24 @@
           });
 
           // add new spouse
-          scope.addSpouse = function() {
-            scope.$emit('navigate', 'find-add', fsUtils.removeEmptyProperties({
-              husbandId: scope.person._isMale() ? scope.person.id : null,
-              wifeId: !scope.person._isMale() ? scope.person.id : null,
-              returnToPersonId: scope.person.id
-            }));
-          };
+          scope.addSpouseHref = fsLocation.getFindAddUrl(fsUtils.removeEmptyProperties({
+            husbandId: scope.person._isMale() ? scope.person.id : null,
+            wifeId: !scope.person._isMale() ? scope.person.id : null,
+            returnToPersonId: scope.person.id
+          }));
 
           // add child with unknown parent
-          scope.addChild = function() {
-            scope.$emit('navigate', 'find-add', fsUtils.removeEmptyProperties({
-              fatherId: scope.person._isMale() ? scope.person.id : null,
-              motherId: !scope.person._isMale() ? scope.person.id : null,
-              returnToPersonId: scope.person.id
-            }));
-          };
+          scope.addChildHref = fsLocation.getFindAddUrl(fsUtils.removeEmptyProperties({
+            fatherId: scope.person._isMale() ? scope.person.id : null,
+            motherId: !scope.person._isMale() ? scope.person.id : null,
+            returnToPersonId: scope.person.id
+          }));
 
           // add parent to child
-          scope.addParent = function() {
-            scope.$emit('navigate', 'find-add', fsUtils.removeEmptyProperties({
-              childIds: scope.person.id,
-              returnToPersonId: scope.person.id
-            }));
-          };
+          scope.addParentHref = fsLocation.getFindAddUrl(fsUtils.removeEmptyProperties({
+            childIds: scope.person.id,
+            returnToPersonId: scope.person.id
+          }));
 
         }
       };
