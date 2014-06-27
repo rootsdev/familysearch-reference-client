@@ -4,10 +4,10 @@
       &nbsp;
     </div>
     <div class="coupleWrapper">
-      <div fs-person-small ng-show="!!family.husband" person="family.husband" is-focus="{{isFocus(family.husband)}}"></div>
-      <div fs-family-members-add-spouse ng-hide="!!family.husband" gender="Male"></div>
-      <div fs-person-small ng-show="!!family.wife" person="family.wife" is-focus="{{isFocus(family.wife)}}"></div>
-      <div fs-family-members-add-spouse ng-hide="!!family.wife" gender="Female"></div>
+      <div fs-person-small ng-if="!!family.husband" person="family.husband" is-focus="{{isFocus(family.husband)}}"></div>
+      <div fs-family-members-add-spouse ng-if="!family.husband" gender="Male"></div>
+      <div fs-person-small ng-if="!!family.wife" person="family.wife" is-focus="{{isFocus(family.wife)}}"></div>
+      <div fs-family-members-add-spouse ng-if="!family.wife" gender="Female"></div>
     </div>
     <div class="event">
       <div ng-hide="!!couple" class="noCoupleRelationship">No Couple Relationship</div>
