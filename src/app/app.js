@@ -79,10 +79,10 @@
           $scope.busy = true;
         }
       });
-      $scope.$on('$stateChangeSuccess', function(event, toState) {
+      $scope.$on('$stateChangeSuccess', function() {
         $scope.busy = false;
       });
-      $scope.$on('$stateChangeError', function(event, toState) {
+      $scope.$on('$stateChangeError', function() {
         $scope.busy = false;
       });
 
