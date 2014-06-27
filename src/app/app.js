@@ -75,17 +75,14 @@
       // don't forget to edit index.html to add {Track:js} script on demo
 
       $scope.$on('$stateChangeStart', function(event, toState) {
-        console.log('stateChangeStart', toState);
         if (toState.resolve) {
           $scope.busy = true;
         }
       });
       $scope.$on('$stateChangeSuccess', function(event, toState) {
-        console.log('stateChangeSuccess', toState);
         $scope.busy = false;
       });
       $scope.$on('$stateChangeError', function(event, toState) {
-        console.log('stateChangeError', toState);
         $scope.busy = false;
       });
 
