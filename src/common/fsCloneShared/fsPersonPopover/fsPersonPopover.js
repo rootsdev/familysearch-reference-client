@@ -20,7 +20,7 @@
           function noopAdjustor() {
             return scope.popoverPlacement;
           }
-          scope.placementAdjustor = noopAdjustor();
+          scope.placementAdjustor = noopAdjustor;
 
 
           var autoToken = /\s?auto?\s?/i;
