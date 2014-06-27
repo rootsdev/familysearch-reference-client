@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsTreeNode', function() {
+    .directive('fsTreeNode', function(fsLocation) {
       return {
         templateUrl: 'fsCloneShared/fsTree/fsTreeNode.tpl.html',
         scope: {
@@ -9,7 +9,7 @@
           expandable: '=',
           brackets: '@'
         },
-        link: function($scope, fsLocation) {
+        link: function($scope) {
           $scope.islive = !!$scope.family;
 
           function createFindAddContext() {

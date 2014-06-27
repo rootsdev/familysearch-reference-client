@@ -62,9 +62,14 @@
             scope.popoverPlacement = scope.placementAdjustor();
           };
 
-          scope.personHref = fsLocation.getPersonUrl(scope.person.id);
-
-          scope.treeHref = fsLocation.getTreeUrl(scope.person.id);
+          scope.$watch(function() {
+            return scope.person;
+          }, function() {
+            if (!!scope.person) {
+              scope.personHref = fsLocation.getPersonUrl(scope.person.id);
+              scope.treeHref = fsLocation.getTreeUrl(scope.person.id);
+            }
+          });
 
         }
       };
