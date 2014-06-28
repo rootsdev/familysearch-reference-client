@@ -25,12 +25,12 @@
             };
 
             if ( family.hasWife() ) {
-              invocationContext.wifeId = family.wifeDescription.person.id;
-              invocationContext.motherId = family.wifeDescription.person.id;
+              invocationContext.wifeId = family.getWife().id;
+              invocationContext.motherId = family.getWife().id;
             }
             if ( family.hasHusband() ) {
-              invocationContext.husbandId = family.husbandDescription.person.id;
-              invocationContext.fatherId = family.husbandDescription.person.id;
+              invocationContext.husbandId = family.getHusband().id;
+              invocationContext.fatherId = family.getHusband().id;
             }
             if ( family.hasChildren() ) {
               invocationContext.childIds = _.map(family.children(),'id');
@@ -44,11 +44,11 @@
             }
             else
             if ( family.hasHusband() ) {
-              invocationContext.returnToPersonId = family.husbandDescription.person.id;
+              invocationContext.returnToPersonId = family.getHusband().id;
             }
             else
             if ( family.hasWife() ) {
-              invocationContext.returnToPersonId = family.wifeDescription.person.id;
+              invocationContext.returnToPersonId = family.getWife().id;
             }
             if ( invocationContext.childIds ) {
               invocationContext.childIds = invocationContext.childIds.join(',');
