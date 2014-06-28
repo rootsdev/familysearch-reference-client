@@ -56,7 +56,13 @@
             return invocationContext;
           }
 
-          $scope.findAddHref = fsLocation.getFindAddUrl(createFindAddContext());
+          $scope.$watch(function() {
+            return $scope.family;
+          }, function() {
+            if (!!$scope.family) {
+              $scope.findAddHref = fsLocation.getFindAddUrl(createFindAddContext());
+            }
+          });
 
           $scope.initHoverData = function() {
             if ( !$scope.didInitHoverData && $scope.family ) {
