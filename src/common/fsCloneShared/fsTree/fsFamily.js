@@ -29,6 +29,7 @@
                     parentChildRelationship.$getFatherId()===personId ? parentChildRelationship.$getMotherId() : parentChildRelationship.$getFatherId()
           );
         })
+        .reject(function(spouse) { return !spouse; })
         .union(explicitSpouses)
         .uniq('id')
         .valueOf();
