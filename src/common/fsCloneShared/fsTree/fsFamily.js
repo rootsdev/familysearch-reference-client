@@ -297,8 +297,8 @@
       switchPaternalParents: function(newParents) {
 
         var theFamily = this;
-        var father = newParents.father ? theFamily.personWithRelationships.getPerson(newParents.father.id) : null;
-        var mother = newParents.mother ? theFamily.personWithRelationships.getPerson(newParents.mother.id) : null;
+        var father = newParents.father ? theFamily.getHusbandWithRelationships().getPerson(newParents.father.id) : null;
+        var mother = newParents.mother ? theFamily.getHusbandWithRelationships().getPerson(newParents.mother.id) : null;
 
         var newFamily = new FamilyConstructor();
         if ( father ) {
@@ -383,8 +383,8 @@
 
       switchMaternalParents: function(newParents) {
         var theFamily = this;
-        var father = newParents.father ? theFamily.personWithRelationships.getPerson(newParents.father.id) : null;
-        var mother = newParents.mother ? theFamily.personWithRelationships.getPerson(newParents.mother.id) : null;
+        var father = newParents.father ? theFamily.getWifeWithRelationships().getPerson(newParents.father.id) : null;
+        var mother = newParents.mother ? theFamily.getWifeWithRelationships().getPerson(newParents.mother.id) : null;
 
         var newFamily = new FamilyConstructor();
         if ( father ) {
