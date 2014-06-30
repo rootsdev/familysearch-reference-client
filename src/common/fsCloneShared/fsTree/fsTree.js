@@ -9,7 +9,6 @@
           spouse: '='
         },
         controller: function($scope, $element, Family, $document, $window) {
-
           // BEGIN resize page divs for tree view.
           $document.find('.navbar').css('margin-bottom', 0);
           $document.find('body').css('padding-bottom', 0).css('overflow', 'hidden').css('height', '100%');
@@ -28,7 +27,7 @@
             $scope.$apply();
           });
 
-          $scope.family = new Family($scope.person);
+          $scope.family = new Family($scope.person, $scope.spouse);
 
           $scope.move = function(event,x,y) {
             $scope.model.pan({x:x,y:y});

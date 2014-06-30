@@ -3,21 +3,15 @@
   angular.module('fsClone')
     .config(function ($stateProvider) {
       $stateProvider.state('tree', {
-        url: '/tree/:personId',
+        url: '/tree/:personId?spouseId',
         controller: 'TreeController',
         templateUrl: 'tree/tree.tpl.html',
-        data: { pageTitle: 'Tree' },
-        resolve: {
-          person: function($stateParams, fsApi) {
-            return fsApi.getPerson($stateParams.personId).then(function(response) {
-              return response.getPerson();
-            });
-          }
-        }
+        data: { pageTitle: 'Tree' }
       });
     })
-    .controller('TreeController', function ($scope, person) {
-      $scope.person = person;
+    .controller('TreeController', function ($scope, $stateParams) {
+      $scope.personId = $stateParams.personId;
+      $scope.spouseId = $stateParams.spouseId;
 
     });
 })();

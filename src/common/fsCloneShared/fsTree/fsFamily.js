@@ -36,11 +36,12 @@
       return allSpouses;
     }
 
-    function FamilyConstructor(rootPerson) {
+    function FamilyConstructor(rootPerson, spouseId) {
       if ( rootPerson ) {
         var personId = coerce2PersonId(rootPerson);
+
         this.initPerson(personId)
-          .then(_.bind(this.initSpouse,this))
+          .then(_.bind(this.initSpouse,this, spouseId))
           .then(_.bind(this.initAncestry,this) )
           .then(_.bind(this.initDescendancy,this));
       }
@@ -58,7 +59,11 @@
 
       },
 
-      initSpouse: function() {
+      initSpouse: function(spouseId) {
+        if ( spouseId==='unknown') {
+          return $q.when(null);
+        }
+
         var theFamily = this;
         var personId = theFamily.personWithRelationships.getPrimaryPerson().id;
         var spouses = getExplicitAndImpliedSpouses(theFamily.personWithRelationships);
@@ -134,7 +139,8 @@
           return $q.when(theFamily.descendancy);
         }
         var personId = theFamily.personWithRelationships.getPrimaryPerson().id;
-        return fsApi.getDescendancy(personId, {generations:2, spouse: theFamily.spouse?theFamily.spouse.id:null, personDetails:true }).then(function(response){
+        var request = {generations:2, spouse: theFamily.spouse?theFamily.spouse.id:null, personDetails:true };
+        return fsApi.getDescendancy(personId, request).then(function(response){
           theFamily.descendancy = response;
           theFamily.initChildFamilies();
           return theFamily.descendancy;
