@@ -68,8 +68,6 @@
         return function (scope) {
             var w = angular.element($window);
             scope.getWindowDimensions = function () {
-                console.log(w.height());
-                console.log(w.width());
                 return {
                     'h': w.height(),
                     'w': w.width()
