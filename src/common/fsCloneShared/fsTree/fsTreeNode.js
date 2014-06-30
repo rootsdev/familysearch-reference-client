@@ -61,6 +61,12 @@
           }, function() {
             if (!!$scope.family) {
               $scope.findAddHref = fsLocation.getFindAddUrl(createFindAddContext());
+              if ( $scope.family.getHusband() ) {
+                $scope.treeWithUnknownMotherHref = fsLocation.getTreeUrl($scope.family.getHusband().id,{spouseId:'unknown'});
+              }
+              if ( $scope.family.getWife() ) {
+                $scope.treeWithUnknownFatherHref = fsLocation.getTreeUrl($scope.family.getWife().id,{spouseId:'unknown'});
+              }
             }
           });
 

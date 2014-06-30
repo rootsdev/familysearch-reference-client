@@ -42,10 +42,11 @@
             path: '/parents/' + parentsId
           };
         },
-        getTreeLocation: function(personId) {
+        getTreeLocation: function(personId, opts) {
           return {
             prefix: prefix,
-            path: '/tree/'+personId
+            path: '/tree/'+personId,
+            search: opts
           };
         },
         getFindAddLocation: function(opts) {

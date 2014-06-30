@@ -37,6 +37,8 @@
                             <img ng-show="!person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>
                             <a fs-person-popover popover-placement="auto top" person="person">{{person.$getPreferredName().$getFullText()}}</a>
                         </li>
+                        <li class="list-group-item" ng-show="family.hasChildrenWithUnknownFather()"><hr><a ng-href="{{family.hrefForUnknownFather()}}">Children with Unknown Father</a></li>
+
                     </ul>
                 </div>
             </div>
@@ -61,7 +63,9 @@
                             <img ng-show="!person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>
                             <a fs-person-popover popover-placement="auto top" person="person">{{person.$getPreferredName().$getFullText()}}</a>
                         </li>
+                        <li class="list-group-item" ng-show="family.hasChildrenWithUnknownMother()"><hr><a ng-href="{{family.hrefForUnknownMother()}}">Children with Unknown Mother</a></li>
                     </ul>
+
                 </div>
             </div>
 

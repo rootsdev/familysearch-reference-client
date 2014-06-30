@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('fsCloneShared').factory('Family', function(_,fsApi, $q) {
+  angular.module('fsCloneShared').factory('Family', function(_,fsApi, $q, fsLocation) {
     function coerce2PersonId(thing) {
       if (_.isNull(thing) || _.isUndefined(thing)) {
         return thing;
@@ -412,6 +412,28 @@
       // ------------------------------------
       hasChildren: function() {
         return this.children().length > 0;
+      },
+
+      hasChildrenWithUnknownMother: function() {
+        return this.getHusbandWithRelationships() && this.getHusbandWithRelationships().getChildrenOf(null).length;
+      },
+
+      hrefForUnknownMother:  function() {
+        return this.hasChildrenWithUnknownMother() ?
+          fsLocation.getTreeUrl(this.getHusband().id,{spouseId:'unknown'})
+          : '';
+      },
+
+
+
+      hasChildrenWithUnknownFather: function() {
+        return this.getWifeWithRelationships() && this.getWifeWithRelationships().getChildrenOf(null).length;
+      },
+
+      hrefForUnknownFather:  function() {
+        return this.hasChildrenWithUnknownFather() ?
+          fsLocation.getTreeUrl(this.getWife().id,{spouseId:'unknown'})
+          : '';
       },
 
       children: function() {

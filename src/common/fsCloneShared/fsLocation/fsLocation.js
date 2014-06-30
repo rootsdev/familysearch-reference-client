@@ -59,8 +59,8 @@
           setParentsLocation: function(parentsId) {
             setLocation(locationFunctions.getParentsLocation(parentsId));
           },
-          getTreeUrl: function(personId) {
-            return getUrl(locationFunctions.getTreeLocation(personId));
+          getTreeUrl: function(personId,spouseId) {
+            return getUrl(locationFunctions.getTreeLocation(personId,spouseId));
           },
           setTreeLocation: function(personId) {
             setLocation(locationFunctions.getTreeLocation(personId));
