@@ -26,7 +26,7 @@
               type: scope.fact.type,
               title: $filter('fsCustomFactTitle')(scope.fact.type),
               value: scope.fact.value,
-              date: scope.fact.$getDate(),
+              date: $filter('fsDate')(scope.fact),
               stdDate: scope.fact.$getNormalizedDate(),
               formalDate: scope.fact.$getFormalDate(),
               place: scope.fact.$getPlace(),

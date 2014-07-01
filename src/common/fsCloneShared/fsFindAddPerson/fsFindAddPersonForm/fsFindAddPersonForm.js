@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('fsCloneShared')
-    .directive('fsFindAddPersonForm', function(_, $q, $timeout, fsApi) {
+    .directive('fsFindAddPersonForm', function(_, $q, $timeout, $filter, fsApi) {
       return {
         templateUrl: 'fsCloneShared/fsFindAddPerson/fsFindAddPersonForm/fsFindAddPersonForm.tpl.html',
         scope: {
@@ -132,7 +132,7 @@
                   if (!!fact && !factFound && (!!fact.$getDate() || !!fact.$getPlace())) {
                     factFound = true;
                     scope.form.event = eventOption.value;
-                    scope.form.date = fact.$getDate();
+                    scope.form.date = $filter('fsDate')(fact);
                     scope.form.place = fact.$getPlace();
                   }
                 });

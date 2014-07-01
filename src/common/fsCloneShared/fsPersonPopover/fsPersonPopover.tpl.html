@@ -8,7 +8,7 @@
 
                     <div class="nameWrapper">
                         <i class="icon-rounded" ng-class="{'fs-icon-male': person._isMale(), 'fs-icon-female': !person._isMale()}">&nbsp;</i>
-                        <a ng=href="{{personHref}}" class="male personcard name widgetAction">{{person.$getDisplayName()}}</a><br />
+                        <a ng-href="{{personHref}}" class="male personcard name widgetAction">{{person.$getDisplayName()}}</a><br />
                         <span class="pid">{{person.id}}</span>
                     </div>
 
@@ -30,12 +30,13 @@
                         <th>Birth</th>
 
                         <td>
-                            <div class="date ellipses-text" title="Standard: {{person.$getBirthDate()}}">{{person.$getBirthDate()}}</div>
+                            <div class="date ellipses-text" title="{{person.$getBirth() ? 'Standard: '+person.$getBirth().$getNormalizedDate() : ''}}">
+                              {{person.$getDisplayBirthDate()}}
+                            </div>
 
                             <div class="ellipses-text">
-                                <div class="place" title=
-                                        "Standard: {{person.$getBirthPlace()}}">
-                                    {{person.$getBirthPlace()}}
+                                <div class="place" title="{{person.$getBirth() ? 'Standard: '+person.$getBirth().$getNormalizedPlace() : ''}}">
+                                    {{person.$getDisplayBirthPlace()}}
                                 </div>
                             </div>
                         </td>
@@ -44,11 +45,13 @@
                     <tr class="event death">
                         <th>Death</th>
                         <td>
-                            <div class="date ellipses-text" title="{{ person.living ? 'Living' : 'Standard: '+person.$getDeathDate()}}">
-                                {{person.living ? 'Living' : person.$getDeathDate()}}
+                            <div class="date ellipses-text" title="{{person.living ? 'Living' : (person.$getDeath() ? 'Standard: '+person.$getDeath().$getNormalizedDate() : '')}}">
+                                {{person.living ? 'Living' : person.$getDisplayDeathDate()}}
                             </div>
                             <div class="ellipses-text">
-                                <div class="place" title="{{person.$getDeathPlace()}}">{{person.$getDeathPlace()}}</div>
+                                <div class="place" title="{{person.$getDeath() ? 'Standard: '+person.$getDeath().$getNormalizedPlace() : ''}}">
+                                  {{person.$getDisplayDeathPlace()}}
+                                </div>
                             </div>
                         </td>
                     </tr>

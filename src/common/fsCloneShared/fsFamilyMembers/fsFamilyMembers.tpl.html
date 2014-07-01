@@ -12,7 +12,7 @@
     <div class="event">
       <div ng-hide="!!couple" class="noCoupleRelationship">No Couple Relationship</div>
       <div ng-show="!!couple.$getMarriageFact()" class="eventName">Married</div>
-      <div ng-show="!!couple.$getMarriageFact().$getDate()" class="eventDate">{{couple.$getMarriageFact().$getDate()}}</div>
+      <div ng-show="!!couple.$getMarriageFact().$getDate()" class="eventDate">{{couple.$getMarriageFact() | fsDate}}</div>
       <div ng-show="!!couple.$getMarriageFact().$getPlace()" class="eventPlace"
            title="{{couple.$getMarriageFact().$getNormalizedPlace()}}">{{couple.$getMarriageFact().$getPlace()}}</div>
     </div>
