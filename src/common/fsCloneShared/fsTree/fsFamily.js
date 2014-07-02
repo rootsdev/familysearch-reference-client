@@ -98,7 +98,7 @@
           return $q.when(null);
         }
         var personId = theFamily.getPerson().id;
-        return fsApi.getAncestry(personId, {generations:4, spouse: theFamily.spouse?theFamily.spouse.id:null, personDetails:true}).then(function(response){
+        return fsApi.getAncestry(personId, {generations:4, spouse: theFamily.spouse?theFamily.spouse.id:null}).then(function(response){
           theFamily.ancestry = response;
           theFamily.initParentFamilies();
           return theFamily.ancestry;
@@ -139,7 +139,7 @@
           return $q.when(theFamily.descendancy);
         }
         var personId = theFamily.personWithRelationships.getPrimaryPerson().id;
-        var request = {generations:2, spouse: theFamily.spouse?theFamily.spouse.id:null, personDetails:true };
+        var request = {generations:2, spouse: theFamily.spouse?theFamily.spouse.id:null};
         return fsApi.getDescendancy(personId, request).then(function(response){
           theFamily.descendancy = response;
           theFamily.initChildFamilies();
