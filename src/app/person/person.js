@@ -8,12 +8,12 @@
         templateUrl: 'person/person.tpl.html',
         data: { pageTitle: 'Person' },
         resolve: {
-          person: function($stateParams, fsApi) {
+          person: ['$stateParams','fsApi',function($stateParams, fsApi) {
             return fsApi.getPerson($stateParams.personId).then(function (response) {
               return response.getPerson();
             });
-          },
-          sources: function(_, $q, $stateParams, fsApi) {
+          }],
+          sources: ['_','$q','$stateParams','fsApi',function(_, $q, $stateParams, fsApi) {
             return fsApi.getPersonSourceRefs($stateParams.personId).then(function(response) {
               return _.map(response.getSourceRefs(), function(sourceRef) {
                 return {
@@ -23,7 +23,7 @@
                 };
               });
             });
-          }
+          }]
         }
       });
     })

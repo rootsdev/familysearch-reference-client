@@ -234,7 +234,7 @@ module.exports = function(grunt) {
                     '<%= build_dir %>/src/common/**/*.js',
                     '<%= build_dir %>/templates-common.js'
                 ],
-                dest: '<%= dist_dir %>/fsclone-all-<%= pkg.version %>.js'
+                dest: '<%= compile_dir %>/fsclone-common-<%= pkg.version %>.js'
             }
 
         },
@@ -284,11 +284,16 @@ module.exports = function(grunt) {
             compile: {
                 options: {
                     banner: '<%= meta.banner %>',
-                    mangle: false
+                    mangle: true
                 },
-                files: {
-                    '<%= concat.compile_js.dest %>': '<%= concat.compile_js.dest %>'
-                }
+                files: [
+                  {
+                    expand: true,
+                    cwd: '<%= build_dir %>',
+                    src: ['**/*.js'],
+                    dest: '<%= build_dir %>'
+                  }
+                ]
             }
         },
 
@@ -634,9 +639,9 @@ module.exports = function(grunt) {
 
     // The 'compile' task gets your app ready for deployment by concatenating and minifying your code.
     grunt.registerTask('compile', [
+      'recess:compile', 'copy:compile_assets', 'ngmin', 'uglify', 'concat:compile_js', 'concat:dist_js', 'index:compile'
+//      'recess:compile', 'copy:compile_assets', 'concat:compile_js', 'concat:dist_js', 'index:compile'
 //      'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'concat:dist_js', 'uglify', 'index:compile'
-//      'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'concat:dist_js', 'index:compile'
-      'recess:compile', 'copy:compile_assets', 'concat:compile_js', 'concat:dist_js', 'index:compile'
     ]);
 
     // A utility function to get all app JavaScript sources.
