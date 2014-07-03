@@ -1,6 +1,13 @@
 <div class="tree-wrapper" >
 
     <span ng-show="family.isReadingAncestry()" style="float: left; line-height: 50px;position:absolute; left:980px;top:368px"><i class="fa fa-spinner fa-spin"></i></span>
+    <span ng-show="family.parentFamilyOfHusband().isReadingAncestry()" style="float: left; line-height: 50px;position:absolute; left:1330px;top:172px"><i class="fa fa-spinner fa-spin"></i></span>
+    <span ng-show="family.parentFamilyOfHusband().parentFamilyOfHusband().isReadingAncestry()" style="float: left; line-height: 50px;position:absolute; left:1507px;top:52px"><i class="fa fa-spinner fa-spin"></i></span>
+    <span ng-show="family.parentFamilyOfHusband().parentFamilyOfWife().isReadingAncestry()" style="float: left; line-height: 50px;position:absolute; left:1507px;top:298px"><i class="fa fa-spinner fa-spin"></i></span>
+
+    <span ng-show="family.parentFamilyOfWife().isReadingAncestry()" style="float: left; line-height: 50px;position:absolute; left:1330px;top:580px"><i class="fa fa-spinner fa-spin"></i></span>
+    <span ng-show="family.parentFamilyOfWife().parentFamilyOfHusband().isReadingAncestry()" style="float: left; line-height: 50px;position:absolute; left:1507px;top:456px"><i class="fa fa-spinner fa-spin"></i></span>
+    <span ng-show="family.parentFamilyOfWife().parentFamilyOfWife().isReadingAncestry()" style="float: left; line-height: 50px;position:absolute; left:1507px;top:696px"><i class="fa fa-spinner fa-spin"></i></span>
 
     <!--kids-->
     <div ng-if="showKids && family.hasChildFamilies()" id="kids" style="position:absolute; left: 0;" ng-style="childFamiliesPlacement()">
