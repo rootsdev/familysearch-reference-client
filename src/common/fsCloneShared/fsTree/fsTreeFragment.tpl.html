@@ -1,5 +1,7 @@
 <div class="tree-wrapper" >
 
+    <span ng-show="family.isReadingAncestry()" style="float: left; line-height: 50px;position:absolute; left:980px;top:368px"><i class="fa fa-spinner fa-spin"></i></span>
+
     <!--kids-->
     <div ng-if="showKids && family.hasChildFamilies()" id="kids" style="position:absolute; left: 0;" ng-style="childFamiliesPlacement()">
         <div ng-repeat="childFamily in family.childFamilies()" class="child-list-item">

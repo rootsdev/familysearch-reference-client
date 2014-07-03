@@ -40,10 +40,27 @@
       if ( rootPerson ) {
         var personId = coerce2PersonId(rootPerson);
 
+        var theFamily = this;
+
+        theFamily.readingAncestry = true;
+        theFamily.readingDescendancy = true;
+
+        var doneReadingAncestry =function(result) {
+          theFamily.readingAncestry = false;
+          return result;
+        };
+
+        var doneReadingDescendancy =function(result) {
+          theFamily.readingDescendancy = false;
+          return result;
+        };
+
         this.initPerson(personId)
           .then(_.bind(this.initSpouse,this, spouseId))
           .then(_.bind(this.initAncestry,this) )
-          .then(_.bind(this.initDescendancy,this));
+          .then(doneReadingAncestry,doneReadingAncestry)
+          .then(_.bind(this.initDescendancy,this))
+          .then(doneReadingDescendancy,doneReadingDescendancy);
       }
     }
 
@@ -98,11 +115,16 @@
           return $q.when(null);
         }
         var personId = theFamily.getPerson().id;
+
         return fsApi.getAncestry(personId, {generations:4, spouse: theFamily.spouse?theFamily.spouse.id:null}).then(function(response){
           theFamily.ancestry = response;
           theFamily.initParentFamilies();
           return theFamily.ancestry;
         });
+      },
+
+      isReadingAncestry: function() {
+        return this.readingAncestry === true;
       },
 
       initParentFamilies: function() {
@@ -145,6 +167,11 @@
           theFamily.initChildFamilies();
           return theFamily.descendancy;
         });
+      },
+
+
+      isReadingDescendancy: function() {
+        return this.readingDescendancy === true;
       },
 
       initChildFamilies: function() {
@@ -316,8 +343,10 @@
           newFamily.spouse = father;
           newFamily.referenceId = theFamily.getHusband().id;
         }
+        theFamily.readingAncestry = true;
         newFamily.initAncestry().then(function(){
           theFamily.cachedFamilyOfHusbandsParents = newFamily;
+          theFamily.readingAncestry = false;
         });
       },
 
@@ -402,8 +431,11 @@
           newFamily.spouse = father;
           newFamily.referenceId = theFamily.getWife().id;
         }
+        theFamily.readingAncestry = true;
+
         newFamily.initAncestry().then(function(){
           theFamily.cachedFamilyOfWifesParents = newFamily;
+          theFamily.readingAncestry = false;
         });
       },
 
