@@ -7,6 +7,7 @@
           return $modal.open({
             templateUrl: 'fsCloneShared/fsDeleteConfirmationModal/fsDeleteConfirmationModal.tpl.html',
             size: 'lg',
+            windowClass: 'deleteDialog',
             controller: function($scope) {
               _.extend($scope, opts);
 
