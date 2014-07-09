@@ -12,65 +12,123 @@
         </div>
 
 
-        <!--Alternate husbands-->
-        <div  ng-show="family.hasAlternateHusbands()" class="all-husbands-wrapper" style="cursor:hand">
 
-            <div class="pull-left text-right sans-serif all-family-label" ng-class="{'label-open':getClickState()==='husbands', 'label-closed':getClickState()!=='husbands'}">
-                <p style="padding-top:8px">All Husbands</p>
-            </div>
-            <div class="pull-right" >
-                <div ng-click="toggleClickState('husbands')" class="pull-right" ng-class="{'all-husbands-arrow-closed':getClickState()!=='husbands','all-husbands-arrow-open':getClickState()==='husbands'}" >
-                    <span class="fs-icon-arrow-left"></span>
+
+        <!-- Alternate husbands -->
+        <div ng-show="family.hasAlternateHusbands()" ng-class="{'containerOpen':getClickState()==='husbands'}" class="all-husbands-wrapper alternativeFamily alternativeHusbands">
+            <div class="alternativeFamilyContainer">
+                <div class="arrow" >
+                    <div ng-click="toggleClickState('husbands')" class="pull-right">
+                        <span class="fs-icon-arrow-left"></span>
+                    </div>
+                    <div class="clearfloat">&nbsp;</div>
                 </div>
-                <div class="clearfloat">&nbsp;</div>
-                <!--<div ng-click="toggleClickState('wives')" class="pull-right" style="margin-top:2px" ng-class="{'all-wives-arrow-closed':getClickState()!=='wives','all-wives-arrow-open':getClickState()==='wives'}" >-->
+                <div class="text-right familyLabel">
+                    <p>All Husbands</p>
+                </div>
+                <div class="familyList" ng-show="getClickState()==='husbands'">
+                    <ul>
+                        <li ng-repeat="person in family.alternateHusbands()"  ng-class="{'selected':$first}">
+                            <div ng-class="{'fs-icon-small-female icon-rounded':getClickState()!=='husbands','fs-icon-small-male':getClickState()==='husbands'}" class="person-gender-icon icon-rounded">&nbsp;</div><a class-fs-person-popover popover-placement="auto top" person="person">{{person.$getPreferredName().$getFullText()}}</a>
+                        </li>
+                        <li ng-show="family.hasChildrenWithUnknownFather()" class="divider"><hr></li>
+                        <li ng-show="family.hasChildrenWithUnknownFather()"><a ng-href="{{family.hrefForUnknownFather()}}">Children with Unknown Father</a></li>
+                    </ul>
+                    <div class="clearfix">&nbsp;</div>
+                </div>
+            </div>
+            <div class="clearfix">&nbsp;</div>
+        </div>
+
+        <!---->
+        <!---->
+
+        <!--&lt;!&ndash;Alternate husbands&ndash;&gt;-->
+        <!--<div  ng-show="family.hasAlternateHusbands()" class="all-husbands-wrapper" style="cursor:hand">-->
+
+            <!--<div class="pull-left text-right sans-serif all-family-label" ng-class="{'label-open':getClickState()==='husbands', 'label-closed':getClickState()!=='husbands'}">-->
+                <!--<p style="padding-top:8px">All Husbands</p>-->
+            <!--</div>-->
+            <!--<div class="pull-right" >-->
+                <!--<div ng-click="toggleClickState('husbands')" class="pull-right" ng-class="{'all-husbands-arrow-closed':getClickState()!=='husbands','all-husbands-arrow-open':getClickState()==='husbands'}" >-->
                     <!--<span class="fs-icon-arrow-left"></span>-->
                 <!--</div>-->
-            </div>
+                <!--<div class="clearfloat">&nbsp;</div>-->
+                <!--&lt;!&ndash;<div ng-click="toggleClickState('wives')" class="pull-right" style="margin-top:2px" ng-class="{'all-wives-arrow-closed':getClickState()!=='wives','all-wives-arrow-open':getClickState()==='wives'}" >&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="fs-icon-arrow-left"></span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--</div>-->
 
 
-            <div class="pull-left text-right sans-serif all-family-label" ng-show="getClickState()==='husbands'">
-                <div class="all-family-list">
-                    <ul class="list-group">
-                        <li ng-repeat="person in family.alternateHusbands()"  class="list-group-item" ng-class="{'all-family-list-selected':$first}">
-                            <img ng-show="person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">
-                            <img ng-show="!person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>
-                            <a fs-person-popover popover-placement="auto top" person="person">{{person.$getPreferredName().$getFullText()}}</a>
-                        </li>
-                        <li class="list-group-item" ng-show="family.hasChildrenWithUnknownFather()"><hr><a ng-href="{{family.hrefForUnknownFather()}}">Children with Unknown Father</a></li>
+            <!--<div class="pull-left text-right sans-serif all-family-label" ng-show="getClickState()==='husbands'">-->
+                <!--<div class="all-family-list">-->
+                    <!--<ul class="list-group">-->
+                        <!--<li ng-repeat="person in family.alternateHusbands()"  class="list-group-item" ng-class="{'all-family-list-selected':$first}">-->
+                            <!--<img ng-show="person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">-->
+                            <!--<img ng-show="!person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>-->
+                            <!--<a fs-person-popover popover-placement="auto top" person="person">{{person.$getPreferredName().$getFullText()}}</a>-->
+                        <!--</li>-->
+                        <!--<li class="list-group-item" ng-show="family.hasChildrenWithUnknownFather()"><hr><a ng-href="{{family.hrefForUnknownFather()}}">Children with Unknown Father</a></li>-->
 
-                    </ul>
-                </div>
-            </div>
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
 
-            <div class="clearfix">&nbsp;</div>
-        </div>
+            <!--<div class="clearfix">&nbsp;</div>-->
+        <!--</div>-->
 
-        <!--Alternate wives-->
-        <div ng-show="family.hasAlternateWives()" class="all-wives-wrapper" >
-
-            <div class="pull-left text-right sans-serif all-family-label"  ng-class="{'label-open':getClickState()==='wives', 'label-closed':getClickState()!=='wives'}">
-                <p style="padding-top:8px;">All Wives</p>
-            </div>
-            <div ng-click="toggleClickState('wives')" class="pull-right" ng-class="{'all-wives-arrow-closed':getClickState()!=='wives','all-wives-arrow-open':getClickState()==='wives'}" >
-                <span class="fs-icon-arrow-left"></span>
-            </div>
-            <div class="pull-left text-right sans-serif all-family-label" ng-show="getClickState()==='wives'">
-                <div class="all-family-list">
-                    <ul class="list-group">
-                        <li ng-repeat="person in family.alternateWives()"  class="list-group-item" ng-class="{'all-family-list-selected':$first}">
-                            <img ng-show="person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">
-                            <img ng-show="!person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>
-                            <a fs-person-popover popover-placement="auto top" person="person">{{person.$getPreferredName().$getFullText()}}</a>
-                        </li>
-                        <li class="list-group-item" ng-show="family.hasChildrenWithUnknownMother()"><hr><a ng-href="{{family.hrefForUnknownMother()}}">Children with Unknown Mother</a></li>
-                    </ul>
+        <!-- Alternate wives -->
+        <div ng-show="family.hasAlternateWives()" ng-class="{'containerOpen':getClickState()==='wives'}" class="all-wives-wrapper alternativeFamily alternativeWives">
+            <div class="alternativeFamilyContainer">
+                <div class="arrow" >
+                    <div ng-click="toggleClickState('wives')" class="pull-right">
+                        <span class="fs-icon-arrow-left"></span>
+                    </div>
 
                 </div>
+                <div class="text-right familyLabel">
+                    <p>All Wives</p>
+                </div>
+                <div class="familyList" ng-show="getClickState()==='wives'">
+                    <ul>
+                        <li ng-repeat="person in family.alternateWives()"  ng-class="{'selected':$first}">
+                            <div ng-class="{'fs-icon-small-female icon-rounded':getClickState()==='wives','fs-icon-small-male':getClickState()==='husbands'}" class="person-gender-icon icon-rounded">&nbsp;</div><a class-fs-person-popover popover-placement="auto top" person="person">{{person.$getPreferredName().$getFullText()}}</a>
+                        </li>
+                        <li ng-show="family.hasChildrenWithUnknownMother()" class="divider"><hr></li>
+                        <li ng-show="family.hasChildrenWithUnknownMother()"><a ng-href="{{family.hrefForUnknownMother()}}">Children with Unknown Mother</a></li>
+                    </ul>
+                    <div class="clearfix">&nbsp;</div>
+                </div>
             </div>
-
-            <div class="clearfix">&nbsp;</div>
         </div>
+
+
+        <!---->
+        <!--&lt;!&ndash;Alternate wives&ndash;&gt;-->
+        <!--<div ng-show="family.hasAlternateWives()" class="all-wives-wrapper" >-->
+
+            <!--<div class="pull-left text-right sans-serif all-family-label"  ng-class="{'label-open':getClickState()==='wives', 'label-closed':getClickState()!=='wives'}">-->
+                <!--<p style="padding-top:8px;">All Wives</p>-->
+            <!--</div>-->
+            <!--<div ng-click="toggleClickState('wives')" class="pull-right" ng-class="{'all-wives-arrow-closed':getClickState()!=='wives','all-wives-arrow-open':getClickState()==='wives'}" >-->
+                <!--<span class="fs-icon-arrow-left"></span>-->
+            <!--</div>-->
+            <!--<div class="pull-left text-right sans-serif all-family-label" ng-show="getClickState()==='wives'">-->
+                <!--<div class="all-family-list">-->
+                    <!--<ul class="list-group">-->
+                        <!--<li ng-repeat="person in family.alternateWives()"  class="list-group-item" ng-class="{'all-family-list-selected':$first}">-->
+                            <!--<img ng-show="person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">-->
+                            <!--<img ng-show="!person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>-->
+                            <!--<a fs-person-popover popover-placement="auto top" person="person">{{person.$getPreferredName().$getFullText()}}</a>-->
+                        <!--</li>-->
+                        <!--<li class="list-group-item" ng-show="family.hasChildrenWithUnknownMother()"><hr><a ng-href="{{family.hrefForUnknownMother()}}">Children with Unknown Mother</a></li>-->
+                    <!--</ul>-->
+
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="clearfix">&nbsp;</div>-->
+        <!--</div>-->
     </div>
 
     <div class="pull-left" ng-mouseenter="initHoverData()">
@@ -86,7 +144,7 @@
                     <br>
 
                     <div class="pedigree-lifeSpan pull-left">{{lifespanText(family.getHusband())}}</div>
-                    <div class="pull-left dot-guy">•</div>
+                    <div class="pull-left dot-guy">&nbsp;</div>
                     <div class="pull-left pedigree-pid">{{family.getHusband().id}}</div>
                     <div class="clearboth">&nbsp;</div>
                 </div>
@@ -104,7 +162,7 @@
                     <br>
 
                     <div class="pedigree-lifeSpan pull-left">{{lifespanText(family.getWife())}}</div>
-                    <div class="pull-left dot-guy">•</div>
+                    <div class="pull-left dot-guy">&nbsp;</div>
                     <div class="pull-left pedigree-pid">{{family.getWife().id}}</div>
                     <div class="clearboth">&nbsp;</div>
                 </div>
@@ -115,94 +173,198 @@
 
         <div class="clearboth">&nbsp;</div>
 
-        <!-- list of kids hover controls -->
-        <div class="kid-list-wrapper joint-kids-wrapper" ng-class="{'label-open':getClickState()==='kids', 'label-closed':getClickState()!=='kids'}">
-            <!--list of kids collapsed-->
-            <div class="pull-left" ng-show="family.hasChildren()" >
 
-                <div ng-click="toggleClickState('kids')" class="pull-left" ng-class="{'kid-list-arrow-closed':getClickState()!=='kids','kid-list-arrow':getClickState()==='kids'}" >
-                    <div class="fs-icon-arrow-down"></div>
+        <!--Children-->
+        <div ng-show="family.hasChildren()" ng-class="{'containerOpen':getClickState()==='kids'}" class="alternativeFamily alternativeChildren">
+            <div class="alternativeFamilyContainer">
+                <div class="arrow" >
+                    <div ng-click="toggleClickState('kids')">
+                        <div class="fs-icon-arrow-down"></div>
+                    </div>
                 </div>
-                <div class="pull-left sans-serif" >Children</div>
-                <div class="clearboth">&nbsp;</div>
-                <div class="all-family-list" ng-show="getClickState()==='kids'">
-                    <ul class="list-group">
-                        <li ng-repeat="person in family.children()"  class="list-group-item" >
-                            <img ng-show="person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">
-                            <img ng-show="!person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>
+                <div class="familyLabel">
+                    <p>Children</p>
+                </div>
+                <div class="familyList" ng-show="getClickState()==='kids'">
+                    <ul>
+                        <li ng-repeat="person in family.children()">
+                            <div ng-class="{'fs-icon-small-female icon-rounded':!person._isMale(),'fs-icon-small-male':person._isMale()}" class="person-gender-icon icon-rounded">&nbsp;</div>
                             <a fs-person-popover popover-placement="auto top" person="person" style="white-space: nowrap; ">{{person.$getPreferredName().$getFullText()}}</a>
                         </li>
                     </ul>
+                    <div class="clearfix">&nbsp;</div>
                 </div>
             </div>
-            <div class="clearboth">&nbsp;</div>
         </div>
+
+        <!---->
+        <!-- list of kids hover controls -->
+        <!--<div class="kid-list-wrapper joint-kids-wrapper" ng-class="{'label-open':getClickState()==='kids', 'label-closed':getClickState()!=='kids'}">-->
+            <!--<div class="pull-left" ng-show="family.hasChildren()" >-->
+
+                <!--<div ng-click="toggleClickState('kids')" class="pull-left" ng-class="{'kid-list-arrow-closed':getClickState()!=='kids','kid-list-arrow':getClickState()==='kids'}" >-->
+                    <!--<div class="fs-icon-arrow-down"></div>-->
+                <!--</div>-->
+                <!--<div class="pull-left sans-serif" >Children</div>-->
+                <!--<div class="clearboth">&nbsp;</div>-->
+                <!--<div class="all-family-list" ng-show="getClickState()==='kids'">-->
+                    <!--<ul class="list-group">-->
+                        <!--<li ng-repeat="person in family.children()"  class="list-group-item" >-->
+                            <!--<img ng-show="person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">-->
+                            <!--<img ng-show="!person._isMale()" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>-->
+                            <!--<a fs-person-popover popover-placement="auto top" person="person" style="white-space: nowrap; ">{{person.$getPreferredName().$getFullText()}}</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="clearboth">&nbsp;</div>-->
+        <!--</div>-->
     </div>
 
 
     <div class="pull-left all-family-wrapper">
 
+
+        <!--<div ng-show="family.hasAlternatePaternalParents()" class="all-wives-wrapper alternativeFamily alternativeWives">-->
+            <!--<div class="alternativeFamilyContainer" ng-class="{'containerOpen':getClickState()==='wives'}">-->
+                <!--<div class="arrow" >-->
+                    <!--<div ng-click="toggleClickState('wives')" class="pull-right" ng-class="{'':getClickState()!=='wives','arrowPpen':getClickState()==='wives'}" >-->
+                        <!--<span class="fs-icon-arrow-left"></span>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+                <!--<div class="text-right familyLabel">-->
+                    <!--<p>All Wives</p>-->
+                <!--</div>-->
+                <!--<div class="familyList" ng-show="getClickState()==='wives'">-->
+                    <!--<div>-->
+                        <!--<ul>-->
+                            <!--<li ng-repeat="person in family.alternateWives()"  ng-class="{'selected':$first}">-->
+                                <!--<div ng-class="{'fs-icon-small-female icon-rounded':getClickState()==='wives','fs-icon-small-male':getClickState()==='husbands'}" class="person-gender-icon icon-rounded">&nbsp;</div><a class-fs-person-popover popover-placement="auto top" person="person">{{person.$getPreferredName().$getFullText()}}</a>-->
+                            <!--</li>-->
+                            <!--<li ng-show="family.hasChildrenWithUnknownMother()"><hr><a ng-href="{{family.hrefForUnknownMother()}}">Children with Unknown Mother</a></li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
         <!--Alternate parents of the husband-->
-        <div ng-show="family.hasAlternatePaternalParents()"  class="all-husbands-wrapper" >
-
-            <div class="pull-left">
-                <div ng-click="toggleClickState('altPatParents')"  ng-class="{'husband-parents-arrow-closed':getClickState()!=='altPatParents','husband-parents-arrow-open':getClickState()==='altPatParents'}" >
-                    <span class="fs-icon-arrow-right" ></span>
+        <div ng-show="family.hasAlternatePaternalParents()" ng-class="{'containerOpen':getClickState()==='altPatParents'}" class="all-husbands-wrapper alternativeFamily alternativePaternalParents">
+            <div class="alternativeFamilyContainer">
+                <div class="arrow" >
+                    <div ng-click="toggleClickState('altPatParents')" class="pull-right">
+                        <span class="fs-icon-arrow-right"></span>
+                    </div>
                 </div>
-                <div class="clearboth">&nbsp;</div>
-            </div>
-
-            <div class="pull-left sans-serif all-family-label" >
-                <p style="padding:8px 0 0 5px; margin:0" ng-class="{'label-open':getClickState()==='altPatParents', 'label-closed':getClickState()!=='altPatParents'}">All Parents</p>
-
-                <div class="all-family-list" ng-show="getClickState()==='altPatParents'">
-
-                    <ul class="list-group">
-
-                        <li ng-click="family.switchPaternalParents(parents); dismissHoverControls()" ng-repeat="parents in family.alternatePaternalParents()" class="list-group-item" ng-class="{'all-family-list-selected':$first}">
-                            <div class="list-div">
-                                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">
-                                <a href="">{{parents.father.$getPreferredName().$getFullText()}}</a>
-                            </div>
-                            <div class="list-div">
-                                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>
-                                <a href="">{{parents.mother.$getPreferredName().$getFullText()}}</a>
-                            </div>
+                <div class="familyLabel">
+                    <p>All Parents</p>
+                </div>
+                <div class="familyList" ng-show="getClickState()==='altPatParents'">
+                    <ul>
+                        <li ng-click="family.switchPaternalParents(parents); dismissHoverControls()" ng-repeat="parents in family.alternatePaternalParents()" ng-class="{'selected':$first}">
+                            <div class="fs-icon-small-male person-gender-icon icon-rounded">&nbsp;</div>
+                            <a href="">{{parents.father.$getPreferredName().$getFullText()}}</a><br />
+                            <div class="fs-icon-small-female icon-rounded person-gender-icon icon-rounded">&nbsp;</div>
+                            <a href="">{{parents.mother.$getPreferredName().$getFullText()}}</a>
                         </li>
                     </ul>
+                    <div class="clearfix">&nbsp;</div>
                 </div>
             </div>
-            <div class="clearfix">&nbsp;</div>
         </div>
+
+
+
+        <!--<!--Alternate parents of the husband-->
+        <!--<div ng-show="family.hasAlternatePaternalParents()"  class="all-husbands-wrapper" >-->
+
+            <!--<div class="pull-left">-->
+                <!--<div ng-click="toggleClickState('altPatParents')"  ng-class="{'husband-parents-arrow-closed':getClickState()!=='altPatParents','husband-parents-arrow-open':getClickState()==='altPatParents'}" >-->
+                    <!--<span class="fs-icon-arrow-right" ></span>-->
+                <!--</div>-->
+                <!--<div class="clearboth">&nbsp;</div>-->
+            <!--</div>-->
+
+            <!--<div class="pull-left sans-serif all-family-label" >-->
+                <!--<p style="padding:8px 0 0 5px; margin:0" ng-class="{'label-open':getClickState()==='altPatParents', 'label-closed':getClickState()!=='altPatParents'}">All Parents</p>-->
+
+                <!--<div class="all-family-list" ng-show="getClickState()==='altPatParents'">-->
+
+                    <!--<ul class="list-group">-->
+
+                        <!--<li ng-click="family.switchPaternalParents(parents); dismissHoverControls()" ng-repeat="parents in family.alternatePaternalParents()" class="list-group-item" ng-class="{'all-family-list-selected':$first}">-->
+                            <!--<div class="list-div">-->
+                                <!--<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">-->
+                                <!--<a href="">{{parents.father.$getPreferredName().$getFullText()}}</a>-->
+                            <!--</div>-->
+                            <!--<div class="list-div">-->
+                                <!--<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>-->
+                                <!--<a href="">{{parents.mother.$getPreferredName().$getFullText()}}</a>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="clearfix">&nbsp;</div>-->
+        <!--</div>-->
+
 
 
         <!--Alternate parents of the wife-->
-        <div class="all-wives-wrapper" style="" ng-show="family.hasAlternateMaternalParents()"  >
-            <div ng-click="toggleClickState('altMatParents')" class="pull-left" ng-class="{'wife-parents-arrow-closed':getClickState()!=='altMatParents','wife-parents-arrow-open':getClickState()==='altMatParents'}">
-                <span class="fs-icon-arrow-right"></span>
-            </div>
-            <div class="pull-left sans-serif all-family-label">
-                <p style="padding:8px 0 0 5px; margin:0" ng-class="{'label-open':getClickState()==='altMatParents', 'label-closed':getClickState()!=='altMatParents'}">All Parents</p>
-
-                <div  class="all-family-list" ng-show="getClickState()==='altMatParents'">
-
-                    <ul class="list-group">
-
-                        <li ng-click="family.switchMaternalParents(parents); dismissHoverControls()" ng-repeat="parents in family.alternateMaternalParents()" class="list-group-item" ng-class="{'all-family-list-selected':$first}">
-                            <div class="list-div">
-                                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">
-                                <a href="" ng-show="parents.father">{{parents.father.$getPreferredName().$getFullText()}}</a>
-                            </div>
-                            <div class="list-div">
-                                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>
-                                <a ng-show="parents.mother" href="">{{parents.mother.$getPreferredName().$getFullText()}}</a>
-                            </div>
+        <div ng-show="family.hasAlternateMaternalParents()" ng-class="{'containerOpen':getClickState()==='altMatParents'}" class="all-wives-wrapper alternativeFamily alternativeMaternalParents">
+            <div class="alternativeFamilyContainer">
+                <div class="arrow" >
+                    <div ng-click="toggleClickState('altMatParents')" class="pull-right">
+                        <span class="fs-icon-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="familyLabel">
+                    <p>All Parents</p>
+                </div>
+                <div class="familyList" ng-show="getClickState()==='altMatParents'">
+                    <ul>
+                        <li ng-click="family.switchMaternalParents(parents); dismissHoverControls()" ng-repeat="parents in family.alternateMaternalParents()" ng-class="{'selected':$first}">
+                            <div class="fs-icon-small-male person-gender-icon icon-rounded">&nbsp;</div>
+                            <a href="">{{parents.father.$getPreferredName().$getFullText()}}</a><br />
+                            <div class="fs-icon-small-female icon-rounded person-gender-icon icon-rounded">&nbsp;</div>
+                            <a href="">{{parents.mother.$getPreferredName().$getFullText()}}</a>
                         </li>
                     </ul>
+                    <div class="clearfix">&nbsp;</div>
                 </div>
             </div>
-            <div class="clearfix">&nbsp;</div>
         </div>
+
+
+
+        <!--<div class="all-wives-wrapper " style="" ng-show="family.hasAlternateMaternalParents()"  >-->
+            <!--<div ng-click="toggleClickState('altMatParents')" class="pull-left" ng-class="{'wife-parents-arrow-closed':getClickState()!=='altMatParents','wife-parents-arrow-open':getClickState()==='altMatParents'}">-->
+                <!--<span class="fs-icon-arrow-right"></span>-->
+            <!--</div>-->
+            <!--<div class="pull-left sans-serif all-family-label">-->
+                <!--<p style="padding:8px 0 0 5px; margin:0" ng-class="{'label-open':getClickState()==='altMatParents', 'label-closed':getClickState()!=='altMatParents'}">All Parents</p>-->
+
+                <!--<div  class="all-family-list" ng-show="getClickState()==='altMatParents'">-->
+
+                    <!--<ul class="list-group">-->
+
+                        <!--<li ng-click="family.switchMaternalParents(parents); dismissHoverControls()" ng-repeat="parents in family.alternateMaternalParents()" class="list-group-item" ng-class="{'all-family-list-selected':$first}">-->
+                            <!--<div class="list-div">-->
+                                <!--<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjM3NSIgeT0iMC4zNzUiIGZpbGw9IiM1OTg2QzUiIHdpZHRoPSI3LjI1IiBoZWlnaHQ9IjcuMjUiLz4KPGNpcmNsZSBmaWxsPSIjRTI0MjdDIiBjeD0iLTkuMDMzIiBjeT0iNi4xMzMiIHI9IjMuODUiLz4KPC9zdmc+" style="margin-right:3px">-->
+                                <!--<a href="" ng-show="parents.father">{{parents.father.$getPreferredName().$getFullText()}}</a>-->
+                            <!--</div>-->
+                            <!--<div class="list-div">-->
+                                <!--<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI4cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSItMS4xMjUiIHk9IjE0LjM5NiIgZmlsbD0iIzU5ODZDNSIgd2lkdGg9IjgiIGhlaWdodD0iOCIvPgo8Y2lyY2xlIGZpbGw9IiNFMjQyN0MiIGN4PSI0IiBjeT0iNCIgcj0iMy44NSIvPgo8L3N2Zz4=" style="margin-right:3px"></i>-->
+                                <!--<a ng-show="parents.mother" href="">{{parents.mother.$getPreferredName().$getFullText()}}</a>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="clearfix">&nbsp;</div>-->
+        <!--</div>-->
     </div>
 
     <div ng-show="brackets==='under'" style="height: 248px; width:35px; border:solid 1px #787068; border-right:none; position:absolute; top:-77px; left:450px; z-index: 1">
