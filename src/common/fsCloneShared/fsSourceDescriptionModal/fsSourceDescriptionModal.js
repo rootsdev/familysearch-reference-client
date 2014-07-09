@@ -7,6 +7,7 @@
           return $modal.open({
             templateUrl: 'fsCloneShared/fsSourceDescriptionModal/fsSourceDescriptionModal.tpl.html',
             size: 'lg',
+            windowClass: 'familysearch_theme sourceDialog viewSource',
             controller: function($scope) {
               fsUtils.mixinStateFunctions($scope, description);
               if (isEditing) {
