@@ -1,0 +1,9 @@
+<div>
+  <div ng-transclude></div>
+  <div fs-item-modified item="item" agent="agent" ng-hide="hideModified === 'true'"></div>
+  <div ng-hide="hideButtons === 'true'" class="actionRow">
+    <button class="btn btn-primary saveButton" type="submit" ng-click="$emit('save', item)">Save</button>
+    <button class="btn btn-link cancelButton" type="submit" ng-click="$emit('cancel', item)">Cancel</button>
+    <span ng-show="item._busy"><i class="fa fa-spinner fa-spin"></i></span>
+  </div>
+</div>

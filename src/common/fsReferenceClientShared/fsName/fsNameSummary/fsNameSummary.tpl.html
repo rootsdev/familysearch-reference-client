@@ -1,0 +1,4 @@
+<div fs-item-summary label="{{name.preferred ? 'Name' : (!name.type ? 'OtherName' : name.type) | fsGedcomxLabel}}"
+     item="name" addable="true">
+  <div ng-repeat="nameForm in name.nameForms | orderBy:nameFormOrderByFn">{{nameForm.fullText}}</div>
+</div>

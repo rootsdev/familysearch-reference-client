@@ -1,0 +1,15 @@
+<div ng-class="{editing: description._isEditing()}">
+  <div class="detailActions pull-right">
+    <a ng-show="!description._isEditing()" href=""
+       class="btn btn-xs btn-link editDetail non-form" ng-click="description._edit()">
+      <i class="fa fa-edit">&nbsp;</i>Edit
+    </a>
+    <a ng-show="!description._isEditing()" href=""
+       class="deleteDetail btn btn-link btn-xs non-form" ng-click="$emit('delete', description)">
+      <i class="fa fa-trash-o">&nbsp;</i>Delete
+    </a>
+  </div>
+  <div fs-source-description-summary description="description" ng-hide="description._isEditing()"></div>
+  <div fs-item-details item="description" agent="agent" ng-hide="description._isEditing()"></div>
+  <div fs-source-description-edit description="description" agent="agent" ng-if="description._isEditing()"></div>
+</div>

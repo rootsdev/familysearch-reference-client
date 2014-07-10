@@ -1,0 +1,33 @@
+<div class="sourceDialog attachSource" id="sourceAttachDialog" tabindex="-1" role="dialog" aria-labelledby="sourceAttachDialogLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="sourceAttachDialogLabel">Attach Source to
+      <span ng-show="!!husband && !!wife">Couple Relationship</span>
+      <span ng-show="!!child">Parent-Child Relationship</span>
+      <span ng-show="!!person">{{person.$getDisplayName()}}</span>
+    </h4>
+    <div fs-couple-profile ng-show="!!husband && !!wife" husband="husband" wife="wife" hide-popover="true"></div>
+    <div fs-parents-profile ng-show="!!child" child="child" father="father" mother="mother" hide-popover="true"></div>
+    <div fs-person-smaller ng-show="!!person" person="person"></div>
+  </div>
+  <div class="modal-body">
+    <form role="form">
+      <div class="form-group">
+        <label for="justification">Reason to Attach Source</label>
+        <textarea rows="4" class="form-control" id="justification" ng-model="changeMessage"
+                  placeholder="Explain why you attached this source."></textarea>
+      </div>
+      <!-- always added automatically
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="addToSourcebox" ng-model="addToSourceBox"> Add to My Source Box
+        </label>
+      </div>
+      -->
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="ok(changeMessage)">Attach</button>
+  </div>
+</div>

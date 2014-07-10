@@ -1,0 +1,14 @@
+<div class="commentDetails">
+  <p>{{comment.text}}<a href="" class="expandDiscussion" style="display:none"><small>More</small></a></p>
+  <p>
+    <small><abbr class="timeago" am-time-ago="comment.created"></abbr></small>
+    by
+    <a href="" fs-agent-popover agent="agent">
+      <span class="contributor">{{agent.$getAccountName()}}</span>
+    </a>
+    <span ng-show="isAuthor" class="pull-right">
+      <a href="" class="btn btn-xs btn-link editDiscussionDetail" ng-click="comment._edit()"><i class="fa fa-edit">&nbsp;</i>Edit</a>
+      <a href="" class="btn btn-link btn-xs" ng-click="$emit('delete', comment)"><i class="fa fa-trash-o">&nbsp;</i>Delete</a>
+    </span>
+  </p>
+</div>

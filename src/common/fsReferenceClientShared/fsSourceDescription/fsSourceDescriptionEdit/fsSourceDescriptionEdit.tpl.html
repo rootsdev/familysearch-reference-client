@@ -1,0 +1,31 @@
+<div fs-item-edit item="description" agent="agent">
+  <form role="form" name="myForm">
+    <div class="form-group">
+      <label for="title">Source Title (Required)</label>
+      <span ng-show="submitted && myForm.titleField.$error.required" style="color: red"> please enter a title</span>
+      <input type="text" class="form-control" id="title" name="titleField" ng-model="form.title" required
+             placeholder="Example: England, Death Certificate of Hugh S. Smith - (1832-1912)">
+    </div>
+
+    <div class="form-group">
+      <label for="url">Web Page (Link to the Record)</label>
+      <input type="text" class="form-control" id="url" ng-model="form.url"
+             placeholder="Example: England, Death Certificate of Hugh S. Smith - (1832-1912)">
+    </div>
+
+    <div class="form-group">
+      <label for="citation">Where the Record Is Found (Citation)</label>
+      <textarea rows="2" type="title" class="form-control" id="citation" ng-model="form.citation"
+                placeholder="Example: UK Census, 1841, Arbroath, Perth, Scotland. Population schedule. Dwelling address. Federal archive. Digital Image"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="notes">Describe the Record (Notes)</label>
+      <textarea rows="4" type="notes" class="form-control" id="notes" ng-model="form.notes"
+                placeholder="Example: Hugh S. Smith Family Page 7. Lines 23-27. Arbroath, Scotland. UK Census 1841 Father: Robert Smith. Mother: Helen Strachen. Children: Hugh Sidley Smith, Robert Smith."></textarea>
+    </div>
+    <div class="form-group" ng-hide="hideReason === 'true'">
+      <label>Reason this Information is Correct</label>
+      <textarea class="form-control" ng-model="form.reason" placeholder="Explain why you feel this information is correct."></textarea>
+    </div>
+  </form>
+</div>

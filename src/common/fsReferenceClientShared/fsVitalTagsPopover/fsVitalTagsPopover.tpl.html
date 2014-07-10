@@ -1,0 +1,20 @@
+<span>
+  <script id="fsVitalTagsPopover.html" type="text/ng-template">
+    <div style="background-color: #fff">
+      <div class="cardFrame">
+        <div class="content">
+          <div ng-repeat="tag in form">
+            <input type="checkbox" ng-model="tag.value"/> {{tag.type | fsGedcomxLabel}}
+          </div>
+          <button class="btn btn-primary" type="submit" ng-click="save()">Tag</button>
+          <a href="" ng-click="cancel()">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </script>
+  <span class="fsVitalTagsPopover" tabindex="0" ng-click="show()" popover-trigger="fsVitalTagsPopoverShow"
+        popover-placement="bottom" popover-template="fsVitalTagsPopover.html" popover-append-to-body="true"
+        style="outline-width: 0">
+    <span ng-transclude></span>
+  </span>
+</span>

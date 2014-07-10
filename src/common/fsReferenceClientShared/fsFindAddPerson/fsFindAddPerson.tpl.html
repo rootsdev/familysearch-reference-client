@@ -1,0 +1,6 @@
+<div style="position: relative">
+  <div ng-show="busy" style="position: absolute; top: 4px; right: 10px;"><i class="fa fa-spinner fa-spin"></i></div>
+  <div fs-find-add-person-form gender="{{gender}}" default-tab="{{defaultFormTab}}" ng-hide="showResults"></div>
+  <div fs-search-results ng-show="showResults" results="results" context="context"
+       count="count" start="start" page-size="pageSize"></div>
+</div>

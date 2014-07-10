@@ -1,0 +1,103 @@
+<tr class="record">
+  <td class="individualColumn">
+    <div class="person-info-container">
+      <div class="person-gender-container medium icon-rounded"
+           ng-class="{'fs-icon-male': result.$getPrimaryPerson().$getDisplayGender() === 'Male',
+                            'fs-icon-female': result.$getPrimaryPerson().$getDisplayGender() === 'Female'}">
+        &nbsp;
+      </div>
+
+      <ul class="person-info">
+        <li class="person-name">
+          <a href="" fs-person-popover popover-placement="right" person="result.$getPrimaryPerson()">
+            <span>{{result.$getPrimaryPerson().$getDisplayName()}}</span>
+          </a>
+        </li>
+        <li class="person-id">{{result.$getPrimaryPerson().id}}</li>
+      </ul>
+    </div>
+  </td>
+
+  <td class="eventsColumn">
+    <div class="column-label">
+      Events
+    </div>
+
+    <ul class="events">
+      <li class="event birth">
+        <label class="eventLabel">birth</label>
+          <span class="eventData">
+            <span>{{result.$getPrimaryPerson().$getDisplayBirthDate()}}</span>
+            <span ng-show="!!result.$getPrimaryPerson().$getDisplayBirthPlace()">, </span>
+            <span>{{result.$getPrimaryPerson().$getDisplayBirthPlace()}}</span>
+          </span>
+      </li>
+
+      <li class="event death">
+        <label class="eventLabel">death</label>
+          <span class="eventData">
+            <span>{{result.$getPrimaryPerson().$getDisplayDeathDate()}}</span>
+            <span ng-show="!!result.$getPrimaryPerson().$getDisplayDeathPlace()">, </span>
+            <span>{{result.$getPrimaryPerson().$getDisplayDeathPlace()}}</span>
+          </span>
+      </li>
+    </ul>
+  </td>
+
+  <td class="parentsColumn">
+    <div class="column-label">
+      Parents
+    </div>
+
+    <div class="parents-container couple">
+      <div class="connector">
+        &nbsp;
+      </div>
+
+      <div class="coupleWrapper">
+        <div class="personWrapper">
+          <div class="nameWrapper" ng-show="result.$getFatherIds().length > 0">
+            <span class="male personCard name" href="">
+              <i class="fs-icon-small-male">&nbsp;</i>
+              {{result.$getFathers()[0].$getDisplayName()}}
+            </span>
+          </div>
+        </div>
+
+        <div class="personWrapper">
+          <div class="nameWrapper"ng-show="result.$getMotherIds().length > 0">
+            <span class="female personCard name" href="">
+              <i class="fs-icon-small-female icon-rounded">&nbsp;</i>
+              {{result.$getMothers()[0].$getDisplayName()}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </td>
+
+  <td class="spouseColumn">
+    <div class="column-label">
+      Spouse
+    </div>
+
+    <div class="spouse-container">
+      <div class="person-info-container">
+        <div class="person-gender-container small"></div>
+
+        <ul class="person-info" ng-show="result.$getSpouseIds().length > 0">
+          <li class="person-name" ng-repeat="spouse in result.$getSpouses()">
+            <span class="female personCard name" href="">
+              <i ng-class="{'fs-icon-small-female': spouse.$getDisplayGender() === 'Female',
+                                  'fs-icon-small-male': spouse.$getDisplayGender() === 'Male'}" class="icon-rounded">&nbsp;</i>
+              {{spouse.$getDisplayName()}}
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </td>
+  <td>
+    <button ng-click="$emit('select', result.$getPrimaryPerson())">Select</button>
+  </td>
+</tr>

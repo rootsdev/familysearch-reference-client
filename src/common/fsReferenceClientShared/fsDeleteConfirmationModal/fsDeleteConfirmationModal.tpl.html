@@ -1,0 +1,204 @@
+<div class="modal-header">
+    <div class="profileHeaderContainer editCoupleContainer">
+        <div class="editCoupleJumbotron">
+            <div class="panel-heading">
+                <div class="navigation">
+                    Go to: <a class="husbandLink" href="">Pranas Paukstys</a> | <a class="wifeLink" href="">Kazimiera
+                    Gurinskaite</a>
+                </div>
+                <!-- Still working on the CSS here. Just populate it as is -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table ng-show="!!person">
+                            <tr>
+                                <td class="individualColumn">
+
+                                    <div class="person-info-container">
+                                        <div class="person-gender-container medium">
+                                            <div class="person-gender-icon fs-icon-medium-female"></div>
+                                        </div>
+                                        <div class="person-info">
+                                            <small>Person</small>
+                                            <br/>
+
+                                            <div class="person-name"><a href="javascript:void(0);"
+                                                                        data-cmd="openPersonCard">Wilma Mae
+                                                McKenzie/Mason</a></div>
+                                            <span class="person-id">KWDQ-D75</span></div>
+                                    </div>
+                                </td>
+
+                                <td class="parentsColumn">
+                                    <small>Parents</small>
+                                    <div class="parents-container">
+                                        <div class="person-info-container couple-husband">
+                                            <div class="person-gender-container small">
+                                                <div class="person-gender-icon fs-icon-small-male"></div>
+                                            </div>
+                                            <div class="person-info">
+                                                <div class="person-name">William Frederick Carl Sawusch</div>
+                                            </div>
+                                        </div>
+                                        <div class="person-info-container couple-wife">
+                                            <div class="person-gender-container small">
+                                                <div class="person-gender-icon fs-icon-small-female"></div>
+                                            </div>
+                                            <div class="person-info">
+                                                <div class="person-name">Minnie Etta Bliven</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="spouseColumn">
+                                    <small>Spouse</small>
+                                    <div class="spouse-container">
+                                        <div class="person-info-container">
+                                            <div class="person-gender-container small">
+                                                <div class="person-gender-icon fs-icon-small-male"></div>
+                                            </div>
+                                            <div class="person-info">
+                                                <div class="person-name">Justus Jenkins Mason</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                        <table ng-hide="!!person">
+                            <tr>
+                                <td class="individualColumn">
+
+                                    <div class="person-info-container">
+                                        <div class="person-gender-container medium">
+                                            <div class="person-gender-icon fs-icon-medium-female"></div>
+                                        </div>
+                                        <div class="person-info">
+                                            <div class="person-name"><a href="javascript:void(0);"
+                                                                        data-cmd="openPersonCard">Wilma Mae
+                                                McKenzie/Mason</a></div>
+                                            <span class="birth">1951</span>-<span class="death">2001</span></div>
+                                    </div>
+                                </td>
+                                <td class="parentsColumn">
+                                    <small>Parents</small>
+                                    <div class="parents-container">
+                                        <div class="person-info-container couple-husband">
+                                            <div class="person-gender-container small">
+                                                <div class="person-gender-icon fs-icon-small-male"></div>
+                                            </div>
+                                            <div class="person-info">
+                                                <div class="person-name">William Frederick Carl Sawusch</div>
+                                            </div>
+                                        </div>
+                                        <div class="person-info-container couple-wife">
+                                            <div class="person-gender-container small">
+                                                <div class="person-gender-icon fs-icon-small-female"></div>
+                                            </div>
+                                            <div class="person-info">
+                                                <div class="person-name">Minnie Etta Bliven</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="spouseColumn">
+                                    <small>Spouse</small>
+                                    <div class="spouse-container">
+                                        <div class="person-info-container">
+                                            <div class="person-gender-container small">
+                                                <div class="person-gender-icon fs-icon-small-male"></div>
+                                            </div>
+                                            <div class="person-info">
+                                                <div class="person-name">Justus Jenkins Mason</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </div>
+
+
+                <div class="clearboth">
+                    &nbsp;
+                </div>
+            </div>
+
+            <div class="clearboth"></div>
+        </div>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="panel panel-primary family-panel">
+        <div class="panel-heading">
+            <h4>Delete <span ng-show="!!person">Person</span><span ng-hide="!!person">Relationship</span></h4>
+
+            <p ng-show="!!person">It is recommended that you delete people only if you added a person by mistake or
+                if the person never existed. You should consider using Merge if this person is a duplicate or Delete
+                Relationship if this person is in the wrong family.</p>
+
+            <p ng-show="!!person" ng-person="!!person">It is recommended that you delete relationships only when you are
+                confident the
+                relationship never existed or when the relationship is a duplicate.</p>
+        </div>
+        <div class="panel-body ">
+            <div class="alert alert-warning" ng-show="!!person">
+                <i class="fa fa-exclamation-triangle pull-left"></i>Review this person's couple and parent-child
+                relationships to determine if the relationships need to be deleted instead of the person.
+            </div>
+            <ul ng-show="!!person">
+                <li class="none"><span class="badge">0</span> Couple Relationships</li>
+                <li><span class="badge">1</span> Parent-Child Relationships</li>
+            </ul>
+            <div class="alert alert-warning">
+                <i class="fa fa-exclamation-triangle pull-left"></i>
+                <span ng-show="!!person">By deleting this person, you will possibly delete attached sources, active discussions, and notes.</span>
+                <span ng-hide="!!person">By deleting this relationship, you will also delete the following information.</span>
+            </div>
+            <ul>
+                <li><span class="badge">1</span> Attached Sources</li>
+                <li><span class="badge">0</span> Active Discussions</li>
+                <li><span class="badge">0</span> Possible Matches</li>
+            </ul>
+            <div class="alert alert-warning">
+                <i class="fa fa-exclamation-triangle pull-left"></i>Before deleting this <span
+                    ng-show="!!person">person</span><span
+                    ng-hide="!!person">relationship</span>, provide a reason statement, and check the boxes
+                below.<br/>
+
+                <form role="form">
+                    <div class="form-group">
+                        <textarea class="form-control" ng-model="changeMessage" rows="3" name="justification"
+                                  id="deleteJustification"
+                                  placeholder="Explain how you know this person should be deleted."
+                                  required="required"></textarea>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="deleteReviewed"> <span ng-show="!!person">I have reviewed the couple and parent-child relationships for this person.</span><span
+                                ng-hide="!!person">I have reviewed the other relationships for these individuals.</span>
+                        </label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="deleteReviewed"> I have included a reason statement why I
+                            feel this <span ng-show="!!person">person</span><span
+                                ng-hide="!!person">relationship</span> should be deleted.
+                        </label>
+                    </div>
+                    <!-- DISABLED UNTIL A JUSTIFICATION IS PROVIDED -->
+
+                    <button type="button" class="btn btn-warning">Delete <span ng-show="!!person">Person</span><span
+                            ng-hide="!!person">Relationship</span></button>
+                    <button type="button" class="btn btn-link">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

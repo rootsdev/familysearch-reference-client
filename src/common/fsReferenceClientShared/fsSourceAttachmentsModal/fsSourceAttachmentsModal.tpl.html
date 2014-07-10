@@ -1,0 +1,74 @@
+<div class="sourceDialog attachToSource" id="sourceAttachToDialog" tabindex="-1" role="dialog" aria-labelledby="sourceAttachToDialogLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button ng-click="cancel()" type="button" class="close" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="sourceAttachToDialogLabel">{{description.$getTitle()}}</h4>
+    <h5>{{description.about}}</h5>
+  </div>
+  <div class="modal-body">
+    <table class="table table-hover">
+      <thead>
+      <th class="attached">Attached to</th>
+      <th class="details">Details</th>
+      <th class="justification"></th>
+      <th class="action"></th>
+      </thead>
+      <tbody>
+      <tr ng-repeat="sourceRefContext in sourceRefContexts">
+        <td class="attached">
+          <span ng-if="!!sourceRefContext.person">Person</span>
+          <span ng-if="!!sourceRefContext.couple">Couple Relationship</span>
+          <span ng-if="!!sourceRefContext.parents">Parent-Child Relationship</span>
+          <br>{{sourceRefContext.sourceRef.attribution.modified | date:'dd-MMM-yyyy'}}
+          <br>by {{sourceRefContext.agent.$getAccountName()}}
+        </td>
+        <td class="details">
+          <div ng-if="!!sourceRefContext.person">
+            <span>person</span>
+            <br>{{sourceRefContext.person.$getDisplayName()}}
+            <br>{{sourceRefContext.person.id}}
+          </div>
+          <div ng-if="!!sourceRefContext.couple">
+            <div>
+              <span>husband</span>
+              <br>{{sourceRefContext.husband.$getDisplayName()}}
+              <br>{{sourceRefContext.husband.id}}
+            </div>
+            <div>
+              <span>wife</span>
+              <br>{{sourceRefContext.wife.$getDisplayName()}}
+              <br>{{sourceRefContext.wife.id}}
+            </div>
+          </div>
+          <div ng-if="!!sourceRefContext.parents">
+            <div ng-if="!!sourceRefContext.father">
+              <span>father</span>
+              <br>{{sourceRefContext.father.$getDisplayName()}}
+              <br>{{sourceRefContext.father.id}}
+            </div>
+            <div ng-if="!!sourceRefContext.mother">
+              <span>mother</span>
+              <br>{{sourceRefContext.mother.$getDisplayName()}}
+              <br>{{sourceRefContext.mother.id}}
+            </div>
+            <div>
+              <span>child</span>
+              <br>{{sourceRefContext.child.$getDisplayName()}}
+              <br>{{sourceRefContext.child.id}}
+            </div>
+          </div>
+        </td>
+        <td class="justification">
+          <span>Reason This Source Is Attached</span>
+          <br>{{sourceRefContext.sourceRef.attribution.changeMessage}}
+        </td>
+        <td class="action">
+          <button type="button" ng-click="detach(sourceRefContext)" class="btn btn-warning">Detach</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" ng-click="cancel()" class="btn">Cancel</button>
+  </div>
+</div>

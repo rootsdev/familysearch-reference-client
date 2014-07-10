@@ -1,0 +1,9 @@
+<div style="padding: 0 20px 20px 20px;">
+  <h2>{{title}}</h2>
+  <h4>{{subTitle}}</h4>
+  <textarea rows="4" ng-model="changeMessage" style="width: 100%" ng-show="showChangeMessage"></textarea>
+  <div class="actionRow">
+    <button class="btn btn-primary saveButton" type="submit" ng-show="!!okLabel" ng-click="ok(changeMessage)">{{okLabel}}</button>
+    <button class="btn btn-link cancelButton" type="submit" ng-click="cancel()">Cancel</button>
+  </div>
+</div>

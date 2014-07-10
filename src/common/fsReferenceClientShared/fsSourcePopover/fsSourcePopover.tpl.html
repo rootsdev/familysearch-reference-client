@@ -1,0 +1,36 @@
+<span>
+  <script id="fsSourcePopover.html" type="text/ng-template">
+    <div style="background-color: #fff">
+      <div class="cardFrame">
+        <div class="content">
+          <div>{{source.description.$getTitle()}}</div>
+          <div class="sectionBox">
+            <div class="headlingLabel">url</div>
+            <a ng-href="{{source.description.about}}">{{source.description.about}}</a>
+          </div>
+          <div class="sectionBox">
+            <div class="headlingLabel">Citation</div>
+            <div>{{source.description.$getCitation()}}</div>
+          </div>
+          <div class="sectionBox">
+            <div class="headlingLabel">Notes</div>
+            <div>{{source.description.$getText()}}</div>
+          </div>
+          <hr/>
+          <div class="sectionBox">
+            <div class="headlingLabel">Reason This Source Is Attached</div>
+            <div>{{source.ref.attribution.changeMessage}}</div>
+          </div>
+          <div class="sectionBox">
+            <div class="headlingLabel">Modified</div>
+            <div>{{source.ref.attribution.modified | date:'dd-MMM-yyyy'}} by {{agent.$getAccountName()}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+  <span tabindex="0" class="fsSourcePopover" ng-click="show()" popover-trigger="fsSourcePopoverShow"
+        popover-placement="right" popover-template="fsSourcePopover.html" style="outline-width: 0">
+    <span ng-transclude></span>
+  </span>
+</span>

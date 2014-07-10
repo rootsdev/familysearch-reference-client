@@ -1,0 +1,15 @@
+<div fs-item-edit item="note" agent="agent">
+  <div class="form-group">
+    <label>Write a Title For Your Note</label>
+    <input class="form-control" ng-model="form.subject" placeholder="Title of Your Note" type="text">
+  </div>
+  <div class="form-group">
+    <label>Wite Your Note</label>
+    <textarea class="form-control noteValue" ng-model="form.text" placeholder="Enter your note here. Limit of 10000 characters."></textarea>
+    <span class="countLimit pull-right">{{10000-form.text.length}}</span>
+  </div>
+  <div class="form-group noteJustification">
+    <label>Reason this Information is Correct</label>
+    <textarea class="form-control" ng-model="form.reason" placeholder="Explain why you feel this information is correct."></textarea>
+  </div>
+</div>

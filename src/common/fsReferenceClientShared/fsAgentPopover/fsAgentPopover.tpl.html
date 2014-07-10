@@ -1,0 +1,50 @@
+<span>
+  <script id="fsAgentPopover.html" type="text/ng-template">
+    <div style="background-color: #fff">
+      <div class="cardFrame">
+        <div class="content">
+          <div class="contact serif">
+            <span class="name">{{agent.id}}</span>
+          </div>
+          <table class="contact eventTable">
+            <tbody>
+            <tr class="event">
+              <th>Full Name</th>
+              <td>
+                <div class="date ellipses-text">{{agent.$getName()}}</div>
+              </td>
+            </tr>
+            <tr class="event">
+              <th>Contact Name</th>
+              <td>
+                <div class="date ellipses-text">{{agent.$getAccountName()}}</div>
+              </td>
+            </tr>
+            <tr class="event">
+              <th>Email Address</th>
+              <td>
+                <div class="date ellipses-text">{{agent.$getEmail()}}</div>
+              </td>
+            </tr>
+            <tr class="event">
+              <th>Phone Number</th>
+              <td>
+                <div class="date ellipses-text">{{agent.$getPhoneNumber()}}</div>
+              </td>
+            </tr>
+            <tr class="event">
+              <th>Mailing Address</th>
+              <td>
+                <div class="date ellipses-text">{{agent.$getAddress()}}</div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </script>
+  <span tabindex="0" popover-trigger="focus" popover-placement="{{popoverPlacement || 'right'}}" popover-template="fsAgentPopover.html" style="outline-width: 0">
+    <span ng-transclude></span>
+  </span>
+</span>

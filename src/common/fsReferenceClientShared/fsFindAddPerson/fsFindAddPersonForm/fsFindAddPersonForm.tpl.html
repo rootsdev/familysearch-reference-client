@@ -1,0 +1,207 @@
+<div ng-class="{basicSearch: !isAdvancedSearch, advancedSearch: isAdvancedSearch}">
+  <h3>Add or Find Person</h3>
+
+
+
+  <div tabset>
+    <div tab heading="Add Person" active="tabs.addPersonActive" select="selectAddPerson()">
+      <div fs-name-edit name="person.$getPreferredName()" hide-modified="true" hide-buttons="true" hide-reason="true"></div>
+      <div fs-gender-edit gender="person.gender" required-gender="{{requiredGender}}"
+           hide-modified="true" hide-buttons="true" hide-reason="true"></div>
+      <div fs-fact-edit fact="person.$getBirth()" hide-modified="true" hide-buttons="true" hide-reason="true"></div>
+      <div fs-fact-edit fact="person.$getDeath()" hide-modified="true" hide-buttons="true" hide-reason="true"></div>
+      <div class="row" ng-show="missingRequiredFields">
+        <div alert>Name, Gender, and Living/Deceased are required</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <button type="button" ng-click="add()" class="formSubmit btn btn-primary">Continue</button>
+          <button type="button" ng-click="clear()" class="clearSearch btn btn-link">Clear</button>
+          <button type="button" ng-click="cancel()" class="cancelSearch btn btn-link">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div tab heading="Find Person" active="tabs.findPersonActive" select="selectFindPerson()">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="firstNames">First Names</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="firstNames" ng-model="form.givenName" placeholder="Given name(s) of the individual">
+              <span ng-show="isAdvancedSearch" class="input-group-addon">
+                <input type="checkbox" ng-change="updateMatchAllExactly()" ng-model="form.givenNameMatchExactly">
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="firstNames">Last Name</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="lastName" ng-model="form.surname" placeholder="Last name of the individual">
+              <span ng-show="isAdvancedSearch" class="input-group-addon">
+                <input type="checkbox" ng-change="updateMatchAllExactly()" ng-model="form.surnameMatchExactly">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <div class="input-group">
+              <select id="gender" class="input-fs" ng-model="form.gender"
+                      ng-options="genderOption.value as genderOption.label for genderOption in genderOptions">
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="event">Event</label>
+            <div class="input-group">
+              <select id="event" class="input-fs" ng-model="form.event"
+                      ng-options="eventOption.value as eventOption.label for eventOption in eventOptions">
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 text-center yearRange">
+          <label for="eventDate" class="text-center">Year</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="eventDate" ng-model="form.date" ng-disabled="!form.event" placeholder="Year of this event">
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="form-group">
+            <label for="eventPlace">Place</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="eventPlace" ng-model="form.place" ng-disabled="!form.event" placeholder="Place of this event">
+              <span ng-show="isAdvancedSearch" class="input-group-addon">
+                <input type="checkbox" ng-change="updateMatchAllExactly()" ng-model="form.placeMatchExactly">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="firstNamesFather">Father First Names</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="firstNamesFather" ng-model="form.fatherGivenName" placeholder="Father's given name(s)">
+              <span ng-show="isAdvancedSearch" class="input-group-addon">
+                <input type="checkbox" ng-change="updateMatchAllExactly()" ng-model="form.fatherGivenNameMatchExactly">
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="lastNamesFather">Father Last Name</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="lastNamesFather" ng-model="form.fatherSurname" placeholder="Father's last name">
+              <span ng-show="isAdvancedSearch" class="input-group-addon">
+                <input type="checkbox" ng-change="updateMatchAllExactly()" ng-model="form.fatherSurnameMatchExactly">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="firstNamesMother">Mother First Names</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="firstNamesMother" ng-model="form.motherGivenName" placeholder="Mother's given name(s)">
+              <span ng-show="isAdvancedSearch" class="input-group-addon">
+                <input type="checkbox" ng-change="updateMatchAllExactly()" ng-model="form.motherGivenNameMatchExactly" >
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="lastNamesMother">Mother Last Name</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="lastNamesMother" ng-model="form.motherSurname" placeholder="Mother's last name">
+              <span ng-show="isAdvancedSearch" class="input-group-addon">
+                <input type="checkbox" ng-change="updateMatchAllExactly()" ng-model="form.motherSurnameMatchExactly">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="firstNamesSpouse">Spouse First Names</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="firstNamesSpouse" ng-model="form.spouseGivenName"  placeholder="Spouse's given name(s)">
+              <span ng-show="isAdvancedSearch" class="input-group-addon">
+                <input type="checkbox" ng-change="updateMatchAllExactly()" ng-model="form.spouseGivenNameMatchExactly" >
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="lastNamesSpouse">Spouse Last Name</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="lastNamesSpouse" ng-model="form.spouseSurname" placeholder="Spouse's last name">
+              <span ng-show="isAdvancedSearch" class="input-group-addon">
+                <input type="checkbox" ng-change="updateMatchAllExactly()" ng-model="form.spouseSurnameMatchExactly">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="checkbox pull-right">
+            <label for="matchAllExactly" ng-show="isAdvancedSearch">
+              <input id="matchAllExactly" type="checkbox" ng-model="form.isMatchAllExactly" ng-change="toggleMatchAllExactly()" class="matchAllFindPerson">
+              Match All Exactly
+            </label>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-12">
+          <button type="button" ng-click="find()" class="formSubmit btn btn-primary">Find</button>
+          <button type="button" ng-click="toggleAdvancedSearch()" class="advancedSearch btn btn-link">
+            <span ng-hide="isAdvancedSearch">Advanced Search</span>
+            <span ng-show="isAdvancedSearch">Basic Search</span>
+          </button>
+          <button type="button" ng-click="clear()" class="clearSearch btn btn-link">Clear</button>
+          <button type="button" ng-click="cancel()" class="cancelSearch btn btn-link">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div tab heading="Find by ID Number" active="tabs.findPersonByIdActive">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="personIDNumber">ID Number</label>
+            <input type="text" class="form-control" id="personIDNumber" ng-model="form.id" placeholder="">
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-12">
+          <button type="button" ng-click="findPersonById()" class="formSubmit btn btn-primary">Find</button>
+          <button type="button" ng-click="clear()" class="clearSearch btn btn-link">Clear</button>
+          <button type="button" ng-click="cancel()" class="cancelSearch btn btn-link">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

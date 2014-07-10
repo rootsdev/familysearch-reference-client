@@ -1,0 +1,17 @@
+<div class="detailModifiedSources">
+  <hr>
+  <!-- Place a link and badge if there are sources, just the text if there are none. -->
+  <span>Sources</span>&nbsp;&nbsp;|&nbsp;
+  <a href="" fs-source-tags-popover item="item" sources="sources">
+    <span class="popupTags" title="Tag this source">Tags <span class="badge">{{getSources().length}}</span></span>
+  </a>
+  <br/>
+
+  <div class="popupSources">
+    <div ng-repeat="source in getSources()">
+      <a href="" fs-source-popover source="source">
+        <span href="" class="popupSource">{{source.description.$getTitle()}}</span><br/>
+      </a>
+    </div>
+  </div>
+</div>

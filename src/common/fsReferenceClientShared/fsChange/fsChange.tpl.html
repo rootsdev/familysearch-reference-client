@@ -1,0 +1,8 @@
+<h5>{{change.title}}
+  <small>
+    <abbr class="timeago">{{change.updated | date:'dd-MMM-yyyy'}}</abbr> by
+    <a href="" fs-agent-popover popover-placement="left" agent="agent" ng-click="setAgent()">
+      <span class="contributorCard">{{change.$getAgentName()}}</span>
+    </a>
+  </small>
+</h5>

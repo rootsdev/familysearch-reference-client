@@ -1,0 +1,149 @@
+<div class="sourceBox">
+  <div class="row subheader">
+    <div class="goToHeading">
+      Go to:
+      <a ng-href="{personHref}}" ng-show="!!personId">{{person.$getDisplayName()}}</a>
+      <a ng-href="{coupleHref}}" ng-show="!!coupleId">Couple Relationship</a>
+      <a ng-href="{parentsHref}}" ng-show="!!parentsId">Parent-Child Relationship</a>
+    </div>
+  </div>
+  <div class="row sourcebox-heading">
+    <div class="col-md-3 sourcebox-title">
+      My Source Box
+      <span ng-show="busy" style="padding-left: 10px"><i class="fa fa-spinner fa-spin"></i></span>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-9" style="margin-left:-25px">
+          <input type="checkbox" ng-model="allSelected" ng-change="setAllSelected()"/>
+          <button class="btn btn-primary" ng-click="createSource()" style="margin:0 8px 0 20px">
+            <i class="fa fa-plus-square" style="margin-right:8px"></i>
+            Create Source
+          </button>
+          <div class="btn-group" dropdown>
+            <button class="btn btn-primary dropdown-toggle" ng-disabled="!isAnySourceSelected()" style="margin:0 8px">
+              <i class="fa fa-share-square" style="margin-right:8px"></i>
+              Move <span class="caret" style="margin-left:5px"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li ng-hide="homeFolder._selected" ng-click="moveSources(homeFolder)">
+                <a href="">Home</a>
+              </li>
+              <li ng-hide="homeFolder._selected" class="divider"></li>
+              <li ng-click="moveSources(folder)" ng-repeat="folder in folders | filter:unselectedFolder">
+                <a href="">{{folder.title}}</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="" ng-click="removeSources()">Remove from source box</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <span ng-show="allFolderSelected">Location</span>
+        </div>
+        <div class="col-md-1" style="margin:5px 0 0 10px">
+            Attach
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row sourcebox-content">
+    <div class="col-md-3 sourcebox-left">
+      <div class="folder-item" ng-class="{'folder-selected': homeFolder._selected}" ng-click="selectFolder(homeFolder)">
+        <i class="fa fa-home folderImage" style="font-size:22px"></i>
+        <span class="folderTitle">Home</span>
+        <span>({{homeFolder.size}})</span>
+      </div>
+      <div class="folder-item" ng-class="{'folder-selected': allFolderSelected}" ng-click="selectFolder('all')">
+        <i class="fa fa-archive folderImage" style="font-size:18px"></i>
+        <span class="folderTitle"> All</span>
+        <span>({{allDescriptionsCount}})</span>
+      </div>
+      <div class="section-divider">&nbsp;</div>
+
+      <div style="margin:15px 0 10px 10px">
+        <div>My Folders</div>
+        <div style="margin:10px 0">
+          <button class="btn btn-primary" ng-click="createFolder()">
+            <i class="fa fa-plus-square" style="margin-right:8px"></i>
+            New Folder
+          </button>
+        </div>
+      </div>
+      <div class="folder-item" ng-class="{'folder-selected': folder._selected}" ng-repeat="folder in folders | orderBy:getFolderTitle" ng-show="ready">
+		<div class="pull-left">
+          <span ng-click="selectFolder(folder)">
+            {{folder.title}}
+            <span>({{folder.size}})</span>
+          </span>
+        </div>
+        <div class="pull-right folderHandle" ng-show="folder._selected">
+          <span class="dropdown">
+            <span class="dropdown-toggle"><i class="fa fa-chevron-down">&nbsp;</i></span>
+              <ul class="dropdown-menu">
+                <li ng-click="renameFolder(folder)"><a href="">Rename Folder</a></li>
+                <li ng-click="removeFolder(folder)"><a href="">Remove Folder</a></li>
+              </ul>
+            </span>
+          </span>
+        </div>
+        <div class="clearboth">&nbsp;</div>
+      </div>
+    </div>
+    <div class="col-md-9 sourcebox-right">
+      <div class="row source-entry-row" ng-repeat="description in descriptions | orderBy:getDescriptionModified:true" ng-show="ready">
+        <div class="col-md-9">
+          <div class="pull-left" style="margin:5px 10px 0 0">
+            <input type="checkbox" ng-model="description._selected" ng-click="updateAllSelected()"/>
+          </div>
+          <div class="source-entry" ng-class="{'source-entry-open': description._open}">
+            <span class="source-content">
+              <a href="" ng-click="toggleOpen(description)">{{description.$getTitle()}}</a>
+              <span ng-show="description._open">
+                <span class="pull-right">
+                  <a href="" class="btn btn-xs btn-link detailsItem closeDetail" ng-click="toggleOpen(description)">
+                    <i class="fa fa-times-circle">&nbsp;</i>Close
+                  </a>
+                </span>
+                <br/>
+                <span class="source-content">
+                  <a href="" ng-click="attachSource(description)">Attach</a>
+                  <span class="actionBar">|</span> <a href="" ng-click="viewSource(description)">View</a>
+                  <span class="actionBar">|</span> <a href="" ng-click="copySource(description)">Copy</a>
+                  <span class="actionBar">|</span> <a href="" ng-click="removeSource(description)">Remove</a>
+                  <span class="actionBar">|</span> <a href="" ng-click="showSourceAttachments(description)">Attached To</a>
+                  &nbsp;<span class="badge">{{description._sourceRefsCount}}</span>
+                </span>
+                <span ng-show="!!description.about">
+                  <p class="headinglabel">url</p>
+                  <span class="source-content"><a ng-href="{{description.about}}">{{description.about}}</a></span>
+                </span>
+                <span ng-show="!!description.$getCitation()">
+                  <p class="headinglabel">Citation</p>
+                  <span class="source-content">{{description.$getCitation()}}</span>
+                </span>
+                <span ng-show="!!description.$getText()">
+                  <p class="headinglabel">Notes</p>
+                  <span class="source-content">{{description.$getText()}}</span>
+                </span>
+              </span>
+            </span>
+          </div>
+          <div class="clearboth">&nbsp;</div>
+        </div>
+        <div class="col-md-2">
+          <span ng-show="allFolderSelected">
+            {{getDescriptionFolderTitle(description)}}
+          </span>
+        </div>
+        <div class="col-md-1">
+          <a href="" ng-hide="isAttached(description)" ng-click="attachSource(description)">Attach</a>
+          <span ng-show="isAttached(description)">attached</span>
+        </div>
+      </div>
+      <div pagination page="currentPage" total-items="count" items-per-page="pageSize" on-select-page="pageChanged(page)" style="margin-left:-5px"></div>
+    </div>
+  </div>
+</div>
