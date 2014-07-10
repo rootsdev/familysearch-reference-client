@@ -14,7 +14,7 @@ module.exports = function ( karma ) {
         /**
          * fsCloneShared module must be defined before referenced
          */
-        'src/common/fsCloneShared/fsCloneShared.js',
+        'src/common/fsReferenceClientShared/fsReferenceClientShared.js',
         'src/app/app.js',
         'src/**/*.js',
         'src/**/*.coffee'

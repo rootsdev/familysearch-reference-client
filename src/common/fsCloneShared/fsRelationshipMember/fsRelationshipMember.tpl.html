@@ -1,8 +1,0 @@
-<div fs-item item="person" changeable="{{changeable}}" editable="false" deletable="{{deletable}}" delete-label="Remove">
-  <div fs-relationship-member-summary person="person" role="{{role}}" ng-hide="person._isEditing()"></div>
-  <div fs-relationship-member-details person="person" agent="agent" ng-show="person._isOpen() && person._exists()"></div>
-  <div fs-relationship-member-edit person="person" role="{{role}}" agent="agent" ng-show="person._isEditing()"></div>
-  <a href="" ng-hide="person._exists()" ng-click="$emit('change', person)">
-    <i class="fa fa-plus-square">&nbsp;</i>Add {{role}}
-  </a>
-</div>

@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   angular.module('fsReferenceClient', [
-    'fsCloneShared',
+    'fsReferenceClientShared',
     'templates-app',
     'templates-common',
     'ui.bootstrap',

@@ -1,6 +1,0 @@
-<div fs-item item="disc" editable="{{isAuthor ? 'true' : 'false'}}" deletable="{{isAuthor ? 'true' : 'false'}}">
-  <div fs-discussion-summary disc="disc" ng-hide="disc._isEditing()"></div>
-  <div fs-discussion-details disc="disc" agent="agent" comments-state="commentsState" ng-show="disc._isOpen()"></div>
-  <div fs-comments-section discussion="disc.discussion" state="commentsState" ng-show="disc._isOpen()"></div>
-  <div fs-discussion-edit disc="disc" agent="agent" ng-show="disc._isEditing()"></div>
-</div>

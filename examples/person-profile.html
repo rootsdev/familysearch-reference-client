@@ -49,7 +49,7 @@
   };
 
   // angular boilerplate
-  angular.module('MyApp', ['fsCloneShared', 'templates-common'])
+  angular.module('MyApp', ['fsReferenceClientShared', 'templates-common'])
     // configure FamilySearch global object
     .config(function (fsApiProvider) {
       fsApiProvider
@@ -86,7 +86,7 @@
 <div ng-controller="SampleController">
   <!-- here is the fs-person-profile component; person is set by the "$scope.person = person" statement above -->
   <div fs-person-profile ng-show="ready" person="person"></div>
-  <!-- to see examples of more components, look at the code in src/app, which uses components from src/common/fsCloneShared -->
+  <!-- to see examples of more components, look at the code in src/app, which uses components from src/common/fsReferenceClientShared -->
 </div>
 
 </body>
