@@ -1,7 +1,7 @@
-familysearch-clone
-==================
+familysearch-reference-client
+=============================
 
-Clone of the FamilySearch tree functionality
+Reference client for the FamilySearch tree functionality
 
 Overview
 ========
@@ -29,7 +29,7 @@ Sign in with your production FamilySearch account, not a sandbox account.
 Getting started
 ===============
 
-The clone is somewhat in a state of flux. 
+The client is somewhat in a state of flux. 
 The majority of the functionality is complete, but a few things remain to be implemented.
 Most functionality should be complete by June 14.
 Eventually we will have packaged releases with javascript files that you can download.
