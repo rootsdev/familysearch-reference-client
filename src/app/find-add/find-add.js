@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  angular.module('fsClone')
+  angular.module('fsReferenceClient')
     .config(function ($stateProvider) {
       $stateProvider.state('find-add', {
         url: '/find-add?husbandId&wifeId&fatherId&motherId&childIds&coupleId&parentsId&returnToPersonId&returnToCoupleId&returnToParentsId',

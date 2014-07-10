@@ -42,11 +42,11 @@ submodules that need them to ensure proper dependency handling. These are
 app-wide dependencies that are required to assemble your app.
 
 ```js
-angular.module( 'fsClone', [
+angular.module( 'fsReferenceClient', [
   'templates-app',
   'templates-common',
-  'fsClone.home',
-  'fsClone.about',
+  'fsReferenceClient.home',
+  'fsReferenceClient.about',
   'ui.state',
   'ui.route'
 ])
@@ -80,7 +80,7 @@ not specific to the template or route, such as menu logic or page title wiring.
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
-      $scope.pageTitle = toState.data.pageTitle + ' | fsClone' ;
+      $scope.pageTitle = toState.data.pageTitle + ' | fsReferenceClient' ;
     }
   });
 })

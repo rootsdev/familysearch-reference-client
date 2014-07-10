@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  angular.module('fsClone')
+  angular.module('fsReferenceClient')
     .config(function ($stateProvider) {
       $stateProvider.state('source-box', {
         url: '/source-box?personId&coupleId&parentsId',
