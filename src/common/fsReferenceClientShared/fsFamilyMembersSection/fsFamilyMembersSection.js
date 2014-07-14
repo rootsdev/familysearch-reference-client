@@ -64,6 +64,7 @@
             scope.parentFamilies = getParentFamilies(response);
           });
 
+          // TODO if preferred spouse is the "unknown" spouse, response is null - need to handle that properly
           scope.preferredCouple = {};
           fsApi.getPreferredSpouse(scope.person.id).then(function(response) {
             scope.preferredCouple.relationshipId = response;
@@ -101,6 +102,7 @@
             var isSpouseFamily = _.contains(scope.spouseFamilies, relationshipId);
             var promise;
             if (isSpouseFamily) {
+              // TODO it's possible to set the "unknown" spouse as the preferred spouse by passing in null as the relationshipId
               promise = isSet ? fsApi.setPreferredSpouse(scope.person.id, relationshipId)
                               : fsApi.deletePreferredSpouse(scope.person.id);
             }

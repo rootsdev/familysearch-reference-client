@@ -1,43 +1,15 @@
 (function(){
   'use strict';
   angular.module('fsReferenceClientShared')
-    .directive('fsNote', function(fsApi, fsAgentCache) {
+    .directive('fsNote', function(fsUtils) {
       return {
         templateUrl: 'fsReferenceClientShared/fsNote/fsNote.tpl.html',
         scope: {
-          noteRef: '='
+          note: '='
         },
         link: function(scope) {
-          function populateNote(noteRef) {
-            if (!scope.note) {
-              if (!noteRef.id) {
-                scope.note = new fsApi.Note({
-                  $personId: noteRef.$personId,
-                  $childAndParentsId: noteRef.$childAndParentsId,
-                  $coupleId: noteRef.$coupleId,
-                  subject: '',
-                  text: ''
-                });
-                scope.agent = null;
-              }
-              else {
-                noteRef._busy = true;
-                return noteRef.$getNote().then(function(response) {
-                  scope.note = response.getNote();
-                  // set the agent
-                  return fsAgentCache.getAgent(scope.note.attribution.$getAgentUrl()).then(function(agent) {
-                    scope.agent = agent;
-                    noteRef._busy = false;
-                  });
-                });
-              }
-            }
-            return null;
-          }
-
-          scope.noteRef._onOpen(populateNote);
-          scope.noteRef._onEdit(populateNote);
-
+          scope.note._onOpen(fsUtils.agentSetter(scope));
+          scope.note._onEdit(fsUtils.agentSetter(scope));
         }
       };
     });

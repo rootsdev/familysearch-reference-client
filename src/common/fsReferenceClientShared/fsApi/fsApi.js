@@ -3,12 +3,12 @@
   angular.module('fsReferenceClientShared')
     .provider('fsApi', function() {
       /* jshint camelcase:false */
-      var app_key = '';
+      var client_id = '';
       var environment = '';
-      var auth_callback = '';
+      var redirect_uri = '';
 
-      this.setAppKey = function(appKey) {
-        app_key = appKey;
+      this.setClientId = function(appKey) {
+        client_id = appKey;
         return this;
       };
 
@@ -17,17 +17,17 @@
         return this;
       };
 
-      this.setAuthCallback = function(authCallback) {
-        auth_callback = authCallback;
+      this.setRedirectUri = function(authCallback) {
+        redirect_uri = authCallback;
         return this;
       };
 
       this.$get = function($window, $http, $q, $timeout) {
-        if ( app_key && environment && auth_callback ) {
+        if ( client_id && environment && redirect_uri ) {
           $window.FamilySearch.init({
-            app_key: app_key,
+            client_id: client_id,
             environment: environment,
-            auth_callback: auth_callback,
+            redirect_uri: redirect_uri,
             http_function: $http,
             deferred_function: $q.defer,
             timeout_function: $timeout,

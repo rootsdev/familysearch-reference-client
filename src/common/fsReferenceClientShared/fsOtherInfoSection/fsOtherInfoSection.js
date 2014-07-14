@@ -92,6 +92,7 @@
           }, true);
 
           // add menu is Alternate Name + other fact types + custom
+          // TODO distinguish between custom facts and custom events - currently assumes all custom items are events
           scope.addMenu = _.map([{type: fsAlsoKnownAsNameType}].concat(fsOtherFactTypes).concat([{type: ''}]), function(other) {
             return {
               label: other.type === fsAlsoKnownAsNameType ? 'Alternate Name' : $filter('fsGedcomxLabel')(other.type),

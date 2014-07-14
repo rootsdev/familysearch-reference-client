@@ -53,9 +53,9 @@
     // configure FamilySearch global object
     .config(function (fsApiProvider) {
       fsApiProvider
-        .setAppKey('WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK')
+        .setClientId('WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK')
         .setEnvironmentName('sandbox')
-        .setAuthCallback('http://localhost:9000/#!/auth');
+        .setRedirectUri('http://localhost:9000/#!/auth');
     })
     // force FamilySearch (fsApi) to initialize
     .run(function (fsApi) {

@@ -20,7 +20,7 @@
             });
           },
           sources: function(_, $q, $stateParams, fsApi) {
-            return fsApi.getChildAndParentsSourceRefs($stateParams.parentsId).then(function(response) {
+            return fsApi.getChildAndParentsSourcesQuery($stateParams.parentsId).then(function(response) {
               return _.map(response.getSourceRefs(), function(sourceRef) {
                 return {
                   ref: sourceRef,

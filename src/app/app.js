@@ -14,11 +14,11 @@
 
     .config(function(fsApiProvider) {
       fsApiProvider
-        .setAppKey('WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK')
+        .setClientId('WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK')
         .setEnvironmentName('sandbox')
-        .setAuthCallback('http://localhost:9000/#!/auth');
+        .setRedirectUri('http://localhost:9000/#!/auth');
         //.setEnvironmentName('beta')
-        //.setAuthCallback('http://demo.werelate.org/#/auth');
+        //.setRedirectUri('http://demo.werelate.org/#/auth');
     })
 
     .config(function(fsLocationProvider) {

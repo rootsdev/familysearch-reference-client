@@ -13,27 +13,27 @@
         link: function(scope) {
           // read
           function init() {
-            var oldNoteRefs = scope.noteRefs;
+            var oldNotes = scope.notes;
 
-            scope.noteRefs = [];
+            scope.notes = [];
             var promise;
             if (!!scope.person) {
-              promise = fsApi.getPersonNoteRefs(scope.person.id);
+              promise = fsApi.getPersonNotes(scope.person.id);
             }
             else if (!!scope.couple) {
-              promise = fsApi.getCoupleNoteRefs(scope.couple.id);
+              promise = fsApi.getCoupleNotes(scope.couple.id);
             }
             else if (!!scope.parents) {
-              promise = fsApi.getChildAndParentsNoteRefs(scope.parents.id);
+              promise = fsApi.getChildAndParentsNotes(scope.parents.id);
             }
             promise.then(function(response) {
-              scope.noteRefs = response.getNoteRefs();
-              _.forEach(scope.noteRefs, function(noteRef) {
-                fsUtils.mixinStateFunctions(scope, noteRef);
+              scope.notes = response.getNotes();
+              _.forEach(scope.notes, function(note) {
+                fsUtils.mixinStateFunctions(scope, note);
               });
 
-              if (!!oldNoteRefs) { // copy old item state
-                fsUtils.copyItemStates(oldNoteRefs, scope.noteRefs);
+              if (!!oldNotes) { // copy old item state
+                fsUtils.copyItemStates(oldNotes, scope.notes);
               }
             });
           }
@@ -49,25 +49,25 @@
           scope.$on('add', function(event) {
             event.stopPropagation();
             // if not already adding
-            if (!fsUtils.findById(scope.noteRefs, null)) {
-              var noteRef = new fsApi.NoteRef();
+            if (!fsUtils.findById(scope.notes, null)) {
+              var note = new fsApi.Note();
               if (!!scope.person) {
-                noteRef.$personId = scope.person.id;
+                note.$personId = scope.person.id;
               }
               else if (!!scope.couple) {
-                noteRef.$coupleId = scope.couple.id;
+                note.$coupleId = scope.couple.id;
               }
               else if (!!scope.parents) {
-                noteRef.$childAndParentsId = scope.parents.id;
+                note.$childAndParentsId = scope.parents.id;
               }
-              fsUtils.mixinStateFunctions(scope, noteRef);
-              noteRef._edit();
-              scope.noteRefs.unshift(noteRef);
+              fsUtils.mixinStateFunctions(scope, note);
+              note._edit();
+              scope.notes.unshift(note);
             }
           });
 
           // delete
-          scope.$on('delete', function(event, noteRef) {
+          scope.$on('delete', function(event, note) {
             event.stopPropagation();
             fsConfirmationModal.open({
               title: 'Delete Note',
@@ -75,10 +75,10 @@
               showChangeMessage: true,
               okLabel: 'Delete'
             }).then(function(changeMessage) {
-              noteRef._busy = true;
-              noteRef.$delete(changeMessage).then(function() {
-                _.remove(scope.noteRefs, {id: noteRef.id});
-                $rootScope.$emit('deleted', noteRef);
+              note._busy = true;
+              note.$delete(changeMessage).then(function() {
+                _.remove(scope.notes, {id: note.id});
+                $rootScope.$emit('deleted', note);
               });
             });
           });
@@ -87,13 +87,9 @@
           scope.$on('save', function(event, note, changeMessage) {
             event.stopPropagation();
             note._busy = true;
-            var noteRef = fsUtils.findById(scope.noteRefs, note.id);
             note.$save(changeMessage, true).then(function() {
               note._busy = false;
-              // update noteRef from note and mark it open
-              noteRef.subject = note.subject;
-              noteRef.id = note.id;
-              noteRef._open();
+              note._open();
               $rootScope.$emit('saved', note);
             });
           });
@@ -101,12 +97,11 @@
           // cancel save
           scope.$on('cancel', function(event, note) {
             event.stopPropagation();
-            var noteRef = fsUtils.findById(scope.noteRefs, note.id);
-            if (!!noteRef.id) {
-              noteRef._open();
+            if (!!note.id) {
+              note._open();
             }
             else {
-              _.remove(scope.noteRefs, function(noteRef) { return !noteRef.id; });
+              _.remove(scope.notes, function(note) { return !note.id; });
             }
           });
 

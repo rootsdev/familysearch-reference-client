@@ -18,8 +18,7 @@
           else {
             $rootScope.$emit('alert', {
               level: 'error',
-              // TODO eventually remove the URL
-              text: response.statusText + ' (' + response.status + ')<br>' + response.config.url
+              text: response.statusText + ' (' + response.status + ')'
             });
             return $q.reject(response);
           }

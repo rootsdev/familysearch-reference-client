@@ -2,7 +2,9 @@
   'use strict';
   angular.module('fsReferenceClientShared')
     .config(function(growlProvider) {
-      growlProvider.onlyUniqueMessages(true);
+      // because growl pushes messages onto the array after a $timeout (don't know why)
+      // we can still get duplicate messages on http errors, so better to set to false so we always display duplicates
+      growlProvider.onlyUniqueMessages(false);
       growlProvider.globalTimeToLive({success: 15000, error: null, warning: null, info: 15000});
     })
 
