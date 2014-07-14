@@ -12,6 +12,7 @@
     .controller('HomeController', function ($scope, $state, $rootScope, fsApi, fsCurrentUserCache) {
       $scope.signIn = function() {
         fsApi.getAccessToken().then(function() {
+          $rootScope.$emit('newSession');
           fsCurrentUserCache.getUser().then(function(user) {
             $state.go('person', { personId: user.personId });
           });

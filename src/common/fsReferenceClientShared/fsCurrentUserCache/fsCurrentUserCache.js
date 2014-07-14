@@ -1,10 +1,13 @@
 (function(){
   'use strict';
   angular.module('fsReferenceClientShared')
-    .factory('fsCurrentUserCache', function($q, fsApi) {
+    .factory('fsCurrentUserCache', function($q, $rootScope, fsApi) {
       var currentUser = null;
 
-      // TODO when SDK emits a gotAccessToken event, we need to listen to that and refresh the current user
+      $rootScope.$on('newSession', function() {
+        currentUser = null;
+      });
+
       return {
         getUser: function() {
           if (!!currentUser) {

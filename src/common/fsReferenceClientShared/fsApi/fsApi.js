@@ -22,7 +22,7 @@
         return this;
       };
 
-      this.$get = function($window, $http, $q, $timeout) {
+      this.$get = function($window, $http, $q, $timeout, $rootScope) {
         if ( client_id && environment && redirect_uri ) {
           $window.FamilySearch.init({
             client_id: client_id,
@@ -33,7 +33,10 @@
             timeout_function: $timeout,
             save_access_token: true,
             auto_expire: true,
-            auto_signin: false
+            auto_signin: false,
+            expire_callback: function() {
+              $rootScope.$emit('sessionExpired');
+            }
           });
         }
 

@@ -5,23 +5,14 @@
       $httpProvider.interceptors.push('fsHttpErrorNotifier');
     })
 
-    .factory('fsHttpErrorNotifier', function($q, $rootScope, $injector) {
+    .factory('fsHttpErrorNotifier', function($q, $rootScope) {
       return {
         responseError: function(response) {
-          if (response.status === 401) {
-            var fsReAuthenticateModal = $injector.get('fsReAuthenticateModal');
-            var $http = $injector.get('$http');
-            return fsReAuthenticateModal.open().then(function() {
-              return $http(response.config);
-            });
-          }
-          else {
-            $rootScope.$emit('alert', {
-              level: 'error',
-              text: response.statusText + ' (' + response.status + ')'
-            });
-            return $q.reject(response);
-          }
+          $rootScope.$emit('alert', {
+            level: 'error',
+            text: response.statusText + ' (' + response.status + ')'
+          });
+          return $q.reject(response);
         }
       };
     });
