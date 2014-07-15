@@ -11,6 +11,8 @@
           preferred: '=' // {relationshipId}
         },
         link: function(scope) {
+          // TODO allow people to add couple relationships when they don't exist
+
           // if we haven't passed in the children or we haven't passed in a couple
           // then read them
           if (scope.family.children == null ||
